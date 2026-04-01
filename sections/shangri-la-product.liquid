@@ -806,6 +806,52 @@
     border-radius: 14px;
   }
 
+  .ota-page-heading {
+  margin-bottom: 26px;
+}
+
+.ota-page-kicker {
+  margin: 0 0 8px;
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.ota-page-title {
+  margin: 0;
+  color: #fff;
+  font-size: 34px;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+.ota-sidebar-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+  .ota-page-heading {
+    margin-bottom: 20px;
+  }
+
+  .ota-page-title {
+    font-size: 26px;
+    line-height: 1.25;
+  }
+}
+
+@media (max-width: 430px) {
+  .ota-page-title {
+    font-size: 22px;
+  }
+
+
   .ota-header{
     display: flex;
     flex-direction: column;
@@ -1096,10 +1142,15 @@
   <div class="ota-container">
 
     <div class="ota-main-config">
-      <div class="ota-header">
-        <h2 class="ota-section-title">Choose booking options</h2>
-        <button type="button" class="ota-reset js-reset">Reset selections</button>
-      </div>
+  <div class="ota-page-heading">
+    <p class="ota-page-kicker">Lynxtour Private Tour</p>
+    <h1 class="ota-page-title">{{ product.title }}</h1>
+  </div>
+
+  <div class="ota-header">
+    <h2 class="ota-section-title">Choose booking options</h2>
+    <button type="button" class="ota-reset js-reset">Reset selections</button>
+  </div>
 
       <div class="ota-group">
         <label class="ota-label">Travel date</label>
@@ -1346,10 +1397,9 @@
     </div>
 
     <aside class="ota-sidebar">
-      <div class="sidebar-sticky-card">
-        <div class="sidebar-head">
-          <h3>Itinerary details</h3>
-        </div>
+      <div class="sidebar-head">
+  <h2 class="ota-sidebar-title">Itinerary details</h2>
+</div>
 
         <div class="sidebar-content-wrapper">
           <div class="sidebar-labels">
