@@ -1,0 +1,84 @@
+<div class="sticky top-0 z-50 bg-stone-900/80 backdrop-blur-md border-b border-stone-800" data-anchor-nav>
+  <div class="max-w-7xl mx-auto px-4">
+    <nav class="flex items-center justify-center space-x-2 md:space-x-8 py-4 overflow-x-auto no-scrollbar">
+      {% for block in section.blocks %}
+        <a href="#{{ block.settings.anchor_id }}" 
+           class="text-sm md:text-base font-medium text-stone-300 hover:text-amber-400 transition-colors whitespace-nowrap px-3 py-1 rounded-full hover:bg-stone-800"
+           {{ block.shopify_attributes }}>
+          {{ block.settings.link_text }}
+        </a>
+      {% endfor %}
+    </nav>
+  </div>
+</div>
+
+<script>
+  /**
+   * 自动锚点注入脚本
+   * 逻辑：根据你在后台设置的顺序，依次给页面上的 Section 赋予 ID
+   */
+  document.addEventListener('DOMContentLoaded', function() {
+    const sections = document.querySelectorAll('.shopify-section');
+    const navLinks = {{ section.blocks | map: 'settings' | map: 'anchor_id' | json }};
+    
+    // 过滤掉导航栏本身，给其他 Section 注入 ID
+    let sectionIndex = 0;
+    sections.forEach((section) => {
+      // 如果这个 Section 不是导航栏本身，且我们还有没用完的 ID
+      if (!section.querySelector('[data-anchor-nav]') && navLinks[sectionIndex]) {
+        section.id = navLinks[sectionIndex];
+        sectionIndex++;
+      }
+    });
+  });
+</script>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  
+  /* 关键：防止点击后标题被吸顶导航遮挡 */
+  :target {
+    scroll-margin-top: 100px;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Anchor Navigation",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "nav_link",
+      "name": "Navigation Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "菜单文字",
+          "default": "关于我们"
+        },
+        {
+          "type": "text",
+          "id": "anchor_id",
+          "label": "目标锚点 ID",
+          "info": "输入一个简单的英文单词（如 about），脚本会自动将其绑定到对应的 Section 上"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Anchor Navigation",
+      "blocks": [
+        { "type": "nav_link", "settings": { "link_text": "第一章", "anchor_id": "part1" } },
+        { "type": "nav_link", "settings": { "link_text": "第二章", "anchor_id": "part2" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

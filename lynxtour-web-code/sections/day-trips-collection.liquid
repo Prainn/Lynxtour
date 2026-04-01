@@ -1,0 +1,994 @@
+<div class="luxury-collection-wrapper" id="CollectionProductGrid">
+
+  <header class="coll-hero-compact">
+    <div class="hero-bg">
+      {% if collection.image %}
+        <img src="{{ collection.image | img_url: '2000x' }}" alt="{{ collection.title | escape }} - Lynxtour" class="hero-img">
+      {% else %}
+        <div class="hero-placeholder"></div>
+      {% endif %}
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="hero-text-container">
+      <div class="hero-content">
+        <div class="subtitle-wrap">
+          <span class="coll-subtitle">
+            {% if collection.handle == 'yunnan-private-day-trips' %}
+              SHORT PRIVATE JOURNEYS, DEEPER LOCAL DISCOVERY
+            {% else %}
+              SHORT PRIVATE JOURNEYS, DEEPER LOCAL DISCOVERY
+            {% endif %}
+          </span>
+          <div class="subtitle-line"></div>
+        </div>
+
+        <h1 class="coll-title">
+          {% if collection.handle == 'yunnan-private-day-trips' %}
+            Yunnan Private Day Trips
+          {% else %}
+            {{ collection.title }}
+          {% endif %}
+        </h1>
+
+        {% if collection.description != blank %}
+          <div class="coll-desc-wrap">
+            <div class="coll-desc">{{ collection.description | strip_html | truncatewords: 26 }}</div>
+          </div>
+        {% elsif collection.handle == 'yunnan-private-day-trips' %}
+          <div class="coll-desc-wrap">
+            <div class="coll-desc">
+              Discover Yunnan through flexible private day trips from Kunming and beyond, with curated local routes, private transport, and a more comfortable travel pace.
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+
+  <div class="coll-container">
+    <div class="coll-meta-bar">
+      <div class="meta-left">
+        <span class="meta-number">{{ collection.products_count }}</span>
+        <span class="meta-label">Selected Experiences</span>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-right">
+        <span class="meta-location">
+          {% if collection.handle == 'yunnan-private-day-trips' %}
+            KUNMING · YUNNAN
+          {% else %}
+            Kunming, Yunnan
+          {% endif %}
+        </span>
+      </div>
+    </div>
+
+    {% paginate collection.products by 12 %}
+
+      {% if collection.handle == 'yunnan-private-day-trips' and paginate.current_page == 1 %}
+        <section class="seo-copy seo-copy-top">
+          <div class="seo-copy-inner">
+            <p class="seo-eyebrow">PRIVATE DAY TOURS IN YUNNAN</p>
+            <h2>Curated Yunnan Private Day Trips with Flexible, Local-Led Experiences</h2>
+            <p>
+              Our Yunnan private day trips are designed for travelers who want a deeper local experience without committing to a multi-day itinerary. Whether you are staying in Kunming, planning a short escape to nearby highlights, or adding a day excursion before a longer Yunnan journey, this collection brings together carefully selected private tours with flexible pacing, more comfort, and a more personal way to explore.
+            </p>
+          </div>
+        </section>
+      {% endif %}
+
+      <div class="compact-grid">
+        {% for product in collection.products %}
+          {% liquid
+            assign adult_variant_keywords = 'solo journey|double share|three person private group|adult|adult pricing|2 guests|3 guests|two guests|three guests|private tour' | split: '|'
+            assign excluded_keywords = 'children pricing|child|children|kid|kids|infant|baby|toddler|single room supplement|room supplement|single supplement|supplement|add-on|addon|upgrade|custom|extra bed|surcharge|儿童|小童|婴儿' | split: '|'
+
+            assign collection_display_price = blank
+            assign valid_main_variant_count = 0
+            assign found_adult_variant = false
+
+            for variant in product.variants
+              assign variant_title = variant.title | downcase | strip
+              assign is_adult_variant = false
+
+              for keyword in adult_variant_keywords
+                if variant_title contains keyword
+                  assign is_adult_variant = true
+                  break
+                endif
+              endfor
+
+              if is_adult_variant
+                assign found_adult_variant = true
+                assign valid_main_variant_count = valid_main_variant_count | plus: 1
+
+                if collection_display_price == blank or variant.price < collection_display_price
+                  assign collection_display_price = variant.price
+                endif
+              endif
+            endfor
+
+            if found_adult_variant == false
+              assign valid_main_variant_count = 0
+              assign collection_display_price = blank
+
+              for variant in product.variants
+                assign variant_title = variant.title | downcase | strip
+                assign is_excluded = false
+
+                for keyword in excluded_keywords
+                  if variant_title contains keyword
+                    assign is_excluded = true
+                    break
+                  endif
+                endfor
+
+                unless is_excluded
+                  assign valid_main_variant_count = valid_main_variant_count | plus: 1
+
+                  if collection_display_price == blank or variant.price < collection_display_price
+                    assign collection_display_price = variant.price
+                  endif
+                endunless
+              endfor
+            endif
+
+            if collection_display_price == blank
+              assign collection_display_price = product.price
+            endif
+
+            assign show_from_prefix = false
+            if valid_main_variant_count > 1
+              assign show_from_prefix = true
+            endif
+          %}
+
+          <div class="grid-item reveal-item">
+            <a href="{{ product.url }}" class="card-link">
+              <div class="card-visual">
+                {% if product.featured_image %}
+                  <img src="{{ product.featured_image | img_url: '800x1000', crop: 'center' }}" alt="{{ product.title | escape }}" loading="lazy">
+                {% else %}
+                  <div class="card-img-placeholder"></div>
+                {% endif %}
+
+                <div class="card-overlay">
+                  <div class="card-btn">EXPLORE</div>
+                </div>
+
+                {% if product.tags contains 'Route' %}
+                  <div class="route-indicator"><span class="dot-pulse"></span>PRIVATE</div>
+                {% endif %}
+              </div>
+
+              <div class="card-content">
+                <div class="card-header">
+                  <h3 class="product-title">{{ product.title }}</h3>
+                  <div class="product-price">
+                    {% if show_from_prefix %}
+                      <span class="price-prefix">From </span>
+                    {% endif %}
+                    {{ collection_display_price | money_with_currency }}
+                  </div>
+                </div>
+                <div class="product-info-row">
+                  <span class="product-type">{{ product.type | default: 'Experience' }}</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+
+      {% if paginate.pages > 1 %}
+        <div class="luxury-pagination">
+          {{ paginate | default_pagination }}
+        </div>
+      {% endif %}
+
+      {% if collection.handle == 'yunnan-private-day-trips' and paginate.current_page == 1 %}
+        <section class="seo-copy seo-copy-bottom">
+          <div class="seo-copy-inner">
+            <div class="seo-block">
+              <h2>Why Choose a Private Day Trip in Yunnan?</h2>
+              <p>
+                Private day trips are one of the easiest ways to experience Yunnan more comfortably, especially if you are based in Kunming or have limited time. Compared with fixed group tours, a private day trip gives you more control over pace, pick-up timing, sightseeing rhythm, and the overall travel experience. It is especially suitable for couples, families, small groups, and travelers who want a smoother, more personalized day out.
+              </p>
+            </div>
+
+            <div class="seo-block">
+              <h2>Popular Day Trip Experiences from Kunming</h2>
+              <p>
+                Many travelers begin with classic day excursions from Kunming, including cultural landmarks, natural scenery, ethnic heritage sites, and nearby old towns. Depending on your interests, a Yunnan private day trip can focus on landscape photography, local history, food discovery, cultural immersion, or a more relaxed scenic escape. This makes day trips an ideal option for first-time visitors as well as repeat travelers looking for a more tailored experience.
+              </p>
+            </div>
+
+            <div class="seo-block">
+              <h2>Who Are Yunnan Day Trips Best For?</h2>
+              <p>
+                Yunnan private day trips work especially well for travelers on shorter schedules, families with children, senior travelers, and anyone who prefers more comfort and flexibility than a shared group format. They are also a strong option if you want to add one well-planned local experience before or after a longer Yunnan itinerary. With private transport and a more focused route, even a single day can feel efficient, relaxed, and rewarding.
+              </p>
+            </div>
+
+            <div class="seo-block">
+              <h2>Best Time for Day Trips in Yunnan</h2>
+              <p>
+                Yunnan can be explored throughout the year, but spring and autumn are especially popular for clear weather and comfortable temperatures. Summer often brings greener scenery, while winter can be pleasant for day outings around Kunming and other lower-altitude areas. Choosing a private day trip makes it easier to adjust timing and route choices based on weather, energy level, and the type of experience you want.
+              </p>
+            </div>
+
+            <div class="seo-block">
+              <h2>Related Collections</h2>
+              <div class="seo-links">
+                <a href="/collections/yunnan-private-tours">Yunnan Private Tours</a>
+                <a href="/collections/dali-private-tours">Dali Private Tours</a>
+                <a href="/collections/lijiang-private-tours">Lijiang Private Tours</a>
+                <a href="/blogs/travel-guides">Yunnan Travel Guides</a>
+              </div>
+            </div>
+
+            <div class="seo-block faq-block">
+              <h2>Frequently Asked Questions</h2>
+
+              <details class="faq-item">
+                <summary>Are your Yunnan private day trips customizable?</summary>
+                <div class="faq-answer">
+                  Yes. Many private day trips can be adjusted based on your schedule, interests, pickup location, and preferred pace.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Do these day trips usually start from Kunming?</summary>
+                <div class="faq-answer">
+                  Many of them do, especially for travelers staying in Kunming. Exact departure arrangements depend on the specific route and product setup.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Are private day trips suitable for families?</summary>
+                <div class="faq-answer">
+                  Yes. Private day trips are often a better fit for families because the pace is more flexible and the day can be planned more comfortably around your group.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>What is usually included in a Yunnan private day trip?</summary>
+                <div class="faq-answer">
+                  Inclusions vary by route, but private transport, a planned itinerary, and local travel support are commonly part of the experience.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>How long are Yunnan private day trips?</summary>
+                <div class="faq-answer">
+                  Most are designed as full-day experiences, though exact timing depends on distance, route design, and the attractions included.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Can I combine a day trip with a longer Yunnan itinerary?</summary>
+                <div class="faq-answer">
+                  Yes. A private day trip can work well as a standalone local experience or as an extension before or after a longer Yunnan private tour.
+                </div>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Are your Yunnan private day trips customizable?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Many private day trips can be adjusted based on your schedule, interests, pickup location, and preferred pace."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do these day trips usually start from Kunming?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Many of them do, especially for travelers staying in Kunming. Exact departure arrangements depend on the specific route and product setup."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Are private day trips suitable for families?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Private day trips are often a better fit for families because the pace is more flexible and the day can be planned more comfortably around your group."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is usually included in a Yunnan private day trip?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Inclusions vary by route, but private transport, a planned itinerary, and local travel support are commonly part of the experience."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How long are Yunnan private day trips?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Most are designed as full-day experiences, though exact timing depends on distance, route design, and the attractions included."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I combine a day trip with a longer Yunnan itinerary?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. A private day trip can work well as a standalone local experience or as an extension before or after a longer Yunnan private tour."
+              }
+            }
+          ]
+        }
+        </script>
+      {% endif %}
+
+    {% endpaginate %}
+  </div>
+</div>
+
+<style>
+  #CollectionProductGrid {
+    background-color: #050505;
+    color: #fff;
+    overflow: hidden;
+    --header-safe: 118px;
+  }
+
+  #CollectionProductGrid .coll-hero-compact { 
+    height: calc(40vh + var(--header-safe));
+    min-height: 500px;
+    padding-top: var(--header-safe);
+    box-sizing: border-box;
+    position: relative; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+  }
+
+  #CollectionProductGrid .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  #CollectionProductGrid .hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.5);
+  }
+
+  #CollectionProductGrid .hero-placeholder {
+    background: #111;
+    width: 100%;
+    height: 100%;
+  }
+
+  #CollectionProductGrid .hero-overlay { 
+    position: absolute;
+    inset: 0; 
+    background: linear-gradient(to bottom, rgba(5,5,5,0) 0%, rgba(5,5,5,0.9) 100%);
+    z-index: 2;
+  }
+
+  #CollectionProductGrid .hero-text-container {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    width: 100%;
+    padding: 0 18px 56px;
+  }
+
+  #CollectionProductGrid .hero-content {
+    max-width: 920px;
+    margin: 0 auto;
+  }
+
+  #CollectionProductGrid .subtitle-line {
+    width: 35px;
+    height: 1px;
+    background: #c4b5a6;
+    margin: 12px auto 0;
+  }
+
+  #CollectionProductGrid .coll-subtitle {
+    color: #c4b5a6;
+    font-size: 8px;
+    letter-spacing: 0.6em;
+    text-transform: uppercase;
+  }
+
+  #CollectionProductGrid .coll-title { 
+    font-family: 'Cormorant Garamond', serif; 
+    font-size: clamp(2rem, 5vw, 3.5rem); 
+    font-weight: 300;
+    font-style: italic;
+    margin: 10px 0;
+    color: #fff;
+    line-height: 1.05;
+  }
+
+  #CollectionProductGrid .coll-desc {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    font-size: 13px;
+    color: #9a9a9a;
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  #CollectionProductGrid .coll-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 60px 100px;
+  }
+
+  #CollectionProductGrid .compact-grid { 
+    display: grid; 
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 50px 40px;
+    align-items: start;
+  }
+
+  #CollectionProductGrid .grid-item {
+    min-width: 0;
+  }
+
+  #CollectionProductGrid .reveal-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  #CollectionProductGrid .reveal-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  #CollectionProductGrid .card-link {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+  }
+
+  #CollectionProductGrid .card-visual { 
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 0.85;
+    background: #0a0a0a;
+    border: 0.5px solid rgba(255,255,255,0.05);
+  }
+
+  #CollectionProductGrid .card-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  #CollectionProductGrid .card-img-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #111;
+  }
+  
+  #CollectionProductGrid .card-overlay { 
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0);
+    transition: all 0.6s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(0px);
+  }
+
+  #CollectionProductGrid .card-btn { 
+    color: #fff;
+    font-size: 8px;
+    letter-spacing: 0.3em;
+    border: 0.5px solid #fff;
+    padding: 8px 16px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: 0.4s ease;
+  }
+  
+  #CollectionProductGrid .grid-item:hover img {
+    transform: scale(1.08);
+  }
+
+  #CollectionProductGrid .grid-item:hover .card-overlay {
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(5px);
+  }
+
+  #CollectionProductGrid .grid-item:hover .card-btn {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  #CollectionProductGrid .grid-item:hover .product-title {
+    color: #c4b5a6;
+  }
+
+  #CollectionProductGrid .card-content {
+    margin-top: 15px;
+  }
+
+  #CollectionProductGrid .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+  }
+
+  #CollectionProductGrid .product-title { 
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
+    transition: color 0.3s ease;
+    margin: 0;
+    min-width: 0;
+  }
+
+  #CollectionProductGrid .product-price {
+    font-size: 12px;
+    color: #aaa;
+    font-weight: 300;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin: 0;
+  }
+
+  #CollectionProductGrid .price-prefix {
+    opacity: 0.8;
+  }
+
+  #CollectionProductGrid .product-info-row {
+    font-size: 8px;
+    color: #555;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 5px;
+  }
+
+  #CollectionProductGrid .route-indicator {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(0,0,0,0.5);
+    padding: 4px 8px;
+    font-size: 7px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  #CollectionProductGrid .dot-pulse {
+    width: 4px;
+    height: 4px;
+    background: #c4b5a6;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #c4b5a6;
+  }
+
+  #CollectionProductGrid .coll-meta-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 42px;
+    padding: 20px 0;
+    border-top: 1px solid rgba(196, 181, 166, 0.15);
+    border-bottom: 1px solid rgba(196, 181, 166, 0.15);
+  }
+
+  #CollectionProductGrid .meta-left,
+  #CollectionProductGrid .meta-right {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  #CollectionProductGrid .meta-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-style: italic;
+    color: #c4b5a6;
+  }
+
+  #CollectionProductGrid .meta-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: #666;
+  }
+
+  #CollectionProductGrid .meta-location {
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: #888;
+    font-weight: 300;
+  }
+
+  #CollectionProductGrid .meta-divider {
+    width: 1px;
+    height: 20px;
+    background: linear-gradient(to bottom, transparent, #c4b5a6, transparent);
+    opacity: 0.6;
+  }
+
+  #CollectionProductGrid .seo-copy {
+    margin: 0 auto 54px;
+  }
+
+  #CollectionProductGrid .seo-copy-bottom {
+    margin: 72px auto 0;
+  }
+
+  #CollectionProductGrid .seo-copy-inner {
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  #CollectionProductGrid .seo-eyebrow {
+    margin: 0 0 12px;
+    font-size: 10px;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: #b6a28e;
+  }
+
+  #CollectionProductGrid .seo-block {
+    margin-bottom: 34px;
+  }
+
+  #CollectionProductGrid .seo-copy h2 {
+    margin: 0 0 14px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.15;
+    color: #fff;
+  }
+
+  #CollectionProductGrid .seo-copy p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.95;
+    color: #a4a4a4;
+  }
+
+  #CollectionProductGrid .seo-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 14px;
+    margin-top: 10px;
+  }
+
+  #CollectionProductGrid .seo-links a {
+    color: #d4c2ae;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(212,194,174,0.35);
+    padding-bottom: 2px;
+    transition: .25s ease;
+  }
+
+  #CollectionProductGrid .seo-links a:hover {
+    color: #fff;
+    border-color: rgba(255,255,255,0.6);
+  }
+
+  #CollectionProductGrid .faq-block {
+    margin-top: 10px;
+  }
+
+  #CollectionProductGrid .faq-item {
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  #CollectionProductGrid .faq-item:last-child {
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  #CollectionProductGrid .faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 18px 36px 18px 0;
+    position: relative;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #efefef;
+  }
+
+  #CollectionProductGrid .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  #CollectionProductGrid .faq-item summary::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 22px;
+    line-height: 1;
+    color: #bda995;
+    transition: .25s ease;
+  }
+
+  #CollectionProductGrid .faq-item[open] summary::after {
+    content: '−';
+  }
+
+  #CollectionProductGrid .faq-answer {
+    padding: 0 0 18px;
+    font-size: 14px;
+    line-height: 1.9;
+    color: #9d9d9d;
+  }
+
+  #CollectionProductGrid .luxury-pagination {
+    margin-top: 50px;
+    opacity: .85;
+  }
+
+  @media (max-width: 990px) {
+    #CollectionProductGrid {
+      --header-safe: 84px;
+    }
+
+    #CollectionProductGrid .coll-hero-compact {
+      height: auto;
+      min-height: 420px;
+      padding-top: var(--header-safe);
+    }
+
+    #CollectionProductGrid .hero-text-container {
+      padding: 18px 20px 48px;
+    }
+
+    #CollectionProductGrid .hero-content {
+      padding: 0 20px;
+    }
+
+    #CollectionProductGrid .coll-subtitle {
+      font-size: 8px;
+      letter-spacing: 0.42em;
+      line-height: 1.8;
+      display: inline-block;
+    }
+
+    #CollectionProductGrid .subtitle-line {
+      margin-top: 10px;
+    }
+
+    #CollectionProductGrid .coll-title {
+      font-size: clamp(2rem, 8vw, 3.2rem);
+      line-height: 1.05;
+      margin: 14px 0 12px;
+    }
+
+    #CollectionProductGrid .coll-desc {
+      font-size: 14px;
+      line-height: 1.8;
+      max-width: 640px;
+      -webkit-line-clamp: 4;
+    }
+
+    #CollectionProductGrid .coll-container {
+      padding: 32px 16px 80px;
+    }
+
+    #CollectionProductGrid .seo-copy {
+      margin-bottom: 36px;
+    }
+
+    #CollectionProductGrid .seo-copy-bottom {
+      margin-top: 54px;
+    }
+
+    #CollectionProductGrid .seo-copy p,
+    #CollectionProductGrid .faq-item summary,
+    #CollectionProductGrid .faq-answer {
+      font-size: 14px;
+    }
+
+    #CollectionProductGrid .coll-meta-bar {
+      margin-bottom: 38px;
+      padding: 18px 0;
+      gap: 22px;
+    }
+
+    #CollectionProductGrid .meta-number {
+      font-size: 22px;
+    }
+
+    #CollectionProductGrid .meta-label {
+      font-size: 8px;
+    }
+
+    #CollectionProductGrid .meta-location {
+      font-size: 9px;
+      letter-spacing: 0.32em;
+    }
+
+    #CollectionProductGrid .compact-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 26px 14px;
+      align-items: start;
+    }
+
+    #CollectionProductGrid .card-visual {
+      aspect-ratio: 0.82;
+    }
+
+    #CollectionProductGrid .card-content {
+      margin-top: 12px;
+    }
+
+    #CollectionProductGrid .card-header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 6px;
+    }
+
+    #CollectionProductGrid .product-title {
+      width: 100%;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.4;
+      letter-spacing: 0;
+      word-break: normal;
+      overflow-wrap: anywhere;
+    }
+
+    #CollectionProductGrid .product-price {
+      font-size: 12px;
+      line-height: 1.2;
+      color: #9f9f9f;
+    }
+
+    #CollectionProductGrid .price-prefix {
+      opacity: 0.78;
+    }
+
+    #CollectionProductGrid .product-info-row {
+      margin-top: 8px;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+    }
+
+    #CollectionProductGrid .route-indicator {
+      top: 10px;
+      left: 10px;
+      padding: 4px 7px;
+      font-size: 7px;
+    }
+
+    #CollectionProductGrid .card-btn {
+      font-size: 7px;
+      letter-spacing: 0.24em;
+      padding: 7px 13px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #CollectionProductGrid .coll-meta-bar {
+      flex-direction: column;
+      gap: 14px;
+      border: none;
+    }
+
+    #CollectionProductGrid .meta-divider {
+      width: 30px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #c4b5a6, transparent);
+    }
+
+    #CollectionProductGrid .seo-copy h2 {
+      font-size: clamp(1.5rem, 7vw, 2rem);
+    }
+  }
+
+  @media (max-width: 430px) {
+    #CollectionProductGrid .compact-grid {
+      gap: 24px 12px;
+    }
+
+    #CollectionProductGrid .coll-hero-compact {
+      min-height: 390px;
+    }
+
+    #CollectionProductGrid .hero-text-container {
+      padding: 16px 16px 42px;
+    }
+
+    #CollectionProductGrid .coll-title {
+      font-size: 1.9rem;
+      line-height: 1.08;
+    }
+
+    #CollectionProductGrid .coll-desc {
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    #CollectionProductGrid .product-title {
+      font-size: 14px;
+      line-height: 1.36;
+    }
+
+    #CollectionProductGrid .product-price {
+      font-size: 11px;
+    }
+
+    #CollectionProductGrid .product-info-row {
+      font-size: 8px;
+      letter-spacing: 0.12em;
+    }
+
+    #CollectionProductGrid .seo-copy p,
+    #CollectionProductGrid .faq-item summary,
+    #CollectionProductGrid .faq-answer {
+      font-size: 13px;
+      line-height: 1.85;
+    }
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const root = document.getElementById('CollectionProductGrid');
+  if (!root) return;
+
+  const items = Array.from(root.querySelectorAll('.reveal-item'));
+  if (!items.length) return;
+
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const isMobile = window.innerWidth <= 990;
+        const cols = isMobile ? 2 : 3;
+        const index = items.indexOf(entry.target);
+        const delay = (index % cols) * 150;
+
+        setTimeout(() => {
+          entry.target.classList.add('is-visible');
+        }, delay);
+
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  items.forEach(item => observer.observe(item));
+});
+</script>

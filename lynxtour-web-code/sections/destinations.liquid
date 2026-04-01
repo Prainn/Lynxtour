@@ -1,0 +1,593 @@
+<div id="dest-section" class="dest-section-wrapper">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <div class="header-container dest-shell">
+    {% if section.settings.main_title != blank %}
+      <div class="section-header">
+        <h2 class="section-main-title">{{ section.settings.main_title }}</h2>
+
+        {% if section.settings.main_subtitle != blank %}
+          <p class="section-main-subtitle">{{ section.settings.main_subtitle }}</p>
+        {% endif %}
+
+        <div class="title-underline"></div>
+      </div>
+    {% endif %}
+
+    <div class="destinations-grid">
+      {%- for block in section.blocks -%}
+        {%- assign card_url = block.settings.link | default: '#' -%}
+        {%- assign cta_label = block.settings.cta_text | default: 'View Journey' -%}
+
+        {%- assign object_position = 'center center' -%}
+        {%- case block.settings.img_align -%}
+          {%- when 'top' -%}
+            {%- assign object_position = 'center top' -%}
+          {%- when 'bottom' -%}
+            {%- assign object_position = 'center bottom' -%}
+        {%- endcase -%}
+
+        <div class="dest-item" {{ block.shopify_attributes }}>
+          <a href="{{ card_url }}" class="dest-card-link">
+            <div class="dest-card-image">
+              {% if block.settings.image != blank %}
+                <img
+                  src="{{ block.settings.image | image_url: width: 1600 }}"
+                  alt="{{ block.settings.title | escape }}"
+                  loading="lazy"
+                  style="object-position: {{ object_position }};"
+                >
+              {% else %}
+                {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
+              <div class="dest-card-overlay"></div>
+            </div>
+
+            <div class="dest-card-content">
+              {% if block.settings.location_tag != blank %}
+                <div class="dest-tag">
+                  <span class="tag-dot"></span>
+                  {{ block.settings.location_tag }}
+                </div>
+              {% endif %}
+
+              {% if block.settings.title != blank %}
+                <h3 class="dest-title">{{ block.settings.title }}</h3>
+              {% endif %}
+
+              {% if block.settings.description != blank %}
+                <p class="dest-desc">{{ block.settings.description }}</p>
+              {% endif %}
+
+              <div class="dest-action">
+                <span>{{ cta_label }}</span>
+                <div class="action-line"></div>
+              </div>
+            </div>
+          </a>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<style>
+  .dest-section-wrapper {
+    background:
+      radial-gradient(circle at top right, rgba(216,179,95,0.08), transparent 24%),
+      linear-gradient(180deg, #090807 0%, #0b0908 48%, #0a0807 100%);
+    padding: 108px 0 112px;
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+  }
+
+  .dest-shell {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 58px;
+  }
+
+  .section-main-title {
+    color: #f7f2ea;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.1rem, 4vw, 3.3rem);
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin: 0 0 14px;
+    opacity: 0.96;
+    line-height: 1.15;
+  }
+
+  .section-main-subtitle {
+    max-width: 760px;
+    margin: 0 auto 18px;
+    color: rgba(232, 225, 214, 0.72);
+    font-size: 14px;
+    line-height: 1.9;
+    letter-spacing: 0.03em;
+    font-weight: 300;
+  }
+
+  .title-underline {
+    width: 52px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(216,179,95,0.15) 0%, #d8b35f 50%, rgba(216,179,95,0.15) 100%);
+    margin: 0 auto;
+    opacity: 0.85;
+  }
+
+  .destinations-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+  }
+
+  .dest-item {
+    position: relative;
+    height: 640px;
+    background: #000;
+    overflow: hidden;
+    border-radius: 24px;
+    border: 1px solid rgba(216,179,95,0.10);
+    box-shadow: 0 16px 44px rgba(0, 0, 0, 0.22);
+  }
+
+  .dest-card-link {
+    display: block;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .dest-card-image {
+    width: 100%;
+    height: 100%;
+    transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .dest-card-image img,
+  .dest-card-image .placeholder-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .dest-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.02) 18%,
+      rgba(0,0,0,0.12) 44%,
+      rgba(0,0,0,0.88) 100%
+    );
+    z-index: 1;
+    transition: 0.55s ease;
+  }
+
+  .dest-card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 42px 38px 38px;
+    z-index: 2;
+    transform: translateY(56px);
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .dest-tag {
+    color: #d8b35f;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    opacity: 0.98;
+  }
+
+  .tag-dot {
+    width: 5px;
+    height: 5px;
+    background: #d8b35f;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(216,179,95,0.10);
+    flex: 0 0 auto;
+  }
+
+  .dest-title {
+    color: #f7f2ea;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(26px, 2vw, 36px);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: 0.01em;
+    margin: 0 0 14px;
+  }
+
+  .dest-desc {
+    color: rgba(232, 225, 214, 0.82);
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.88;
+    letter-spacing: 0.025em;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.55s ease;
+    max-width: 34ch;
+  }
+
+  .dest-action {
+    margin-top: 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #d8b35f;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: 0.45s ease 0.08s;
+  }
+
+  .action-line {
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, #d8b35f 0%, rgba(216,179,95,0.18) 100%);
+    transition: 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .dest-item:hover .dest-card-content {
+    transform: translateY(0);
+  }
+
+  .dest-item:hover .dest-desc {
+    opacity: 0.92;
+    visibility: visible;
+    max-height: 160px;
+    margin-bottom: 2px;
+  }
+
+  .dest-item:hover .dest-action {
+    opacity: 1;
+  }
+
+  .dest-item:hover .action-line {
+    width: 46px;
+  }
+
+  .dest-item:hover .dest-card-image {
+    transform: scale(1.06);
+  }
+
+  .dest-item:hover .dest-card-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.06) 0%,
+      rgba(0,0,0,0.16) 38%,
+      rgba(0,0,0,0.94) 100%
+    );
+  }
+
+  @media (max-width: 1180px) {
+    .destinations-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 767px) {
+    .dest-section-wrapper {
+      padding: 40px 0 64px;
+      background:
+        linear-gradient(180deg, #090807 0%, #0b0908 50%, #0a0807 100%);
+    }
+
+    .dest-shell {
+      padding: 0 16px;
+    }
+
+    .section-header {
+      margin-bottom: 22px;
+    }
+
+    .section-main-title {
+      font-size: 22px;
+      line-height: 1.2;
+      letter-spacing: 0.12em;
+      margin-bottom: 10px;
+    }
+
+    .section-main-subtitle {
+      font-size: 13px;
+      line-height: 1.75;
+      max-width: 92%;
+      margin-bottom: 14px;
+    }
+
+    .title-underline {
+      width: 54px;
+      opacity: 0.72;
+    }
+
+    .destinations-grid {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .dest-item {
+      height: auto;
+      background: transparent;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(216,179,95,0.10);
+      box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255,255,255,0.02);
+    }
+
+    .dest-card-link {
+      display: block;
+      height: auto;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.01) 100%);
+    }
+
+    .dest-card-image {
+      position: relative;
+      height: 248px;
+      min-height: 248px;
+      transform: none !important;
+      overflow: hidden;
+    }
+
+    .dest-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.01);
+    }
+
+    .dest-card-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(0,0,0,0.02) 0%,
+          rgba(0,0,0,0.10) 48%,
+          rgba(0,0,0,0.34) 100%
+        );
+      z-index: 1;
+    }
+
+    .dest-card-content {
+      position: relative;
+      left: auto;
+      bottom: auto;
+      width: 100%;
+      transform: none !important;
+      padding: 18px 18px 20px;
+      z-index: 3;
+      background:
+        linear-gradient(180deg, #120f0e 0%, #0d0b0a 100%);
+      border-top: 1px solid rgba(216,179,95,0.08);
+    }
+
+    .dest-tag {
+      margin-bottom: 10px;
+      gap: 8px;
+      color: #d8b35f;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+    }
+
+    .tag-dot {
+      width: 5px;
+      height: 5px;
+      background: #d8b35f;
+      border-radius: 50%;
+      box-shadow: 0 0 0 3px rgba(216,179,95,0.08);
+    }
+
+    .dest-title {
+      margin: 0 0 10px;
+      color: #f7f2ea;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 27px;
+      line-height: 1.08;
+      letter-spacing: 0.01em;
+    }
+
+    .dest-desc {
+      margin: 0;
+      color: rgba(232, 225, 214, 0.78);
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.8;
+      letter-spacing: 0.02em;
+      opacity: 1;
+      visibility: visible;
+      max-height: none;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      max-width: none;
+    }
+
+    .dest-action {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #d8b35f;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.95;
+    }
+
+    .action-line {
+      width: 34px;
+      height: 1px;
+      background: linear-gradient(90deg, #d8b35f 0%, rgba(216,179,95,0.18) 100%);
+    }
+
+    .dest-item:hover .dest-card-image,
+    .dest-item:hover .dest-card-content {
+      transform: none;
+    }
+
+    .dest-item:hover .dest-desc {
+      opacity: 1;
+      visibility: visible;
+      max-height: none;
+      margin: 0;
+    }
+
+    .dest-item:hover .dest-action {
+      opacity: 0.95;
+    }
+
+    .dest-item:hover .action-line {
+      width: 34px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Destinations Pro",
+  "settings": [
+    {
+      "type": "text",
+      "id": "main_title",
+      "label": "英文大标题",
+      "default": "CURATED DESTINATIONS"
+    },
+    {
+      "type": "textarea",
+      "id": "main_subtitle",
+      "label": "副标题",
+      "default": "Explore Yunnan through atmospheric stays, slow landscapes, and destination-led private travel."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "destination",
+      "name": "目的地项目",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "背景图片"
+        },
+        {
+          "type": "select",
+          "id": "img_align",
+          "label": "图片对齐方式",
+          "options": [
+            { "value": "top", "label": "靠上" },
+            { "value": "center", "label": "居中" },
+            { "value": "bottom", "label": "靠下" }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "text",
+          "id": "location_tag",
+          "label": "地理标签",
+          "default": "YUNNAN · LIJIANG"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Editorial 标题",
+          "default": "Beneath the Jade Dragon, Slumber by the Water"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "短描述",
+          "default": "Retreat from the bustle of the Ancient Town and settle into a quieter Lijiang shaped by mountain light, courtyard living, and the poetry of water."
+        },
+        {
+          "type": "text",
+          "id": "cta_text",
+          "label": "按钮文字",
+          "default": "View Journey"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "链接地址"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Destinations Pro",
+      "blocks": [
+        {
+          "type": "destination",
+          "settings": {
+            "location_tag": "YUNNAN · KUNMING",
+            "title": "Where Spring Light Meets the Lake",
+            "description": "Begin your Yunnan journey with flower markets, lakeside air, and an easy rhythm shaped by city comfort and graceful day trips.",
+            "cta_text": "View Journey"
+          }
+        },
+        {
+          "type": "destination",
+          "settings": {
+            "location_tag": "YUNNAN · DALI",
+            "title": "By Erhai, Time Learns to Slow",
+            "description": "Wake to mountain light, open water, and a softer Yunnan mood shaped by Bai heritage, village texture, and lakeside calm.",
+            "cta_text": "View Journey"
+          }
+        },
+        {
+          "type": "destination",
+          "settings": {
+            "location_tag": "YUNNAN · LIJIANG",
+            "title": "Beneath the Jade Dragon, Slumber by the Water",
+            "description": "Retreat from the bustle of the Ancient Town and settle into a quieter Lijiang shaped by mountain light, courtyard living, and the poetry of water.",
+            "cta_text": "View Journey"
+          }
+        },
+        {
+          "type": "destination",
+          "settings": {
+            "location_tag": "YUNNAN · SHANGRI-LA",
+            "title": "Where the Plateau Opens into Silence",
+            "description": "Enter a higher, quieter Yunnan, where monasteries, grasslands, and Tibetan character create a journey of altitude, stillness, and wonder.",
+            "cta_text": "View Journey"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

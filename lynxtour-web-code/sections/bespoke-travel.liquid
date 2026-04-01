@@ -1,0 +1,781 @@
+<!-- 引入 Flatpickr 日历插件及其暗黑主题 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<div id="itinerary-anchor" class="itinerary-ai-section">
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    
+    {% if section.settings.main_title != blank %}
+      <div class="section-header">
+        <h2 class="section-main-title">{{ section.settings.main_title }}</h2>
+        <div class="title-underline"></div>
+        <p class="section-subtitle">Instant travel concept, reviewed by a local specialist.</p>
+      </div>
+    {% endif %}
+
+    <div class="flex flex-col lg:flex-row gap-8 items-stretch">
+      
+      <!-- 左侧：AI 灵感预览区 -->
+      <div class="w-full lg:w-[65%] bg-white/[0.015] p-8 md:p-10 border border-white/[0.05] shadow-2xl flex flex-col relative">
+        <div class="mb-8 flex justify-between items-end border-b border-white/[0.05] pb-6">
+          <div>
+            <span class="text-amber-500/70 text-[10px] tracking-[0.4em] uppercase font-light">{{ section.settings.ai_pretitle }}</span>
+            <h3 class="text-xl text-white font-light mt-2 tracking-[0.2em] uppercase">{{ section.settings.ai_title }}</h3>
+          </div>
+          <div class="text-stone-600 text-[9px] tracking-widest uppercase font-mono opacity-40">Preview Mode</div>
+        </div>
+
+        <div class="mb-8 p-4 border border-white/[0.06] bg-white/[0.02]">
+          <p class="text-stone-300 text-[11px] leading-6 font-light">
+            Get an instant travel idea in a few seconds. Prefer to skip AI? You can send your request directly to our local specialist at any time.
+          </p>
+        </div>
+
+        <form id="itinerary-form" class="space-y-8 flex-grow">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="input-group">
+              <label class="block text-stone-500 text-[9px] uppercase mb-3 tracking-[0.2em]">Duration (Days)</label>
+              <input
+                type="number"
+                name="duration"
+                value="7"
+                min="1"
+                max="30"
+                class="custom-input w-full bg-transparent border-b border-stone-800 text-amber-100 py-2 outline-none focus:border-amber-500/50 transition-all font-mono"
+              >
+            </div>
+            
+            <div class="input-group relative">
+              <label class="block text-stone-500 text-[9px] uppercase mb-3 tracking-[0.2em]">Est. Arrival Date</label>
+              <input
+                type="text"
+                id="travel-date"
+                name="travel_date"
+                placeholder="Select a date..."
+                class="custom-input w-full bg-transparent border-b border-stone-800 text-amber-100 py-2 pr-6 outline-none focus:border-amber-500/50 transition-all font-mono cursor-pointer"
+                readonly="readonly"
+              >
+              <svg class="w-4 h-4 text-stone-600 absolute right-0 bottom-2.5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+
+            <div class="input-group">
+              <label class="block text-stone-500 text-[9px] uppercase mb-3 tracking-[0.2em]">Travelers</label>
+              <select name="travelers" class="custom-input w-full bg-transparent border-b border-stone-800 text-amber-100 py-2 outline-none focus:border-amber-500/50 appearance-none cursor-pointer">
+                <option value="Solo">Solo Traveler</option>
+                <option value="Couple" selected>Couple</option>
+                <option value="Family">Family Group</option>
+                <option value="Friends">Small Group</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="input-group">
+              <label class="block text-stone-500 text-[9px] uppercase mb-3 tracking-[0.2em]">Target Destinations</label>
+              <input
+                type="text"
+                name="destinations"
+                placeholder="e.g. Dali, Lijiang, Shangri-La..."
+                class="custom-input w-full bg-transparent border-b border-stone-800 text-amber-100 py-2 outline-none focus:border-amber-500/50 transition-all italic text-xs"
+              >
+            </div>
+            <div class="input-group">
+              <label class="block text-stone-500 text-[9px] uppercase mb-3 tracking-[0.2em]">Budget Preference</label>
+              <select name="budget" class="custom-input w-full bg-transparent border-b border-stone-800 text-amber-100 py-2 outline-none focus:border-amber-500/50 appearance-none cursor-pointer">
+                <option value="Not Sure Yet">Not Sure Yet</option>
+                <option value="Comfort">Comfort (4-Star & Local Charm)</option>
+                <option value="Premium" selected>Premium (5-Star & Private Guides)</option>
+                <option value="Luxury">Luxury (Top Tier & Exclusive Access)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label class="block text-stone-500 text-[9px] uppercase mb-4 tracking-[0.2em]">Pace & Travel Style</label>
+            <div class="flex flex-wrap gap-3">
+              {% assign tags = "Slow & Immersive,Active Adventure,Culture & History,Nature & Scenery,Local Gourmet,Photography,Luxury Retreat" | split: ',' %}
+              {% for tag in tags %}
+                <button type="button" data-tag="{{ tag }}" class="tag-btn px-5 py-2.5 border border-white/10 text-[9px] text-stone-500 hover:text-white transition-all cursor-pointer uppercase tracking-[0.15em]">
+                  {{ tag }}
+                </button>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="space-y-3 mt-4">
+            <button
+              type="submit"
+              id="generate-ai-btn"
+              class="ai-submit-btn w-full border border-amber-500/50 text-amber-500/90 hover:bg-amber-500 hover:text-stone-950 py-5 transition-all flex justify-center items-center gap-3 tracking-[0.35em] text-[10px] bg-transparent"
+            >
+              <span class="btn-label">GET INSTANT TRAVEL IDEA</span>
+              <svg class="w-4 h-4 btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M14 5l7 7-7 7M5 12h14" stroke-width="1"></path>
+              </svg>
+            </button>
+
+            <button
+              type="button"
+              id="skip-ai-btn"
+              class="secondary-submit-btn w-full border border-white/10 text-stone-300 hover:border-amber-500/40 hover:text-amber-400 py-4 transition-all tracking-[0.3em] text-[10px] bg-transparent"
+            >
+              SKIP AI & REQUEST EXPERT PLAN
+            </button>
+
+            <p class="text-center text-stone-500 text-[9px] tracking-wide mt-3">
+              AI preview usually appears in a few seconds. If it takes too long, you can still continue with a local specialist.
+            </p>
+          </div>
+        </form>
+
+        <div id="itinerary-display" class="hidden mt-10 pt-10 border-t border-white/[0.05] animate-reveal">
+          <div id="itinerary-loading" class="flex flex-col items-center py-12">
+            <div class="w-5 h-5 border border-amber-500/30 border-t-amber-500 rounded-full animate-spin mb-4"></div>
+            <p class="text-amber-500/70 italic text-[10px] tracking-[0.2em] uppercase text-center">
+              Building your instant travel idea...
+            </p>
+            <p class="text-stone-500 text-[9px] tracking-wide mt-3 text-center">
+              If this takes too long, you can send your request directly to our specialist team.
+            </p>
+          </div>
+          <div id="itinerary-result" class="prose-custom custom-scrollbar"></div>
+        </div>
+      </div>
+
+      <!-- 右侧：人工定制转化区 -->
+      <div class="w-full lg:w-[35%] flex flex-col gap-6">
+        
+        <div class="bg-white/[0.02] border border-white/[0.05] p-6 shadow-xl">
+          <div class="flex items-center gap-4 mb-3">
+            <div class="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center border border-amber-500/30">
+              <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+              </svg>
+            </div>
+            <div>
+              <h4 class="text-white text-[11px] uppercase tracking-widest">Human Review</h4>
+              <p class="text-stone-500 text-[10px] tracking-wide font-light">
+                Your request is reviewed by a local specialist, not sent out as raw AI output.
+              </p>
+            </div>
+          </div>
+          <div class="flex gap-4 mt-4 pt-4 border-t border-white/[0.05] flex-wrap">
+            <span class="text-stone-500 text-[9px] uppercase tracking-widest flex items-center gap-1">
+              <svg class="w-3 h-3 text-green-500/70" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              Secure Privacy
+            </span>
+            <span class="text-stone-500 text-[9px] uppercase tracking-widest flex items-center gap-1">
+              <svg class="w-3 h-3 text-green-500/70" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              No Obligation
+            </span>
+            <span class="text-stone-500 text-[9px] uppercase tracking-widest flex items-center gap-1">
+              <svg class="w-3 h-3 text-green-500/70" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              Local Expertise
+            </span>
+          </div>
+        </div>
+
+        <div id="expert-review-panel" class="flex-grow bg-white/[0.01] border border-white/[0.05] p-10 flex flex-col justify-center relative overflow-hidden shadow-xl">
+          <div class="relative z-10">
+            <span class="text-amber-500/60 text-[10px] tracking-[0.3em] uppercase font-light mb-4 block">Final Step</span>
+            <h3 class="text-2xl font-light text-white mb-4 tracking-widest uppercase">{{ section.settings.cta_title }}</h3>
+            <p class="text-stone-400 mb-8 leading-relaxed text-[11px] font-light">
+              Our local specialist will review your request, refine the route, and send back a tailored recommendation with quotation.
+            </p>
+
+            {%- form 'contact', id: 'DualContactForm' -%}
+              {%- if form.posted_successfully? -%}
+                <div class="border border-amber-500/30 text-amber-500/80 p-6 text-[10px] tracking-[0.3em] text-center uppercase bg-amber-500/5">
+                  Request Sent. Our expert will contact you shortly.
+                </div>
+              {%- else -%}
+                <div class="space-y-6">
+                  <div class="input-group">
+                    <label class="block text-stone-600 text-[9px] uppercase mb-1 tracking-[0.2em]">Full Name *</label>
+                    <input
+                      type="text"
+                      name="contact[name]"
+                      class="w-full bg-transparent border-b border-stone-800 p-2 text-white outline-none focus:border-amber-500/50 transition-colors text-sm font-light"
+                      required
+                    >
+                  </div>
+
+                  <div class="input-group">
+                    <label class="block text-stone-600 text-[9px] uppercase mb-1 tracking-[0.2em]">Email Address *</label>
+                    <input
+                      type="email"
+                      name="contact[email]"
+                      class="w-full bg-transparent border-b border-stone-800 p-2 text-white outline-none focus:border-amber-500/50 transition-colors text-sm font-light"
+                      required
+                    >
+                  </div>
+
+                  <div class="input-group">
+                    <label class="block text-stone-600 text-[9px] uppercase mb-1 tracking-[0.2em]">WhatsApp (Optional but recommended)</label>
+                    <input
+                      type="tel"
+                      name="contact[phone]"
+                      class="w-full bg-transparent border-b border-stone-800 p-2 text-white outline-none focus:border-amber-500/50 transition-colors text-sm font-light"
+                    >
+                  </div>
+
+                  <input type="hidden" name="contact[Duration]" id="hidden-duration">
+                  <input type="hidden" name="contact[Arrival_Date]" id="hidden-date">
+                  <input type="hidden" name="contact[Travelers]" id="hidden-travelers">
+                  <input type="hidden" name="contact[Budget]" id="hidden-budget">
+                  <input type="hidden" name="contact[Destinations]" id="hidden-destinations">
+                  <input type="hidden" name="contact[Style_Interests]" id="hidden-interests">
+                  <textarea style="display:none;" name="contact[AI_Generated_Plan]" id="hidden-ai-result"></textarea>
+
+                  <button
+                    type="submit"
+                    id="final-submit-btn"
+                    class="w-full bg-white hover:bg-amber-500 text-stone-950 py-4 transition-all uppercase tracking-[0.4em] text-[10px] mt-4 font-bold"
+                  >
+                    REQUEST EXPERT REVIEW
+                  </button>
+
+                  <p class="text-center text-stone-600 text-[8px] tracking-widest uppercase mt-4">
+                    Your information is strictly confidential.
+                  </p>
+                </div>
+              {%- endif -%}
+            {%- endform -%}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  
+  <div class="section-bottom-gradient"></div>
+</div>
+
+<style>
+  .flatpickr-calendar.dark {
+    background: #111 !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.55) !important;
+  }
+  .flatpickr-months .flatpickr-month,
+  .flatpickr-current-month .flatpickr-monthDropdown-months,
+  .flatpickr-weekday,
+  .flatpickr-day {
+    color: #e7e5e4 !important;
+  }
+  .flatpickr-day.today {
+    border-color: rgba(251, 191, 36, 0.6) !important;
+  }
+  .flatpickr-day.selected,
+  .flatpickr-day.startRange,
+  .flatpickr-day.endRange {
+    background: #fbbf24 !important;
+    border-color: #fbbf24 !important;
+    color: #0a0a0a !important;
+  }
+
+  .itinerary-ai-section {
+    position: relative;
+    background-color: #0a0a0a;
+    padding: 120px 0;
+    overflow: hidden;
+  }
+  .section-header {
+    text-align: center;
+    margin-bottom: 70px;
+  }
+  .section-main-title {
+    color: #fff;
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    font-weight: 200;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .section-subtitle {
+    color: #a8a29e;
+    margin-top: 16px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+  .title-underline {
+    width: 30px;
+    height: 1px;
+    background: #fbbf24;
+    margin: 0 auto;
+    opacity: 0.4;
+  }
+  .section-bottom-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(to bottom, transparent, rgba(10, 10, 10, 0.95) 90%);
+    pointer-events: none;
+  }
+
+  .custom-input {
+    border-radius: 0 !important;
+  }
+  .custom-input option {
+    background: #111;
+    color: #fff;
+  }
+  .custom-input::placeholder {
+    color: #78716c;
+  }
+
+  .tag-btn {
+    background: transparent;
+    border-radius: 0;
+  }
+  .tag-btn:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+  .tag-btn.active {
+    background: rgba(251, 191, 36, 0.05);
+    border-color: #fbbf24;
+    color: #fbbf24 !important;
+  }
+
+  .ai-submit-btn,
+  .secondary-submit-btn {
+    border-radius: 0;
+    transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .ai-submit-btn[disabled] {
+    opacity: 0.65;
+    pointer-events: none;
+  }
+
+  .prose-custom {
+    max-height: 420px;
+    overflow-y: auto;
+    font-size: 13px;
+    line-height: 2;
+    color: #b0b0b0;
+    padding-right: 20px;
+    font-weight: 300;
+  }
+  .prose-custom p {
+    margin: 0 0 16px;
+  }
+  .prose-custom h3 {
+    color: #fbbf24;
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    font-size: 12px;
+    margin: 28px 0 14px 0;
+    font-weight: 500;
+  }
+  .prose-custom strong {
+    color: #f5f5f4;
+    font-weight: 500;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 1px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #333;
+  }
+
+  .animate-reveal {
+    animation: reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  @keyframes reveal {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 767px) {
+    .itinerary-ai-section {
+  position: relative;
+  background-color: #0a0a0a;
+  padding: 120px 0;
+  overflow: hidden;
+  scroll-margin-top: calc(var(--slogan-h, 0px) + var(--nav-h, 90px));
+}
+
+@media (max-width: 767px) {
+  .itinerary-ai-section {
+    padding: calc(env(safe-area-inset-top, 0px) + var(--slogan-h, 0px) + var(--nav-h, 90px) + 32px) 0 84px;
+    scroll-margin-top: calc(env(safe-area-inset-top, 0px) + var(--slogan-h, 0px) + var(--nav-h, 90px) + 16px);
+  }
+
+  .section-header {
+    margin-bottom: 48px;
+  }
+
+  .section-main-title {
+    letter-spacing: 0.22em;
+    line-height: 1.4;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const CONFIG = {
+    endpoint: 'https://ai-server-n87x.onrender.com/api/generate'
+  };
+
+  const form = document.getElementById('itinerary-form');
+  const dualForm = document.getElementById('DualContactForm');
+  const display = document.getElementById('itinerary-display');
+  const resultEl = document.getElementById('itinerary-result');
+  const loadingEl = document.getElementById('itinerary-loading');
+  const dateInput = document.getElementById('travel-date');
+  const generateBtn = document.getElementById('generate-ai-btn');
+  const skipAiBtn = document.getElementById('skip-ai-btn');
+  const finalSubmitBtn = document.getElementById('final-submit-btn');
+
+  const hiddenDuration = document.getElementById('hidden-duration');
+  const hiddenDate = document.getElementById('hidden-date');
+  const hiddenTravelers = document.getElementById('hidden-travelers');
+  const hiddenBudget = document.getElementById('hidden-budget');
+  const hiddenDestinations = document.getElementById('hidden-destinations');
+  const hiddenInterests = document.getElementById('hidden-interests');
+  const hiddenAiResult = document.getElementById('hidden-ai-result');
+
+  let latestAiPlainText = '';
+
+  if (window.flatpickr && dateInput) {
+    flatpickr(dateInput, {
+      minDate: 'today',
+      dateFormat: 'Y-m-d',
+      disableMobile: false
+    });
+  }
+
+  function escapeHtml(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  function markdownToSafeHtml(markdown) {
+    const safe = escapeHtml(markdown || '');
+
+    return safe
+      .replace(/^###\s+(.*?)$/gm, '<h3>$1</h3>')
+      .replace(/^##\s+(.*?)$/gm, '<h3>$1</h3>')
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n{2,}/g, '</p><p>')
+      .replace(/\n/g, '<br>')
+      .replace(/^/, '<p>')
+      .replace(/$/, '</p>');
+  }
+
+  function getActiveTags() {
+    return Array.from(document.querySelectorAll('.tag-btn.active'))
+      .map(function (btn) { return btn.dataset.tag; })
+      .join(', ');
+  }
+
+  function getFormDataObject() {
+    const fd = new FormData(form);
+    return {
+      duration: fd.get('duration') || '',
+      travel_date: fd.get('travel_date') || '',
+      travelers: fd.get('travelers') || '',
+      destinations: fd.get('destinations') || '',
+      budget: fd.get('budget') || '',
+      tags: Array.from(document.querySelectorAll('.tag-btn.active')).map(function (btn) { return btn.dataset.tag; })
+    };
+  }
+
+  function persistDraft() {
+    try {
+      sessionStorage.setItem('itinerary_form_draft', JSON.stringify(getFormDataObject()));
+    } catch (e) {}
+  }
+
+  function restoreDraft() {
+    try {
+      const raw = sessionStorage.getItem('itinerary_form_draft');
+      if (!raw) return;
+
+      const data = JSON.parse(raw);
+      if (!form) return;
+
+      if (form.elements.duration && data.duration) form.elements.duration.value = data.duration;
+      if (form.elements.travel_date && data.travel_date) form.elements.travel_date.value = data.travel_date;
+      if (form.elements.travelers && data.travelers) form.elements.travelers.value = data.travelers;
+      if (form.elements.destinations && data.destinations) form.elements.destinations.value = data.destinations;
+      if (form.elements.budget && data.budget) form.elements.budget.value = data.budget;
+
+      document.querySelectorAll('.tag-btn').forEach(function (btn) {
+        btn.classList.toggle('active', Array.isArray(data.tags) && data.tags.includes(btn.dataset.tag));
+      });
+    } catch (e) {}
+  }
+
+  function syncHiddenFields() {
+    if (!form) return;
+
+    const fd = new FormData(form);
+    const activeTags = getActiveTags();
+
+    if (hiddenDuration) hiddenDuration.value = (fd.get('duration') || '') + ' Days';
+    if (hiddenDate) hiddenDate.value = fd.get('travel_date') || 'Not Set';
+    if (hiddenTravelers) hiddenTravelers.value = fd.get('travelers') || '';
+    if (hiddenBudget) hiddenBudget.value = fd.get('budget') || '';
+    if (hiddenDestinations) hiddenDestinations.value = fd.get('destinations') || 'Not specified';
+    if (hiddenInterests) hiddenInterests.value = activeTags || 'None';
+    if (hiddenAiResult) hiddenAiResult.value = latestAiPlainText || 'No AI preview generated.';
+  }
+
+  function showDisplay() {
+    if (display) display.classList.remove('hidden');
+  }
+
+  function showLoading() {
+    showDisplay();
+    if (loadingEl) loadingEl.classList.remove('hidden');
+    if (resultEl) resultEl.innerHTML = '';
+  }
+
+  function hideLoading() {
+    if (loadingEl) loadingEl.classList.add('hidden');
+  }
+
+  function setGenerateBtnLoading(isLoading) {
+    if (!generateBtn) return;
+
+    const label = generateBtn.querySelector('.btn-label');
+    const icon = generateBtn.querySelector('.btn-icon');
+
+    if (isLoading) {
+      generateBtn.disabled = true;
+      if (label) label.textContent = 'BUILDING YOUR TRAVEL IDEA';
+      if (icon) {
+        icon.outerHTML = '<svg class="w-4 h-4 animate-spin btn-icon" fill="none" viewBox="0 0 24 24"><circle class="opacity-30" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"></circle><path class="opacity-100" fill="currentColor" d="M12 2a10 10 0 0 1 10 10h-2A8 8 0 0 0 12 4V2z"></path></svg>';
+      }
+    } else {
+      generateBtn.disabled = false;
+      const currentLabel = generateBtn.querySelector('.btn-label');
+      const currentIcon = generateBtn.querySelector('.btn-icon');
+      if (currentLabel) currentLabel.textContent = 'GET INSTANT TRAVEL IDEA';
+      if (currentIcon) {
+        currentIcon.outerHTML = '<svg class="w-4 h-4 btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7-7 7M5 12h14" stroke-width="1"></path></svg>';
+      }
+    }
+  }
+
+  function buildPrompt() {
+    const fd = new FormData(form);
+    const tags = getActiveTags();
+
+    return [
+      'Act as an elite luxury travel concierge in China. Output English only.',
+      'Tone: Elegant, warm, exclusive, realistic, and highly personalized.',
+      'Format: Professional Markdown.',
+      '',
+      'Traveler Details:',
+      '- Duration: ' + (fd.get('duration') || '7') + ' days',
+      '- Arrival Date: ' + (fd.get('travel_date') || 'Anytime'),
+      '- Travelers: ' + (fd.get('travelers') || 'Couple'),
+      '- Budget: ' + (fd.get('budget') || 'Not Sure Yet'),
+      '- Destinations: ' + (fd.get('destinations') || 'Suggest best options in Yunnan'),
+      '- Style/Interests: ' + (tags || 'Balanced'),
+      '',
+      'Task:',
+      '1. Create a refined day-by-day travel concept.',
+      '2. Keep it curated, realistic, and premium.',
+      '3. Include 1-2 insider experiences that feel distinctive.',
+      '4. Avoid generic or robotic language.',
+      '5. End with a short section titled "Why this fits you".'
+    ].join('\n');
+  }
+
+  async function requestItinerary(prompt) {
+    const res = await fetch(CONFIG.endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ prompt: prompt })
+    });
+
+    const rawText = await res.text();
+
+    if (!res.ok) {
+      throw new Error('AI request failed');
+    }
+
+    let data;
+    try {
+      data = JSON.parse(rawText);
+    } catch (e) {
+      throw new Error('Invalid AI response');
+    }
+
+    if (!data.text) {
+      throw new Error('Empty AI text');
+    }
+
+    return data.text.trim();
+  }
+
+  function renderFallbackSummary() {
+    const fd = new FormData(form);
+    const tags = getActiveTags();
+
+    const fallbackText = [
+      '### Travel Request Saved',
+      '',
+      "We couldn't generate the live AI preview just now, but your request is ready for our local specialist team.",
+      '',
+      '**Trip Summary**',
+      '- Duration: ' + (fd.get('duration') || '7') + ' days',
+      '- Arrival Date: ' + (fd.get('travel_date') || 'Flexible'),
+      '- Travelers: ' + (fd.get('travelers') || 'Couple'),
+      '- Budget: ' + (fd.get('budget') || 'Not Sure Yet'),
+      '- Destinations: ' + (fd.get('destinations') || 'Yunnan highlights'),
+      '- Interests: ' + (tags || 'Balanced'),
+      '',
+      '### Recommended Next Step',
+      '',
+      'Send this request directly to our local expert team on the right. They will manually refine your route and prepare a tailored recommendation with quotation.',
+      '',
+      '### What happens next',
+      '',
+      '- A specialist reviews your preferences',
+      '- We shape a realistic route and hotel level',
+      '- We return a tailored suggestion and quotation'
+    ].join('\n');
+
+    latestAiPlainText = fallbackText;
+
+    if (resultEl) {
+      resultEl.innerHTML = markdownToSafeHtml(fallbackText);
+    }
+
+    syncHiddenFields();
+  }
+
+  function renderResult(text) {
+    latestAiPlainText = text;
+
+    if (resultEl) {
+      resultEl.innerHTML = markdownToSafeHtml(text);
+    }
+
+    if (hiddenAiResult) {
+      hiddenAiResult.value = latestAiPlainText;
+    }
+
+    syncHiddenFields();
+  }
+
+  function scrollToContact() {
+    if (finalSubmitBtn) {
+      finalSubmitBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
+  restoreDraft();
+  syncHiddenFields();
+
+  document.querySelectorAll('.tag-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      btn.classList.toggle('active');
+      persistDraft();
+      syncHiddenFields();
+    });
+  });
+
+  if (form) {
+    form.addEventListener('input', function () {
+      persistDraft();
+      syncHiddenFields();
+    });
+
+    form.addEventListener('change', function () {
+      persistDraft();
+      syncHiddenFields();
+    });
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      try {
+        showLoading();
+        setGenerateBtnLoading(true);
+        syncHiddenFields();
+
+        const prompt = buildPrompt();
+        const text = await requestItinerary(prompt);
+
+        hideLoading();
+        renderResult(text);
+      } catch (err) {
+        hideLoading();
+        console.error('AI preview failed:', err);
+        renderFallbackSummary();
+      } finally {
+        setGenerateBtnLoading(false);
+      }
+    });
+  }
+
+  if (skipAiBtn) {
+    skipAiBtn.addEventListener('click', function () {
+      const fd = new FormData(form);
+      const activeTags = getActiveTags();
+
+      latestAiPlainText = [
+        'User chose to skip AI preview and request a specialist directly.',
+        '',
+        'Trip Summary:',
+        '- Duration: ' + (fd.get('duration') || '7') + ' days',
+        '- Arrival Date: ' + (fd.get('travel_date') || 'Not set'),
+        '- Travelers: ' + (fd.get('travelers') || 'Couple'),
+        '- Budget: ' + (fd.get('budget') || 'Not Sure Yet'),
+        '- Destinations: ' + (fd.get('destinations') || 'Not specified'),
+        '- Interests: ' + (activeTags || 'None')
+      ].join('\n');
+
+      syncHiddenFields();
+      scrollToContact();
+    });
+  }
+
+  if (dualForm) {
+    dualForm.addEventListener('submit', function () {
+      syncHiddenFields();
+    });
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "AI Bespoke Form",
+  "settings": [
+    { "type": "text", "id": "main_title", "label": "Main Title", "default": "BESPOKE AI PLANNER" },
+    { "type": "text", "id": "ai_pretitle", "label": "AI Subtitle", "default": "VIRTUAL CONCIERGE" },
+    { "type": "text", "id": "ai_title", "label": "AI Name", "default": "INSTANT TRAVEL IDEA" },
+    { "type": "text", "id": "cta_title", "label": "Contact Title", "default": "REQUEST EXPERT REVIEW" }
+  ],
+  "presets": [
+    { "name": "AI Bespoke Form" }
+  ]
+}
+{% endschema %}

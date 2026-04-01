@@ -1,0 +1,792 @@
+{% comment %}
+  HC Help Hub (single page)
+  - Cleaned version
+  - Removes default visible placeholder text from HTML
+  - Search result labels injected by JS
+  - Breadcrumb no longer renders "—"
+  File: sections/hc-help-hub.liquid
+{% endcomment %}
+
+{%- assign default_item_id = '' -%}
+{%- for b in section.blocks -%}
+  {%- if b.type == 'item' and default_item_id == '' -%}
+    {%- assign default_item_id = b.settings.item_id -%}
+  {%- endif -%}
+{%- endfor -%}
+
+<section
+  class="hchub-{{ section.id }}"
+  data-default="{{ default_item_id }}"
+  data-default-title="{{ section.settings.default_title | escape }}"
+  data-results-title="{{ section.settings.results_title | escape }}"
+  data-clear-label="{{ section.settings.clear_label | escape }}"
+  data-no-results="{{ section.settings.no_results | escape }}"
+>
+  <div class="hchub__container">
+    <div class="hchub__layout">
+
+      <!-- Sidebar -->
+      <aside class="hchub__sidebar" aria-label="Help navigation">
+        <div class="hchub__panel">
+
+          {%- if section.settings.show_search -%}
+            <div class="hchub__search">
+              <input
+                class="hchub__search-input"
+                type="search"
+                placeholder="{{ section.settings.search_placeholder | escape }}"
+                aria-label="Search FAQs"
+              >
+              <span class="hchub__search-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M10.5 3a7.5 7.5 0 1 1 4.7 13.3l3.5 3.5a1 1 0 0 1-1.4 1.4l-3.5-3.5A7.5 7.5 0 0 1 10.5 3zm0 2a5.5 5.5 0 1 0 0 11a5.5 5.5 0 0 0 0-11z"/></svg>
+              </span>
+            </div>
+          {%- endif -%}
+
+          <nav class="hchub__nav">
+            {%- assign has_group = false -%}
+            {%- for g in section.blocks -%}
+              {%- if g.type == 'group' -%}
+                {%- assign has_group = true -%}
+
+                <details class="hchub__group" open {{ g.shopify_attributes }}>
+                  <summary class="hchub__group-head">
+                    <span class="hchub__group-title">{{ g.settings.title }}</span>
+                    <span class="hchub__chev" aria-hidden="true">
+                      <svg viewBox="0 0 24 24"><path d="M6.7 9.3a1 1 0 0 1 1.4 0L12 13.2l3.9-3.9a1 1 0 1 1 1.4 1.4l-4.6 4.6a1 1 0 0 1-1.4 0L6.7 10.7a1 1 0 0 1 0-1.4z"/></svg>
+                    </span>
+                  </summary>
+
+                  <div class="hchub__links">
+                    {%- for it in section.blocks -%}
+                      {%- if it.type == 'item' and it.settings.parent_group_id == g.settings.group_id -%}
+                        <button
+                          type="button"
+                          class="hchub__link"
+                          data-item="{{ it.settings.item_id }}"
+                          data-item-title="{{ it.settings.title | escape }}"
+                          data-group-title="{{ g.settings.title | escape }}"
+                          {{ it.shopify_attributes }}
+                        >
+                          {{ it.settings.title }}
+                        </button>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </div>
+                </details>
+
+              {%- endif -%}
+            {%- endfor -%}
+
+            {%- unless has_group -%}
+              <div class="hchub__empty">Please add Group blocks first, then add Item and FAQ blocks.</div>
+            {%- endunless -%}
+          </nav>
+        </div>
+      </aside>
+
+      <!-- Main -->
+      <main class="hchub__main">
+        <div class="hchub__panel hchub__panel--main">
+
+          <div class="hchub__crumb" aria-label="Breadcrumb">
+            <span class="hchub__crumb-muted">{{ section.settings.help_label }}</span>
+            <span class="hchub__crumb-sep" data-bc-sep-group hidden>›</span>
+            <span class="hchub__crumb-muted" data-bc-group hidden></span>
+            <span class="hchub__crumb-sep" data-bc-sep-item hidden>›</span>
+            <span class="hchub__crumb-current" data-bc-item hidden></span>
+          </div>
+
+          <h1 class="hchub__h1" data-title>{{ section.settings.default_title }}</h1>
+
+          {%- if section.settings.show_search -%}
+            <!-- Global search results -->
+            <div class="hchub__results" hidden>
+              <div class="hchub__results-hd">
+                <span class="hchub__results-title"></span>
+                <button type="button" class="hchub__results-clear"></button>
+              </div>
+              <div class="hchub__results-list"></div>
+              <div class="hchub__results-empty" hidden></div>
+            </div>
+          {%- endif -%}
+
+          <!-- Panels -->
+          <div class="hchub__panels">
+            {%- assign has_item = false -%}
+            {%- for it in section.blocks -%}
+              {%- if it.type == 'item' -%}
+                {%- assign has_item = true -%}
+
+                {%- assign group_title = '' -%}
+                {%- for gg in section.blocks -%}
+                  {%- if gg.type == 'group' and gg.settings.group_id == it.settings.parent_group_id -%}
+                    {%- assign group_title = gg.settings.title -%}
+                  {%- endif -%}
+                {%- endfor -%}
+
+                <section class="hchub__panel-item" data-panel="{{ it.settings.item_id }}" hidden>
+                  <div class="hchub__faq-list">
+                    {%- assign faq_count = 0 -%}
+                    {%- for f in section.blocks -%}
+                      {%- if f.type == 'faq' and f.settings.item_id == it.settings.item_id -%}
+                        {%- assign faq_count = faq_count | plus: 1 -%}
+
+                        <details
+                          id="faq-{{ f.id }}"
+                          class="hchub__faq"
+                          data-text="{{ f.settings.question | escape }} {{ f.settings.answer | strip_html | escape }}"
+                          data-item="{{ it.settings.item_id }}"
+                          data-item-title="{{ it.settings.title | escape }}"
+                          data-group-title="{{ group_title | escape }}"
+                          {{ f.shopify_attributes }}
+                        >
+                          <summary class="hchub__faq-head">
+                            <span class="hchub__faq-q">{{ f.settings.question }}</span>
+                            <span class="hchub__chev" aria-hidden="true">
+                              <svg viewBox="0 0 24 24"><path d="M6.7 9.3a1 1 0 0 1 1.4 0L12 13.2l3.9-3.9a1 1 0 1 1 1.4 1.4l-4.6 4.6a1 1 0 0 1-1.4 0L6.7 10.7a1 1 0 0 1 0-1.4z"/></svg>
+                            </span>
+                          </summary>
+                          <div class="hchub__faq-body rte">{{ f.settings.answer }}</div>
+                        </details>
+
+                      {%- endif -%}
+                    {%- endfor -%}
+
+                    {%- if faq_count == 0 -%}
+                      <div class="hchub__empty">No FAQs in this section yet.</div>
+                    {%- endif -%}
+                  </div>
+                </section>
+
+              {%- endif -%}
+            {%- endfor -%}
+
+            {%- unless has_item -%}
+              <div class="hchub__empty">Please add Item blocks.</div>
+            {%- endunless -%}
+          </div>
+
+        </div>
+      </main>
+
+    </div>
+  </div>
+
+  <style>
+    .hchub-{{ section.id }}{
+      --brand: var(--brand-color, #f59e0b);
+
+      --panel: rgba(12, 10, 9, 0.92);
+      --panel-2: rgba(255,255,255,0.03);
+      --text: #ffffff;
+      --sub: rgba(214, 211, 209, 0.85);
+      --line: rgba(255,255,255,0.10);
+      --line-2: rgba(255,255,255,0.08);
+      --shadow: 0 10px 30px rgba(0,0,0,0.50);
+      --radius: 18px;
+
+      --header-offset: 0px;
+      --sticky-top: {{ section.settings.sticky_top }}px;
+    }
+
+    .hchub-{{ section.id }}{
+      scroll-margin-top: calc(var(--header-offset) + 16px);
+    }
+
+    .hchub-{{ section.id }} .hchub__container{
+      max-width: {{ section.settings.max_width }}px;
+      margin: 0 auto;
+      padding: calc(24px + var(--header-offset)) 18px 48px;
+      color: var(--text);
+    }
+
+    .hchub-{{ section.id }} .hchub__layout{
+      display: grid;
+      grid-template-columns: {{ section.settings.sidebar_width }}px 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .hchub-{{ section.id }} .hchub__panel{
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      overflow: hidden;
+    }
+
+    .hchub-{{ section.id }} .hchub__sidebar{
+      position: sticky;
+      top: calc(var(--header-offset) + var(--sticky-top));
+    }
+
+    .hchub-{{ section.id }} .hchub__search{
+      position: relative;
+      padding: 16px;
+      border-bottom: 1px solid var(--line-2);
+    }
+
+    .hchub-{{ section.id }} .hchub__search-input{
+      width: 100%;
+      height: 42px;
+      border-radius: 12px;
+      border: 1px solid var(--line-2);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      padding: 0 42px 0 14px;
+      outline: none;
+    }
+
+    .hchub-{{ section.id }} .hchub__search-input:focus{
+      border-color: rgba(245,158,11,.45);
+      box-shadow: 0 0 0 3px rgba(245,158,11,.12);
+    }
+
+    .hchub-{{ section.id }} .hchub__search-ico{
+      position: absolute;
+      right: 26px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: .75;
+    }
+
+    .hchub-{{ section.id }} .hchub__search-ico svg{
+      width: 18px;
+      height: 18px;
+      fill: rgba(255,255,255,.75);
+    }
+
+    .hchub-{{ section.id }} .hchub__nav{
+      padding: 6px 0 10px;
+    }
+
+    .hchub-{{ section.id }} .hchub__group{
+      border-top: 1px solid var(--line-2);
+    }
+
+    .hchub-{{ section.id }} .hchub__group:first-child{
+      border-top: 0;
+    }
+
+    .hchub-{{ section.id }} summary{
+      list-style:none;
+      cursor:pointer;
+    }
+
+    .hchub-{{ section.id }} summary::-webkit-details-marker{
+      display:none;
+    }
+
+    .hchub-{{ section.id }} .hchub__group-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 14px 16px;
+      user-select:none;
+    }
+
+    .hchub-{{ section.id }} .hchub__group-title{
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .2px;
+    }
+
+    .hchub-{{ section.id }} .hchub__chev{
+      width: 20px;
+      height: 20px;
+      display:grid;
+      place-items:center;
+      color: rgba(255,255,255,.8);
+      transition: transform .18s ease, color .18s ease;
+    }
+
+    .hchub-{{ section.id }} details[open] > summary .hchub__chev{
+      transform: rotate(180deg);
+      color: var(--brand);
+    }
+
+    .hchub-{{ section.id }} .hchub__chev svg{
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .hchub-{{ section.id }} .hchub__links{
+      padding: 0 8px 12px;
+    }
+
+    .hchub-{{ section.id }} .hchub__link{
+      width: 100%;
+      text-align: left;
+      appearance: none;
+      background: transparent;
+      border: 1px solid transparent;
+      color: rgba(255,255,255,.85);
+      padding: 10px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: background .15s ease, color .15s ease, border-color .15s ease;
+    }
+
+    .hchub-{{ section.id }} .hchub__link:hover{
+      background: rgba(255,255,255,.04);
+      color: #fff;
+    }
+
+    .hchub-{{ section.id }} .hchub__link.is-active{
+      background: rgba(245,158,11,.10);
+      border-color: rgba(245,158,11,.25);
+      color: var(--brand);
+      font-weight: 700;
+    }
+
+    .hchub-{{ section.id }} .hchub__panel--main{
+      padding: 18px 18px 10px;
+    }
+
+    .hchub-{{ section.id }} .hchub__crumb{
+      font-size: 12px;
+      color: rgba(214,211,209,.8);
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .hchub-{{ section.id }} .hchub__crumb-sep{
+      opacity: .5;
+    }
+
+    .hchub-{{ section.id }} .hchub__crumb-current{
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .hchub-{{ section.id }} .hchub__h1{
+      font-size: 34px;
+      margin: 0 0 10px;
+      line-height: 1.15;
+    }
+
+    .hchub-{{ section.id }} .hchub__results{
+      margin-top: 10px;
+      border-top: 1px solid var(--line-2);
+      padding-top: 12px;
+    }
+
+    .hchub-{{ section.id }} .hchub__results-hd{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 6px 6px 10px;
+    }
+
+    .hchub-{{ section.id }} .hchub__results-title{
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(214,211,209,.95);
+    }
+
+    .hchub-{{ section.id }} .hchub__results-clear{
+      appearance:none;
+      border: 1px solid var(--line-2);
+      background: rgba(255,255,255,0.03);
+      color: rgba(255,255,255,.9);
+      border-radius: 10px;
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+
+    .hchub-{{ section.id }} .hchub__results-clear:hover{
+      border-color: rgba(245,158,11,.25);
+      color: var(--brand);
+    }
+
+    .hchub-{{ section.id }} .hchub__res{
+      width: 100%;
+      text-align: left;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--line-2);
+      border-radius: 14px;
+      padding: 12px 12px;
+      cursor: pointer;
+      color: #fff;
+      display: grid;
+      gap: 6px;
+      margin: 10px 0;
+    }
+
+    .hchub-{{ section.id }} .hchub__res:hover{
+      border-color: rgba(245,158,11,.25);
+      background: rgba(245,158,11,.06);
+    }
+
+    .hchub-{{ section.id }} .hchub__res-q{
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .hchub-{{ section.id }} .hchub__res-meta{
+      font-size: 12px;
+      color: rgba(214,211,209,.85);
+    }
+
+    .hchub-{{ section.id }} .hchub__results-empty{
+      padding: 12px 6px 18px;
+      color: var(--sub);
+      font-size: 13px;
+    }
+
+    .hchub-{{ section.id }} .hchub__faq{
+      border-top: 1px solid var(--line-2);
+      padding: 6px 0;
+    }
+
+    .hchub-{{ section.id }} .hchub__faq:first-child{
+      border-top: 0;
+    }
+
+    .hchub-{{ section.id }} .hchub__faq-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      padding: 14px 6px;
+      user-select:none;
+    }
+
+    .hchub-{{ section.id }} .hchub__faq-q{
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .hchub-{{ section.id }} details[open] .hchub__faq-q{
+      color: var(--brand);
+    }
+
+    .hchub-{{ section.id }} .hchub__faq-body{
+      padding: 0 6px 12px;
+      color: var(--sub);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .hchub-{{ section.id }} .hchub__empty{
+      padding: 14px 16px;
+      color: var(--sub);
+      font-size: 13px;
+    }
+
+    @media (max-width: 980px){
+      .hchub-{{ section.id }} .hchub__layout{
+        grid-template-columns: 1fr;
+      }
+
+      .hchub-{{ section.id }} .hchub__sidebar{
+        position: static;
+      }
+    }
+  </style>
+
+  <script>
+    (function(){
+      var root = document.querySelector('.hchub-{{ section.id }}');
+      if(!root) return;
+
+      var header =
+        document.querySelector('.main-nav-bar') ||
+        document.querySelector('#shopify-section-header') ||
+        document.querySelector('header');
+
+      var headerOffset = 0;
+
+      function updateOffset(){
+        if(!header) return;
+        var h = header.getBoundingClientRect().height || 0;
+        headerOffset = Math.ceil(h);
+        root.style.setProperty('--header-offset', headerOffset + 'px');
+      }
+
+      if(header){
+        updateOffset();
+        window.addEventListener('resize', updateOffset);
+
+        try{
+          var mo = new MutationObserver(updateOffset);
+          mo.observe(header, { attributes: true, attributeFilter: ['class','style'] });
+        }catch(e){}
+      }
+
+      function cssEscapeValue(v){
+        if (window.CSS && CSS.escape) return CSS.escape(v);
+        return (v || '').replace(/[^a-zA-Z0-9_\\-]/g, '\\\\$&');
+      }
+
+      function scrollToEl(el){
+        if(!el) return;
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(function(){
+          window.scrollBy(0, -(headerOffset + 16));
+        }, 0);
+      }
+
+      var defaultId = root.getAttribute('data-default') || '';
+      var defaultTitle = root.getAttribute('data-default-title') || 'Help Center';
+      var resultsTitleText = root.getAttribute('data-results-title') || 'Search results';
+      var clearLabelText = root.getAttribute('data-clear-label') || 'Clear';
+      var noResultsText = root.getAttribute('data-no-results') || 'No results found.';
+
+      var links = Array.prototype.slice.call(root.querySelectorAll('.hchub__link[data-item]'));
+      var panels = Array.prototype.slice.call(root.querySelectorAll('.hchub__panel-item[data-panel]'));
+
+      var bcGroup = root.querySelector('[data-bc-group]');
+      var bcItem = root.querySelector('[data-bc-item]');
+      var bcSepGroup = root.querySelector('[data-bc-sep-group]');
+      var bcSepItem = root.querySelector('[data-bc-sep-item]');
+      var titleEl = root.querySelector('[data-title]');
+      var input = root.querySelector('.hchub__search-input');
+
+      var resultsWrap = root.querySelector('.hchub__results');
+      var resultsTitle = root.querySelector('.hchub__results-title');
+      var resultsList = root.querySelector('.hchub__results-list');
+      var resultsEmpty = root.querySelector('.hchub__results-empty');
+      var clearBtn = root.querySelector('.hchub__results-clear');
+
+      var allFaqs = Array.prototype.slice.call(root.querySelectorAll('.hchub__faq'));
+
+      if(resultsTitle) resultsTitle.textContent = resultsTitleText;
+      if(clearBtn) clearBtn.textContent = clearLabelText;
+      if(resultsEmpty) resultsEmpty.textContent = noResultsText;
+
+      function setBreadcrumb(groupTitle, itemTitle){
+        var hasGroup = !!groupTitle;
+        var hasItem = !!itemTitle;
+
+        if(bcGroup){
+          bcGroup.hidden = !hasGroup;
+          bcGroup.textContent = hasGroup ? groupTitle : '';
+        }
+
+        if(bcItem){
+          bcItem.hidden = !hasItem;
+          bcItem.textContent = hasItem ? itemTitle : '';
+        }
+
+        if(bcSepGroup){
+          bcSepGroup.hidden = !hasGroup;
+        }
+
+        if(bcSepItem){
+          bcSepItem.hidden = !(hasGroup && hasItem);
+        }
+      }
+
+      function setActive(itemId, meta){
+        if(!itemId) return;
+
+        links.forEach(function(btn){
+          btn.classList.toggle('is-active', btn.getAttribute('data-item') === itemId);
+        });
+
+        panels.forEach(function(p){
+          p.hidden = p.getAttribute('data-panel') !== itemId;
+        });
+
+        if(meta){
+          setBreadcrumb(meta.groupTitle || '', meta.itemTitle || '');
+          if(titleEl) titleEl.textContent = meta.itemTitle || defaultTitle;
+        }else{
+          var btn = links.find(function(b){ return b.getAttribute('data-item') === itemId; });
+          if(btn){
+            var groupTitle = btn.getAttribute('data-group-title') || '';
+            var itemTitle = btn.getAttribute('data-item-title') || '';
+            setBreadcrumb(groupTitle, itemTitle);
+            if(titleEl) titleEl.textContent = itemTitle || defaultTitle;
+          }
+        }
+
+        try { window.location.hash = itemId; } catch(e){}
+      }
+
+      function exitSearchMode(){
+        if(resultsWrap) resultsWrap.hidden = true;
+        if(resultsEmpty) resultsEmpty.hidden = true;
+        if(resultsList) resultsList.innerHTML = '';
+
+        var activeBtn = links.find(function(b){ return b.classList.contains('is-active'); });
+        var id = activeBtn ? activeBtn.getAttribute('data-item') : (defaultId || (links[0] && links[0].getAttribute('data-item')));
+
+        if(id){
+          panels.forEach(function(p){
+            p.hidden = p.getAttribute('data-panel') !== id;
+          });
+        }else{
+          panels.forEach(function(p){ p.hidden = true; });
+        }
+      }
+
+      function enterSearchMode(){
+        if(resultsWrap) resultsWrap.hidden = false;
+        panels.forEach(function(p){ p.hidden = true; });
+      }
+
+      function globalSearch(q){
+        var query = (q || '').trim().toLowerCase();
+
+        if(!query){
+          exitSearchMode();
+          return;
+        }
+
+        enterSearchMode();
+
+        if(resultsList) resultsList.innerHTML = '';
+        if(resultsEmpty) resultsEmpty.hidden = true;
+
+        var hit = 0;
+
+        allFaqs.forEach(function(faq){
+          var text = (faq.getAttribute('data-text') || '').toLowerCase();
+          if(text.indexOf(query) === -1) return;
+
+          hit++;
+
+          var qText = faq.querySelector('.hchub__faq-q') ? faq.querySelector('.hchub__faq-q').textContent : 'FAQ';
+          var itemId = faq.getAttribute('data-item') || '';
+          var itemTitle = faq.getAttribute('data-item-title') || '';
+          var groupTitle = faq.getAttribute('data-group-title') || '';
+          var targetId = faq.id || '';
+
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'hchub__res';
+          btn.setAttribute('data-item', itemId);
+          btn.setAttribute('data-target', targetId);
+
+          var qEl = document.createElement('div');
+          qEl.className = 'hchub__res-q';
+          qEl.textContent = qText;
+
+          var metaEl = document.createElement('div');
+          metaEl.className = 'hchub__res-meta';
+          metaEl.textContent = (groupTitle ? groupTitle + ' › ' : '') + itemTitle;
+
+          btn.appendChild(qEl);
+          btn.appendChild(metaEl);
+
+          btn.addEventListener('click', function(){
+            setActive(itemId, { groupTitle: groupTitle, itemTitle: itemTitle });
+
+            if(input) input.value = '';
+            exitSearchMode();
+
+            setTimeout(function(){
+              var el = root.querySelector('#' + cssEscapeValue(targetId));
+              if(el){
+                el.setAttribute('open', '');
+                scrollToEl(el);
+              }
+            }, 0);
+          });
+
+          if(resultsList) resultsList.appendChild(btn);
+        });
+
+        if(hit === 0 && resultsEmpty){
+          resultsEmpty.hidden = false;
+        }
+      }
+
+      links.forEach(function(btn){
+        btn.addEventListener('click', function(){
+          setActive(btn.getAttribute('data-item'), {
+            groupTitle: btn.getAttribute('data-group-title') || '',
+            itemTitle: btn.getAttribute('data-item-title') || ''
+          });
+
+          if(input) input.value = '';
+          exitSearchMode();
+        });
+      });
+
+      if(input){
+        input.addEventListener('input', function(){
+          globalSearch(input.value);
+        });
+      }
+
+      if(clearBtn){
+        clearBtn.addEventListener('click', function(){
+          if(input) input.value = '';
+          globalSearch('');
+        });
+      }
+
+      var hash = (window.location.hash || '').replace('#','').trim();
+      var initId = hash || defaultId || (links[0] && links[0].getAttribute('data-item'));
+
+      if(initId){
+        setActive(initId);
+      }else{
+        setBreadcrumb('', '');
+        if(titleEl) titleEl.textContent = defaultTitle;
+      }
+    })();
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "HC Help Hub",
+  "settings": [
+    { "type": "text", "id": "help_label", "label": "面包屑 Help 文案", "default": "Help" },
+    { "type": "text", "id": "default_title", "label": "默认右侧标题", "default": "Help Center" },
+
+    { "type": "checkbox", "id": "show_search", "label": "显示搜索框", "default": true },
+    { "type": "text", "id": "search_placeholder", "label": "搜索占位文案", "default": "Search FAQs" },
+    { "type": "text", "id": "results_title", "label": "搜索结果标题", "default": "Search results" },
+    { "type": "text", "id": "clear_label", "label": "清除按钮文案", "default": "Clear" },
+    { "type": "text", "id": "no_results", "label": "无结果文案", "default": "No matching answers found." },
+
+    { "type": "range", "id": "max_width", "label": "内容最大宽度(px)", "min": 900, "max": 1400, "step": 10, "default": 1200 },
+    { "type": "range", "id": "sidebar_width", "label": "左侧宽度(px)", "min": 260, "max": 420, "step": 10, "default": 320 },
+    { "type": "range", "id": "sticky_top", "label": "侧栏吸顶额外距离(px)", "min": 0, "max": 200, "step": 5, "default": 20 }
+  ],
+  "blocks": [
+    {
+      "type": "group",
+      "name": "Group",
+      "settings": [
+        { "type": "text", "id": "group_id", "label": "分组ID(唯一)", "default": "payments-receipts" },
+        { "type": "text", "id": "title", "label": "分组标题", "default": "Payments & receipts" }
+      ]
+    },
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        { "type": "text", "id": "item_id", "label": "子菜单ID(唯一)", "default": "payment" },
+        { "type": "text", "id": "parent_group_id", "label": "所属分组ID", "default": "payments-receipts" },
+        { "type": "text", "id": "title", "label": "子菜单标题", "default": "Payment" }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "FAQ",
+      "settings": [
+        { "type": "text", "id": "item_id", "label": "归属子菜单ID", "default": "payment" },
+        { "type": "text", "id": "question", "label": "问题", "default": "How do I pay?" },
+        { "type": "richtext", "id": "answer", "label": "答案", "default": "<p>Write your answer here.</p>" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "HC Help Hub" }]
+}
+{% endschema %}
