@@ -1,0 +1,1113 @@
+<style>
+  #CollectionProductGrid{
+    background-color:#050505;
+    color:#fff;
+    overflow:hidden;
+    --header-safe: 96px;
+    --gold: #c4b5a6;
+  }
+
+  /* ===== HERO ===== */
+  #CollectionProductGrid .coll-hero-compact{
+    height: 56vh;
+    min-height: 560px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    padding-top: var(--header-safe);
+    box-sizing: border-box;
+  }
+
+  #CollectionProductGrid .hero-bg{
+    position:absolute;
+    inset:0;
+    z-index:1;
+  }
+
+  #CollectionProductGrid .hero-img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center 22%;
+    display:block;
+    filter: brightness(0.88) contrast(1.06) saturate(1.03);
+    transform: scale(1.02);
+  }
+
+  #CollectionProductGrid .hero-placeholder{
+    width:100%;
+    height:100%;
+    background: #111;
+  }
+
+  #CollectionProductGrid .hero-overlay{
+    position:absolute;
+    inset:0;
+    z-index:2;
+    background:
+      radial-gradient(1200px 420px at 50% 42%, rgba(0,0,0,0.18), rgba(0,0,0,0) 60%),
+      linear-gradient(to bottom, rgba(5,5,5,0.12) 0%, rgba(5,5,5,0.75) 78%, rgba(5,5,5,1) 100%);
+  }
+
+  #CollectionProductGrid .hero-text-container{
+    position:relative;
+    z-index:10;
+    width:100%;
+    text-align:center;
+    padding: 18px 20px 64px;
+    box-sizing:border-box;
+  }
+
+  #CollectionProductGrid .hero-content{
+    max-width: 920px;
+    margin: 0 auto;
+  }
+
+  #CollectionProductGrid .coll-subtitle{
+    color: #fff;
+    font-size: 9px;
+    letter-spacing: 0.8em;
+    text-transform: uppercase;
+    text-shadow: 0 2px 15px rgba(0,0,0,0.9);
+  }
+
+  #CollectionProductGrid .subtitle-line{
+    width: 35px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 1;
+    margin: 12px auto 0;
+  }
+
+  #CollectionProductGrid .coll-title{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 7vw, 4.5rem);
+    font-weight: 300;
+    font-style: italic;
+    color: #fff;
+    margin: 18px 0;
+    letter-spacing: 0;
+    text-shadow:
+      0 4px 25px rgba(0,0,0,0.7),
+      0 0 10px rgba(0,0,0,0.5),
+      0 0 5px rgba(0,0,0,0.3);
+  }
+
+  #CollectionProductGrid .coll-desc{
+    font-size: 14px;
+    color: #fff;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.8;
+    font-weight: 400;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.9);
+    display: block;
+    overflow: visible;
+  }
+
+  /* ===== META BAR ===== */
+  #CollectionProductGrid .coll-container{
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 42px 60px 100px;
+  }
+
+  #CollectionProductGrid .coll-meta-bar{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:30px;
+    margin-bottom: 48px;
+    padding: 22px 0;
+    border-top: 1px solid rgba(196,181,166,0.15);
+    border-bottom: 1px solid rgba(196,181,166,0.15);
+  }
+
+  #CollectionProductGrid .meta-left,
+  #CollectionProductGrid .meta-right{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+  }
+
+  #CollectionProductGrid .meta-number{
+    font-family:'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  #CollectionProductGrid .meta-label{
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: rgba(255,255,255,0.45);
+  }
+
+  #CollectionProductGrid .meta-location{
+    font-size: 10px;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+  }
+
+  #CollectionProductGrid .meta-divider{
+    width: 1px;
+    height: 20px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    opacity: 0.65;
+  }
+
+  /* ===== COPY BLOCKS ===== */
+  #CollectionProductGrid .collection-copy-block{
+    border-top: 1px solid rgba(196, 181, 166, 0.12);
+    padding-top: 42px;
+    margin-bottom: 64px;
+  }
+
+  #CollectionProductGrid .collection-copy-inner{
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  #CollectionProductGrid .collection-copy-inner.narrow{
+    max-width: 860px;
+  }
+
+  #CollectionProductGrid .copy-heading{
+    font-family:'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-style:italic;
+    font-weight:400;
+    color:#fff;
+    margin: 0 0 22px;
+  }
+
+  #CollectionProductGrid .copy-richtext p{
+    color:#b4aca3;
+    font-size:15px;
+    line-height:1.9;
+    margin:0 0 18px;
+    letter-spacing:0.01em;
+  }
+
+  /* ===== FAQ Accordion ===== */
+  #CollectionProductGrid .collection-faq-block{
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  #CollectionProductGrid .collection-faq-block.is-visible{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  #CollectionProductGrid .collection-faq-block .copy-heading{
+    margin-bottom: 26px;
+  }
+
+  #CollectionProductGrid .faq-accordion{
+    border-top: 1px solid rgba(196, 181, 166, 0.14);
+  }
+
+  #CollectionProductGrid .faq-acc-item{
+    border-bottom: 1px solid rgba(196, 181, 166, 0.12);
+    background: linear-gradient(
+      180deg,
+      rgba(255,255,255,0.01) 0%,
+      rgba(255,255,255,0.005) 100%
+    );
+    transition: background 0.35s ease, border-color 0.35s ease;
+  }
+
+  #CollectionProductGrid .faq-acc-item:hover{
+    background: linear-gradient(
+      180deg,
+      rgba(196,181,166,0.05) 0%,
+      rgba(255,255,255,0.01) 100%
+    );
+  }
+
+  #CollectionProductGrid .faq-acc-trigger{
+    width: 100%;
+    background: transparent;
+    border: 0;
+    color: #fff;
+    padding: 22px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  #CollectionProductGrid .faq-acc-question{
+    font-size: 17px;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #fff;
+    transition: color 0.3s ease;
+  }
+
+  #CollectionProductGrid .faq-acc-item:hover .faq-acc-question,
+  #CollectionProductGrid .faq-acc-item.is-open .faq-acc-question{
+    color: #d8c8b8;
+  }
+
+  #CollectionProductGrid .faq-acc-icon{
+    position: relative;
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+  }
+
+  #CollectionProductGrid .faq-acc-icon::before,
+  #CollectionProductGrid .faq-acc-icon::after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: #c4b5a6;
+    transform: translate(-50%, -50%);
+    transition: transform 0.28s ease, opacity 0.28s ease;
+  }
+
+  #CollectionProductGrid .faq-acc-icon::before{
+    width: 18px;
+    height: 1px;
+  }
+
+  #CollectionProductGrid .faq-acc-icon::after{
+    width: 1px;
+    height: 18px;
+  }
+
+  #CollectionProductGrid .faq-acc-item.is-open .faq-acc-icon::after{
+    opacity: 0;
+    transform: translate(-50%, -50%) scaleY(0.4);
+  }
+
+  #CollectionProductGrid .faq-acc-panel{
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  #CollectionProductGrid .faq-acc-answer{
+    padding: 0 0 24px;
+    max-width: 980px;
+  }
+
+  #CollectionProductGrid .faq-acc-answer p{
+    color: #a59d94;
+    font-size: 15px;
+    line-height: 1.95;
+    margin: 0;
+  }
+
+  /* ===== GRID ===== */
+  #CollectionProductGrid .compact-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px 40px;
+  }
+
+  #CollectionProductGrid .reveal-item{
+    opacity:0;
+    transform: translateY(28px);
+    transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, opacity;
+  }
+
+  #CollectionProductGrid .reveal-item.is-visible{
+    opacity:1;
+    transform: translateY(0);
+  }
+
+  /* ===== CARD ===== */
+  #CollectionProductGrid .card-link{
+    color:inherit;
+    text-decoration:none;
+    display:block;
+  }
+
+  #CollectionProductGrid .card-visual{
+    position:relative;
+    overflow:hidden;
+    aspect-ratio: 0.85;
+    background:#0a0a0a;
+    border: 0.5px solid rgba(255,255,255,0.06);
+  }
+
+  #CollectionProductGrid .card-visual img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition: transform 1.6s cubic-bezier(0.19, 1, 0.22, 1);
+    transform: scale(1.01);
+  }
+
+  #CollectionProductGrid .card-placeholder{
+    width:100%;
+    height:100%;
+    background:#111;
+  }
+
+  #CollectionProductGrid .card-overlay{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition: all 0.6s ease;
+    background: rgba(0,0,0,0);
+    backdrop-filter: blur(0px);
+  }
+
+  #CollectionProductGrid .card-btn{
+    color:#fff;
+    font-size: 8px;
+    letter-spacing: 0.32em;
+    border: 0.5px solid rgba(255,255,255,0.9);
+    padding: 8px 16px;
+    opacity:0;
+    transform: translateY(10px);
+    transition: 0.45s ease;
+  }
+
+  #CollectionProductGrid .card-content{
+    margin-top: 14px;
+  }
+
+  #CollectionProductGrid .card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap: 14px;
+  }
+
+  #CollectionProductGrid .product-title{
+    font-family:'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 300;
+    font-style: italic;
+    transition: color 0.3s ease;
+    margin: 0;
+    min-width: 0;
+  }
+
+  #CollectionProductGrid .product-price{
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    font-weight: 300;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin: 0;
+  }
+
+  #CollectionProductGrid .price-prefix{
+    opacity: 0.8;
+  }
+
+  #CollectionProductGrid .product-info-row{
+    font-size: 8px;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    margin-top: 6px;
+  }
+
+  #CollectionProductGrid .grid-item:hover img{
+    transform: scale(1.08);
+  }
+
+  #CollectionProductGrid .grid-item:hover .card-overlay{
+    background: rgba(0,0,0,0.30);
+    backdrop-filter: blur(6px);
+  }
+
+  #CollectionProductGrid .grid-item:hover .card-btn{
+    opacity:1;
+    transform: translateY(0);
+  }
+
+  #CollectionProductGrid .grid-item:hover .product-title{
+    color: var(--gold);
+  }
+
+  #CollectionProductGrid .route-indicator{
+    position:absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(0,0,0,0.55);
+    padding: 4px 8px;
+    font-size: 7px;
+    color: #fff;
+    display:flex;
+    align-items:center;
+    gap: 4px;
+    letter-spacing: .12em;
+  }
+
+  #CollectionProductGrid .dot-pulse{
+    width:4px;
+    height:4px;
+    background: var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 6px rgba(196,181,166,0.9);
+  }
+
+  #CollectionProductGrid .luxury-pagination{
+    margin-top: 50px;
+    opacity: .85;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 990px) {
+    #CollectionProductGrid {
+      --header-safe: 84px;
+    }
+
+    #CollectionProductGrid .coll-hero-compact {
+      height: auto;
+      min-height: 420px;
+      padding-top: var(--header-safe);
+    }
+
+    #CollectionProductGrid .hero-text-container {
+      padding: 18px 20px 48px;
+    }
+
+    #CollectionProductGrid .hero-content {
+      padding: 0 20px;
+    }
+
+    #CollectionProductGrid .coll-title {
+      font-size: clamp(2rem, 8vw, 3.2rem);
+      line-height: 1.05;
+      margin: 16px 0 12px;
+    }
+
+    #CollectionProductGrid .coll-desc {
+      font-size: 14px;
+      line-height: 1.8;
+      max-width: 640px;
+    }
+
+    #CollectionProductGrid .coll-container {
+      padding: 32px 16px 80px;
+    }
+
+    #CollectionProductGrid .compact-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 26px 14px;
+      align-items: start;
+    }
+
+    #CollectionProductGrid .grid-item {
+      min-width: 0;
+    }
+
+    #CollectionProductGrid .card-visual {
+      aspect-ratio: 0.82;
+    }
+
+    #CollectionProductGrid .card-content {
+      margin-top: 12px;
+    }
+
+    #CollectionProductGrid .card-header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 6px;
+    }
+
+    #CollectionProductGrid .product-title {
+      width: 100%;
+      margin: 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.4;
+      letter-spacing: 0;
+      word-break: normal;
+      overflow-wrap: anywhere;
+    }
+
+    #CollectionProductGrid .product-price {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.2;
+      color: #9f9f9f;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    #CollectionProductGrid .price-prefix {
+      opacity: 0.78;
+    }
+
+    #CollectionProductGrid .product-info-row {
+      margin-top: 8px;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+    }
+
+    #CollectionProductGrid .coll-meta-bar {
+      margin-bottom: 38px;
+      padding: 18px 0;
+      gap: 22px;
+    }
+
+    #CollectionProductGrid .meta-number {
+      font-size: 22px;
+    }
+
+    #CollectionProductGrid .meta-label {
+      font-size: 8px;
+    }
+
+    #CollectionProductGrid .meta-location {
+      font-size: 9px;
+      letter-spacing: 0.32em;
+    }
+
+    #CollectionProductGrid .faq-acc-trigger {
+      padding: 18px 0;
+      gap: 16px;
+    }
+
+    #CollectionProductGrid .faq-acc-question {
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    #CollectionProductGrid .faq-acc-answer p {
+      font-size: 14px;
+      line-height: 1.85;
+    }
+
+    #CollectionProductGrid .copy-richtext p {
+      font-size: 14px;
+    }
+
+    #CollectionProductGrid .collection-faq-block .faq-acc-item:hover {
+      transform: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #CollectionProductGrid .coll-meta-bar {
+      flex-direction: column;
+      gap: 14px;
+      border: none;
+    }
+
+    #CollectionProductGrid .meta-divider {
+      width: 30px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #c4b5a6, transparent);
+    }
+
+    #CollectionProductGrid .collection-copy-block {
+      padding-top: 28px;
+      margin-bottom: 42px;
+    }
+
+    #CollectionProductGrid .copy-heading {
+      margin-bottom: 18px;
+    }
+
+    #CollectionProductGrid .faq-acc-answer {
+      padding-bottom: 20px;
+    }
+  }
+
+  @media (max-width: 430px) {
+    #CollectionProductGrid .compact-grid {
+      gap: 24px 12px;
+    }
+
+    #CollectionProductGrid .product-title {
+      font-size: 14px;
+      line-height: 1.36;
+    }
+
+    #CollectionProductGrid .product-price {
+      font-size: 11px;
+    }
+
+    #CollectionProductGrid .product-info-row {
+      font-size: 8px;
+      letter-spacing: 0.12em;
+    }
+  }
+</style>
+
+<div class="luxury-collection-wrapper" id="CollectionProductGrid">
+
+  {%- assign is_xishuangbanna_private_tours = false -%}
+  {%- if collection.handle == 'xishuangbanna-private-tours' -%}
+    {%- assign is_xishuangbanna_private_tours = true -%}
+  {%- endif -%}
+
+  <header class="coll-hero-compact">
+    <div class="hero-bg">
+      {% if collection.image %}
+        <img src="{{ collection.image | image_url: width: 2400 }}" alt="{{ collection.title | escape }} - Lynxtour" class="hero-img">
+      {% else %}
+        <div class="hero-placeholder"></div>
+      {% endif %}
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="hero-text-container">
+      <div class="hero-content">
+        <div class="subtitle-wrap">
+          <span class="coll-subtitle">
+            {% if is_xishuangbanna_private_tours %}
+              TROPICAL RHYTHMS
+            {% else %}
+              SELECTED JOURNEYS
+            {% endif %}
+          </span>
+          <div class="subtitle-line"></div>
+        </div>
+
+        <h1 class="coll-title">
+          {% if is_xishuangbanna_private_tours %}
+            Xishuangbanna Private Tours
+          {% else %}
+            {{ collection.title }}
+          {% endif %}
+        </h1>
+
+        {% if is_xishuangbanna_private_tours %}
+          <div class="coll-desc-wrap">
+            <div class="coll-desc">
+              Discover private tours in Xishuangbanna shaped around rainforest landscapes, Dai culture, tea mountains, tropical gardens, and slower journeys through southern Yunnan.
+            </div>
+          </div>
+        {% elsif collection.description != blank %}
+          <div class="coll-desc-wrap">
+            <div class="coll-desc">{{ collection.description | strip_html | truncatewords: 26 }}</div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+
+  <div class="coll-container">
+    <div class="coll-meta-bar">
+      <div class="meta-left">
+        <span class="meta-number">{{ collection.products_count }}</span>
+        <span class="meta-label">Selected Experiences</span>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-right">
+        <span class="meta-location">
+          {% if is_xishuangbanna_private_tours %}
+            XISHUANGBANNA / YUNNAN
+          {% else %}
+            YUNNAN / CHINA
+          {% endif %}
+        </span>
+      </div>
+    </div>
+
+    {% paginate collection.products by 12 %}
+
+      {% if is_xishuangbanna_private_tours and paginate.current_page == 1 %}
+        <section class="collection-copy-block collection-intro-block">
+          <div class="collection-copy-inner">
+            <h2 class="copy-heading">Private journeys through Xishuangbanna</h2>
+            <div class="copy-richtext">
+              <p>Xishuangbanna is one of Yunnan’s most distinctive destinations, known for its tropical forests, Dai villages, Buddhist temples, tea culture, botanical diversity, and warm southern atmosphere. For many travelers, it offers a completely different side of Yunnan: lush, humid, vivid, and full of a slower rhythm shaped by nature and local life.</p>
+
+              <p>Our Xishuangbanna private tours are designed for travelers who value flexibility, comfort, and a more personal pace. Whether you want to explore tropical gardens, experience Dai culture, visit tea-producing areas, discover riverside landscapes, or combine Xishuangbanna with Kunming, Pu’er, or broader Yunnan routes, a private tour allows you to shape the trip around your own interests and timing.</p>
+
+              <p>This collection brings together private Xishuangbanna tour ideas ranging from shorter tropical stays to multi-day southern Yunnan journeys. It is ideal for couples, families, photographers, cultural travelers, and visitors looking for a more curated and comfortable experience in one of Yunnan’s most atmospheric regions.</p>
+            </div>
+          </div>
+        </section>
+      {% endif %}
+
+      <div class="compact-grid" data-cols="3">
+        {% for product in collection.products %}
+          {% liquid
+            assign included_main_keywords = 'independent group of' | split: '|'
+            assign excluded_keywords = 'single room supplement|room supplement|single supplement|supplement|children pricing|child|children|kid|kids|infant|baby|toddler|add-on|addon|upgrade|custom|extra bed|surcharge|儿童|小童|婴儿' | split: '|'
+
+            assign collection_display_price = blank
+            assign valid_main_variant_count = 0
+            assign found_main_variant = false
+
+            for variant in product.variants
+              assign variant_title = variant.title | downcase | strip
+              assign is_main_variant = false
+              assign is_excluded = false
+
+              for keyword in excluded_keywords
+                if variant_title contains keyword
+                  assign is_excluded = true
+                  break
+                endif
+              endfor
+
+              unless is_excluded
+                for keyword in included_main_keywords
+                  if variant_title contains keyword
+                    assign is_main_variant = true
+                    break
+                  endif
+                endfor
+
+                if is_main_variant
+                  assign found_main_variant = true
+                  assign valid_main_variant_count = valid_main_variant_count | plus: 1
+
+                  if collection_display_price == blank or variant.price < collection_display_price
+                    assign collection_display_price = variant.price
+                  endif
+                endif
+              endunless
+            endfor
+
+            if found_main_variant == false
+              assign valid_main_variant_count = 0
+              assign collection_display_price = blank
+
+              for variant in product.variants
+                assign variant_title = variant.title | downcase | strip
+                assign is_excluded = false
+
+                for keyword in excluded_keywords
+                  if variant_title contains keyword
+                    assign is_excluded = true
+                    break
+                  endif
+                endfor
+
+                unless is_excluded
+                  assign valid_main_variant_count = valid_main_variant_count | plus: 1
+
+                  if collection_display_price == blank or variant.price < collection_display_price
+                    assign collection_display_price = variant.price
+                  endif
+                endunless
+              endfor
+            endif
+
+            if collection_display_price == blank
+              assign collection_display_price = product.price
+            endif
+
+            assign show_from_prefix = false
+            if valid_main_variant_count > 1
+              assign show_from_prefix = true
+            endif
+          %}
+
+          <div class="grid-item reveal-item">
+            <a href="{{ product.url }}" class="card-link">
+              <div class="card-visual">
+                {% if product.featured_image %}
+                  <img
+                    src="{{ product.featured_image | image_url: width: 1200 }}"
+                    alt="{{ product.title | escape }}"
+                    loading="lazy"
+                  >
+                {% else %}
+                  <div class="card-placeholder"></div>
+                {% endif %}
+
+                <div class="card-overlay">
+                  <div class="card-btn">EXPLORE</div>
+                </div>
+
+                {% if product.tags contains 'Rainforest' or product.tags contains 'Dai Culture' or product.tags contains 'Tea' %}
+                  <div class="route-indicator"><span class="dot-pulse"></span>EXCLUSIVE</div>
+                {% endif %}
+              </div>
+
+              <div class="card-content">
+                <div class="card-header">
+                  <h3 class="product-title">{{ product.title }}</h3>
+                  <div class="product-price">
+                    {% if show_from_prefix %}
+                      <span class="price-prefix">From </span>
+                    {% endif %}
+                    {{ collection_display_price | money_with_currency }}
+                  </div>
+                </div>
+                <div class="product-info-row">
+                  <span class="product-type">{{ product.type | default: 'Experience' }}</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+
+      {% if paginate.pages > 1 %}
+        <div class="luxury-pagination">
+          {{ paginate | default_pagination }}
+        </div>
+      {% endif %}
+
+      {% if is_xishuangbanna_private_tours and paginate.current_page == 1 %}
+        <section class="collection-copy-block collection-why-block">
+          <div class="collection-copy-inner narrow">
+            <h2 class="copy-heading">Why choose a private tour in Xishuangbanna?</h2>
+            <div class="copy-richtext">
+              <p>A private tour in Xishuangbanna allows you to experience the region with more flexibility, comfort, and time to move at a slower rhythm. Instead of following a fixed group pace, you can spend more time in tropical gardens, tea landscapes, village settings, temple sites, and cultural stops that matter most to you. It also makes travel easier in a destination where climate, distance, and personal interests can shape the ideal pace of each day.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="collection-copy-block collection-faq-block">
+          <div class="collection-copy-inner">
+            <h2 class="copy-heading">Xishuangbanna Private Tours FAQ</h2>
+
+            <div class="faq-accordion">
+              <div class="faq-acc-item is-open">
+                <button type="button" class="faq-acc-trigger" aria-expanded="true">
+                  <span class="faq-acc-question">How many days do you need in Xishuangbanna?</span>
+                  <span class="faq-acc-icon" aria-hidden="true"></span>
+                </button>
+                <div class="faq-acc-panel" style="max-height: 260px;">
+                  <div class="faq-acc-answer">
+                    <p>For a first visit, 2 to 3 days in Xishuangbanna is usually a good starting point. This allows time for a mix of tropical scenery, Dai cultural experiences, and one or two signature attractions. If you want a slower pace or plan to combine Xishuangbanna with Pu’er, Kunming, or a longer southern Yunnan route, 4 to 6 days can work better.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="faq-acc-item">
+                <button type="button" class="faq-acc-trigger" aria-expanded="false">
+                  <span class="faq-acc-question">Is Xishuangbanna suitable for first-time visitors to Yunnan?</span>
+                  <span class="faq-acc-icon" aria-hidden="true"></span>
+                </button>
+                <div class="faq-acc-panel">
+                  <div class="faq-acc-answer">
+                    <p>Yes, especially for travelers who want to see a warmer, greener, and more tropical side of Yunnan. Xishuangbanna feels very different from places such as Dali, Lijiang, or Shangri-La, so it is often a strong addition to a broader Yunnan journey rather than a replacement for the classic northwest route.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="faq-acc-item">
+                <button type="button" class="faq-acc-trigger" aria-expanded="false">
+                  <span class="faq-acc-question">What can be included in a Xishuangbanna private tour?</span>
+                  <span class="faq-acc-icon" aria-hidden="true"></span>
+                </button>
+                <div class="faq-acc-panel">
+                  <div class="faq-acc-answer">
+                    <p>Depending on the itinerary, a Xishuangbanna private tour can include tropical botanical gardens, Dai villages, Buddhist temples, tea landscapes, rainforest experiences, markets, riverside settings, and extensions to places such as Pu’er or Kunming. Different routes can be adjusted according to pace, climate, season, and personal interests.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="faq-acc-item">
+                <button type="button" class="faq-acc-trigger" aria-expanded="false">
+                  <span class="faq-acc-question">Can Xishuangbanna be combined with Pu’er or Kunming?</span>
+                  <span class="faq-acc-icon" aria-hidden="true"></span>
+                </button>
+                <div class="faq-acc-panel">
+                  <div class="faq-acc-answer">
+                    <p>Absolutely. Xishuangbanna is often combined with Pu’er and Kunming as part of a southern Yunnan route. This is one of the best ways to experience the region, balancing tropical scenery, tea culture, local ethnic heritage, and a more gradual journey through southern Yunnan.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="faq-acc-item">
+                <button type="button" class="faq-acc-trigger" aria-expanded="false">
+                  <span class="faq-acc-question">Who are Xishuangbanna private tours best suited for?</span>
+                  <span class="faq-acc-icon" aria-hidden="true"></span>
+                </button>
+                <div class="faq-acc-panel">
+                  <div class="faq-acc-answer">
+                    <p>Xishuangbanna private tours are especially well suited to couples, families, photographers, nature lovers, and travelers who want a more flexible and comfortable experience in a tropical destination. They are also a strong option for visitors interested in tea culture, local ethnic traditions, and a slower style of travel.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="faq-acc-item">
+                <button type="button" class="faq-acc-trigger" aria-expanded="false">
+                  <span class="faq-acc-question">When is the best time to visit Xishuangbanna?</span>
+                  <span class="faq-acc-icon" aria-hidden="true"></span>
+                </button>
+                <div class="faq-acc-panel">
+                  <div class="faq-acc-answer">
+                    <p>Xishuangbanna can be visited throughout the year, but autumn and winter are often especially comfortable thanks to the warm climate and pleasant travel conditions. Spring can also be rewarding, while summer is greener and more humid. The best season depends on whether you prioritize weather, tropical scenery, local festivals, or a wider Yunnan route.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "How many days do you need in Xishuangbanna?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "For a first visit, 2 to 3 days in Xishuangbanna is usually a good starting point. This allows time for a mix of tropical scenery, Dai cultural experiences, and one or two signature attractions. If you want a slower pace or plan to combine Xishuangbanna with Pu’er, Kunming, or a longer southern Yunnan route, 4 to 6 days can work better."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is Xishuangbanna suitable for first-time visitors to Yunnan?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, especially for travelers who want to see a warmer, greener, and more tropical side of Yunnan. Xishuangbanna feels very different from places such as Dali, Lijiang, or Shangri-La, so it is often a strong addition to a broader Yunnan journey rather than a replacement for the classic northwest route."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What can be included in a Xishuangbanna private tour?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Depending on the itinerary, a Xishuangbanna private tour can include tropical botanical gardens, Dai villages, Buddhist temples, tea landscapes, rainforest experiences, markets, riverside settings, and extensions to places such as Pu’er or Kunming. Different routes can be adjusted according to pace, climate, season, and personal interests."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can Xishuangbanna be combined with Pu’er or Kunming?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Absolutely. Xishuangbanna is often combined with Pu’er and Kunming as part of a southern Yunnan route. This is one of the best ways to experience the region, balancing tropical scenery, tea culture, local ethnic heritage, and a more gradual journey through southern Yunnan."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Who are Xishuangbanna private tours best suited for?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Xishuangbanna private tours are especially well suited to couples, families, photographers, nature lovers, and travelers who want a more flexible and comfortable experience in a tropical destination. They are also a strong option for visitors interested in tea culture, local ethnic traditions, and a slower style of travel."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "When is the best time to visit Xishuangbanna?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Xishuangbanna can be visited throughout the year, but autumn and winter are often especially comfortable thanks to the warm climate and pleasant travel conditions. Spring can also be rewarding, while summer is greener and more humid. The best season depends on whether you prioritize weather, tropical scenery, local festivals, or a wider Yunnan route."
+              }
+            }
+          ]
+        }
+        </script>
+
+        <section class="collection-copy-block collection-outro-block">
+          <div class="collection-copy-inner narrow">
+            <h2 class="copy-heading">Explore Xishuangbanna tour ideas with Lynxtour</h2>
+            <div class="copy-richtext">
+              <p>If you are planning a journey through southern Yunnan, this collection is designed to help you compare different Xishuangbanna private tour styles more easily. From shorter tropical stays to longer multi-destination routes, Lynxtour offers private tour ideas that can be tailored around comfort, pace, climate, and the places you most want to experience.</p>
+            </div>
+          </div>
+        </section>
+      {% endif %}
+
+    {% endpaginate %}
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const root = document.getElementById('CollectionProductGrid');
+  if (!root) return;
+
+  const items = Array.from(root.querySelectorAll('.reveal-item'));
+  const grid = root.querySelector('.compact-grid');
+  const desktopCols = parseInt(grid?.getAttribute('data-cols') || '3', 10);
+
+  if (items.length) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const isMobile = window.innerWidth <= 990;
+          const cols = isMobile ? 2 : desktopCols;
+          const i = items.indexOf(entry.target);
+          const delay = (i % cols) * 140;
+          setTimeout(() => entry.target.classList.add('is-visible'), delay);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+    items.forEach(item => observer.observe(item));
+  }
+
+  const faqBlock = root.querySelector('.collection-faq-block');
+  if (faqBlock) {
+    const faqBlockObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          faqBlock.classList.add('is-visible');
+          faqBlockObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.16,
+      rootMargin: '0px 0px -70px 0px'
+    });
+
+    faqBlockObserver.observe(faqBlock);
+  }
+
+  const accordionItems = root.querySelectorAll('.faq-acc-item');
+
+  accordionItems.forEach((item) => {
+    const trigger = item.querySelector('.faq-acc-trigger');
+    const panel = item.querySelector('.faq-acc-panel');
+
+    if (!trigger || !panel) return;
+
+    if (item.classList.contains('is-open')) {
+      panel.style.maxHeight = panel.scrollHeight + 'px';
+      trigger.setAttribute('aria-expanded', 'true');
+    } else {
+      panel.style.maxHeight = '0px';
+      trigger.setAttribute('aria-expanded', 'false');
+    }
+
+    trigger.addEventListener('click', () => {
+      const isOpen = item.classList.contains('is-open');
+
+      accordionItems.forEach((otherItem) => {
+        const otherTrigger = otherItem.querySelector('.faq-acc-trigger');
+        const otherPanel = otherItem.querySelector('.faq-acc-panel');
+
+        otherItem.classList.remove('is-open');
+        if (otherTrigger) otherTrigger.setAttribute('aria-expanded', 'false');
+        if (otherPanel) otherPanel.style.maxHeight = '0px';
+      });
+
+      if (!isOpen) {
+        item.classList.add('is-open');
+        trigger.setAttribute('aria-expanded', 'true');
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+      }
+    });
+  });
+
+  window.addEventListener('resize', () => {
+    root.querySelectorAll('.faq-acc-item.is-open .faq-acc-panel').forEach((panel) => {
+      panel.style.maxHeight = panel.scrollHeight + 'px';
+    });
+  });
+});
+</script>

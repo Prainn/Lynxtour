@@ -1,0 +1,631 @@
+<!-- ====== 1. 黑金风格专属 CSS ====== -->
+<style>
+  .article-template-container {
+    background-color: #050505;
+    color: #e0e0e0;
+    padding: 60px 20px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  .article-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .article-back-link {
+    color: #888;
+    text-decoration: none;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+  .article-back-link:hover {
+    color: #D4AF37;
+  }
+
+  .article-meta {
+    color: #666;
+    font-size: 0.85em;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .article-meta span {
+    color: #D4AF37;
+  }
+
+  h1.article-main-title {
+    font-size: 2.8em;
+    line-height: 1.2;
+    color: #D4AF37;
+    margin-bottom: 15px;
+    font-weight: 300;
+  }
+
+  .article-content h2 {
+    color: #C5A059;
+    font-size: 1.8em;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+  }
+  .article-content h3 {
+    color: #fff;
+    font-size: 1.4em;
+    margin-top: 40px;
+    margin-bottom: 15px;
+  }
+
+  .article-content p {
+    font-size: 1.1em;
+    line-height: 1.8;
+    margin-bottom: 25px;
+    color: #cccccc;
+  }
+
+  .article-content ul,
+  .article-content ol {
+    margin-bottom: 30px;
+    padding-left: 20px;
+    color: #bbbbbb;
+  }
+  .article-content li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+  .article-content ul li::marker {
+    color: #D4AF37;
+  }
+
+  .article-content a {
+    color: #D4AF37;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    transition: all 0.3s;
+  }
+  .article-content a:hover {
+    color: #fff;
+    border-bottom-color: #fff;
+  }
+
+  .article-image-wrapper {
+    margin-bottom: 50px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .article-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+    margin: 30px auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+
+  .article-content blockquote {
+    border-left: 3px solid #D4AF37;
+    margin: 30px 0;
+    padding: 15px 25px;
+    background: #111;
+    color: #fff;
+    font-style: italic;
+  }
+
+  .article-content strong {
+    color: #fff;
+    font-weight: 600;
+  }
+  .article-content em {
+    color: #888;
+  }
+
+  /* ====== End CTA ====== */
+  .article-end-cta {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+
+  .article-end-cta__box {
+    background: linear-gradient(180deg, rgba(18,18,18,1) 0%, rgba(10,10,10,1) 100%);
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 38px 28px;
+    text-align: center;
+    box-shadow: 0 15px 30px rgba(212, 175, 55, 0.06);
+  }
+
+  .article-end-cta__eyebrow {
+    margin: 0 0 12px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #D4AF37;
+  }
+
+  .article-end-cta__heading {
+    margin: 0 0 14px;
+    font-size: 2em;
+    line-height: 1.3;
+    color: #fff;
+    font-weight: 400;
+  }
+
+  .article-end-cta__text {
+    max-width: 640px;
+    margin: 0 auto;
+    color: #9a9a9a;
+    font-size: 1.02em;
+    line-height: 1.8;
+  }
+
+  .article-end-cta__buttons {
+    margin-top: 26px;
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .article-end-cta__btn {
+    display: inline-block;
+    padding: 12px 24px;
+    text-decoration: none;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .article-end-cta__btn--primary {
+    background: #D4AF37;
+    border: 1px solid #D4AF37;
+    color: #000 !important;
+  }
+  .article-end-cta__btn--primary:hover {
+    background: transparent;
+    color: #D4AF37 !important;
+  }
+
+  .article-end-cta__btn--secondary {
+    background: transparent;
+    border: 1px solid #D4AF37;
+    color: #D4AF37 !important;
+  }
+  .article-end-cta__btn--secondary:hover {
+    background: #D4AF37;
+    color: #000 !important;
+  }
+
+  /* ====== 推荐产品 ====== */
+  .premium-tour-scroll-container {
+    margin-top: 60px;
+    margin-bottom: 40px;
+    width: 100%;
+    overflow-x: auto;
+    display: flex;
+    gap: 25px;
+    padding-bottom: 20px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .premium-tour-scroll-container::-webkit-scrollbar {
+    height: 8px;
+  }
+  .premium-tour-scroll-container::-webkit-scrollbar-track {
+    background: #111;
+    border-radius: 4px;
+  }
+  .premium-tour-scroll-container::-webkit-scrollbar-thumb {
+    background: #D4AF37;
+    border-radius: 4px;
+  }
+  .premium-tour-scroll-container::-webkit-scrollbar-thumb:hover {
+    background: #fff;
+  }
+
+  .premium-tour-card-vertical {
+    flex: 0 0 300px;
+    background-color: #0a0a0a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    scroll-snap-align: start;
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .premium-tour-card-vertical:hover {
+    border-color: #D4AF37;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+  }
+
+  .premium-tour-img-box {
+    width: 100%;
+    height: 200px;
+    background-color: #222;
+    position: relative;
+    overflow: hidden;
+  }
+  .premium-tour-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .premium-tour-card-vertical:hover .premium-tour-img-box img {
+    transform: scale(1.1);
+  }
+  .premium-tour-img-box svg {
+    width: 100%;
+    height: 100%;
+    background: #222;
+    fill: #444;
+  }
+
+  .premium-tour-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .premium-tour-title-v a {
+    font-size: 1.2em;
+    line-height: 1.4;
+    color: #fff !important;
+    text-decoration: none;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 15px;
+    height: 2.8em;
+    transition: color 0.3s;
+  }
+  .premium-tour-card-vertical:hover .premium-tour-title-v a {
+    color: #D4AF37 !important;
+  }
+
+  .premium-tour-price-v {
+    font-size: 1.3em;
+    color: #D4AF37;
+    margin-top: auto;
+    margin-bottom: 15px;
+  }
+  .premium-tour-price-v span {
+    font-size: 0.6em;
+    color: #888;
+    text-transform: uppercase;
+  }
+
+  .premium-tour-btn-v {
+    display: block;
+    text-align: center;
+    background: transparent;
+    border: 1px solid #D4AF37;
+    color: #D4AF37 !important;
+    padding: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.9em;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s;
+  }
+  .premium-tour-btn-v:hover {
+    background: #D4AF37;
+    color: #000 !important;
+  }
+
+  @media screen and (max-width: 768px) {
+    .article-template-container {
+      padding: 40px 16px;
+    }
+
+    h1.article-main-title {
+      font-size: 2.1em;
+    }
+
+    .article-content h2 {
+      font-size: 1.5em;
+    }
+
+    .article-end-cta__box {
+      padding: 28px 18px;
+    }
+
+    .article-end-cta__heading {
+      font-size: 1.6em;
+    }
+  }
+</style>
+
+{% liquid
+  assign end_cta_heading = article.metafields.custom.end_cta_heading.value | default: section.settings.end_cta_heading
+  assign end_cta_text = article.metafields.custom.end_cta_text.value | default: section.settings.end_cta_text
+  assign end_cta_primary_text = article.metafields.custom.end_cta_button_text.value | default: section.settings.end_cta_button_text
+  assign end_cta_primary_link = article.metafields.custom.end_cta_button_link.value | default: section.settings.end_cta_button_link
+  assign end_cta_secondary_text = article.metafields.custom.end_cta_secondary_text.value | default: section.settings.end_cta_secondary_text
+  assign end_cta_secondary_link = article.metafields.custom.end_cta_secondary_link.value | default: section.settings.end_cta_secondary_link
+  assign tour_list = article.metafields.custom.recommended_tour.value
+%}
+
+<!-- ====== 2. 黑金风格 HTML 结构 ====== -->
+<div class="article-template-container">
+  <article class="article-inner">
+    
+    <a href="{{ blog.url }}" class="article-back-link">
+      &larr; Back to {{ blog.title }}
+    </a>
+
+    <h1 class="article-main-title">
+      {{ article.title }}
+    </h1>
+
+    <div class="article-meta">
+  By
+  <span>
+    {% if article.author == 'lynx' %}
+      Lynxtour Editorial Team
+    {% else %}
+      {{ article.author }}
+    {% endif %}
+  </span>
+  &nbsp;|&nbsp;
+  {{ article.published_at | time_tag: format: 'date' }}
+</div>
+
+    {% if article.image %}
+      <div class="article-image-wrapper">
+        <img src="{{ article.image | img_url: '1200x' }}" alt="{{ article.image.alt | escape }}" style="width: 100%; display: block;">
+      </div>
+    {% endif %}
+
+    <div class="article-content">
+      {{ article.content }}
+    </div>
+
+    {% if section.settings.show_end_cta and end_cta_primary_text != blank and end_cta_primary_link != blank %}
+      <section class="article-end-cta">
+        <div class="article-end-cta__box">
+          {% if section.settings.end_cta_eyebrow != blank %}
+            <p class="article-end-cta__eyebrow">{{ section.settings.end_cta_eyebrow }}</p>
+          {% endif %}
+
+          {% if end_cta_heading != blank %}
+            <h2 class="article-end-cta__heading">{{ end_cta_heading }}</h2>
+          {% endif %}
+
+          {% if end_cta_text != blank %}
+            <div class="article-end-cta__text">
+              {{ end_cta_text | newline_to_br }}
+            </div>
+          {% endif %}
+
+          <div class="article-end-cta__buttons">
+            <a href="{{ end_cta_primary_link }}" class="article-end-cta__btn article-end-cta__btn--primary">
+              {{ end_cta_primary_text }}
+            </a>
+
+            {% if end_cta_secondary_text != blank and end_cta_secondary_link != blank %}
+              <a href="{{ end_cta_secondary_link }}" class="article-end-cta__btn article-end-cta__btn--secondary">
+                {{ end_cta_secondary_text }}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      </section>
+    {% endif %}
+
+    {% if tour_list %}
+  <h3 style="color: #D4AF37; margin-top: 60px; margin-bottom: 0; font-size: 1.5em; text-transform: uppercase; letter-spacing: 2px;">
+    Recommended Experiences
+  </h3>
+
+  <div class="premium-tour-scroll-container">
+    {% for tour_item in tour_list %}
+      {% assign tour_image = tour_item.featured_media.preview_image | default: tour_item.featured_image %}
+
+      {% liquid
+        assign included_main_keywords = 'independent group of|solo journey|double share|family & friends private group|three person private group' | split: '|'
+        assign excluded_keywords = 'single room supplement|room supplement|single supplement|supplement|children pricing|child|children|kid|kids|infant|baby|toddler|add-on|addon|upgrade|custom|extra bed|surcharge|儿童|小童|婴儿' | split: '|'
+
+        assign display_price = blank
+        assign valid_main_variant_count = 0
+        assign found_main_variant = false
+
+        for variant in tour_item.variants
+          assign variant_title = variant.title | downcase | strip
+          assign is_main_variant = false
+          assign is_excluded = false
+
+          for keyword in excluded_keywords
+            if variant_title contains keyword
+              assign is_excluded = true
+              break
+            endif
+          endfor
+
+          unless is_excluded
+            for keyword in included_main_keywords
+              if variant_title contains keyword
+                assign is_main_variant = true
+                break
+              endif
+            endfor
+
+            if is_main_variant
+              assign found_main_variant = true
+              assign valid_main_variant_count = valid_main_variant_count | plus: 1
+
+              if display_price == blank or variant.price < display_price
+                assign display_price = variant.price
+              endif
+            endif
+          endunless
+        endfor
+
+        if found_main_variant == false
+          assign valid_main_variant_count = 0
+          assign display_price = blank
+
+          for variant in tour_item.variants
+            assign variant_title = variant.title | downcase | strip
+            assign is_excluded = false
+
+            for keyword in excluded_keywords
+              if variant_title contains keyword
+                assign is_excluded = true
+                break
+              endif
+            endfor
+
+            unless is_excluded
+              assign valid_main_variant_count = valid_main_variant_count | plus: 1
+
+              if display_price == blank or variant.price < display_price
+                assign display_price = variant.price
+              endif
+            endunless
+          endfor
+        endif
+
+        if display_price == blank
+          assign display_price = tour_item.price
+        endif
+
+        assign show_from_prefix = false
+        if valid_main_variant_count > 1
+          assign show_from_prefix = true
+        endif
+      %}
+
+      <div class="premium-tour-card-vertical">
+        <div class="premium-tour-img-box">
+          <a href="{{ tour_item.url }}">
+            {% if tour_image %}
+              <img src="{{ tour_image | img_url: '600x' }}" alt="{{ tour_item.title }}">
+            {% else %}
+              {{ 'product-1' | placeholder_svg_tag }}
+            {% endif %}
+          </a>
+        </div>
+
+        <div class="premium-tour-content">
+          <div class="premium-tour-title-v">
+            <a href="{{ tour_item.url }}">{{ tour_item.title }}</a>
+          </div>
+
+          <div class="premium-tour-price-v">
+            {% if show_from_prefix %}
+              <span>From </span>
+            {% endif %}
+            {{ display_price | money }}
+          </div>
+
+          <a href="{{ tour_item.url }}" class="premium-tour-btn-v">Book Now</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+  </article>
+</div>
+
+<!-- ====== 4. SEO 结构化数据 ====== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "articleBody": {{ article.content | strip_html | json }},
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": {{ canonical_url | json }}
+  },
+  "headline": {{ article.title | json }}{% if article.excerpt != blank %},
+  "description": {{ article.excerpt | strip_html | json }}{% endif %}{% if article.image %},
+  "image": [
+    {{ article.image | img_url: '1024x1024' | prepend: "https:" | json }}
+  ]{% endif %},
+  "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
+  "dateModified": {{ article.updated_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
+  "author": {
+    "@type": "Organization",
+    "name": {% if article.author == 'lynx' %}"Lynxtour Editorial Team"{% else %}{{ article.author | json }}{% endif %},
+    "url": {{ shop.url | append: '/pages/about-us' | json }}
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    "url": {{ shop.url | json }}
+  }
+}
+</script>
+
+{% schema %}
+{
+  "name": "Main Article BlackGold",
+  "settings": [
+    {
+      "type": "header",
+      "content": "End CTA"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_end_cta",
+      "label": "Show end CTA",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "end_cta_eyebrow",
+      "label": "CTA eyebrow",
+      "default": "Plan Your Journey"
+    },
+    {
+      "type": "text",
+      "id": "end_cta_heading",
+      "label": "Default CTA heading",
+      "default": "Ready to turn inspiration into a real trip?"
+    },
+    {
+      "type": "textarea",
+      "id": "end_cta_text",
+      "label": "Default CTA text",
+      "default": "Tell us your travel style, preferred pace, and dream stops in Yunnan. We’ll help shape a route that fits."
+    },
+    {
+      "type": "text",
+      "id": "end_cta_button_text",
+      "label": "Default primary button text",
+      "default": "Plan My Trip"
+    },
+    {
+      "type": "url",
+      "id": "end_cta_button_link",
+      "label": "Default primary button link"
+    },
+    {
+      "type": "text",
+      "id": "end_cta_secondary_text",
+      "label": "Default secondary button text",
+      "default": "Browse Tours"
+    },
+    {
+      "type": "url",
+      "id": "end_cta_secondary_link",
+      "label": "Default secondary button link"
+    }
+  ]
+}
+{% endschema %}

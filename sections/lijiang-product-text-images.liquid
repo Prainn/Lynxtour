@@ -1,0 +1,726 @@
+<!-- 获取当前产品的 Metafield 动态数据 -->
+{% assign dynamic_title = product.metafields.custom.custom_flipbook_title.value %}
+{% assign dynamic_content = product.metafields.custom.custom_flipbook_content | metafield_tag %}
+{% assign dynamic_images = product.metafields.custom.custom_flipbook_images.value %}
+
+<!-- 如果没有动态数据，则回退使用主题编辑器里的默认设置 -->
+{% assign final_title = dynamic_title | default: section.settings.title %}
+{% assign final_content = dynamic_content %}
+{% if final_content == blank %}
+  {% assign final_content = section.settings.content %}
+{% endif %}
+
+<!-- 引入 3D 翻书引擎 -->
+<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+
+<section class="mag-long-{{ section.id }} luxury-global-reset">
+  <div class="mag-main-frame">
+    <div class="mag-split-layout">
+
+      <!-- 左侧：文字区 -->
+      <div class="mag-text-top">
+        <h2 class="mag-main-h2">{{ final_title }}</h2>
+        <div class="mag-gold-divider"></div>
+
+        <div class="mag-rich-content-wrap">
+          <div class="mag-rich-content" id="mag-rich-{{ section.id }}">
+            {{ final_content }}
+          </div>
+
+          <button
+            type="button"
+            class="mag-content-toggle"
+            id="mag-toggle-{{ section.id }}"
+            aria-expanded="false"
+          >
+            Read More
+          </button>
+        </div>
+      </div>
+
+      <!-- 右侧：画册区 -->
+      <div class="mag-book-wrap">
+        <div class="mag-3d-book-container">
+          <button class="mag-nav-btn mag-nav-prev" id="mag-prev-{{ section.id }}" aria-label="上一页">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M15 19l-7-7 7-7"/>
+            </svg>
+          </button>
+
+          <div id="flip-book-{{ section.id }}" class="flip-book">
+            {% if dynamic_images != blank %}
+              {% for img in dynamic_images %}
+                <div class="mag-page" data-density="hard">
+                  <div class="mag-page-content">
+                    <img
+                      src="{{ img | image_url: width: 1000 }}"
+                      class="mag-page-img"
+                      loading="lazy"
+                      alt="Page {{ forloop.index }}"
+                    >
+                  </div>
+                </div>
+              {% endfor %}
+            {% elsif section.blocks.size > 0 %}
+              {% for block in section.blocks %}
+                {% assign img = block.settings.slice %}
+                <div class="mag-page" data-density="hard">
+                  <div class="mag-page-content">
+                    {% if img != blank %}
+                      <img
+                        src="{{ img | image_url: width: 1000 }}"
+                        class="mag-page-img"
+                        loading="lazy"
+                        alt="Page {{ forloop.index }}"
+                      >
+                    {% else %}
+                      <div class="mag-placeholder-box">UPLOAD IMAGE</div>
+                    {% endif %}
+                  </div>
+                </div>
+              {% endfor %}
+            {% else %}
+              <div class="mag-page">
+                <div class="mag-placeholder-box">第一页</div>
+              </div>
+              <div class="mag-page">
+                <div class="mag-placeholder-box">第二页</div>
+              </div>
+            {% endif %}
+          </div>
+
+          <button class="mag-nav-btn mag-nav-next" id="mag-next-{{ section.id }}" aria-label="下一页">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M9 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="mag-book-footer">
+          <div class="mag-page-indicator">
+            PAGE <span id="mag-current-{{ section.id }}">1</span>
+          </div>
+          {% assign cap = section.settings.caption | strip %}
+          {% if cap != blank and cap != '—' %}
+            <div class="mag-poster-caption">{{ cap }}</div>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .mag-long-{{ section.id }} {
+    --gold-clr: #d4b16a;
+    --gold-soft: #f2dfb7;
+    --text-main: #f5f2eb;
+    --text-muted: rgba(245, 242, 235, 0.72);
+    --text-muted-2: rgba(245, 242, 235, 0.5);
+    --dark-deep: #111111;
+    --dark-mid: #1a1a1a;
+
+    background: var(--dark-mid);
+    padding: 80px 0;
+    color: #ffffff;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+
+  .mag-long-{{ section.id }} * {
+    box-sizing: border-box;
+  }
+
+  .mag-long-{{ section.id }} .mag-main-frame {
+    max-width: 1320px;
+    margin: 0 auto;
+    background: var(--dark-deep);
+    border: 1px solid #252525;
+    padding: 56px 52px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  }
+
+  .mag-long-{{ section.id }} .mag-split-layout {
+    display: grid;
+    grid-template-columns: minmax(320px, 430px) minmax(0, 1fr);
+    gap: 56px;
+    align-items: start;
+    position: relative;
+  }
+
+  .mag-long-{{ section.id }} .mag-text-top {
+    min-width: 0;
+    max-width: none;
+    position: relative;
+  }
+
+  .mag-long-{{ section.id }} .mag-main-h2 {
+    margin: 0 0 18px;
+    font-size: clamp(30px, 3.2vw, 42px);
+    line-height: 1.12;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--text-main);
+    font-family: inherit;
+    text-wrap: balance;
+  }
+
+  .mag-long-{{ section.id }} .mag-gold-divider {
+    width: 48px;
+    height: 1px;
+    margin: 0 0 24px 0;
+    background: linear-gradient(
+      90deg,
+      rgba(212, 177, 106, 1) 0%,
+      rgba(212, 177, 106, 0.28) 100%
+    );
+  }
+
+  .mag-long-{{ section.id }} .mag-rich-content-wrap {
+    position: relative;
+  }
+
+  .mag-long-{{ section.id }} .mag-rich-content {
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.82;
+    letter-spacing: 0.01em;
+    text-align: left;
+    padding-right: 10px;
+    font-family: inherit;
+    max-height: 620px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .mag-long-{{ section.id }} .mag-rich-content.is-expanded {
+    max-height: none;
+  }
+
+  .mag-long-{{ section.id }} .mag-rich-content:not(.is-expanded)::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 10px;
+    bottom: 0;
+    height: 110px;
+    background: linear-gradient(
+      to bottom,
+      rgba(17,17,17,0) 0%,
+      rgba(17,17,17,0.82) 58%,
+      rgba(17,17,17,1) 100%
+    );
+    pointer-events: none;
+  }
+
+  .mag-long-{{ section.id }} .mag-rich-content p {
+    margin: 0 0 16px;
+  }
+
+  .mag-long-{{ section.id }} .mag-rich-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  .mag-long-{{ section.id }} .mag-rich-content strong,
+  .mag-long-{{ section.id }} .mag-rich-content b {
+    color: var(--text-main);
+    font-weight: 600;
+  }
+
+  .mag-long-{{ section.id }} .mag-rich-content em {
+    color: var(--gold-soft);
+    font-style: normal;
+  }
+
+  .mag-long-{{ section.id }} .mag-rich-content ul,
+  .mag-long-{{ section.id }} .mag-rich-content ol {
+    margin: 12px 0 18px 1.2em;
+    padding: 0;
+  }
+
+  .mag-long-{{ section.id }} .mag-rich-content li {
+    margin: 0 0 10px;
+  }
+
+  .mag-long-{{ section.id }} .mag-rich-content a {
+    color: var(--gold-soft);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(212, 177, 106, 0.3);
+    transition: color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .mag-long-{{ section.id }} .mag-rich-content a:hover {
+    color: var(--gold-clr);
+    border-color: rgba(212, 177, 106, 0.6);
+  }
+
+  .mag-long-{{ section.id }} .mag-content-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  margin-top: 14px;
+  min-height: 34px;
+  padding: 0 14px;
+  background: rgba(212, 177, 106, 0.04);
+  border: 1px solid rgba(212, 177, 106, 0.24);
+  border-radius: 999px;
+  color: var(--gold-clr);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+}
+
+.mag-long-{{ section.id }} .mag-content-toggle:hover {
+  background: rgba(212, 177, 106, 0.08);
+  border-color: rgba(212, 177, 106, 0.42);
+  color: var(--gold-soft);
+  transform: translateY(-1px);
+}
+
+  .mag-long-{{ section.id }} .mag-book-wrap {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: auto;
+    z-index: 10;
+    width: 100%;
+    align-self: start;
+  }
+
+  .mag-long-{{ section.id }} .mag-3d-book-container {
+    width: 100%;
+    max-width: 550px;
+    aspect-ratio: 1 / 1.414;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8));
+    margin: 0 auto;
+  }
+
+  .mag-long-{{ section.id }} .flip-book {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .mag-long-{{ section.id }} .flip-book.is-initialized {
+    opacity: 1;
+  }
+
+  .mag-long-{{ section.id }} .mag-page {
+    background-color: #fff;
+    border: 1px solid #111;
+    overflow: hidden;
+  }
+
+  .mag-long-{{ section.id }} .mag-page-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mag-long-{{ section.id }} .mag-page-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #fff;
+  }
+
+  .mag-long-{{ section.id }} .mag-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 46px;
+    height: 46px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    color: #fff;
+    transition: all 0.3s ease;
+  }
+
+  .mag-long-{{ section.id }} .mag-nav-btn:hover {
+    background: var(--gold-clr);
+    border-color: var(--gold-clr);
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .mag-long-{{ section.id }} .mag-nav-btn svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .mag-long-{{ section.id }} .mag-nav-prev {
+    left: -70px;
+  }
+
+  .mag-long-{{ section.id }} .mag-nav-next {
+    right: -70px;
+  }
+
+  .mag-long-{{ section.id }} .mag-book-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    gap: 8px;
+  }
+
+  .mag-long-{{ section.id }} .mag-page-indicator {
+    font-size: 12px;
+    line-height: 1.2;
+    font-weight: 500;
+    color: var(--gold-clr);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-family: inherit;
+  }
+
+  .mag-long-{{ section.id }} .mag-page-indicator span {
+    color: var(--gold-soft);
+  }
+
+  .mag-long-{{ section.id }} .mag-poster-caption {
+    color: var(--text-muted-2);
+    font-size: 12px;
+    line-height: 1.6;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: inherit;
+  }
+
+  .mag-long-{{ section.id }} .mag-placeholder-box {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 1100px) {
+    .mag-long-{{ section.id }} .mag-main-frame {
+      padding: 44px 28px;
+    }
+
+    .mag-long-{{ section.id }} .mag-split-layout {
+      grid-template-columns: minmax(280px, 380px) minmax(0, 1fr);
+      gap: 36px;
+    }
+
+    .mag-long-{{ section.id }} .mag-rich-content {
+      max-height: 560px;
+    }
+  }
+
+  @media (max-width: 990px) {
+    .mag-long-{{ section.id }} {
+      padding: 0;
+      background: #000;
+    }
+
+    .mag-long-{{ section.id }} .mag-main-frame {
+      padding: 0 15px;
+      margin: 0;
+      border: none;
+      box-shadow: none;
+      background: transparent;
+      width: 100%;
+    }
+
+    .mag-long-{{ section.id }} .mag-split-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .mag-long-{{ section.id }} .mag-book-wrap {
+      order: 1;
+      width: 100%;
+      position: relative;
+      top: 0;
+      padding-top: 30px;
+    }
+
+    .mag-long-{{ section.id }} .mag-3d-book-container {
+      max-width: 450px;
+      width: 100%;
+      aspect-ratio: 1 / 1.414;
+      margin: 0 auto 80px auto;
+    }
+
+    .mag-long-{{ section.id }} .mag-page {
+      border: none;
+    }
+
+    .mag-long-{{ section.id }} .mag-nav-btn {
+      top: auto;
+      bottom: -65px;
+      width: 46px;
+      height: 46px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      transform: none;
+    }
+
+    .mag-long-{{ section.id }} .mag-nav-btn:hover,
+    .mag-long-{{ section.id }} .mag-nav-btn:active {
+      background: var(--gold-clr);
+      border-color: var(--gold-clr);
+      transform: scale(1.05);
+    }
+
+    .mag-long-{{ section.id }} .mag-nav-prev {
+      left: 50%;
+      right: auto;
+      transform: translateX(-70px);
+    }
+
+    .mag-long-{{ section.id }} .mag-nav-next {
+      left: 50%;
+      right: auto;
+      transform: translateX(24px);
+    }
+
+    .mag-long-{{ section.id }} .mag-nav-prev:hover {
+      transform: translateX(-70px) scale(1.05);
+    }
+
+    .mag-long-{{ section.id }} .mag-nav-next:hover {
+      transform: translateX(24px) scale(1.05);
+    }
+
+    .mag-long-{{ section.id }} .mag-book-footer {
+      margin-top: 0;
+      padding-bottom: 30px;
+    }
+
+    .mag-long-{{ section.id }} .mag-text-top {
+      order: 2;
+      width: 100%;
+      max-width: 100%;
+      padding: 20px 0 50px;
+      background: transparent;
+    }
+
+    .mag-long-{{ section.id }} .mag-main-h2 {
+      font-size: clamp(26px, 7vw, 34px);
+      margin-bottom: 16px;
+    }
+
+    .mag-long-{{ section.id }} .mag-rich-content {
+      font-size: 15px;
+      line-height: 1.8;
+      padding-right: 0;
+      max-height: 420px;
+    }
+
+    .mag-long-{{ section.id }} .mag-rich-content:not(.is-expanded)::after {
+      right: 0;
+      height: 90px;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0.82) 58%,
+        rgba(0,0,0,1) 100%
+      );
+    }
+
+    .mag-long-{{ section.id }} .mag-page-indicator {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+    }
+
+    .mag-long-{{ section.id }} .mag-poster-caption {
+      font-size: 11px;
+      letter-spacing: 0.06em;
+    }
+  }
+  @media (max-width: 990px) {
+  .mag-long-{{ section.id }} .mag-content-toggle {
+    margin-top: 12px;
+    min-height: 32px;
+    padding: 0 12px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+  }
+}
+</style>
+
+<script>
+(function () {
+  const SECTION_ID = '{{ section.id }}';
+
+  function initFlipBook() {
+    const root = document.getElementById('shopify-section-' + SECTION_ID) || document;
+    const container = root.querySelector('#flip-book-' + SECTION_ID);
+    if (!container) return;
+    if (container.dataset.flipInit === '1') return;
+
+    const pages = container.querySelectorAll('.mag-page');
+    if (!pages.length) return;
+    if (!(window.St && window.St.PageFlip)) return;
+
+    try {
+      const pageFlip = new St.PageFlip(container, {
+        width: 550,
+        height: 770,
+        size: 'stretch',
+        minWidth: 280,
+        maxWidth: 1000,
+        minHeight: 350,
+        maxHeight: 1400,
+        maxShadowOpacity: 0.6,
+        showCover: false,
+        usePortrait: true,
+        mobileScrollSupport: true,
+        autoSize: true
+      });
+
+      pageFlip.loadFromHTML(pages);
+      container.dataset.flipInit = '1';
+      container.classList.add('is-initialized');
+      container._pageFlipInstance = pageFlip;
+
+      const prevBtn = root.querySelector('#mag-prev-' + SECTION_ID);
+      const nextBtn = root.querySelector('#mag-next-' + SECTION_ID);
+      const indicator = root.querySelector('#mag-current-' + SECTION_ID);
+
+      if (prevBtn) prevBtn.onclick = () => pageFlip.flipPrev();
+      if (nextBtn) nextBtn.onclick = () => pageFlip.flipNext();
+
+      pageFlip.on('flip', (e) => {
+        if (indicator) indicator.textContent = String(e.data + 1);
+      });
+
+      if (indicator) indicator.textContent = '1';
+    } catch (err) {
+      console.error('[FlipBook] init failed:', err);
+    }
+  }
+
+  function initContentToggle() {
+    const root = document.getElementById('shopify-section-' + SECTION_ID) || document;
+    const content = root.querySelector('#mag-rich-' + SECTION_ID);
+    const button = root.querySelector('#mag-toggle-' + SECTION_ID);
+
+    if (!content || !button) return;
+
+    const updateToggleState = () => {
+      const expanded = content.classList.contains('is-expanded');
+      button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      button.textContent = expanded ? 'Show Less' : 'Read More';
+
+      if (expanded) {
+        button.style.display = 'inline-flex';
+        return;
+      }
+
+      requestAnimationFrame(() => {
+        const needsToggle = content.scrollHeight > content.clientHeight + 6;
+        button.style.display = needsToggle ? 'inline-flex' : 'none';
+      });
+    };
+
+    button.onclick = () => {
+      content.classList.toggle('is-expanded');
+      updateToggleState();
+    };
+
+    updateToggleState();
+
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        updateToggleState();
+      }, 120);
+    });
+  }
+
+  let i = 0;
+  const t = setInterval(() => {
+    i++;
+    if (window.St && window.St.PageFlip) {
+      clearInterval(t);
+      setTimeout(() => {
+        initFlipBook();
+        initContentToggle();
+      }, 50);
+    } else if (i > 100) {
+      clearInterval(t);
+      initContentToggle();
+    }
+  }, 100);
+
+  document.addEventListener('DOMContentLoaded', function () {
+    initContentToggle();
+  });
+
+  document.addEventListener('shopify:section:load', function (evt) {
+    const target = evt.target;
+    if (!target) return;
+
+    if (target.querySelector && target.querySelector('#flip-book-' + SECTION_ID)) {
+      const c = target.querySelector('#flip-book-' + SECTION_ID);
+      if (c) delete c.dataset.flipInit;
+
+      setTimeout(() => {
+        requestAnimationFrame(() => {
+          initFlipBook();
+          initContentToggle();
+        });
+      }, 50);
+    }
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Luxury 3D单页巨幕画册",
+  "settings": [
+    { "type": "header", "content": "默认内容" },
+    { "type": "paragraph", "content": "当产品没有填写 Metafields 时，将显示以下默认内容。" },
+    { "type": "text", "id": "title", "label": "默认主标题", "default": "沉浸式行程指南" },
+    { "type": "richtext", "id": "content", "label": "默认介绍文字" },
+    { "type": "text", "id": "caption", "label": "画册下方备注", "default": "拖拽边角或点击按钮翻阅" }
+  ],
+  "max_blocks": 40,
+  "blocks": [
+    {
+      "type": "slice",
+      "name": "画册单页",
+      "settings": [
+        { "type": "image_picker", "id": "slice", "label": "上传单页图片 (建议竖图)" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Luxury 3D单页巨幕画册" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,82 @@
+<div class="customer-login-section" style="max-width: 400px; margin: 50px auto; text-align: center;">
+  
+  <h1 tabindex="-1">登录</h1>
+
+  <!-- 登录表单 -->
+  {% form 'customer_login', novalidate: 'novalidate' %}
+    {%- if form.errors -%}
+      <div class="form-errors" style="color: red;">
+        {{ form.errors | default_errors }}
+      </div>
+    {%- endif -%}
+
+    <div class="field" style="margin-bottom: 15px;">
+      <label for="CustomerEmail" style="display:block; text-align:left;">邮箱</label>
+      <input 
+        type="email" 
+        name="customer[email]" 
+        id="CustomerEmail" 
+        autocomplete="email"
+        autocorrect="off"
+        autocapitalize="off"
+        style="width: 100%; padding: 8px;"
+        required
+      >
+    </div>
+
+    {%- if form.password_needed -%}
+      <div class="field" style="margin-bottom: 15px;">
+        <label for="CustomerPassword" style="display:block; text-align:left;">密码</label>
+        <input 
+          type="password" 
+          name="customer[password]" 
+          id="CustomerPassword" 
+          autocomplete="current-password"
+          style="width: 100%; padding: 8px;"
+          required
+        >
+      </div>
+    {%- endif -%}
+
+    <div class="actions">
+      <button type="submit" style="padding: 10px 20px; background: #000; color: #fff; cursor: pointer;">
+        登录
+      </button>
+    </div>
+    
+    <div style="margin-top: 15px;">
+      <a href="{{ routes.account_register_url }}">创建一个新账户</a>
+    </div>
+  {% endform %}
+
+  <hr style="margin: 30px 0;">
+
+  <!-- 找回密码表单 (简易版) -->
+  <h2>忘记密码？</h2>
+  {% form 'recover_customer_password' %}
+    {%- if form.errors -%}
+      <div class="form-errors" style="color: red;">
+        {{ form.errors | default_errors }}
+      </div>
+    {%- endif -%}
+    
+    <div class="field" style="margin-bottom: 15px;">
+      <label for="RecoverEmail" style="display:block; text-align:left;">输入邮箱找回密码</label>
+      <input 
+        type="email" 
+        name="email" 
+        id="RecoverEmail"
+        style="width: 100%; padding: 8px;"
+        required
+      >
+    </div>
+    <button type="submit" style="padding: 10px 20px;">发送重置链接</button>
+  {% endform %}
+</div>
+
+{% schema %}
+{
+  "name": "Customer Login",
+  "settings": []
+}
+{% endschema %}

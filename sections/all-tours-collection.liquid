@@ -1,0 +1,1047 @@
+<section class="luxury-collection-wrapper" id="CollectionProductGrid-{{ section.id }}">
+  <!-- 1) HERO -->
+  <header class="coll-hero-compact">
+    <div class="hero-bg">
+      {% if collection.image %}
+        <img src="{{ collection.image | image_url: width: 2400 }}" alt="{{ collection.title | escape }} - Lynxtour" class="hero-img">
+      {% else %}
+        <div class="hero-placeholder"></div>
+      {% endif %}
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="hero-text-container">
+      <div class="hero-content">
+        <div class="subtitle-wrap">
+          <span class="coll-subtitle">
+            {% if collection.handle == 'yunnan-private-tours' %}
+              PRIVATE JOURNEYS ACROSS YUNNAN
+            {% else %}
+              {{ section.settings.subtitle_text }}
+            {% endif %}
+          </span>
+          <div class="subtitle-line"></div>
+        </div>
+
+        <h1 class="coll-title">
+          {% if collection.handle == 'yunnan-private-tours' %}
+            Yunnan Private Tours
+          {% else %}
+            {{ collection.title }}
+          {% endif %}
+        </h1>
+
+        {% if collection.description != blank %}
+          <div class="coll-desc-wrap">
+            <div class="coll-desc">
+              {{ collection.description | strip_html | truncatewords: 26 }}
+            </div>
+          </div>
+        {% elsif collection.handle == 'yunnan-private-tours' %}
+          <div class="coll-desc-wrap">
+            <div class="coll-desc">
+              Explore Yunnan with fully private tours tailored to your pace, interests, and travel dates. Discover Kunming, Dali, Lijiang, and Shangri-La with flexible itineraries and local support.
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+
+  <!-- 2) LIST -->
+  <div class="coll-container">
+    <div class="coll-meta-bar">
+      <div class="meta-left">
+        <span class="meta-number">{{ collection.products_count }}</span>
+        <span class="meta-label">Selected Experiences</span>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-right">
+        <span class="meta-location">
+          {% if collection.handle == 'yunnan-private-tours' %}
+            KUNMING · DALI · LIJIANG · SHANGRI-LA
+          {% else %}
+            {{ section.settings.location_text }}
+          {% endif %}
+        </span>
+      </div>
+    </div>
+
+    {% paginate collection.products by section.settings.page_size %}
+
+      {% if collection.handle == 'yunnan-private-tours' and paginate.current_page == 1 %}
+        <section class="seo-copy seo-copy-top">
+          <div class="seo-copy-inner">
+            <p class="seo-eyebrow">PRIVATE YUNNAN ITINERARIES</p>
+            <h2>Custom Yunnan Private Tours Designed Around Your Pace</h2>
+            <p>
+              Our Yunnan private tours are designed for travelers who want flexibility, comfort, and a deeper experience of Southwest China. From Kunming and Dali to Lijiang and Shangri-La, each journey can be tailored to your interests, travel rhythm, and preferred level of comfort. Whether you are planning a scenic cultural escape, a luxury honeymoon, or a multi-city family trip, this collection brings together our most rewarding private tour options in Yunnan.
+            </p>
+          </div>
+        </section>
+      {% endif %}
+
+      <div class="compact-grid" data-cols="{{ section.settings.desktop_cols }}">
+        {% for product in collection.products %}
+          {% liquid
+  assign excluded_keywords = 'single room supplement|room supplement|single supplement|supplement|add-on|addon|upgrade|custom|extra bed|surcharge' | split: '|'
+  assign child_keywords = 'child|children|kid|kids|infant|baby|toddler|儿童|小童|婴儿' | split: '|'
+
+  assign collection_display_price = blank
+  assign valid_main_variant_count = 0
+
+  assign fallback_display_price = blank
+  assign fallback_valid_variant_count = 0
+
+  for variant in product.variants
+    assign variant_title = variant.title | downcase | strip
+    assign is_excluded = false
+    assign is_child_variant = false
+
+    for keyword in excluded_keywords
+      if variant_title contains keyword
+        assign is_excluded = true
+        break
+      endif
+    endfor
+
+    unless is_excluded
+      assign fallback_valid_variant_count = fallback_valid_variant_count | plus: 1
+
+      if fallback_display_price == blank or variant.price < fallback_display_price
+        assign fallback_display_price = variant.price
+      endif
+
+      for child_keyword in child_keywords
+        if variant_title contains child_keyword
+          assign is_child_variant = true
+          break
+        endif
+      endfor
+
+      unless is_child_variant
+        assign valid_main_variant_count = valid_main_variant_count | plus: 1
+
+        if collection_display_price == blank or variant.price < collection_display_price
+          assign collection_display_price = variant.price
+        endif
+      endunless
+    endunless
+  endfor
+
+  if collection_display_price == blank
+    assign collection_display_price = fallback_display_price
+    assign valid_main_variant_count = fallback_valid_variant_count
+  endif
+
+  if collection_display_price == blank
+    assign collection_display_price = product.price
+  endif
+
+  assign show_from_prefix = false
+  if valid_main_variant_count > 1
+    assign show_from_prefix = true
+  endif
+%}
+
+          <div class="grid-item reveal-item">
+            <a href="{{ product.url }}" class="card-link">
+              <div class="card-visual">
+                {% if product.featured_image %}
+                  <img
+                    src="{{ product.featured_image | image_url: width: 1200 }}"
+                    alt="{{ product.title | escape }}"
+                    loading="lazy"
+                  >
+                {% else %}
+                  <div class="card-img-placeholder"></div>
+                {% endif %}
+
+                <div class="card-overlay">
+                  <div class="card-btn">EXPLORE</div>
+                </div>
+
+                {% if product.tags contains section.settings.badge_tag %}
+                  <div class="route-indicator"><span class="dot-pulse"></span>{{ section.settings.badge_text }}</div>
+                {% endif %}
+              </div>
+
+              <div class="card-content">
+                <div class="card-header">
+                  <h3 class="product-title">{{ product.title }}</h3>
+                  <div class="product-price">
+                    {% if show_from_prefix %}
+                      <span class="price-prefix">From </span>
+                    {% endif %}
+                    {{ collection_display_price | money_with_currency }}
+                  </div>
+                </div>
+                <div class="product-info-row">
+                  <span class="product-type">{{ product.type | default: 'Experience' }}</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+
+      {% if paginate.pages > 1 %}
+        <div class="luxury-pagination">
+          {{ paginate | default_pagination }}
+        </div>
+      {% endif %}
+
+      {% if collection.handle == 'yunnan-private-tours' and paginate.current_page == 1 %}
+        <section class="seo-copy seo-copy-bottom">
+          <div class="seo-copy-inner">
+            <div class="seo-block">
+              <h2>Why Choose a Private Tour in Yunnan?</h2>
+              <p>
+                Yunnan is one of China’s most diverse regions, with major differences in landscape, altitude, culture, and travel pace from one destination to another. A private tour gives you the freedom to travel comfortably between places such as Kunming, Dali, Lijiang, and Shangri-La without being tied to a rigid group schedule. It is especially suitable for couples, families, small groups, and travelers who want a more personalized route, flexible hotel choices, and better control over daily sightseeing time.
+              </p>
+            </div>
+
+            <div class="seo-block">
+              <h2>Top Destinations Included in Yunnan Private Tours</h2>
+              <p>
+                Most travelers begin in Kunming and continue to Dali, Lijiang, and Shangri-La for a classic Yunnan route. Kunming offers a convenient gateway and relaxed urban pace. Dali is loved for Erhai Lake, old-town charm, and slow scenic stays. Lijiang combines heritage streets, mountain views, and access to Tiger Leaping Gorge. Shangri-La brings a different atmosphere altogether, with Tibetan culture, higher-altitude landscapes, and a more spiritual, remote character.
+              </p>
+            </div>
+
+            <div class="seo-block">
+              <h2>Best Time to Visit Yunnan</h2>
+              <p>
+                Yunnan can be visited year-round, but spring and autumn are especially popular for mild weather and clear scenery. Summer is green and vibrant, though some areas may see more rain. Winter is comfortable in cities such as Kunming and Dali, while higher-altitude destinations like Shangri-La require warmer layers. A private itinerary makes it easier to adjust your route according to the season, your comfort level, and the kind of experience you want.
+              </p>
+            </div>
+
+            <div class="seo-block">
+              <h2>Popular Private Tour Styles in Yunnan</h2>
+              <p>
+                Travelers choose Yunnan private tours for many different reasons. Some prefer classic sightseeing routes covering the region’s best-known cities. Others want luxury stays, photography-friendly pacing, honeymoon travel, family-friendly itineraries, or deeper cultural experiences with more flexibility. Because the distances and travel styles across Yunnan vary so much, private tours are often the easiest way to combine comfort, efficiency, and a more personal travel rhythm.
+              </p>
+            </div>
+
+            <div class="seo-block">
+              <h2>Related Destinations</h2>
+              <div class="seo-links">
+                <a href="/pages/dali">Dali Travel Guide</a>
+                <a href="/pages/lijiang">Lijiang Travel Guide</a>
+                <a href="/pages/shangri-la">Shangri-La Travel Guide</a>
+                <a href="/blogs/travel-guides">Yunnan Travel Guides</a>
+              </div>
+            </div>
+
+            <div class="seo-block faq-block">
+              <h2>Frequently Asked Questions</h2>
+
+              <details class="faq-item">
+                <summary>Are your Yunnan private tours customizable?</summary>
+                <div class="faq-answer">
+                  Yes. Our Yunnan private tours can be adjusted based on your travel dates, preferred pace, hotel style, destinations, and trip length.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Which destinations are usually included in a Yunnan private tour?</summary>
+                <div class="faq-answer">
+                  The most popular route usually includes Kunming, Dali, Lijiang, and Shangri-La. Some itineraries may also include Tiger Leaping Gorge, Yuanyang, Tengchong, or Xishuangbanna.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>How many days do I need for a Yunnan tour?</summary>
+                <div class="faq-answer">
+                  A shorter Yunnan private tour can work in 4 to 6 days, while a more comfortable multi-city journey usually takes 7 to 10 days or longer.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Is Yunnan suitable for family or senior travel?</summary>
+                <div class="faq-answer">
+                  Yes. A private tour is often the most comfortable choice for families and senior travelers because the pace, transport, and daily schedule can be planned more flexibly.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Can I start my Yunnan tour from Kunming, Dali, or Lijiang?</summary>
+                <div class="faq-answer">
+                  Yes. Depending on flight access and your route plan, your private tour can begin in Kunming, Dali, Lijiang, or another suitable gateway city.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Do private tours in Yunnan include airport pickup?</summary>
+                <div class="faq-answer">
+                  Most custom itineraries can include airport or railway station pickup as part of the travel arrangement, depending on your route and service plan.
+                </div>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Are your Yunnan private tours customizable?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Our Yunnan private tours can be adjusted based on your travel dates, preferred pace, hotel style, destinations, and trip length."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Which destinations are usually included in a Yunnan private tour?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The most popular route usually includes Kunming, Dali, Lijiang, and Shangri-La. Some itineraries may also include Tiger Leaping Gorge, Yuanyang, Tengchong, or Xishuangbanna."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How many days do I need for a Yunnan tour?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A shorter Yunnan private tour can work in 4 to 6 days, while a more comfortable multi-city journey usually takes 7 to 10 days or longer."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is Yunnan suitable for family or senior travel?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. A private tour is often the most comfortable choice for families and senior travelers because the pace, transport, and daily schedule can be planned more flexibly."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I start my Yunnan tour from Kunming, Dali, or Lijiang?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Depending on flight access and your route plan, your private tour can begin in Kunming, Dali, Lijiang, or another suitable gateway city."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do private tours in Yunnan include airport pickup?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Most custom itineraries can include airport or railway station pickup as part of the travel arrangement, depending on your route and service plan."
+              }
+            }
+          ]
+        }
+        </script>
+      {% endif %}
+
+    {% endpaginate %}
+  </div>
+</section>
+
+<style>
+  /* ===== Scope to this section only ===== */
+  #CollectionProductGrid-{{ section.id }}{
+    background-color: #050505;
+    color: #fff;
+    overflow: hidden;
+    --header-safe: 118px;
+  }
+
+  /* --- HERO SECTION --- */
+  #CollectionProductGrid-{{ section.id }} .coll-hero-compact{
+    height: calc({{ section.settings.hero_height_vh }}vh + var(--header-safe));
+    min-height: calc({{ section.settings.hero_min_height }}px + var(--header-safe));
+    padding-top: var(--header-safe);
+    box-sizing: border-box;
+    position: relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .hero-bg{
+    position:absolute;
+    inset:0;
+    z-index:1;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .hero-img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter: brightness({{ section.settings.hero_brightness | divided_by: 100.0 }});
+  }
+
+  #CollectionProductGrid-{{ section.id }} .hero-placeholder{
+    background:#111;
+    width:100%;
+    height:100%;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .hero-overlay{
+    position:absolute;
+    inset:0;
+    background: linear-gradient(to bottom, rgba(5,5,5,0) 0%, rgba(5,5,5,0.92) 100%);
+    z-index:2;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .hero-text-container{
+    position:relative;
+    z-index:10;
+    text-align:center;
+    width:100%;
+    padding: 0 18px 56px;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .hero-content{
+    max-width: 920px;
+    margin: 0 auto;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .coll-subtitle{
+    color:#c4b5a6;
+    font-size:8px;
+    letter-spacing:0.6em;
+    text-transform:uppercase;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .subtitle-line{
+    width:35px;
+    height:1px;
+    background:#c4b5a6;
+    opacity:1;
+    margin: 12px auto 0;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .coll-title{
+    font-family:'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight:300;
+    font-style:italic;
+    margin: 10px 0;
+    color:#fff;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .coll-desc{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-wrap: balance;
+    font-size:13px;
+    color:#9a9a9a;
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* --- CONTAINER --- */
+  #CollectionProductGrid-{{ section.id }} .coll-container{
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 60px 100px;
+  }
+
+  /* --- META BAR --- */
+  #CollectionProductGrid-{{ section.id }} .coll-meta-bar{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:30px;
+    margin-bottom: 42px;
+    padding: 20px 0;
+    border-top: 1px solid rgba(196,181,166,0.15);
+    border-bottom: 1px solid rgba(196,181,166,0.15);
+  }
+
+  #CollectionProductGrid-{{ section.id }} .meta-left,
+  #CollectionProductGrid-{{ section.id }} .meta-right{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .meta-number{
+    font-family:'Cormorant Garamond', serif;
+    font-size:24px;
+    font-style:italic;
+    color:#c4b5a6;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .meta-label{
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:0.3em;
+    color:#666;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .meta-location{
+    font-size:10px;
+    letter-spacing:0.4em;
+    text-transform:uppercase;
+    color:#888;
+    font-weight:300;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .meta-divider{
+    width:1px;
+    height:20px;
+    background: linear-gradient(to bottom, transparent, #c4b5a6, transparent);
+    opacity:0.6;
+  }
+
+  /* --- SEO COPY --- */
+  #CollectionProductGrid-{{ section.id }} .seo-copy{
+    margin: 0 auto 54px;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .seo-copy-bottom{
+    margin: 72px auto 0;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .seo-copy-inner{
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .seo-eyebrow{
+    margin: 0 0 12px;
+    font-size: 10px;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: #b6a28e;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .seo-block{
+    margin-bottom: 34px;
+    padding-bottom: 0;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .seo-copy h2{
+    margin: 0 0 14px;
+    font-family:'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.15;
+    color: #fff;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .seo-copy p{
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.95;
+    color: #a4a4a4;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .seo-links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px 14px;
+    margin-top: 10px;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .seo-links a{
+    color:#d4c2ae;
+    text-decoration:none;
+    border-bottom:1px solid rgba(212,194,174,0.35);
+    padding-bottom:2px;
+    transition: .25s ease;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .seo-links a:hover{
+    color:#fff;
+    border-color: rgba(255,255,255,0.6);
+  }
+
+  /* --- FAQ --- */
+  #CollectionProductGrid-{{ section.id }} .faq-block{
+    margin-top: 10px;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .faq-item{
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  #CollectionProductGrid-{{ section.id }} .faq-item:last-child{
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  #CollectionProductGrid-{{ section.id }} .faq-item summary{
+    list-style: none;
+    cursor: pointer;
+    padding: 18px 36px 18px 0;
+    position: relative;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #efefef;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .faq-item summary::-webkit-details-marker{
+    display:none;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .faq-item summary::after{
+    content:'+';
+    position:absolute;
+    right:0;
+    top:50%;
+    transform: translateY(-50%);
+    font-size: 22px;
+    line-height: 1;
+    color:#bda995;
+    transition: .25s ease;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .faq-item[open] summary::after{
+    content:'−';
+  }
+
+  #CollectionProductGrid-{{ section.id }} .faq-answer{
+    padding: 0 0 18px;
+    font-size: 14px;
+    line-height: 1.9;
+    color:#9d9d9d;
+  }
+
+  /* --- GRID --- */
+  #CollectionProductGrid-{{ section.id }} .compact-grid{
+    display:grid;
+    grid-template-columns: repeat({{ section.settings.desktop_cols }}, 1fr);
+    gap: 50px 40px;
+  }
+
+  /* --- REVEAL ANIMATION --- */
+  #CollectionProductGrid-{{ section.id }} .reveal-item{
+    opacity:0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  #CollectionProductGrid-{{ section.id }} .reveal-item.is-visible{
+    opacity:1;
+    transform: translateY(0);
+  }
+
+  /* --- CARD --- */
+  #CollectionProductGrid-{{ section.id }} .card-link{
+    color: inherit;
+    text-decoration:none;
+    display:block;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .card-visual{
+    position:relative;
+    overflow:hidden;
+    aspect-ratio: 0.85;
+    background:#0a0a0a;
+    border: 0.5px solid rgba(255,255,255,0.05);
+  }
+
+  #CollectionProductGrid-{{ section.id }} .card-visual img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  #CollectionProductGrid-{{ section.id }} .card-img-placeholder{
+    width:100%;
+    height:100%;
+    background:#111;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .card-overlay{
+    position:absolute;
+    inset:0;
+    background: rgba(0,0,0,0);
+    transition: all 0.6s ease;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    backdrop-filter: blur(0px);
+  }
+
+  #CollectionProductGrid-{{ section.id }} .card-btn{
+    color:#fff;
+    font-size:8px;
+    letter-spacing:0.3em;
+    border: 0.5px solid #fff;
+    padding: 8px 16px;
+    opacity:0;
+    transform: translateY(10px);
+    transition: 0.4s ease;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .grid-item:hover img{
+    transform: scale(1.08);
+  }
+
+  #CollectionProductGrid-{{ section.id }} .grid-item:hover .card-overlay{
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(5px);
+  }
+
+  #CollectionProductGrid-{{ section.id }} .grid-item:hover .card-btn{
+    opacity:1;
+    transform: translateY(0);
+  }
+
+  #CollectionProductGrid-{{ section.id }} .grid-item:hover .product-title{
+    color:#c4b5a6;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .card-content{
+    margin-top: 15px;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap: 16px;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .product-title{
+    font-family:'Cormorant Garamond', serif;
+    font-size:18px;
+    font-weight:300;
+    font-style:italic;
+    transition: color 0.3s ease;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .product-price{
+    font-size:12px;
+    color:#aaa;
+    font-weight:300;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .price-prefix{
+    opacity: 0.8;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .product-info-row{
+    font-size:8px;
+    color:#555;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    margin-top: 5px;
+  }
+
+  /* --- BADGE --- */
+  #CollectionProductGrid-{{ section.id }} .route-indicator{
+    position:absolute;
+    top:12px;
+    left:12px;
+    background: rgba(0,0,0,0.5);
+    padding: 4px 8px;
+    font-size: 7px;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    gap:4px;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .dot-pulse{
+    width:4px;
+    height:4px;
+    background:#c4b5a6;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #c4b5a6;
+  }
+
+  /* --- Pagination small tweak --- */
+  #CollectionProductGrid-{{ section.id }} .luxury-pagination{
+    margin-top: 50px;
+    opacity: .85;
+  }
+
+  /* --- Responsive --- */
+  @media (max-width: 990px) {
+    #CollectionProductGrid-{{ section.id }} {
+      --header-safe: 84px;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .coll-hero-compact {
+      height: auto;
+      min-height: 420px;
+      padding-top: var(--header-safe);
+    }
+
+    #CollectionProductGrid-{{ section.id }} .hero-text-container {
+      padding: 18px 20px 48px;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .hero-content {
+      padding: 0 20px;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .coll-title {
+      font-size: clamp(2rem, 8vw, 3.2rem);
+      line-height: 1.05;
+      margin: 16px 0 12px;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .coll-desc {
+      font-size: 14px;
+      line-height: 1.8;
+      max-width: 640px;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .coll-container {
+      padding: 32px 16px 80px;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .seo-copy{
+      margin-bottom: 36px;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .seo-copy-bottom{
+      margin-top: 54px;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .seo-copy p,
+    #CollectionProductGrid-{{ section.id }} .faq-item summary,
+    #CollectionProductGrid-{{ section.id }} .faq-answer{
+      font-size: 14px;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .compact-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 26px 14px;
+      align-items: start;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .grid-item {
+      min-width: 0;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .card-visual {
+      aspect-ratio: 0.82;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .card-content {
+      margin-top: 12px;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .card-header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 6px;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .product-title {
+      width: 100%;
+      margin: 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.4;
+      letter-spacing: 0;
+      word-break: normal;
+      overflow-wrap: anywhere;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .product-price {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.2;
+      color: #9f9f9f;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .price-prefix {
+      opacity: 0.78;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .product-info-row {
+      margin-top: 8px;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .coll-meta-bar {
+      margin-bottom: 32px;
+      padding: 18px 0;
+      gap: 22px;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .meta-number {
+      font-size: 22px;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .meta-label {
+      font-size: 8px;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .meta-location {
+      font-size: 9px;
+      letter-spacing: 0.32em;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #CollectionProductGrid-{{ section.id }} .coll-meta-bar {
+      flex-direction: column;
+      gap: 14px;
+      border: none;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .meta-divider {
+      width: 30px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #c4b5a6, transparent);
+    }
+
+    #CollectionProductGrid-{{ section.id }} .seo-copy h2{
+      font-size: clamp(1.5rem, 7vw, 2rem);
+    }
+  }
+
+  @media (max-width: 430px) {
+    #CollectionProductGrid-{{ section.id }} .compact-grid {
+      gap: 24px 12px;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .product-title {
+      font-size: 14px;
+      line-height: 1.36;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .product-price {
+      font-size: 11px;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .product-info-row {
+      font-size: 8px;
+      letter-spacing: 0.12em;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .seo-copy p,
+    #CollectionProductGrid-{{ section.id }} .faq-item summary,
+    #CollectionProductGrid-{{ section.id }} .faq-answer{
+      font-size: 13px;
+      line-height: 1.85;
+    }
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  const root = document.getElementById('CollectionProductGrid-{{ section.id }}');
+  if(!root) return;
+
+  const items = Array.from(root.querySelectorAll('.reveal-item'));
+  if(items.length){
+    const grid = root.querySelector('.compact-grid');
+    const colsAttr = parseInt(grid?.getAttribute('data-cols') || '3', 10);
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach((entry)=>{
+        if(entry.isIntersecting){
+          const isMobile = window.innerWidth <= 990;
+          const cols = isMobile ? 2 : colsAttr;
+          const i = items.indexOf(entry.target);
+          const delay = (i % cols) * 150;
+          setTimeout(()=> entry.target.classList.add('is-visible'), delay);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    items.forEach(el => observer.observe(el));
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Luxury collection grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle_text",
+      "label": "Hero subtitle",
+      "default": "THE SACRED REALM"
+    },
+    {
+      "type": "text",
+      "id": "location_text",
+      "label": "Meta location text",
+      "default": "Dali, Yunnan"
+    },
+    {
+      "type": "range",
+      "id": "hero_height_vh",
+      "label": "Hero height (vh)",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "hero_min_height",
+      "label": "Hero min height (px)",
+      "min": 250,
+      "max": 900,
+      "step": 50,
+      "default": 350
+    },
+    {
+      "type": "range",
+      "id": "hero_brightness",
+      "label": "Hero image brightness (%)",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "desktop_cols",
+      "label": "Desktop columns",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "page_size",
+      "label": "Products per page",
+      "min": 6,
+      "max": 24,
+      "step": 3,
+      "default": 12
+    },
+    {
+      "type": "text",
+      "id": "badge_tag",
+      "label": "Tag to show badge",
+      "default": "Route"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "PRIVATE"
+    }
+  ],
+  "templates": ["collection"],
+  "presets": [
+    {
+      "name": "Luxury collection grid"
+    }
+  ]
+}
+{% endschema %}

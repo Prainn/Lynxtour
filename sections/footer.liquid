@@ -1,0 +1,262 @@
+<footer class="custom-footer" id="Footer-{{ section.id }}">
+  <div class="footer-container">
+    <div class="footer-grid">
+      
+      <div class="footer-column brand-info">
+        <h2 class="footer-logo">{{ section.settings.logo_text }}</h2>
+        <p class="footer-brand-desc">{{ section.settings.brand_desc }}</p>
+        
+        <div class="footer-socials">
+          <span class="social-text">{{ section.settings.social_title }}</span>
+          <div class="social-icons">
+  {% if section.settings.instagram_link != blank %}
+    <a href="{{ section.settings.instagram_link }}" class="social-link" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+    </a>
+  {% endif %}
+  
+  {% if section.settings.facebook_link != blank %}
+    <a href="{{ section.settings.facebook_link }}" class="social-link" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+    </a>
+  {% endif %}
+
+  {% if section.settings.x_link != blank %}
+    <a href="{{ section.settings.x_link }}" class="social-link" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.768-6.768m2.464-2.464l6.768-6.768"></path></svg>
+    </a>
+  {% endif %}
+
+  {% if section.settings.youtube_link != blank %}
+    <a href="{{ section.settings.youtube_link }}" class="social-link" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.14 1 12 1 12s0 3.86.42 5.58a2.78 2.78 0 0 0 1.94 2c1.72.42 8.6.42 8.6.42s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.86 23 12 23 12s0-3.86-.42-5.58z"></path>
+        <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="none"></polygon>
+      </svg>
+    </a>
+  {% endif %}
+  {% if section.settings.tiktok_link != blank %}
+    <a href="{{ section.settings.tiktok_link }}" class="social-link" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+      </svg>
+    </a>
+  {% endif %}
+</div>
+        </div>
+      </div>
+
+      <div class="footer-column">
+        <h3 class="footer-heading">{{ section.settings.menu_1_title }}</h3>
+        <ul class="footer-links">
+          {% for link in linklists[section.settings.menu_1].links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3 class="footer-heading">{{ section.settings.menu_2_title }}</h3>
+        <ul class="footer-links">
+          {% for link in linklists[section.settings.menu_2].links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3 class="footer-heading">{{ section.settings.contact_title }}</h3>
+        <div class="footer-contact">
+          <p class="contact-item"><span class="label">TEL:</span> {{ section.settings.contact_tel }}</p>
+          <p class="contact-item"><span class="label">MAIL:</span> {{ section.settings.contact_email }}</p>
+          <p class="contact-item"><span class="label">OFFICE:</span> {{ section.settings.contact_addr }}</p>
+          <div class="bespoke-badge">{{ section.settings.badge_text }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-info">
+        <p class="copyright">&copy; {{ 'now' | date: "%Y" }} {{ shop.name }}. {{ section.settings.copyright_text }}</p>
+        <div class="footer-legal">
+          {% if section.settings.privacy_link != blank %}
+            <a href="{{ section.settings.privacy_link }}">{{ section.settings.privacy_label }}</a>
+          {% endif %}
+          <span class="separator">/</span>
+          {% if section.settings.terms_link != blank %}
+            <a href="{{ section.settings.terms_link }}">{{ section.settings.terms_label }}</a>
+          {% endif %}
+        </div>
+      </div>
+      
+      {% if section.settings.show_payment_icons %}
+  <style>
+    /* 自定义图标样式 */
+    .footer-payment-icons {
+      text-align: center; /* 居中显示，如果想靠左请改为 left */
+      margin-top: 20px;
+      padding: 10px 0;
+    }
+    .payment-text {
+      display: block;
+      font-size: 12px;
+      letter-spacing: 1px;
+      color: #666; /* 字体颜色 */
+      margin-bottom: 10px;
+    }
+    .payment-list {
+      display: flex;
+      flex-wrap: wrap; /* 自动换行，防止手机端溢出 */
+      justify-content: center; /* 居中对齐 */
+      gap: 10px; /* 图标之间的间距 */
+    }
+    .payment-icon {
+      height: 24px; /* 控制图标高度 */
+      width: auto;
+      filter: grayscale(0.2); /* 稍微降低饱和度显得更高级，可选 */
+      transition: transform 0.2s;
+    }
+    .payment-icon:hover {
+      transform: scale(1.1); /* 鼠标悬停放大效果 */
+    }
+  </style>
+
+  <div class="footer-payment-icons">
+    <span class="payment-text">SECURE CHECKOUT</span>
+    <div class="payment-list">
+      {% assign custom_payment_types = 'visa,master,american_express,paypal,klarna,apple_pay,google_pay' | split: ',' %}
+      {% for type in custom_payment_types %}
+        {{ type | payment_type_svg_tag: class: 'payment-icon' }}
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+    </div>
+  </div>
+</footer>
+
+<style>
+  .custom-footer { 
+    background-color: #0a0a0a; 
+    color: #fff; 
+    padding: 120px 0 60px; 
+    border-top: 1px solid rgba(255,255,255,0.03);
+    font-weight: 300;
+  }
+  .footer-container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: 40px; margin-bottom: 100px; }
+  
+  .footer-logo { 
+    font-size: 20px; 
+    font-weight: 300; 
+    letter-spacing: 0.5em; 
+    color: #fbbf24; 
+    margin-bottom: 30px; 
+    text-transform: uppercase; 
+  }
+  
+  .footer-brand-desc { 
+    color: #78716c; 
+    font-size: 13px; 
+    line-height: 2; 
+    margin-bottom: 40px; 
+    max-width: 320px; 
+    letter-spacing: 0.05em;
+  }
+  
+  .footer-socials { display: flex; flex-direction: column; gap: 15px; }
+  .social-text { font-size: 9px; letter-spacing: 0.4em; color: #444; font-weight: 400; text-transform: uppercase; }
+  .social-icons { display: flex; gap: 24px; align-items: center; }
+  .social-link { color: #555; transition: all 0.5s ease; }
+  .social-link:hover { color: #fbbf24; transform: translateY(-2px); }
+
+  .footer-heading { 
+    font-size: 11px; 
+    font-weight: 400; 
+    letter-spacing: 0.4em; 
+    text-transform: uppercase; 
+    margin-bottom: 40px; 
+    color: #fff; 
+    opacity: 0.9;
+  }
+  
+  .footer-links { list-style: none; padding: 0; margin: 0; }
+  .footer-links li { margin-bottom: 16px; }
+  .footer-links a { color: #78716c; text-decoration: none; font-size: 13px; transition: all 0.4s ease; letter-spacing: 0.05em; }
+  .footer-links a:hover { color: #fbbf24; }
+
+  .footer-contact .contact-item { color: #78716c; font-size: 13px; margin-bottom: 15px; letter-spacing: 0.05em; }
+  .footer-contact .label { color: #fbbf24; margin-right: 12px; font-size: 10px; letter-spacing: 0.1em; opacity: 0.8; }
+  
+  .bespoke-badge { 
+    display: inline-block; 
+    margin-top: 30px; 
+    padding: 8px 18px; 
+    border: 1px solid rgba(251, 191, 36, 0.15); 
+    color: #fbbf24; 
+    font-size: 9px; 
+    letter-spacing: 0.3em; 
+    text-transform: uppercase;
+  }
+
+  .footer-bottom { 
+    padding-top: 50px; 
+    border-top: 1px solid rgba(255,255,255,0.03); 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-end; 
+  }
+  
+  .copyright { color: #444; font-size: 10px; margin-bottom: 10px; letter-spacing: 0.1em; }
+  .footer-legal a { color: #444; text-decoration: none; font-size: 10px; transition: 0.4s; letter-spacing: 0.1em; }
+  .footer-legal a:hover { color: #fff; }
+  .separator { color: #222; margin: 0 10px; }
+  
+  .payment-text { font-size: 9px; letter-spacing: 0.2em; color: #444; margin-bottom: 15px; }
+  .payment-icon { width: 34px; height: auto; opacity: 0.15; filter: grayscale(100%); transition: 0.5s; }
+  .payment-icon:hover { opacity: 0.8; filter: grayscale(0); }
+
+  @media (max-width: 1024px) { 
+    .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 60px; } 
+  }
+  @media (max-width: 640px) { 
+    .footer-grid { grid-template-columns: 1fr; text-align: left; } 
+    .footer-bottom { flex-direction: column; align-items: flex-start; gap: 40px; } 
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Custom Footer",
+  "settings": [
+    { "type": "header", "content": "Brand & Socials" },
+    { "type": "text", "id": "logo_text", "label": "Logo Text", "default": "LYNXTOUR" },
+    { "type": "textarea", "id": "brand_desc", "label": "Brand Description", "default": "Lynxtour is a Yunnan private tours brand offering bespoke journeys, luxury day trips, and private charter services across Kunming, Dali, Lijiang, Shangri-La, and beyond." },
+    { "type": "text", "id": "social_title", "label": "Social Heading", "default": "CONNECT" },
+    { "type": "url", "id": "instagram_link", "label": "Instagram Link" },
+    { "type": "url", "id": "facebook_link", "label": "Facebook Link" },
+    { "type": "url", "id": "x_link", "label": "X (Twitter) Link" },
+    { "type": "url", "id": "youtube_link", "label": "YouTube Link" },
+    { "type": "url", "id": "tiktok_link", "label": "TikTok Link" },
+    { "type": "header", "content": "Navigation" },
+    { "type": "text", "id": "menu_1_title", "label": "Menu 1 Title", "default": "EXPLORE" },
+    { "type": "link_list", "id": "menu_1", "label": "Select Menu 1" },
+    { "type": "text", "id": "menu_2_title", "label": "Menu 2 Title", "default": "JOURNEYS" },
+    { "type": "link_list", "id": "menu_2", "label": "Select Menu 2" },
+    { "type": "header", "content": "Contact" },
+    { "type": "text", "id": "contact_title", "label": "Contact Heading", "default": "CONCIERGE" },
+    { "type": "text", "id": "contact_tel", "label": "Phone", "default": "+86 400-000-0000" },
+    { "type": "text", "id": "contact_email", "label": "Email", "default": "biz@lynxtour.cn" },
+    { "type": "text", "id": "contact_addr", "label": "Address", "default": "Kunming, Yunnan, China" },
+    { "type": "text", "id": "badge_text", "label": "Badge Text", "default": "YUNNAN PRIVATE TOURS" },
+    { "type": "header", "content": "Legal & Payment" },
+    { "type": "checkbox", "id": "show_payment_icons", "label": "Show Payment Icons", "default": true },
+    { "type": "text", "id": "copyright_text", "label": "Copyright Suffix", "default": "ALL RIGHTS RESERVED." },
+    { "type": "text", "id": "privacy_label", "label": "Privacy Label", "default": "PRIVACY POLICY" },
+    { "type": "url", "id": "privacy_link", "label": "Privacy Link" },
+    { "type": "text", "id": "terms_label", "label": "Terms Label", "default": "TERMS OF SERVICE" },
+    { "type": "url", "id": "terms_link", "label": "Terms Link" }
+  ],
+  "presets": [{ "name": "Custom Footer" }]
+}
+{% endschema %}

@@ -1,0 +1,939 @@
+{%- assign page_url = shop.url | append: request.path -%}
+
+<style>
+  #lx-destinations-{{ section.id }} {
+    --lx-header-offset: 168px;
+    --lx-bg: #0f0f10;
+    --lx-bg-soft: #171718;
+    --lx-card: rgba(255,255,255,0.04);
+    --lx-border: rgba(212, 177, 106, 0.22);
+    --lx-border-strong: rgba(212, 177, 106, 0.45);
+    --lx-gold: #d4b16a;
+    --lx-gold-soft: #f0dfb4;
+    --lx-text: #f4f1ea;
+    --lx-muted: rgba(244, 241, 234, 0.76);
+    --lx-muted-2: rgba(244, 241, 234, 0.58);
+    color: var(--lx-text);
+    background:
+      radial-gradient(circle at top right, rgba(212,177,106,0.10), transparent 24%),
+      linear-gradient(180deg, #0f0f10 0%, #121214 40%, #101011 100%);
+    padding: var(--lx-header-offset) 0 110px;
+    position: relative;
+    z-index: 1;
+    isolation: isolate;
+  }
+
+  #lx-destinations-{{ section.id }} [id] {
+    scroll-margin-top: calc(var(--lx-header-offset) + 16px);
+  }
+
+  #lx-destinations-{{ section.id }} .lx-dest-shell {
+    width: min(1080px, calc(100% - 48px));
+    margin: 0 auto;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-breadcrumb {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 18px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--lx-muted-2);
+  }
+
+  #lx-destinations-{{ section.id }} .lx-breadcrumb a {
+    color: var(--lx-muted-2);
+    text-decoration: none;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-breadcrumb a:hover {
+    color: var(--lx-gold-soft);
+  }
+
+  #lx-destinations-{{ section.id }} .lx-hero {
+    display: block;
+    margin-bottom: 28px;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-hero-copy,
+  #lx-destinations-{{ section.id }} .lx-hero-note,
+  #lx-destinations-{{ section.id }} .lx-intro,
+  #lx-destinations-{{ section.id }} .lx-destinations,
+  #lx-destinations-{{ section.id }} .lx-compare,
+  #lx-destinations-{{ section.id }} .lx-next-steps,
+  #lx-destinations-{{ section.id }} .lx-faq {
+    background: linear-gradient(180deg, rgba(255,255,255,0.045) 0%, rgba(255,255,255,0.025) 100%);
+    border: 1px solid var(--lx-border);
+    border-radius: 28px;
+    box-shadow: 0 18px 45px rgba(0,0,0,0.22);
+  }
+
+  #lx-destinations-{{ section.id }} .lx-hero-copy {
+    padding: 56px 52px 50px;
+    border-radius: 30px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.035) 0%, rgba(255,255,255,0.015) 100%),
+      radial-gradient(circle at top left, rgba(212,177,106,0.16), transparent 28%);
+  }
+
+  #lx-destinations-{{ section.id }} .lx-kicker,
+  #lx-destinations-{{ section.id }} .lx-card-kicker {
+    margin: 0 0 14px;
+    color: var(--lx-gold);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-hero-copy h1 {
+    margin: 0;
+    font-size: clamp(46px, 6vw, 78px);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    max-width: 7.5ch;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-hero-text {
+    max-width: 680px;
+    margin: 22px 0 0;
+    color: var(--lx-muted);
+    font-size: 16px;
+    line-height: 1.95;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 20px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    transition: all 0.25s ease;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-btn-primary {
+    background: linear-gradient(180deg, #dec080 0%, #caa055 100%);
+    color: #161616;
+    font-weight: 700;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px rgba(202,160,85,0.22);
+  }
+
+  #lx-destinations-{{ section.id }} .lx-btn-secondary {
+    border: 1px solid var(--lx-border-strong);
+    color: var(--lx-text);
+    background: rgba(255,255,255,0.03);
+  }
+
+  #lx-destinations-{{ section.id }} .lx-btn-secondary:hover {
+    border-color: rgba(240,223,180,0.62);
+    color: var(--lx-gold-soft);
+  }
+
+  #lx-destinations-{{ section.id }} .lx-hero-note {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) auto;
+    gap: 28px;
+    align-items: center;
+    padding: 30px 32px;
+    border-radius: 26px;
+    margin-bottom: 34px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 100%),
+      radial-gradient(circle at top right, rgba(212,177,106,0.12), transparent 30%);
+  }
+
+  #lx-destinations-{{ section.id }} .lx-hero-note h2 {
+    margin: 0;
+    font-size: clamp(24px, 3vw, 40px);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    max-width: 12ch;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-hero-note p:not(.lx-card-kicker) {
+    margin: 10px 0 0;
+    color: var(--lx-muted);
+    line-height: 1.9;
+    max-width: 620px;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-quick-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 16px;
+    border-radius: 999px;
+    border: 1px solid var(--lx-border);
+    background: rgba(255,255,255,0.03);
+    color: var(--lx-text);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: all 0.25s ease;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-chip:hover {
+    border-color: rgba(240,223,180,0.55);
+    color: var(--lx-gold-soft);
+    transform: translateY(-1px);
+  }
+
+  #lx-destinations-{{ section.id }} .lx-intro,
+  #lx-destinations-{{ section.id }} .lx-destinations,
+  #lx-destinations-{{ section.id }} .lx-compare,
+  #lx-destinations-{{ section.id }} .lx-next-steps,
+  #lx-destinations-{{ section.id }} .lx-faq {
+    padding: 46px 36px 40px;
+    margin-top: 32px;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-section-head {
+    margin-bottom: 28px;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-section-head h2 {
+    margin: 0;
+    font-size: clamp(30px, 3vw, 44px);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    max-width: 14ch;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-section-text {
+    margin: 14px 0 0;
+    max-width: 720px;
+    color: var(--lx-muted);
+    line-height: 1.9;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-intro-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-intro-grid p {
+    margin: 0;
+    color: var(--lx-muted);
+    line-height: 1.95;
+    font-size: 15px;
+    max-width: 46ch;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-dest-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-link-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-dest-card,
+  #lx-destinations-{{ section.id }} .lx-link-card {
+    min-height: 100%;
+    border-radius: 24px;
+    border: 1px solid var(--lx-border);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 100%);
+    padding: 28px 26px 26px;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-dest-card:hover,
+  #lx-destinations-{{ section.id }} .lx-link-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(240,223,180,0.45);
+    box-shadow: 0 16px 30px rgba(0,0,0,0.2);
+  }
+
+  #lx-destinations-{{ section.id }} .lx-dest-card--wide {
+    grid-column: 1 / -1;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-dest-card--wide .lx-dest-summary {
+    max-width: 62ch;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-dest-card h3,
+  #lx-destinations-{{ section.id }} .lx-link-card h3 {
+    margin: 0;
+    font-size: 28px;
+    line-height: 1.18;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-dest-summary,
+  #lx-destinations-{{ section.id }} .lx-link-card p {
+    margin: 16px 0 0;
+    color: var(--lx-muted);
+    line-height: 1.9;
+    font-size: 15px;
+    max-width: 34ch;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-meta-list {
+    margin: 20px 0 0;
+    padding-left: 18px;
+    color: var(--lx-muted);
+    line-height: 1.9;
+    font-size: 14px;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-card-actions {
+    margin-top: 24px;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-text-link,
+  #lx-destinations-{{ section.id }} .lx-link-card span,
+  #lx-destinations-{{ section.id }} .lx-compare-table a {
+    color: var(--lx-gold-soft);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-text-link:hover,
+  #lx-destinations-{{ section.id }} .lx-link-card:hover span,
+  #lx-destinations-{{ section.id }} .lx-compare-table a:hover {
+    color: #fff1cb;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-compare-table-wrap {
+    overflow-x: auto;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 880px;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-compare-table th,
+  #lx-destinations-{{ section.id }} .lx-compare-table td {
+    border-bottom: 1px solid var(--lx-border);
+    padding: 18px 14px;
+    text-align: left;
+    vertical-align: top;
+    color: var(--lx-muted);
+    line-height: 1.85;
+    font-size: 14px;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-compare-table th {
+    color: var(--lx-text);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-link-card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-faq-list {
+    display: grid;
+    gap: 14px;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-faq-item {
+    border: 1px solid var(--lx-border);
+    border-radius: 20px;
+    background: rgba(255,255,255,0.025);
+    padding: 0 20px;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 20px 0;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--lx-text);
+    position: relative;
+    padding-right: 26px;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-faq-item summary::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--lx-gold);
+    font-size: 20px;
+  }
+
+  #lx-destinations-{{ section.id }} .lx-faq-item[open] summary::after {
+    content: '−';
+  }
+
+  #lx-destinations-{{ section.id }} .lx-faq-answer {
+    padding: 0 0 20px;
+    color: var(--lx-muted);
+    line-height: 1.9;
+    font-size: 15px;
+    max-width: 72ch;
+  }
+
+  @media (max-width: 1080px) {
+    #lx-destinations-{{ section.id }} {
+      --lx-header-offset: 144px;
+      padding: var(--lx-header-offset) 0 88px;
+    }
+
+    #lx-destinations-{{ section.id }} .lx-dest-shell {
+      width: min(100%, calc(100% - 32px));
+    }
+
+    #lx-destinations-{{ section.id }} .lx-hero-copy {
+      padding: 40px 30px 36px;
+    }
+
+    #lx-destinations-{{ section.id }} .lx-hero-note,
+    #lx-destinations-{{ section.id }} .lx-intro,
+    #lx-destinations-{{ section.id }} .lx-destinations,
+    #lx-destinations-{{ section.id }} .lx-compare,
+    #lx-destinations-{{ section.id }} .lx-next-steps,
+    #lx-destinations-{{ section.id }} .lx-faq {
+      padding: 32px 24px 28px;
+    }
+
+    #lx-destinations-{{ section.id }} .lx-hero-note,
+    #lx-destinations-{{ section.id }} .lx-intro-grid,
+    #lx-destinations-{{ section.id }} .lx-dest-grid,
+    #lx-destinations-{{ section.id }} .lx-link-cards {
+      grid-template-columns: 1fr;
+    }
+
+    #lx-destinations-{{ section.id }} .lx-quick-nav {
+      justify-content: flex-start;
+    }
+
+    #lx-destinations-{{ section.id }} .lx-dest-card--wide {
+      grid-column: auto;
+    }
+
+    #lx-destinations-{{ section.id }} .lx-section-head h2,
+    #lx-destinations-{{ section.id }} .lx-hero-note h2 {
+      max-width: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    #lx-destinations-{{ section.id }} {
+      --lx-header-offset: 112px;
+      padding: var(--lx-header-offset) 0 56px;
+    }
+
+    #lx-destinations-{{ section.id }} .lx-dest-shell {
+      width: calc(100% - 20px);
+    }
+
+    #lx-destinations-{{ section.id }} .lx-hero-copy {
+      padding: 30px 20px 28px;
+      border-radius: 22px;
+    }
+
+    #lx-destinations-{{ section.id }} .lx-hero-note,
+    #lx-destinations-{{ section.id }} .lx-intro,
+    #lx-destinations-{{ section.id }} .lx-destinations,
+    #lx-destinations-{{ section.id }} .lx-compare,
+    #lx-destinations-{{ section.id }} .lx-next-steps,
+    #lx-destinations-{{ section.id }} .lx-faq {
+      padding: 24px 18px 22px;
+      margin-top: 20px;
+      border-radius: 22px;
+    }
+
+    #lx-destinations-{{ section.id }} .lx-section-head {
+      margin-bottom: 20px;
+    }
+
+    #lx-destinations-{{ section.id }} .lx-dest-card,
+    #lx-destinations-{{ section.id }} .lx-link-card {
+      padding: 22px 18px 20px;
+    }
+
+    #lx-destinations-{{ section.id }} .lx-hero-copy h1 {
+      max-width: none;
+    }
+
+    #lx-destinations-{{ section.id }} .lx-hero-text,
+    #lx-destinations-{{ section.id }} .lx-section-text,
+    #lx-destinations-{{ section.id }} .lx-intro-grid p,
+    #lx-destinations-{{ section.id }} .lx-dest-summary,
+    #lx-destinations-{{ section.id }} .lx-link-card p,
+    #lx-destinations-{{ section.id }} .lx-faq-answer {
+      font-size: 14px;
+    }
+
+    #lx-destinations-{{ section.id }} .lx-btn,
+    #lx-destinations-{{ section.id }} .lx-chip {
+      width: 100%;
+    }
+
+    #lx-destinations-{{ section.id }} .lx-hero-actions {
+      gap: 10px;
+    }
+  }
+</style>
+
+<section class="lx-destinations-page" id="lx-destinations-{{ section.id }}">
+  <div class="lx-dest-shell">
+
+    <header class="lx-hero">
+      <div class="lx-hero-copy">
+        <p class="lx-kicker">{{ section.settings.hero_kicker }}</p>
+        <h1>{{ section.settings.hero_title }}</h1>
+        <p class="lx-hero-text">{{ section.settings.hero_text }}</p>
+
+        <div class="lx-hero-actions">
+          <a href="#destinations-grid" class="lx-btn lx-btn-primary">{{ section.settings.primary_btn_text }}</a>
+          <a href="/collections/yunnan-private-tours" class="lx-btn lx-btn-secondary">{{ section.settings.secondary_btn_text }}</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="lx-hero-note">
+      <div class="lx-hero-note-main">
+        <p class="lx-card-kicker">Why start here</p>
+        <h2>Plan Yunnan by destination, not by guesswork</h2>
+        <p>
+          Compare Yunnan’s key travel bases first, from spring-city gateways and lakeside old towns to Tibetan highlands and tropical rainforest escapes, then continue into guides, private tours, and bespoke planning once you know which places best match your pace and interests.
+        </p>
+      </div>
+
+      <div class="lx-quick-nav">
+        <a href="/pages/kunming" class="lx-chip">Kunming</a>
+        <a href="/pages/dali" class="lx-chip">Dali</a>
+        <a href="/pages/lijiang" class="lx-chip">Lijiang</a>
+        <a href="/pages/shangri-la" class="lx-chip">Shangri-La</a>
+        <a href="/pages/xishuangbanna" class="lx-chip">Xishuangbanna</a>
+      </div>
+    </section>
+
+    <section class="lx-intro">
+      <div class="lx-section-head">
+        <p class="lx-kicker">Yunnan private travel</p>
+        <h2>Find the destination that fits your journey</h2>
+      </div>
+      <div class="lx-intro-grid">
+        <p>
+          Yunnan is not a one-mood destination. Some travelers want an easy cultural gateway with city comforts.
+          Some want lakeside slowness, old towns, snow mountains, a higher-altitude Tibetan atmosphere, or a tropical southern escape shaped by rainforest warmth and Dai culture.
+          This page brings together Lynxtour’s core destination hubs so travelers can compare the places that most often shape a first or returning Yunnan itinerary.
+        </p>
+        <p>
+          Begin with the destination that best matches your pace, then continue into curated travel guides,
+          private tours, or bespoke custom planning across Kunming, Dali, Lijiang, Shangri-La, Xishuangbanna, and beyond.
+        </p>
+      </div>
+    </section>
+
+    <section class="lx-destinations" id="destinations-grid">
+      <div class="lx-section-head">
+        <p class="lx-kicker">Core destination hubs</p>
+        <h2>Explore by Destination</h2>
+        <p class="lx-section-text">
+          Each destination page is designed as an overview hub with highlights, planning tips, internal guide links, and related private tour ideas.
+        </p>
+      </div>
+
+      <div class="lx-dest-grid">
+        <article class="lx-dest-card">
+          <p class="lx-card-kicker">Spring gateway</p>
+          <h3>Kunming</h3>
+          <p class="lx-dest-summary">
+            Mild weather, urban ease, lakeside walks, flower markets, museums, and classic day trips make Kunming one of the most accessible and rewarding starting points in Yunnan.
+          </p>
+          <ul class="lx-meta-list">
+            <li>Best for first-time visitors</li>
+            <li>Easy city + day trip balance</li>
+            <li>Stone Forest, Dianchi, Green Lake</li>
+          </ul>
+          <div class="lx-card-actions">
+            <a href="/pages/kunming" class="lx-text-link">Explore Kunming</a>
+          </div>
+        </article>
+
+        <article class="lx-dest-card">
+          <p class="lx-card-kicker">Lakeside grace</p>
+          <h3>Dali</h3>
+          <p class="lx-dest-summary">
+            Dali blends Erhai’s open water, Cangshan’s mountain presence, Bai heritage, village texture, and a slower, more restorative pace that many travelers find instantly memorable.
+          </p>
+          <ul class="lx-meta-list">
+            <li>Best for scenic slow travel</li>
+            <li>Culture + atmosphere + lake views</li>
+            <li>Erhai, Xizhou, Dali Old Town</li>
+          </ul>
+          <div class="lx-card-actions">
+            <a href="/pages/dali" class="lx-text-link">Explore Dali</a>
+          </div>
+        </article>
+
+        <article class="lx-dest-card">
+          <p class="lx-card-kicker">Old-town romance</p>
+          <h3>Lijiang</h3>
+          <p class="lx-dest-summary">
+            Lijiang brings together Naxi cultural identity, old-town atmosphere, mountain scenery, and some of the most iconic visual moments in Yunnan.
+          </p>
+          <ul class="lx-meta-list">
+            <li>Best for iconic scenery</li>
+            <li>Historic atmosphere + mountain access</li>
+            <li>Old Town, Jade Dragon, Naxi culture</li>
+          </ul>
+          <div class="lx-card-actions">
+            <a href="/pages/lijiang" class="lx-text-link">Explore Lijiang</a>
+          </div>
+        </article>
+
+        <article class="lx-dest-card">
+          <p class="lx-card-kicker">Highland spirit</p>
+          <h3>Shangri-La</h3>
+          <p class="lx-dest-summary">
+            Shangri-La offers a more elevated Yunnan experience shaped by Tibetan culture, monasteries, plateau landscapes, and a cooler, more contemplative travel mood.
+          </p>
+          <ul class="lx-meta-list">
+            <li>Best for plateau scenery</li>
+            <li>Tibetan culture and sacred landscapes</li>
+            <li>Monasteries, grasslands, Meili routes</li>
+          </ul>
+          <div class="lx-card-actions">
+            <a href="/pages/shangri-la" class="lx-text-link">Explore Shangri-La</a>
+          </div>
+        </article>
+
+        <article class="lx-dest-card lx-dest-card--wide">
+          <p class="lx-card-kicker">Tropical south</p>
+          <h3>Xishuangbanna</h3>
+          <p class="lx-dest-summary">
+            Xishuangbanna reveals Yunnan’s warmest and most tropical mood through rainforest landscapes, Dai villages, Theravada Buddhist temples, night markets, tea mountains, and a slower rhythm that feels closer to Southeast Asia than almost anywhere else in China.
+          </p>
+          <ul class="lx-meta-list">
+            <li>Best for tropical culture and warm-weather travel</li>
+            <li>Rainforest + Dai heritage + food + relaxed atmosphere</li>
+            <li>Botanical Garden, Dai Ethnic Park, Nannuo Mountain, Wangtianshu</li>
+          </ul>
+          <div class="lx-card-actions">
+            <a href="/pages/xishuangbanna" class="lx-text-link">Explore Xishuangbanna</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="lx-compare">
+      <div class="lx-section-head">
+        <p class="lx-kicker">At a glance</p>
+        <h2>Which Yunnan destination suits you best?</h2>
+      </div>
+
+      <div class="lx-compare-table-wrap">
+        <table class="lx-compare-table">
+          <thead>
+            <tr>
+              <th>Destination</th>
+              <th>Best For</th>
+              <th>Travel Mood</th>
+              <th>Typical Stay</th>
+              <th>Go Deeper</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Kunming</td>
+              <td>First-time arrivals, easy planning, city + day trips</td>
+              <td>Gentle, urban, practical</td>
+              <td>1–3 days</td>
+              <td><a href="/pages/kunming">View guide</a></td>
+            </tr>
+            <tr>
+              <td>Dali</td>
+              <td>Slow travel, scenery, Bai culture, lakeside atmosphere</td>
+              <td>Soft, open, restorative</td>
+              <td>2–4 days</td>
+              <td><a href="/pages/dali">View guide</a></td>
+            </tr>
+            <tr>
+              <td>Lijiang</td>
+              <td>Old towns, mountain icons, photography, classic Yunnan imagery</td>
+              <td>Romantic, vivid, layered</td>
+              <td>2–4 days</td>
+              <td><a href="/pages/lijiang">View guide</a></td>
+            </tr>
+            <tr>
+              <td>Shangri-La</td>
+              <td>Plateau journeys, Tibetan culture, deeper landscape contrast</td>
+              <td>Spiritual, elevated, expansive</td>
+              <td>2–4 days</td>
+              <td><a href="/pages/shangri-la">View guide</a></td>
+            </tr>
+            <tr>
+              <td>Xishuangbanna</td>
+              <td>Tropical scenery, Dai culture, warm-weather escapes, rainforest journeys</td>
+              <td>Exotic, lush, warm, slow</td>
+              <td>3–5 days</td>
+              <td><a href="/pages/xishuangbanna">View guide</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="lx-next-steps">
+      <div class="lx-section-head">
+        <p class="lx-kicker">Continue planning</p>
+        <h2>Plan Your Next Step</h2>
+        <p class="lx-section-text">
+          Once you know where you want to begin, continue into your preferred planning path.
+        </p>
+      </div>
+
+      <div class="lx-link-cards">
+        <a href="/blogs/travel-guides" class="lx-link-card">
+          <p class="lx-card-kicker">Editorial guide</p>
+          <h3>Travel Guides</h3>
+          <p>Read deeper destination articles, landmark features, and planning ideas before you choose your route.</p>
+          <span>Read the guides</span>
+        </a>
+
+        <a href="/collections/yunnan-private-tours" class="lx-link-card">
+          <p class="lx-card-kicker">Curated journeys</p>
+          <h3>Private Tours</h3>
+          <p>Browse ready-to-book Yunnan routes built around classic highlights, slower luxury travel, and private flexibility.</p>
+          <span>Browse tours</span>
+        </a>
+
+        <a href="/pages/bespoke-custom-travel" class="lx-link-card">
+          <p class="lx-card-kicker">Tailored planning</p>
+          <h3>Bespoke Custom Travel</h3>
+          <p>Start with your own pace, priorities, and travel style, then shape a more personal Yunnan itinerary.</p>
+          <span>Craft your journey</span>
+        </a>
+
+        <a href="/pages/help-center" class="lx-link-card">
+          <p class="lx-card-kicker">Support</p>
+          <h3>Help Center</h3>
+          <p>Find practical answers on planning, booking, service details, and pre-trip questions in one place.</p>
+          <span>Visit support</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="lx-faq">
+      <div class="lx-section-head">
+        <p class="lx-kicker">FAQ</p>
+        <h2>Common questions about choosing a Yunnan destination</h2>
+      </div>
+
+      <div class="lx-faq-list">
+        <details class="lx-faq-item" open>
+          <summary>Which Yunnan destination is best for first-time visitors?</summary>
+          <div class="lx-faq-answer">
+            Kunming is often the easiest starting point for a first Yunnan trip because it combines convenient arrival, a mild climate, and access to both city highlights and classic day trips. Dali is also a strong first choice for travelers who prefer a slower and more scenic base.
+          </div>
+        </details>
+
+        <details class="lx-faq-item">
+          <summary>Should I choose Dali, Lijiang, Shangri-La, or Xishuangbanna?</summary>
+          <div class="lx-faq-answer">
+            Choose Dali for lakeside slowness, Bai culture, and restorative scenery. Choose Lijiang for old-town atmosphere and iconic mountain imagery. Choose Shangri-La for Tibetan cultural depth, plateau landscapes, and a more elevated travel mood. Choose Xishuangbanna for tropical warmth, rainforest landscapes, Dai culture, and a slower, more exotic southern Yunnan atmosphere.
+          </div>
+        </details>
+
+        <details class="lx-faq-item">
+          <summary>How many destinations should I include in one Yunnan trip?</summary>
+          <div class="lx-faq-answer">
+            For many travelers, two to three destinations is the most comfortable balance. A shorter trip may combine Kunming and Dali, while a longer classic route often adds Lijiang, Shangri-La, or Xishuangbanna depending on your pace and interests.
+          </div>
+        </details>
+
+        <details class="lx-faq-item">
+          <summary>Is Xishuangbanna worth adding to a classic Yunnan itinerary?</summary>
+          <div class="lx-faq-answer">
+            Yes, especially if you want contrast. Xishuangbanna adds tropical rainforest scenery, Dai culture, temple architecture, and warm-weather slow travel, which feels completely different from the higher-altitude mood of central and northwestern Yunnan.
+          </div>
+        </details>
+
+        <details class="lx-faq-item">
+          <summary>Can I customize a Yunnan trip across multiple destinations?</summary>
+          <div class="lx-faq-answer">
+            Yes. If you already know the destinations you want, Lynxtour’s bespoke planning page is the best next step for shaping a private route around your pace, hotel style, interests, and logistics.
+          </div>
+        </details>
+      </div>
+    </section>
+  </div>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "{{ section.settings.hero_title | escape }}",
+      "headline": "{{ section.settings.hero_title | escape }}",
+      "description": "{{ section.settings.hero_text | strip_html | escape }}",
+      "url": "{{ page_url }}",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": {{ shop.name | json }},
+        "url": {{ shop.url | json }}
+      },
+      "about": [
+        { "@type": "Place", "name": "Kunming" },
+        { "@type": "Place", "name": "Dali" },
+        { "@type": "Place", "name": "Lijiang" },
+        { "@type": "Place", "name": "Shangri-La" },
+        { "@type": "Place", "name": "Xishuangbanna" }
+      ]
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "{{ shop.url }}"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Destinations",
+          "item": "{{ page_url }}"
+        }
+      ]
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Which Yunnan destination is best for first-time visitors?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Kunming is often the easiest starting point for a first Yunnan trip because it combines convenient arrival, a mild climate, and access to both city highlights and classic day trips. Dali is also a strong first choice for travelers who prefer a slower and more scenic base."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I choose Dali, Lijiang, Shangri-La, or Xishuangbanna?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Choose Dali for lakeside slowness, Bai culture, and restorative scenery. Choose Lijiang for old-town atmosphere and iconic mountain imagery. Choose Shangri-La for Tibetan cultural depth, plateau landscapes, and a more elevated travel mood. Choose Xishuangbanna for tropical warmth, rainforest landscapes, Dai culture, and a slower, more exotic southern Yunnan atmosphere."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many destinations should I include in one Yunnan trip?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For many travelers, two to three destinations is the most comfortable balance. A shorter trip may combine Kunming and Dali, while a longer classic route often adds Lijiang, Shangri-La, or Xishuangbanna depending on your pace and interests."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Xishuangbanna worth adding to a classic Yunnan itinerary?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Xishuangbanna adds tropical rainforest scenery, Dai culture, warm-weather travel, and a strong Southeast Asian atmosphere that feels completely different from central and northwestern Yunnan."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I customize a Yunnan trip across multiple destinations?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. If you already know the destinations you want, Lynxtour’s bespoke planning page is the best next step for shaping a private route around your pace, hotel style, interests, and logistics."
+          }
+        }
+      ]
+    }
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": " Destinations Overview",
+  "settings": [
+    {
+      "type": "text",
+      "id": "hero_kicker",
+      "label": "Hero 小标签",
+      "default": "Yunnan Destinations"
+    },
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Hero 标题",
+      "default": "Destinations in Yunnan for Private Travel"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_text",
+      "label": "Hero 描述",
+      "default": "Explore the core destinations that shape a Yunnan journey, from Kunming and Dali to Lijiang, Shangri-La, and tropical Xishuangbanna, then continue into private tours, travel guides, and bespoke planning."
+    },
+    {
+      "type": "text",
+      "id": "primary_btn_text",
+      "label": "主按钮文案",
+      "default": "Explore destinations"
+    },
+    {
+      "type": "text",
+      "id": "secondary_btn_text",
+      "label": "副按钮文案",
+      "default": "Browse tours"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Page Destinations Overview"
+    }
+  ]
+}
+{% endschema %}

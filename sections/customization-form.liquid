@@ -1,0 +1,300 @@
+<style>
+  /* 隐藏默认状态下的容器 */
+  .hidden { display: none; }
+
+  /* 结果区域的精致容器 */
+  .itinerary-output-wrapper {
+    background: rgba(28, 25, 23, 0.8); /* 深色半透明背景 */
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(214, 167, 107, 0.3); /* 淡淡的金边 */
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin-top: 2rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    color: #e7e5e4;
+  }
+
+  /* 每日标题的金色徽章 */
+  .day-badge {
+    background: linear-gradient(135deg, #d4a76b 0%, #a37a4a 100%);
+    color: white;
+    padding: 4px 14px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+
+  /* 行程标题样式 */
+  .itinerary-title {
+    color: #d4a76b;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(214, 167, 107, 0.15);
+    padding-bottom: 0.8rem;
+  }
+
+  /* 内容逐行显示的动画 */
+  .animate-reveal {
+    animation: revealEffect 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  @keyframes revealEffect {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* 强调文本颜色 */
+  .prose strong { color: #f59e0b !important; }
+  
+  /* 加载中的简单动画 */
+  #itinerary-loading {
+    padding: 3rem;
+    text-align: center;
+    color: #d4a76b;
+    font-style: italic;
+  }
+</style>
+
+<section id="customize" class="py-16 md:py-24">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-amber-400 font-noto-serif-sc">定制您的旅程</h2>
+            <p class="text-xl text-stone-400 mt-2">Design Your Personal Yunnan Experience</p>
+        </div>
+
+        <form id="itinerary-form" class="max-w-4xl mx-auto bg-stone-800/50 p-8 rounded-lg shadow-lg border border-stone-700">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+                <!-- Duration and Travelers -->
+                <div>
+                    <label class="block text-stone-300 font-semibold mb-2" for="duration">Trip Duration (days)</label>
+                    <input type="number" id="duration" name="duration" value="7" class="w-full p-3 bg-stone-700 text-stone-200 border border-stone-600 rounded-sm focus:ring-red-600 focus:border-red-600" min="1" />
+                </div>
+                <div>
+                    <label class="block text-stone-300 font-semibold mb-2" for="travelers">Number of Travelers</label>
+                    <input type="number" id="travelers" name="travelers" value="2" class="w-full p-3 bg-stone-700 text-stone-200 border border-stone-600 rounded-sm focus:ring-red-600 focus:border-red-600" min="1" />
+                </div>
+
+                <!-- Interests -->
+                <div class="md:col-span-2">
+                     <label class="block text-stone-300 font-semibold mb-2">Interests (select all that apply)</label>
+                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-4" id="interests-container">
+                        <button type="button" data-interest="Culture & History" class="interest-btn p-3 border rounded-sm transition-colors duration-200 text-left bg-stone-700 text-stone-200 border-stone-600 hover:border-red-600">Culture & History</button>
+                        <button type="button" data-interest="Hiking & Nature" class="interest-btn p-3 border rounded-sm transition-colors duration-200 text-left bg-stone-700 text-stone-200 border-stone-600 hover:border-red-600">Hiking & Nature</button>
+                        <button type="button" data-interest="Photography" class="interest-btn p-3 border rounded-sm transition-colors duration-200 text-left bg-stone-700 text-stone-200 border-stone-600 hover:border-red-600">Photography</button>
+                        <button type="button" data-interest="Tea Tasting" class="interest-btn p-3 border rounded-sm transition-colors duration-200 text-left bg-stone-700 text-stone-200 border-stone-600 hover:border-red-600">Tea Tasting</button>
+                        <button type="button" data-interest="Cuisine" class="interest-btn p-3 border rounded-sm transition-colors duration-200 text-left bg-stone-700 text-stone-200 border-stone-600 hover:border-red-600">Cuisine</button>
+                        <button type="button" data-interest="Relaxation" class="interest-btn p-3 border rounded-sm transition-colors duration-200 text-left bg-stone-700 text-stone-200 border-stone-600 hover:border-red-600">Relaxation</button>
+                     </div>
+                </div>
+
+                <!-- Accommodation -->
+                <div>
+                    <label class="block text-stone-300 font-semibold mb-2" for="accommodation">Accommodation Style</label>
+                    <select id="accommodation" name="accommodation" class="w-full p-3 bg-stone-700 text-stone-200 border border-stone-600 rounded-sm focus:ring-red-600 focus:border-red-600">
+                        <option>Boutique Hotel</option>
+                        <option>Local Guesthouse</option>
+                        <option>Luxury Resort</option>
+                        <option>Eco-Lodge</option>
+                    </select>
+                </div>
+
+                <!-- Budget -->
+                <div>
+                    <label class="block text-stone-300 font-semibold mb-2" for="budget">Budget Preference</label>
+                    <select id="budget" name="budget" class="w-full p-3 bg-stone-700 text-stone-200 border border-stone-600 rounded-sm focus:ring-red-600 focus:border-red-600">
+                        <option>Economy</option>
+                        <option selected>Mid-range</option>
+                        <option>Luxury</option>
+                    </select>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="md:col-span-2 border-t border-stone-700 pt-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <label class="block text-stone-300 font-semibold mb-2" for="name">Full Name</label>
+                            <input type="text" id="name" name="name" class="w-full p-3 bg-stone-700 text-stone-200 border border-stone-600 rounded-sm focus:ring-red-600 focus:border-red-600" required />
+                        </div>
+                        <div>
+                            <label class="block text-stone-300 font-semibold mb-2" for="email">Email Address</label>
+                            <input type="email" id="email" name="email" class="w-full p-3 bg-stone-700 text-stone-200 border border-stone-600 rounded-sm focus:ring-red-600 focus:border-red-600" required />
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Additional Info -->
+                <div class="md:col-span-2">
+                    <label class="block text-stone-300 font-semibold mb-2" for="additionalInfo">Anything else we should know?</label>
+                    <textarea id="additionalInfo" name="additionalInfo" rows="4" class="w-full p-3 bg-stone-700 text-stone-200 border border-stone-600 rounded-sm focus:ring-red-600 focus:border-red-600" placeholder="e.g., dietary restrictions, mobility concerns, specific places you want to visit..."></textarea>
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <button type="submit" class="bg-red-700 hover:bg-red-600 text-white font-bold py-4 px-10 rounded-sm transition-colors duration-300 text-lg shadow-lg w-full md:w-auto">
+                   Generate My Dream Itinerary
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<section id="itinerary-display-container" class="hidden py-16 md:py-24 bg-stone-800">
+  <div class="container mx-auto px-6">
+    <div class="max-w-4xl mx-auto bg-stone-900 p-8 md:p-12 rounded-lg shadow-inner border-2 border-stone-700">
+      <div class="text-center mb-8">
+          <h2 class="text-4xl font-bold text-amber-400 font-noto-serif-sc">您的专属行程</h2>
+          <p class="text-xl text-stone-400 mt-2">Your Personalized Itinerary</p>
+      </div>
+      
+      <div id="itinerary-loading" class="hidden flex-col items-center justify-center text-center">
+          <div class="animate-spin rounded-full h-16 w-16 border-b-2 border-red-600 mb-4"></div>
+          <p class="text-stone-400 text-lg">Crafting your unique journey through Yunnan... Please wait.</p>
+      </div>
+
+      <div id="itinerary-error" class="hidden text-center text-red-400 bg-red-900/50 p-4 rounded-md">
+          <p class="font-bold">An Error Occurred</p>
+          <p id="itinerary-error-message"></p>
+      </div>
+      
+      <div id="itinerary-result" class="prose max-w-none"></div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('itinerary-form');
+  const displayContainer = document.getElementById('itinerary-display-container');
+  const loadingEl = document.getElementById('itinerary-loading');
+  const errorEl = document.getElementById('itinerary-error');
+  const errorMessageEl = document.getElementById('itinerary-error-message');
+  const resultEl = document.getElementById('itinerary-result');
+
+  if (!form) return;
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const API_KEY = {{ settings.gemini_api_key | json }};
+    
+    // 1. 初始化界面
+    displayContainer.classList.remove('hidden');
+    loadingEl.style.display = 'flex';
+    errorEl.style.display = 'none';
+    resultEl.innerHTML = '';
+    displayContainer.scrollIntoView({ behavior: 'smooth' });
+
+    try {
+      // 2. 动态探测可用模型 (解决 Not Found 问题的核心)
+      const listRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${API_KEY}`);
+      const listData = await listRes.json();
+      if (!listRes.ok) throw new Error(listData.error?.message || "Invalid API Key");
+
+      const availableModel = listData.models?.find(m => 
+        m.supportedGenerationMethods.includes('generateContent') && m.name.includes('flash')
+      ) || listData.models?.find(m => m.supportedGenerationMethods.includes('generateContent'));
+
+      if (!availableModel) throw new Error("No available AI models found in your project.");
+      console.log("Selected Model:", availableModel.name);
+
+      // 3. 构建高阶 Prompt
+      const formData = new FormData(form);
+      const promptText = `
+        You are "Jade Guide", a luxury Yunnan travel consultant. 
+        Create a romantic and practical ${formData.get('duration')}-day itinerary for ${formData.get('name')}.
+        Preferences: ${formData.get('interests') || 'Nature and Culture'}.
+        Accommodation: ${formData.get('accommodation') || 'Boutique'}.
+        Budget: ${formData.get('budget') || 'Mid-range'}.
+        
+        Structure:
+        - Warm welcome to "The Land South of the Clouds".
+        - Daily breakdown with "Day X: Title" (bold).
+        - 3 Local Food highlights.
+        - A professional closing.
+        Use Markdown. English only.
+      `;
+
+      // 4. 发起生成请求
+      const genRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/${availableModel.name}:generateContent?key=${API_KEY}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          contents: [{ parts: [{ text: promptText }] }],
+          generationConfig: { temperature: 0.75, topP: 0.95 }
+        })
+      });
+
+      const genData = await genRes.json();
+      if (!genRes.ok) throw new Error(genData.error?.message || "Generation failed");
+
+      // 5. 渲染结果
+      if (genData.candidates && genData.candidates[0].content.parts[0].text) {
+        let text = genData.candidates[0].content.parts[0].text;
+        loadingEl.style.display = 'none';
+
+        // 格式化解析渲染
+        const formattedHtml = text
+          .replace(/\n\n/g, '<br>')
+          .replace(/Day (\d+): (.*?)(<br>|$)/g, '<div class="mt-8"><span class="day-badge">Day $1</span><h3 class="itinerary-title">$2</h3></div>')
+          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+          .replace(/^\* /gm, '✦ ');
+
+        resultEl.innerHTML = `
+          <div class="itinerary-output-wrapper animate-reveal">
+            <div class="prose prose-invert max-w-none text-stone-300">
+              ${formattedHtml}
+            </div>
+            <div class="mt-12 pt-6 border-t border-stone-800 text-center text-stone-500 text-xs tracking-widest uppercase">
+              Designed by Jade Guide AI
+            </div>
+          </div>
+        `;
+      }
+
+    } catch (err) {
+      console.error("AI Error:", err);
+      loadingEl.style.display = 'none';
+      errorEl.style.display = 'block';
+      errorMessageEl.textContent = err.message.includes("fetch") 
+        ? "Network connection unstable. Please use a reliable proxy." 
+        : err.message;
+    }
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "AI Travel Planner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "form_title",
+      "label": "表单标题 (中文)",
+      "default": "定制您的旅程"
+    },
+    {
+      "type": "text",
+      "id": "form_subtitle",
+      "label": "表单副标题 (英文)",
+      "default": "Design Your Personal Yunnan Experience"
+    },
+    {
+      "type": "text",
+      "id": "api_key",
+      "label": "Gemini API Key",
+      "info": "请从 Google AI Studio 获取"
+    }
+  ],
+  "presets": [
+    {
+      "name": "AI Travel Planner",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

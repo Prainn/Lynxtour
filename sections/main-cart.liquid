@@ -1,0 +1,167 @@
+<div class="cart-section" style="max-width: 1200px; margin: 180px auto; padding: 0 20px; color: #fff;">
+  
+  <!-- 1. 标题改为“您的行程” -->
+  <h1 style="text-align: center; margin-bottom: 10px; font-size: 36px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;">
+    Your Journey
+  </h1>
+  <p style="text-align: center; color: #888; margin-bottom: 50px; letter-spacing: 1px;">
+    Review your itinerary details before booking
+  </p>
+
+  {%- if cart.item_count > 0 -%}
+    <form action="{{ routes.cart_url }}" method="post" id="cart-form" novalidate>
+      
+      <!-- 桌面端表格 -->
+      <table style="width: 100%; border-collapse: collapse; text-align: left; margin-bottom: 40px;">
+        <thead>
+          <tr style="border-bottom: 1px solid rgba(255,255,255,0.2);">
+            <th style="padding: 15px 0; text-transform: uppercase; font-size: 13px; letter-spacing: 2px; color: #888; width: 50%;">Itinerary</th>
+            <th style="padding: 15px 0; text-transform: uppercase; font-size: 13px; letter-spacing: 2px; color: #888;">Price pp.</th>
+            <th style="padding: 15px 0; text-transform: uppercase; font-size: 13px; letter-spacing: 2px; color: #888;">Travelers</th>
+            <th style="padding: 15px 0; text-align: right; text-transform: uppercase; font-size: 13px; letter-spacing: 2px; color: #888;">Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%- for item in cart.items -%}
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+              
+              <!-- A. 行程信息 -->
+              <td style="padding: 25px 0; display: flex; gap: 25px; align-items: flex-start;">
+                {%- if item.image -%}
+                  <a href="{{ item.url }}">
+                    <img src="{{ item.image | img_url: '300x' }}" alt="{{ item.title | escape }}" style="width: 120px; height: 80px; object-fit: cover; border-radius: 4px; filter: brightness(0.9);">
+                  </a>
+                {%- endif -%}
+                <div>
+                  <a href="{{ item.url }}" style="color: #fbbf24; text-decoration: none; font-size: 18px; font-weight: 600; display: block; margin-bottom: 8px; letter-spacing: 0.5px;">
+                    {{ item.product.title }}
+                  </a>
+                  
+                  <!-- 显示日期或其他变体信息 -->
+                  {%- unless item.product.has_only_default_variant -%}
+                    <p style="margin: 0 0 8px 0; color: #ccc; font-size: 14px;">
+                      <span style="color: #888; text-transform: uppercase; font-size: 11px; letter-spacing: 1px;">Selected Option:</span><br>
+                      {{ item.variant.title }}
+                    </p>
+                  {%- endunless -%}
+
+                  <!-- 移除按钮 -->
+                  <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0" style="color: #ef4444; font-size: 11px; margin-top: 5px; display: inline-block; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; border-bottom: 1px solid transparent; transition: 0.3s;">
+                    Remove Item
+                  </a>
+                </div>
+              </td>
+              
+              <!-- B. 单价 (pp = per person) -->
+              <td style="padding: 25px 0; color: #ccc; font-family: 'Courier New', monospace;">
+  <span style="display:inline-flex; align-items:baseline; gap:6px; white-space:nowrap;">
+    <span style="font-size:12px; letter-spacing:0.08em; opacity:0.85;">CNY</span>
+    <span>{{ item.final_price | money_without_trailing_zeros }}</span>
+  </span>
+</td>
+
+              <!-- C. 人数输入框 -->
+              <td style="padding: 25px 0;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <input 
+                    type="number" 
+                    name="updates[]" 
+                    value="{{ item.quantity }}" 
+                    min="1" 
+                    aria-label="Number of travelers"
+                    style="width: 50px; padding: 8px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); color: #fff; text-align: center; border-radius: 4px;"
+                  >
+                  <span style="font-size: 12px; color: #888; text-transform: uppercase;">Guests</span>
+                </div>
+              </td>
+
+              <!-- D. 总价 -->
+              <td style="padding: 25px 0; text-align: right; font-weight: bold; font-size: 18px; color: #fff;">
+  <span style="display:inline-flex; align-items:baseline; gap:6px; white-space:nowrap;">
+    <span style="font-size:12px; letter-spacing:0.08em; opacity:0.85;">CNY</span>
+    <span>{{ item.final_line_price | money_without_trailing_zeros }}</span>
+  </span>
+</td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+
+      <!-- 底部区域：备注与结账 -->
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; margin-top: 40px;">
+        
+        <!-- 左侧：特殊要求备注栏 (旅游业必备) -->
+        <div style="flex: 1; min-width: 300px;">
+          <label for="CartNote" style="display: block; margin-bottom: 10px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: #fbbf24;">
+            Special Requests
+          </label>
+          <p style="font-size: 12px; color: #888; margin-bottom: 10px; margin-top: -5px;">
+            Please enter any dietary requirements, flight details, or special occasions.
+          </p>
+          <textarea name="note" id="CartNote" style="width: 100%; height: 120px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 15px; border-radius: 4px; resize: none;">{{ cart.note }}</textarea>
+        </div>
+
+        <!-- 右侧：金额与按钮 -->
+        <div style="flex: 1; min-width: 300px; text-align: right; display: flex; flex-direction: column; align-items: flex-end;">
+          
+          <div style="margin-bottom: 20px;">
+  <span style="font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: #888; margin-right: 20px;">Estimated Total</span>
+  <span style="display:inline-flex; align-items:baseline; gap:8px; font-size:28px; font-weight:bold; color:#fbbf24; white-space:nowrap;">
+    <span style="font-size:14px; letter-spacing:0.08em; opacity:0.9;">CNY</span>
+    <span>{{ cart.total_price | money_without_trailing_zeros }}</span>
+  </span>
+</div>
+
+          <p style="color: #666; font-size: 12px; margin: 0 0 25px 0; max-width: 300px; line-height: 1.5;">
+            Taxes and fees will be calculated at checkout.<br>
+            Digital confirmation will be sent to your email immediately after booking.
+          </p>
+          
+          <div style="display: flex; gap: 15px; width: 100%; justify-content: flex-end;">
+            <!-- 更新按钮 -->
+            <button type="submit" name="update" style="padding: 18px 30px; background: transparent; border: 1px solid rgba(255,255,255,0.3); color: #fff; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; transition: 0.3s; border-radius: 2px;">
+              Update Travelers
+            </button>
+            
+            <!-- 结账按钮 -->
+            <button type="submit" name="checkout" style="padding: 18px 40px; background: #fbbf24; border: none; color: #000; font-weight: 700; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; font-size: 13px; transition: 0.3s; border-radius: 2px; box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);">
+              Proceed to Booking
+            </button>
+          </div>
+          
+          <!-- 安全图标提示 -->
+          <div style="margin-top: 20px; display: flex; gap: 10px; align-items: center; opacity: 0.6;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            <span style="font-size: 11px; letter-spacing: 1px; color: #fff;">Secure SSL Checkout</span>
+          </div>
+
+        </div>
+      </div>
+      
+    </form>
+
+  {%- else -%}
+    <!-- 空购物车状态 -->
+    <div style="text-align: center; padding: 120px 0; border: 1px dashed rgba(255,255,255,0.1); border-radius: 8px;">
+      <h2 style="font-size: 24px; color: #fff; margin-bottom: 20px; font-weight: 400;">Your itinerary is currently empty</h2>
+      <p style="color: #888; margin-bottom: 40px;">Ready to plan your next adventure in Yunnan?</p>
+      <a href="{{ routes.all_products_collection_url }}" style="display: inline-block; padding: 18px 50px; background: #fbbf24; color: #000; text-decoration: none; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; border-radius: 2px;">
+        Explore Tours
+      </a>
+    </div>
+  {%- endif -%}
+</div>
+
+<!-- 简单的悬停效果CSS -->
+<style>
+  button[name="checkout"]:hover { background: #fff !important; color: #000 !important; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255,255,255,0.2) !important; }
+  button[name="update"]:hover { border-color: #fbbf24 !important; color: #fbbf24 !important; }
+  a[href*="remove"]:hover { border-bottom-color: #ef4444 !important; }
+</style>
+
+{% schema %}
+{
+  "name": "Travel Cart Page",
+  "settings": []
+}
+{% endschema %}

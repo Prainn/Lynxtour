@@ -1,0 +1,36 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Timeless Yunnan",
+    "theme_version": "1.0.0",
+    "theme_author": "Shopify",
+    "theme_documentation_url": "https://help.shopify.com/",
+    "theme_support_url": "https://support.shopify.com/"
+  },
+  {
+    "name": "API Keys",
+    "settings": [
+      {
+        "type": "text",
+        "id": "gemini_api_key",
+        "label": "Google Gemini API Key",
+        "info": "在此输入您的 Google Gemini API 密钥，用于生成旅游行程。"
+      }
+    ]
+  },
+  {
+    "name": "Brand assets",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      }
+    ]
+  }
+]
