@@ -1,3 +1,67 @@
+{% assign seo_variant = product.selected_or_first_available_variant %}
+{% assign seo_currency = cart.currency.iso_code | default: shop.currency %}
+{% assign seo_collection = product.collections.first %}
+{% assign seo_crumb_name = 'Products' %}
+{% assign seo_crumb_url = shop.url | append: '/collections/all' %}
+{% if seo_collection %}
+  {% assign seo_crumb_name = seo_collection.title %}
+  {% assign seo_crumb_url = shop.url | append: seo_collection.url %}
+{% endif %}
+{% assign seo_availability = 'https://schema.org/OutOfStock' %}
+{% if seo_variant and seo_variant.available %}
+  {% assign seo_availability = 'https://schema.org/InStock' %}
+{% endif %}
+{% assign seo_image_obj = product.featured_image | default: product.images.first %}
+{% assign seo_image_url = '' %}
+{% if seo_image_obj %}
+  {% assign seo_image_url = seo_image_obj | image_url: width: 1200 | prepend: 'https:' %}
+{% endif %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Product",
+      "@id": "{{ shop.url }}{{ product.url }}#product",
+      "url": "{{ shop.url }}{{ product.url }}",
+      "name": {{ product.title | strip | json }},
+      "description": {{ product.description | strip_html | strip_newlines | truncate: 500 | json }},
+      "image": [{% if seo_image_url != '' %}{{ seo_image_url | json }}{% endif %}],
+      "sku": {{ seo_variant.sku | json }},
+      "offers": {
+        "@type": "Offer",
+        "url": "{{ shop.url }}{{ product.url }}",
+        "priceCurrency": {{ seo_currency | json }},
+        "price": {{ seo_variant.price | default: product.price | divided_by: 100.0 | round: 2 }},
+        "availability": "{{ seo_availability }}"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "{{ shop.url }}/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ seo_crumb_name | json }},
+          "item": {{ seo_crumb_url | json }}
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": {{ product.title | strip | json }},
+          "item": "{{ shop.url }}{{ product.url }}"
+        }
+      ]
+    }
+  ]
+}
+</script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css">
 
 <style>
