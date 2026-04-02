@@ -37,6 +37,26 @@
     border: 1px solid var(--border-color);
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   }
+  
+  .ota-page-heading {
+  margin-bottom: 26px;
+}
+
+.ota-page-title {
+  margin: 0;
+  color: #fff;
+  font-size: 34px;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+.ota-sidebar-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+} 
 
   .ota-header{ display:flex; justify-content:space-between; align-items:center; margin-bottom:30px; }
   .ota-section-title{ font-size:24px; font-weight:300; letter-spacing:2px; margin:0; }
@@ -1112,10 +1132,14 @@
   <div class="ota-container">
 
     <div class="ota-main-config">
-      <div class="ota-header">
-        <h2 class="ota-section-title">Choose booking options</h2>
-        <button type="button" class="ota-reset js-reset">Reset selections</button>
-      </div>
+  <div class="ota-page-heading">
+    <h1 class="ota-page-title">{{ product.title }}</h1>
+  </div>
+
+  <div class="ota-header">
+    <h2 class="ota-section-title">Choose booking options</h2>
+    <button type="button" class="ota-reset js-reset">Reset selections</button>
+  </div>
 
       <div class="ota-group">
         <label class="ota-label">Travel date</label>
@@ -1333,8 +1357,8 @@
     <aside class="ota-sidebar">
       <div class="sidebar-sticky-card">
         <div class="sidebar-head">
-          <h3>Itinerary details</h3>
-        </div>
+  <h2 class="ota-sidebar-title">Itinerary details</h2>
+</div>
 
         <div class="sidebar-content-wrapper">
           <div class="sidebar-labels">
