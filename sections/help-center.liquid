@@ -8,7 +8,7 @@
 
     <div class="hcfaq__wrap">
       {%- if section.settings.title != blank -%}
-        <div class="hcfaq__badge">{{ section.settings.title }}</div>
+        <h2 class="hcfaq__badge">{{ section.settings.title }}</h2>
       {%- endif -%}
 
       <div class="hcfaq__card">
@@ -26,7 +26,7 @@
               {{ block.shopify_attributes }}
             >
               <summary class="hcfaq__head">
-                <span class="hcfaq__q">{{ block.settings.question }}</span>
+                <h3 class="hcfaq__q">{{ block.settings.question }}</h3>
                 <span class="hcfaq__chev" aria-hidden="true">
                   <svg viewBox="0 0 24 24" focusable="false">
                     <path d="M6.7 9.3a1 1 0 0 1 1.4 0L12 13.2l3.9-3.9a1 1 0 1 1 1.4 1.4l-4.6 4.6a1 1 0 0 1-1.4 0L6.7 10.7a1 1 0 0 1 0-1.4z"/>

@@ -9,7 +9,7 @@
 
     <div class="hccat__wrap">
       {%- if section.settings.title != blank -%}
-        <div class="hccat__badge">{{ section.settings.title }}</div>
+        <h2 class="hccat__badge">{{ section.settings.title }}</h2>
       {%- endif -%}
 
       <div class="hccat__card">
@@ -44,7 +44,7 @@
                   {%- endif -%}
                 </div>
 
-                <div class="hccat__name">{{ block.settings.title }}</div>
+                <h3 class="hccat__name">{{ block.settings.title }}</h3>
               </a>
             {%- endif -%}
           {%- endfor -%}
