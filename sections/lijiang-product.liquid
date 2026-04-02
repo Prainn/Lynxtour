@@ -945,83 +945,7 @@
   /* =========================
      Final responsive
      ========================= */
-  @media (max-width: 990px) {
-    .ota-container {
-      flex-direction: column;
-      padding: 0 15px;
-      gap: 18px;
-    }
-
-    .ota-main-config {
-      width: 100%;
-      padding: 24px 20px;
-      border-radius: 16px;
-    }
-
-    .ota-sidebar {
-      position: static;
-      width: 100%;
-      margin-top: 0;
-    }
-
-    .sidebar-sticky-card {
-      max-height: none;
-      overflow: visible;
-    }
-
-    .ota-footer {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 16px;
-    }
-
-    .ota-btns-area {
-      width: 100%;
-    }
-
-    .ota-info-actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 0;
-    }
-
-    .ota-btns {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      justify-content: stretch;
-    }
-
-    .ota-btn-cart,
-    .ota-btn-buy {
-      width: 100%;
-      min-height: 48px;
-      white-space: normal;
-      text-align: center;
-    }
-
-    .day-gallery--1 .day-img-wrap { height: 200px; }
-    .day-gallery--2 .day-img-wrap { height: 150px; }
-    .day-gallery--3 { grid-auto-rows: 115px; }
-  }
-
-  @media (max-width: 768px) {
-    .ota-wrapper {
-      padding-top: calc(var(--header-safe-height, 120px) + 12px) !important;
-    }
-
-    .ota-container {
-      padding: 0 12px;
-      gap: 16px;
-    }
-
-    .ota-main-config {
-      padding: 18px 16px;
-      border-radius: 14px;
-    }
-
-    .ota-page-heading {
+  .ota-page-heading {
   margin-bottom: 26px;
 }
 
@@ -1050,7 +974,85 @@
   letter-spacing: 1px;
 }
 
+/* =========================
+   Final responsive
+   ========================= */
+@media (max-width: 990px) {
+  .ota-container {
+    flex-direction: column;
+    padding: 0 15px;
+    gap: 18px;
+  }
+
+  .ota-main-config {
+    width: 100%;
+    padding: 24px 20px;
+    border-radius: 16px;
+  }
+
+  .ota-sidebar {
+    position: static;
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .sidebar-sticky-card {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .ota-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .ota-btns-area {
+    width: 100%;
+  }
+
+  .ota-info-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 0;
+  }
+
+  .ota-btns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    justify-content: stretch;
+  }
+
+  .ota-btn-cart,
+  .ota-btn-buy {
+    width: 100%;
+    min-height: 48px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .day-gallery--1 .day-img-wrap { height: 200px; }
+  .day-gallery--2 .day-img-wrap { height: 150px; }
+  .day-gallery--3 { grid-auto-rows: 115px; }
+}
+
 @media (max-width: 768px) {
+  .ota-wrapper {
+    padding-top: calc(var(--header-safe-height, 120px) + 12px) !important;
+  }
+
+  .ota-container {
+    padding: 0 12px;
+    gap: 16px;
+  }
+
+  .ota-main-config {
+    padding: 18px 16px;
+    border-radius: 14px;
+  }
+
   .ota-page-heading {
     margin-bottom: 20px;
   }
@@ -1059,85 +1061,77 @@
     font-size: 26px;
     line-height: 1.25;
   }
-}
 
-@media (max-width: 430px) {
-  .ota-page-title {
-    font-size: 22px;
+  .ota-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 22px;
   }
-}
 
-    .ota-header {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
-      margin-bottom: 22px;
-    }
+  .ota-section-title {
+    font-size: 20px;
+    line-height: 1.2;
+    letter-spacing: 0.08em;
+  }
 
-    .ota-section-title {
-      font-size: 20px;
-      line-height: 1.2;
-      letter-spacing: 0.08em;
-    }
+  .ota-reset {
+    padding: 6px 12px;
+    font-size: 11px;
+    border-radius: 999px;
+  }
 
-    .ota-reset {
-      padding: 6px 12px;
-      font-size: 11px;
-      border-radius: 999px;
-    }
+  .ota-group {
+    margin-bottom: 24px;
+  }
 
-    .ota-group {
-      margin-bottom: 24px;
-    }
+  .ota-label {
+    font-size: 13px;
+    margin-bottom: 10px;
+    letter-spacing: 0.08em;
+  }
 
-    .ota-label {
-      font-size: 13px;
-      margin-bottom: 10px;
-      letter-spacing: 0.08em;
-    }
+  .ota-subhint {
+    font-size: 12px;
+    line-height: 1.6;
+    margin-top: 8px;
+  }
 
-    .ota-subhint {
-      font-size: 12px;
-      line-height: 1.6;
-      margin-top: 8px;
-    }
+  .ota-subhint:empty {
+    display: none;
+  }
 
-    .ota-subhint:empty {
-      display: none;
-    }
+  .ota-date-input {
+    font-size: 14px;
+    padding: 13px 48px 13px 14px;
+    border-radius: 12px;
+  }
 
-    .ota-date-input {
-      font-size: 14px;
-      padding: 13px 48px 13px 14px;
-      border-radius: 12px;
-    }
+  .ota-date-btn {
+    width: 34px;
+    height: 34px;
+    right: 8px;
+  }
 
-    .ota-date-btn {
-      width: 34px;
-      height: 34px;
-      right: 8px;
-    }
+  .ota-tag-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
 
-    .ota-tag-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
+  .ota-tag {
+    min-height: 44px;
+    padding: 10px 12px;
+    font-size: 12px;
+    line-height: 1.35;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+  }
 
-    .ota-tag {
-      min-height: 44px;
-      padding: 10px 12px;
-      font-size: 12px;
-      line-height: 1.35;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 12px;
-    }
-
-    @media (max-width: 768px) {
   .ota-item-row:not([hidden]) {
     display: grid !important;
     grid-template-columns: 1fr !important;
@@ -1146,188 +1140,191 @@
     padding: 18px 0 !important;
   }
 
-    .ota-item-info {
-      width: 100%;
-      min-width: 0;
-    }
-
-    .ota-item-name {
-      display: block;
-      width: 100%;
-      margin: 0;
-      font-size: 16px;
-      line-height: 1.5;
-      color: #f2f2f2;
-      letter-spacing: 0.01em;
-    }
-
-    .item-desc-tag {
-      display: block;
-      width: 100%;
-      margin-top: 10px;
-      font-size: 13px;
-      line-height: 1.65;
-      color: #8e8e8e;
-      max-width: none;
-    }
-
-    /* 手机端改成上下结构，价格不会再被步进器挤掉 */
-    .ota-item-action {
-      width: 100%;
-      display: grid !important;
-      grid-template-columns: 1fr !important;
-      gap: 12px;
-      align-items: start;
-      margin-top: 2px;
-    }
-
-    .ota-item-price {
-      display: inline-flex !important;
-      align-items: baseline !important;
-      gap: 6px !important;
-      width: max-content;
-      max-width: 100%;
-      white-space: nowrap !important;
-      overflow: visible !important;
-      text-overflow: clip !important;
-      font-size: 20px !important;
-      line-height: 1 !important;
-    }
-
-    .ota-stepper {
-      width: 148px;
-      max-width: 100%;
-      height: 42px;
-      border-radius: 12px;
-      margin-left: auto;
-      flex-shrink: 0;
-    }
-
-    .ota-stepper button {
-      width: 36px;
-      height: 40px;
-      font-size: 20px;
-    }
-
-    .ota-stepper input {
-      width: 46px;
-      font-size: 16px;
-      font-weight: 700;
-    }
-
-    .ota-total-box {
-      width: 100%;
-    }
-
-    .ota-total-price {
-      font-size: 34px;
-      line-height: 1;
-      flex-wrap: wrap;
-    }
-
-    .ota-hint {
-      margin-top: 8px;
-      font-size: 12px;
-    }
-
-    .ota-btns-area {
-      width: 100%;
-      gap: 10px;
-    }
-
-    .ota-info-btn {
-      min-height: 46px;
-      padding: 12px 12px;
-      font-size: 13px;
-      line-height: 1.35;
-      border-radius: 12px;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .sidebar-sticky-card {
-      border-radius: 14px;
-    }
-
-    .sidebar-head {
-      padding: 14px 16px;
-    }
-
-    .sidebar-content-wrapper {
-      padding: 0 16px 16px;
-    }
-
-    .ota-popup {
-      padding: 14px;
-    }
-
-    .ota-popup__card {
-      width: 100%;
-    }
+  .ota-item-info {
+    width: 100%;
+    min-width: 0;
   }
 
-  @media (max-width: 430px) {
-    .ota-container {
-      padding: 0 10px;
-    }
-
-    .ota-main-config {
-      padding: 16px 14px;
-      border-radius: 12px;
-    }
-
-    .ota-section-title {
-      font-size: 18px;
-    }
-
-    .ota-tag-container {
-      grid-template-columns: 1fr;
-    }
-
-    .ota-item-name {
-      font-size: 15px;
-      line-height: 1.55;
-    }
-
-    .item-desc-tag {
-      font-size: 12px;
-      line-height: 1.6;
-    }
-
-    .ota-item-price {
-      font-size: 18px !important;
-    }
-
-    .ota-stepper {
-      width: 136px;
-      height: 40px;
-    }
-
-    .ota-stepper button {
-      width: 34px;
-      height: 38px;
-    }
-
-    .ota-stepper input {
-      width: 42px;
-      font-size: 15px;
-    }
-
-    .ota-total-price {
-      font-size: 30px;
-    }
-
-    .ota-info-actions,
-    .ota-btns {
-      grid-template-columns: 1fr;
-    }
-
-    .day-gallery--1 .day-img-wrap { height: 180px; }
-    .day-gallery--2 .day-img-wrap { height: 140px; }
-    .day-gallery--3 { grid-auto-rows: 105px; }
+  .ota-item-name {
+    display: block;
+    width: 100%;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #f2f2f2;
+    letter-spacing: 0.01em;
   }
+
+  .item-desc-tag {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.65;
+    color: #8e8e8e;
+    max-width: none;
+  }
+
+  .ota-item-action {
+    width: 100%;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+    align-items: start;
+    margin-top: 2px;
+  }
+
+  .ota-item-price {
+    display: inline-flex !important;
+    align-items: baseline !important;
+    gap: 6px !important;
+    width: max-content;
+    max-width: 100%;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    font-size: 20px !important;
+    line-height: 1 !important;
+  }
+
+  .ota-stepper {
+    width: 148px;
+    max-width: 100%;
+    height: 42px;
+    border-radius: 12px;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  .ota-stepper button {
+    width: 36px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .ota-stepper input {
+    width: 46px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .ota-total-box {
+    width: 100%;
+  }
+
+  .ota-total-price {
+    font-size: 34px;
+    line-height: 1;
+    flex-wrap: wrap;
+  }
+
+  .ota-hint {
+    margin-top: 8px;
+    font-size: 12px;
+  }
+
+  .ota-btns-area {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .ota-info-btn {
+    min-height: 46px;
+    padding: 12px 12px;
+    font-size: 13px;
+    line-height: 1.35;
+    border-radius: 12px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sidebar-sticky-card {
+    border-radius: 14px;
+  }
+
+  .sidebar-head {
+    padding: 14px 16px;
+  }
+
+  .sidebar-content-wrapper {
+    padding: 0 16px 16px;
+  }
+
+  .ota-popup {
+    padding: 14px;
+  }
+
+  .ota-popup__card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 430px) {
+  .ota-page-title {
+    font-size: 22px;
+  }
+
+  .ota-container {
+    padding: 0 10px;
+  }
+
+  .ota-main-config {
+    padding: 16px 14px;
+    border-radius: 12px;
+  }
+
+  .ota-section-title {
+    font-size: 18px;
+  }
+
+  .ota-tag-container {
+    grid-template-columns: 1fr;
+  }
+
+  .ota-item-name {
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .item-desc-tag {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .ota-item-price {
+    font-size: 18px !important;
+  }
+
+  .ota-stepper {
+    width: 136px;
+    height: 40px;
+  }
+
+  .ota-stepper button {
+    width: 34px;
+    height: 38px;
+  }
+
+  .ota-stepper input {
+    width: 42px;
+    font-size: 15px;
+  }
+
+  .ota-total-price {
+    font-size: 30px;
+  }
+
+  .ota-info-actions,
+  .ota-btns {
+    grid-template-columns: 1fr;
+  }
+
+  .day-gallery--1 .day-img-wrap { height: 180px; }
+  .day-gallery--2 .day-img-wrap { height: 140px; }
+  .day-gallery--3 { grid-auto-rows: 105px; }
+}
 </style>
 
 <div class="ota-wrapper" data-dot-style="outline" id="lx-ota-form">
