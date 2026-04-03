@@ -161,6 +161,8 @@
   --brand-color: {{ section.settings.btn_color }};
   --slogan-h: {% if section.settings.show_slogan %}36px{% else %}0px{% endif %};
   --nav-h: 90px;
+  --page-first-copy-gap: 24px;
+  --page-first-copy-offset: calc(var(--nav-h) + var(--page-first-copy-gap));
 }
 
   /* 基础布局 */
@@ -286,6 +288,7 @@
   :root {
     --slogan-h: 0px;
     --nav-h: 72px;
+    --page-first-copy-gap: 12px;
   }
 
   /* 移动端先隐藏 slogan，避免顶部高度叠加混乱 */

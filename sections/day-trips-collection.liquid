@@ -343,7 +343,7 @@
     background-color: #050505;
     color: #fff;
     overflow: hidden;
-    --header-safe: 118px;
+    --header-safe: var(--page-first-copy-offset, 114px);
   }
 
   #CollectionProductGrid .coll-hero-compact { 
@@ -754,10 +754,6 @@
   }
 
   @media (max-width: 990px) {
-    #CollectionProductGrid {
-      --header-safe: 84px;
-    }
-
     #CollectionProductGrid .coll-hero-compact {
       height: auto;
       min-height: 420px;

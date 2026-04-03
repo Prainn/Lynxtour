@@ -348,7 +348,7 @@
     background-color: #050505;
     color: #fff;
     overflow: hidden;
-    --header-safe: 118px;
+    --header-safe: var(--page-first-copy-offset, 114px);
   }
 
   /* --- HERO SECTION --- */
@@ -764,10 +764,6 @@
 
   /* --- Responsive --- */
   @media (max-width: 990px) {
-    #CollectionProductGrid-{{ section.id }} {
-      --header-safe: 84px;
-    }
-
     #CollectionProductGrid-{{ section.id }} .coll-hero-compact {
       height: auto;
       min-height: 420px;
