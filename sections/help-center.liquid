@@ -5,6 +5,11 @@
 
 <section class="hcfaq-{{ section.id }}">
   <div class="hcfaq__container">
+    {%- assign hc_page_title = page.title | strip -%}
+    {%- if hc_page_title == blank -%}
+      {%- assign hc_page_title = 'Help Center' -%}
+    {%- endif -%}
+    <h1>{{ hc_page_title }}</h1>
 
     <div class="hcfaq__wrap">
       {%- if section.settings.title != blank -%}

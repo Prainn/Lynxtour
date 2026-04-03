@@ -1013,12 +1013,16 @@
   }
 </style>
 
+{%- assign seo_variant = product.selected_or_first_available_variant -%}
+{%- assign seo_product_url = shop.url | append: product.url -%}
+{%- assign seo_product_description = product.description | strip_html | strip_newlines | strip -%}
+
 <div class="ota-wrapper" data-dot-style="outline">
   <div class="ota-container">
 
     <div class="ota-main-config">
       <div class="ota-header">
-        <h2 class="ota-section-title">Choose charter options</h2>
+        <h1 class="ota-section-title">Choose charter options</h1>
         <button type="button" class="ota-reset js-reset">Reset selections</button>
       </div>
 
@@ -1423,6 +1427,28 @@
 
   </div>
 </div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": {{ product.title | strip | json }}{% if seo_product_description != blank %},
+  "description": {{ seo_product_description | json }}{% endif %}{% if product.featured_image %},
+  "image": {{ product.featured_image | image_url: width: 1600 | prepend: 'https:' | json }}{% endif %}{% if seo_variant and seo_variant.sku != blank %},
+  "sku": {{ seo_variant.sku | json }}{% endif %}{% if product.vendor != blank %},
+  "brand": {
+    "@type": "Brand",
+    "name": {{ product.vendor | json }}
+  }{% endif %}{% if seo_variant and cart.currency.iso_code != blank %},
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": {{ cart.currency.iso_code | json }},
+    "price": {{ seo_variant.price | divided_by: 100.0 | json }},
+    "availability": {% if seo_variant.available %}"https://schema.org/InStock"{% else %}"https://schema.org/OutOfStock"{% endif %},
+    "url": {{ seo_product_url | json }}
+  }{% endif %}
+}
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
 
