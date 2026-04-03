@@ -137,6 +137,11 @@
           </div>
         {% endfor %}
       </div>
+      {% if paginate.pages > 1 %}
+        <div class="luxury-pagination">
+          {{ paginate | default_pagination }}
+        </div>
+      {% endif %}
     {% endpaginate %}
   </div>
 </div>
