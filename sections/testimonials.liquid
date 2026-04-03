@@ -14,13 +14,13 @@
       <div class="test-grid-scroll" id="TestimonialSlider">
         {%- for block in section.blocks -%}
           <div class="test-card" {{ block.shopify_attributes }}>
-            <div class="quote-icon">“</div>
+            <div class="quote-icon">&ldquo;</div>
             <div class="test-rating">
               {% for i in (1..5) %}
-                <span class="star {% if i <= block.settings.rating %}filled{% endif %}">★</span>
+                <span class="star {% if i <= block.settings.rating %}filled{% endif %}">&#9733;</span>
               {% endfor %}
             </div>
-            
+
             <div class="test-content">
               <p class="test-text" id="text-{{ block.id }}">{{ block.settings.text }}</p>
               <button class="see-more-btn" onclick="toggleText('{{ block.id }}')">See More</button>
@@ -50,17 +50,17 @@
 </div>
 
 <script>
-// 控制左右滑动功能
+// 鎺у埗宸﹀彸婊戝姩鍔熻兘
 function scrollSlider(direction) {
   const slider = document.getElementById('TestimonialSlider');
-  const scrollAmount = slider.offsetWidth * 0.8; // 每次滑动 80% 的宽度
+  const scrollAmount = slider.offsetWidth * 0.8; // 姣忔婊戝姩 80% 鐨勫搴?
   slider.scrollBy({
     left: direction * scrollAmount,
     behavior: 'smooth'
   });
 }
 
-// 控制文字展开
+// 鎺у埗鏂囧瓧灞曞紑
 function toggleText(id) {
   const textElement = document.getElementById('text-' + id);
   const btnElement = textElement.nextElementSibling;
@@ -81,32 +81,33 @@ function toggleText(id) {
   .test-main-title { color: #fff; font-size: 24px; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 300; }
   .title-underline { width: 40px; height: 1px; background: #fbbf24; margin: 15px auto; opacity: 0.6; }
 
-  /* 滑动容器包装器 */
+  /* 婊戝姩瀹瑰櫒鍖呰鍣?*/
   .test-slider-relative { position: relative; display: flex; align-items: center; }
 
-  /* 核心滑动区域 */
-  .test-grid-scroll { 
+  /* 鏍稿績婊戝姩鍖哄煙 */
+  .test-grid-scroll {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     gap: 20px;
     padding: 20px 0;
-    scrollbar-width: none; /* Firefox 隐藏滚动条 */
+    scrollbar-width: none; /* Firefox 闅愯棌婊氬姩鏉?*/
   }
-  .test-grid-scroll::-webkit-scrollbar { display: none; /* Chrome 隐藏滚动条 */ }
+  .test-grid-scroll::-webkit-scrollbar { display: none; /* Chrome 闅愯棌婊氬姩鏉?*/ }
 
-  /* 卡片尺寸调整 */
-  .test-card { 
-    flex: 0 0 380px; 
+  /* 鍗＄墖灏哄璋冩暣 */
+  .test-card {
+    flex: 0 0 380px;
     scroll-snap-align: start;
-    background: #111; 
-    padding: 40px; 
+    background: #111;
+    padding: 40px;
     border: 1px solid #1a1a1a;
     position: relative;
+    box-sizing: border-box;
   }
 
-  /* 导航按钮样式 */
+  /* 瀵艰埅鎸夐挳鏍峰紡 */
   .slider-nav {
     position: absolute;
     top: 50%;
@@ -129,7 +130,7 @@ function toggleText(id) {
   .slider-nav.next { right: -50px; }
 
   .test-rating { color: #fbbf24; margin-bottom: 15px; font-size: 12px; }
-  .test-text { 
+  .test-text {
     color: #a8a29e; font-size: 14px; line-height: 1.8; font-style: italic;
     display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
   }
@@ -146,9 +147,23 @@ function toggleText(id) {
   .author-meta { color: #57534e; font-size: 10px; margin: 0; }
 
   @media (max-width: 767px) {
-    .test-card { flex: 0 0 85vw; }
-    .slider-nav { display: none; } /* 手机端靠手滑，不需要按钮 */
+    .testimonials-section { padding: 56px 0; }
+    .test-header { margin-bottom: 28px; }
+    .test-main-title { font-size: 20px; letter-spacing: 0.18em; }
+    .test-grid-scroll { gap: 14px; padding: 12px 0 4px; scroll-padding-inline: 20px; }
+    .test-card { flex: 0 0 calc(100vw - 40px); padding: 24px 20px; }
+    .test-text { font-size: 13px; line-height: 1.75; }
+    .see-more-btn { min-height: 44px; padding: 10px 0; margin: 6px 0 16px; font-size: 10px; }
+    .test-trip-meta { gap: 10px; flex-wrap: wrap; }
+    .test-author { margin-top: 16px; }
+    .slider-nav { display: none; }
     .header-container { padding: 0 20px; }
+  }
+
+  @media (max-width: 430px) {
+    .test-card { flex-basis: calc(100vw - 24px); padding: 22px 16px; }
+    .header-container { padding: 0 12px; }
+    .test-grid-scroll { scroll-padding-inline: 12px; }
   }
 </style>
 
