@@ -154,7 +154,7 @@
     overflow:hidden;
 
     /* 你的主题 header 可能是 fixed/absolute：用这个顶出安全区 */
-    --header-safe: 96px;
+    --header-safe: var(--page-first-copy-offset, 114px);
     --gold: #c4b5a6;
   }
 
@@ -455,10 +455,6 @@
   /* ===== Responsive ===== */
   /* ===== Responsive ===== */
 @media (max-width: 990px) {
-  #CollectionProductGrid {
-    --header-safe: 84px;
-  }
-
   /* Hero */
   #CollectionProductGrid .coll-hero-compact {
     height: auto;

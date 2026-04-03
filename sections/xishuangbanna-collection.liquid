@@ -3,7 +3,7 @@
     background-color:#050505;
     color:#fff;
     overflow:hidden;
-    --header-safe: 96px;
+    --header-safe: var(--page-first-copy-offset, 114px);
     --gold: #c4b5a6;
   }
 
@@ -470,10 +470,6 @@
 
   /* ===== Responsive ===== */
   @media (max-width: 990px) {
-    #CollectionProductGrid {
-      --header-safe: 84px;
-    }
-
     #CollectionProductGrid .coll-hero-compact {
       height: auto;
       min-height: 420px;

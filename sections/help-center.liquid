@@ -185,7 +185,7 @@
       font-size: 13px;
     }
 .hcfaq-{{ section.id }}{
-  --header-offset: 120px; /* 改成你 header 的实际高度 */
+  --header-offset: var(--page-first-copy-offset, 114px);
 }
 
 .hcfaq-{{ section.id }} .hcfaq__container{
