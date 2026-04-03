@@ -77,6 +77,11 @@
       color: var(--text);
     }
 
+    .hcfaq-{{ section.id }} .hcfaq__container > h1{
+      margin: 0 0 34px;
+      line-height: 1.15;
+    }
+
     .hcfaq-{{ section.id }} .hcfaq__wrap{
       position: relative;
       padding-top: 26px;
@@ -188,9 +193,22 @@
 }
 
     @media (max-width: 720px){
+      .hcfaq-{{ section.id }} .hcfaq__container > h1{
+        margin-bottom: 28px;
+        font-size: 30px;
+        line-height: 1.12;
+      }
+
       .hcfaq-{{ section.id }} .hcfaq__head{ padding: 16px 16px; }
       .hcfaq-{{ section.id }} .hcfaq__body{ padding: 0 16px 16px; }
       .hcfaq-{{ section.id }} .hcfaq__badge{ left: 14px; }
+    }
+
+    @media (max-width: 430px){
+      .hcfaq-{{ section.id }} .hcfaq__container > h1{
+        margin-bottom: 24px;
+        font-size: 26px;
+      }
     }
   </style>
 
