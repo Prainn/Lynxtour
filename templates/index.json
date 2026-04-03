@@ -1,1 +1,316 @@
-{"sections":{"header":{"type":"header","disabled":true,"settings":{"show_slogan":false,"slogan_text":"ONE SOUL, ONE JOURNEY, ONE UNIVERSE","logo_text_cn":"","logo_text_en":"","main_menu":""}},"luxury_hero_header_MFwfd9":{"type":"luxury-hero-header","name":"Luxury Hero Banner Pro","settings":{"logo_image":"shopify:\/\/shop_images\/LOGO2.svg","logo_height":50,"logo_text_cn":"","logo_text_en":"","show_slogan":true,"slogan_text":"ONE SOUL, ONE JOURNEY, ONE UNIVERSE","main_menu":"main-menu-1","mega_menu_titles":"Destinations, Top Attractions, Tours, Travel Services, Travel Guide,","mega_destinations_label":"YUNNAN DESTINATIONS","mega_destinations_title":"Begin with the right destination","mega_destinations_text":"From Kunming and Dali to Lijiang, Shangri-La, explore the places that define Yunnan through scenery, culture, and a slower sense of travel.","mega_destinations_btn":"View destinations","mega_attractions_label":"SIGNATURE HIGHLIGHTS","mega_attractions_title":"See the icons of Yunnan","mega_attractions_text":"Discover the landmarks that shape a Yunnan journey, from Stone Forest and Green Lake to Jade Dragon Snow Mountain, Meili, and the old towns of the northwest.","mega_attractions_btn":"View highlights","mega_tours_label":"PRIVATE JOURNEYS","mega_tours_title":"Find your ideal route","mega_tours_text":"Browse private Yunnan tours designed around classic highlights, slower luxury journeys, and deeper regional routes shaped by comfort, flexibility, and local character.","mega_tours_btn":"Browse tours","mega_services_label":"TRAVEL SERVICES","mega_services_title":"Travel, tailored around you","mega_services_text":"From bespoke itinerary planning to private car charter, discover flexible services that help shape a smoother, more personal journey across Yunnan.","mega_services_btn":"Explore services","mega_guide_label":"EDITORIAL GUIDE","mega_guide_title":"Read before you go","mega_guide_text":"Explore destination guides, landmark features, and practical travel ideas to plan a more informed, more atmospheric, and more rewarding Yunnan trip.","mega_guide_btn":"Read the guides","mega_support_label":"HELP & SUPPORT","mega_support_title":"Get help before you book","mega_support_text":"Find answers to common questions about booking, payment, travel planning, and service details in one place.","mega_support_btn":"Visit support","mega_default_label":"","mega_default_title":"Explore Yunnan","mega_default_text":"","mega_default_btn":"","mega_destinations_side_label":"DESTINATION PICKS","mega_destinations_side_title":"Start with Yunnan’s most defining places","mega_destinations_side_text":"Choose from Yunnan’s best-known destinations, each with its own pace, scenery, and cultural character for a more intentional journey.","mega_destinations_side_btn":"Explore destinations","mega_destinations_side_link":"shopify:\/\/pages\/destinations","mega_attractions_side_label":"LANDMARK EDIT","mega_attractions_side_title":"See the places that define the route","mega_attractions_side_text":"From natural wonders to old towns and iconic mountain views, discover the highlights that shape a classic Yunnan itinerary.","mega_attractions_side_btn":"Explore highlights","mega_attractions_side_link":"shopify:\/\/blogs\/travel-guides","mega_tours_side_label":"CURATED ROUTES","mega_tours_side_title":"Private journeys, thoughtfully arranged","mega_tours_side_text":"Compare signature routes, luxury escapes, and flexible private itineraries designed around comfort, pacing, and local depth.","mega_tours_side_btn":"Browse journeys","mega_tours_side_link":"shopify:\/\/collections\/yunnan-private-tours","mega_services_side_label":"BESPOKE SUPPORT","mega_services_side_title":"Support built around your trip","mega_services_side_text":"Access private transfers, custom planning, and flexible support services that make independent travel across Yunnan smoother and more personal.","mega_services_side_btn":"View services","mega_services_side_link":"shopify:\/\/pages\/bespoke-custom-travel","mega_guide_side_label":"PLAN SMARTER","mega_guide_side_title":"Useful reads before you travel","mega_guide_side_text":"Read destination notes, planning ideas, and practical guidance that help turn inspiration into a more informed Yunnan trip.","mega_guide_side_btn":"Read more","mega_guide_side_link":"shopify:\/\/blogs\/travel-guides","mega_support_side_label":"HELP CENTER","mega_support_side_title":"Answers for a smoother booking experience","mega_support_side_text":"Browse FAQs and practical support content covering reservations, payments, custom trips, and other pre-booking questions.","mega_support_side_btn":"Go to help center","mega_support_side_link":"","mega_default_side_label":"FEATURED","mega_default_side_title":"Explore Yunnan with more intention","mega_default_side_text":"Browse destination ideas, highlights, tours, and travel planning content designed for a more thoughtful Yunnan journey.","mega_default_side_btn":"View all","mega_default_side_link":"","hero_image":"shopify:\/\/shop_images\/header-main-banner.webp","bg_alignment":"center","btn_color":"#fbbf24","btn_text_color":"#1c1917","button_text":"Explore Yunnan Private Tours","button_link":"#dest-section","button_text_2":"Plan a Custom Trip","button_link_2":"shopify:\/\/pages\/bespoke-custom-travel","hero_eyebrow":"Yunnan Private Travel Brand","main_title":"Lynxtour","sub_title":"Yunnan Private Tours, Day Trips & Charter Services","brand_intro":"Lynxtour is a Yunnan private tours brand specializing in bespoke journeys, day trips, and charter services across Kunming, Dali, Lijiang, Shangri-La, and beyond."}},"destinations":{"type":"destinations","blocks":{"destination_AKdYmL":{"type":"destination","settings":{"image":"shopify:\/\/shop_images\/lijiang-collection-banner.webp","img_align":"center","location_tag":"YUNNAN · LIJIANG","title":"Beneath the Jade Dragon, Slumber by the Water","description":"Retreat from the bustle of the Ancient Town and settle into a quieter Lijiang shaped by mountain light, courtyard living, and the poetry of water.","cta_text":"View Journey","link":"shopify:\/\/collections\/lijiang-private-tours"}},"destination_3EcC88":{"type":"destination","settings":{"image":"shopify:\/\/shop_images\/dali-collection-banner.webp","img_align":"center","location_tag":"YUNNAN · DALI","title":"By Erhai, Time Learns to Slow","description":"Wake to mountain light, open water, and a softer Yunnan mood shaped by Bai heritage, village texture, and lakeside calm.","cta_text":"View Journey","link":"shopify:\/\/collections\/dali-private-tours"}},"destination_hcgf4b":{"type":"destination","settings":{"image":"shopify:\/\/shop_images\/shangri-la-collection-banner.webp","img_align":"top","location_tag":"YUNNAN · SHANGRI-LA","title":"Where the Plateau Opens into Silence","description":"Enter a higher, quieter Yunnan, where monasteries, grasslands, and Tibetan character create a journey of altitude, stillness, and wonder.","cta_text":"View Journey","link":"shopify:\/\/collections\/shangri-la-private-tours"}},"destination_tNUfXa":{"type":"destination","settings":{"image":"shopify:\/\/shop_images\/day3_Gaozhuang.webp","img_align":"center","location_tag":"YUNNAN · XISHUANGBANNA","title":"Where Rainforest Light Turns Golden","description":"Discover Yunnan’s tropical south through Dai culture, warm air, riverside ease, and a more exotic, slower-paced escape.","cta_text":"View Journey","link":"shopify:\/\/collections\/xishuangbanna-private-tours"}}},"block_order":["destination_AKdYmL","destination_3EcC88","destination_hcgf4b","destination_tNUfXa"],"settings":{"main_title":"EXPLORE THE REGION","main_subtitle":"Explore Yunnan through atmospheric stays, slow landscapes, and destination-led private travel."}},"brand_features_DMqWtK":{"type":"brand-features","blocks":{"feature_ab76qf":{"type":"feature","settings":{"custom_svg":"<svg width=\"60\" height=\"60\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\">\n  <path d=\"M12 4L16 12H8L12 4Z\" stroke=\"#fbbf24\" stroke-width=\"1.2\" stroke-linejoin=\"round\"><\/path>\n  <path d=\"M17 9L22 20H13L17 9Z\" stroke=\"#fbbf24\" stroke-width=\"1.2\" stroke-linejoin=\"round\" opacity=\"0.8\"><\/path>\n  <path d=\"M7 9L2 20H11L7 9Z\" stroke=\"#fbbf24\" stroke-width=\"1.2\" stroke-linejoin=\"round\" opacity=\"0.8\"><\/path>\n  <path d=\"M12 2V4M11 3H13\" stroke=\"#fbbf24\" stroke-width=\"1\" stroke-linecap=\"round\"><\/path>\n  <path d=\"M10 20C10 18 14 18 14 16C14 14 10 14 10 12\" stroke=\"#fbbf24\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-dasharray=\"1 2\"><\/path>\n<\/svg>","item_title":"Ultimate Tailor-made Travel","item_desc":"We reject the one-size-fits-all approach, meticulously refining every itinerary to suit your preferences."}},"feature_AqnBQL":{"type":"feature","settings":{"custom_svg":"<svg width=\"60\" height=\"60\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\">\n  <path d=\"M10 14H14V21H10V14Z\" stroke=\"#fbbf24\" stroke-width=\"1.2\" stroke-linejoin=\"round\"><\/path>\n  <path d=\"M12 4C14 6 15 8 15 10C15 12 13.5 13 12 13C10.5 13 9 12 9 10C9 8 10 6 12 4Z\" stroke=\"#fbbf24\" stroke-width=\"1.2\" stroke-linecap=\"round\"><\/path>\n  <path d=\"M12 7C12.5 8 13 8.5 13 9.5C13 10.5 12.5 11 12 11C11.5 11 11 10.5 11 9.5C11 8.5 11.5 8 12 7Z\" stroke=\"#fbbf24\" stroke-width=\"1\"><\/path>\n  <path d=\"M7 5H9M15 5H17M6 8H8M16 8H18\" stroke=\"#fbbf24\" stroke-width=\"1\" stroke-linecap=\"round\" opacity=\"0.6\"><\/path>\n  <circle cx=\"16\" cy=\"18\" r=\"2\" stroke=\"#fbbf24\" stroke-width=\"1.2\"><\/circle>\n  <path d=\"M14 22C14 20 15 19 16 19C17 19 18 20 18 22\" stroke=\"#fbbf24\" stroke-width=\"1.2\" stroke-linecap=\"round\"><\/path>\n<\/svg>","item_title":"Native Professional Guides","item_desc":"Deeply connected to the destination, our guides provide profound cultural insights and exclusive access."}},"feature_9JaHdk":{"type":"feature","settings":{"custom_svg":"<svg width=\"80\" height=\"80\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\">\n  <path d=\"M15 8L22 20H12L15 8Z\" stroke=\"#fbbf24\" stroke-width=\"1.2\" stroke-linejoin=\"round\" opacity=\"0.6\"><\/path>\n  <path d=\"M3 20L8 10L13 20H3Z\" stroke=\"#fbbf24\" stroke-width=\"1.2\" stroke-linejoin=\"round\"><\/path>\n  <path d=\"M8 10L16 12L16 20L13 20\" stroke=\"#fbbf24\" stroke-width=\"1.2\" stroke-linejoin=\"round\"><\/path>\n  <path d=\"M7 20V16H9V20\" stroke=\"#fbbf24\" stroke-width=\"1\" stroke-linejoin=\"round\"><\/path>\n  <path d=\"M19 4C17.5 4 16 5.5 16 7C16 8.5 17.5 10 19 10C18 9 18 7 19 6\" fill=\"#fbbf24\" opacity=\"0.8\"><\/path>\n<\/svg>","item_title":"Luxury Wilderness Accommodation","item_desc":"Hand-picked luxury hotels and glamping sites that offer uncompromising comfort in the heart of nature."}}},"block_order":["feature_ab76qf","feature_AqnBQL","feature_9JaHdk"],"name":"Brand Features","settings":{"main_title":"Why Travel with us","columns_desktop":3,"icon_size":60}},"testimonials_tUNTjn":{"type":"testimonials","blocks":{"quote_jw6H9r":{"type":"quote","settings":{"rating":5,"text":"I would like to express my deepest gratitude to Lynxtour for making my Rozita Md Amin and my friend Azlina Yahya's trip to China, Province of Yunnan a very interesting and extraordinary experience. Each itinerary was arranged perfectly, while our trip was planned very well. Our tour guide in China, Ms. Darling, who was very cute, although still young, was very experienced and had in-depth knowledge of historical places in China. Not to mention the appreciation to My Lynxtour's tour guides, namely Puan Dewi and Hani, who always helped and solved all the problems of the group members with full dedication. Puan Dewi's hospitality really left the best impression on all of us.","trip_type":"Private Bespoke","travel_date":"OCT 2025","author_name":"Rozita Mohd Amin","author_meta":"GLOBAL EXPLORER","author_image":"shopify:\/\/shop_images\/sfsjffs_fsebfb_es_bjfe.jpg"}},"quote_wWHFKD":{"type":"quote","settings":{"rating":5,"text":"1st time travel China Yunnan with Lynxtour from 27 Dec till 6 Jan 2026. We have good experienced with tour leader Mun Mun and China tour guide Liu. Both provide good and friendly services. My hubby was sick during this trip. However both were helpful and brought hubby to hospital. Their caring, friendly reminder, informative, detailed always bring us warm welcome. We would like give big applause to Mun Mun and China tour leader Liu. Well done and good job.\"","trip_type":"Private Bespoke","travel_date":"DEC 2025","author_name":"Andrea Choong","author_meta":"Global Traveler","author_image":"shopify:\/\/shop_images\/3fc73dca2afd405011cba446563a7ecc.jpg"}},"quote_iYXMdB":{"type":"quote","settings":{"rating":5,"text":"Their service and organisation really stand out! A few things that impressed me: They provided a WiFi router with VPN, so we could access Facebook, Google, etc. even in China! Personalised luggage tags with our names on them — such a nice touch. Our Singapore guide Wendy sent us an SMS every night with hotel room numbers, next day's weather, schedule, and morning call time. Super organised!\nBoth guides — Wendy and Jennifer (春莲) — were caring, informative, and professional throughout. They ensured everyone was comfortable, well-fed, and safe. No one in our group of 24 had altitude or stomach issues, which says a lot about how well-prepared they were. Lynxtour has definitely left a great impression on me — they'll be at the top of my list for future holidays!","trip_type":"Luxury Group Tour","travel_date":"JAN 2026","author_name":"Verified Guest","author_meta":"Premium Traveler","author_image":"shopify:\/\/shop_images\/30dff4568133150cc007b9dca0519a6b.jpg"}},"quote_EmqjkW":{"type":"quote","settings":{"rating":5,"text":"I really can't say anything but positive thoughts about my experience with Lynxtour. In particular TL Dewi n Hani plus the local guide Ling the Darling. They made the trip more memorable plus the others in the group. The food was in abundance n the hotel very comfortable. Insyaallah if opportunity arise we will travel with Lynxtour again.","trip_type":"Group Exploration","travel_date":"JAN 2026","author_name":"Abu Zaidi Abu Hassan","author_meta":"Verified Guest","author_image":"shopify:\/\/shop_images\/f395f2efa336bf9310dac64bb32feb08.jpg"}}},"block_order":["quote_jw6H9r","quote_wWHFKD","quote_iYXMdB","quote_EmqjkW"],"name":"Testimonials","settings":{"main_title":"GUEST STORIES"}},"ai_contact_split_fH8CGA":{"type":"ai-contact-split","disabled":true,"name":"AI Dual Layout","settings":{"main_title":"Craft Your Personal Escape","ai_pretitle":"AI powered","ai_title":"LYNX Guide Pro","cta_title":"Tailor-Made Your Dream Journey"}},"footer_dKxzhP":{"type":"footer","name":"Custom Footer","settings":{"logo_text":"Lynxtour","brand_desc":"Lynxtour is a Yunnan private tours brand offering bespoke journeys, luxury day trips, and private charter services across Kunming, Dali, Lijiang, Shangri-La, and beyond.","social_title":"FOLLOW US","instagram_link":"https:\/\/www.instagram.com\/","facebook_link":"https:\/\/www.instagram.com\/","x_link":"https:\/\/www.instagram.com\/","youtube_link":"https:\/\/www.youtube.com\/@lynxtour_official","tiktok_link":"https:\/\/www.instagram.com\/","menu_1_title":"Quick Navigation","menu_1":"link-list","menu_2_title":"Destination Inspiration","menu_2":"link-list-1","contact_title":"Contact & Support","contact_tel":"0871-63218099","contact_email":"biz@lynxtour.cn","contact_addr":"Room 3011, Building 4, Xindu Longcheng, Panlong District, Kunming City, Yunnan Province, China, Postcode: 650051.","badge_text":"YUNNAN PRIVATE TOURS","show_payment_icons":true,"copyright_text":"ALL RIGHTS RESERVED.","privacy_label":"Privacy Policy","privacy_link":"shopify:\/\/pages\/privacy-policy","terms_label":"Terms of Service","terms_link":"shopify:\/\/pages\/terms-of-service"}}},"order":["header","luxury_hero_header_MFwfd9","destinations","brand_features_DMqWtK","testimonials_tUNTjn","ai_contact_split_fH8CGA","footer_dKxzhP"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "header": {
+      "type": "header",
+      "disabled": true,
+      "settings": {
+        "show_slogan": false,
+        "slogan_text": "ONE SOUL, ONE JOURNEY, ONE UNIVERSE",
+        "logo_text_cn": "",
+        "logo_text_en": "",
+        "main_menu": ""
+      }
+    },
+    "luxury_hero_header_MFwfd9": {
+      "type": "luxury-hero-header",
+      "name": "Luxury Hero Banner Pro",
+      "settings": {
+        "logo_image": "shopify://shop_images/LOGO2.svg",
+        "logo_height": 50,
+        "logo_text_cn": "",
+        "logo_text_en": "",
+        "show_slogan": true,
+        "slogan_text": "ONE SOUL, ONE JOURNEY, ONE UNIVERSE",
+        "main_menu": "main-menu-1",
+        "mega_menu_titles": "Destinations, Top Attractions, Tours, Travel Services, Travel Guide,",
+        "mega_destinations_label": "YUNNAN DESTINATIONS",
+        "mega_destinations_title": "Begin with the right destination",
+        "mega_destinations_text": "From Kunming and Dali to Lijiang, Shangri-La, explore the places that define Yunnan through scenery, culture, and a slower sense of travel.",
+        "mega_destinations_btn": "View destinations",
+        "mega_attractions_label": "SIGNATURE HIGHLIGHTS",
+        "mega_attractions_title": "See the icons of Yunnan",
+        "mega_attractions_text": "Discover the landmarks that shape a Yunnan journey, from Stone Forest and Green Lake to Jade Dragon Snow Mountain, Meili, and the old towns of the northwest.",
+        "mega_attractions_btn": "View highlights",
+        "mega_tours_label": "PRIVATE JOURNEYS",
+        "mega_tours_title": "Find your ideal route",
+        "mega_tours_text": "Browse private Yunnan tours designed around classic highlights, slower luxury journeys, and deeper regional routes shaped by comfort, flexibility, and local character.",
+        "mega_tours_btn": "Browse tours",
+        "mega_services_label": "TRAVEL SERVICES",
+        "mega_services_title": "Travel, tailored around you",
+        "mega_services_text": "From bespoke itinerary planning to private car charter, discover flexible services that help shape a smoother, more personal journey across Yunnan.",
+        "mega_services_btn": "Explore services",
+        "mega_guide_label": "EDITORIAL GUIDE",
+        "mega_guide_title": "Read before you go",
+        "mega_guide_text": "Explore destination guides, landmark features, and practical travel ideas to plan a more informed, more atmospheric, and more rewarding Yunnan trip.",
+        "mega_guide_btn": "Read the guides",
+        "mega_support_label": "HELP & SUPPORT",
+        "mega_support_title": "Get help before you book",
+        "mega_support_text": "Find answers to common questions about booking, payment, travel planning, and service details in one place.",
+        "mega_support_btn": "Visit support",
+        "mega_default_label": "",
+        "mega_default_title": "Explore Yunnan",
+        "mega_default_text": "",
+        "mega_default_btn": "",
+        "mega_destinations_side_label": "DESTINATION PICKS",
+        "mega_destinations_side_title": "Start with Yunnan’s most defining places",
+        "mega_destinations_side_text": "Choose from Yunnan’s best-known destinations, each with its own pace, scenery, and cultural character for a more intentional journey.",
+        "mega_destinations_side_btn": "Explore destinations",
+        "mega_destinations_side_link": "shopify://pages/destinations",
+        "mega_attractions_side_label": "LANDMARK EDIT",
+        "mega_attractions_side_title": "See the places that define the route",
+        "mega_attractions_side_text": "From natural wonders to old towns and iconic mountain views, discover the highlights that shape a classic Yunnan itinerary.",
+        "mega_attractions_side_btn": "Explore highlights",
+        "mega_attractions_side_link": "shopify://blogs/travel-guides",
+        "mega_tours_side_label": "CURATED ROUTES",
+        "mega_tours_side_title": "Private journeys, thoughtfully arranged",
+        "mega_tours_side_text": "Compare signature routes, luxury escapes, and flexible private itineraries designed around comfort, pacing, and local depth.",
+        "mega_tours_side_btn": "Browse journeys",
+        "mega_tours_side_link": "shopify://collections/yunnan-private-tours",
+        "mega_services_side_label": "BESPOKE SUPPORT",
+        "mega_services_side_title": "Support built around your trip",
+        "mega_services_side_text": "Access private transfers, custom planning, and flexible support services that make independent travel across Yunnan smoother and more personal.",
+        "mega_services_side_btn": "View services",
+        "mega_services_side_link": "shopify://pages/bespoke-custom-travel",
+        "mega_guide_side_label": "PLAN SMARTER",
+        "mega_guide_side_title": "Useful reads before you travel",
+        "mega_guide_side_text": "Read destination notes, planning ideas, and practical guidance that help turn inspiration into a more informed Yunnan trip.",
+        "mega_guide_side_btn": "Read more",
+        "mega_guide_side_link": "shopify://blogs/travel-guides",
+        "mega_support_side_label": "HELP CENTER",
+        "mega_support_side_title": "Answers for a smoother booking experience",
+        "mega_support_side_text": "Browse FAQs and practical support content covering reservations, payments, custom trips, and other pre-booking questions.",
+        "mega_support_side_btn": "Go to help center",
+        "mega_support_side_link": "",
+        "mega_default_side_label": "FEATURED",
+        "mega_default_side_title": "Explore Yunnan with more intention",
+        "mega_default_side_text": "Browse destination ideas, highlights, tours, and travel planning content designed for a more thoughtful Yunnan journey.",
+        "mega_default_side_btn": "View all",
+        "mega_default_side_link": "",
+        "hero_image": "shopify://shop_images/header-main-banner.webp",
+        "bg_alignment": "center",
+        "btn_color": "#fbbf24",
+        "btn_text_color": "#1c1917",
+        "button_text": "Explore Yunnan Private Tours",
+        "button_link": "#dest-section",
+        "button_text_2": "Plan a Custom Trip",
+        "button_link_2": "shopify://pages/bespoke-custom-travel",
+        "hero_eyebrow": "Yunnan Private Travel Brand",
+        "main_title": "Lynxtour",
+        "sub_title": "Yunnan Private Tours, Day Trips & Charter Services",
+        "brand_intro": "Lynxtour is a Yunnan private tours brand specializing in bespoke journeys, day trips, and charter services across Kunming, Dali, Lijiang, Shangri-La, and beyond."
+      }
+    },
+    "destinations": {
+      "type": "destinations",
+      "blocks": {
+        "destination_AKdYmL": {
+          "type": "destination",
+          "settings": {
+            "image": "shopify://shop_images/lijiang-collection-banner.webp",
+            "img_align": "center",
+            "location_tag": "YUNNAN · LIJIANG",
+            "title": "Beneath the Jade Dragon, Slumber by the Water",
+            "description": "Retreat from the bustle of the Ancient Town and settle into a quieter Lijiang shaped by mountain light, courtyard living, and the poetry of water.",
+            "cta_text": "View Journey",
+            "link": "shopify://collections/lijiang-private-tours"
+          }
+        },
+        "destination_3EcC88": {
+          "type": "destination",
+          "settings": {
+            "image": "shopify://shop_images/dali-collection-banner.webp",
+            "img_align": "center",
+            "location_tag": "YUNNAN · DALI",
+            "title": "By Erhai, Time Learns to Slow",
+            "description": "Wake to mountain light, open water, and a softer Yunnan mood shaped by Bai heritage, village texture, and lakeside calm.",
+            "cta_text": "View Journey",
+            "link": "shopify://collections/dali-private-tours"
+          }
+        },
+        "destination_hcgf4b": {
+          "type": "destination",
+          "settings": {
+            "image": "shopify://shop_images/shangri-la-collection-banner.webp",
+            "img_align": "top",
+            "location_tag": "YUNNAN · SHANGRI-LA",
+            "title": "Where the Plateau Opens into Silence",
+            "description": "Enter a higher, quieter Yunnan, where monasteries, grasslands, and Tibetan character create a journey of altitude, stillness, and wonder.",
+            "cta_text": "View Journey",
+            "link": "shopify://collections/shangri-la-private-tours"
+          }
+        },
+        "destination_tNUfXa": {
+          "type": "destination",
+          "settings": {
+            "image": "shopify://shop_images/day3_Gaozhuang.webp",
+            "img_align": "center",
+            "location_tag": "YUNNAN · XISHUANGBANNA",
+            "title": "Where Rainforest Light Turns Golden",
+            "description": "Discover Yunnan’s tropical south through Dai culture, warm air, riverside ease, and a more exotic, slower-paced escape.",
+            "cta_text": "View Journey",
+            "link": "shopify://collections/xishuangbanna-private-tours"
+          }
+        }
+      },
+      "block_order": [
+        "destination_AKdYmL",
+        "destination_3EcC88",
+        "destination_hcgf4b",
+        "destination_tNUfXa"
+      ],
+      "settings": {
+        "main_title": "EXPLORE THE REGION",
+        "main_subtitle": "Explore Yunnan through atmospheric stays, slow landscapes, and destination-led private travel."
+      }
+    },
+    "brand_features_DMqWtK": {
+      "type": "brand-features",
+      "blocks": {
+        "feature_ab76qf": {
+          "type": "feature",
+          "settings": {
+            "custom_svg": "<svg width=\"60\" height=\"60\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <path d=\"M12 4L16 12H8L12 4Z\" stroke=\"#fbbf24\" stroke-width=\"1.2\" stroke-linejoin=\"round\"></path>\n  <path d=\"M17 9L22 20H13L17 9Z\" stroke=\"#fbbf24\" stroke-width=\"1.2\" stroke-linejoin=\"round\" opacity=\"0.8\"></path>\n  <path d=\"M7 9L2 20H11L7 9Z\" stroke=\"#fbbf24\" stroke-width=\"1.2\" stroke-linejoin=\"round\" opacity=\"0.8\"></path>\n  <path d=\"M12 2V4M11 3H13\" stroke=\"#fbbf24\" stroke-width=\"1\" stroke-linecap=\"round\"></path>\n  <path d=\"M10 20C10 18 14 18 14 16C14 14 10 14 10 12\" stroke=\"#fbbf24\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-dasharray=\"1 2\"></path>\n</svg>",
+            "item_title": "Ultimate Tailor-made Travel",
+            "item_desc": "We reject the one-size-fits-all approach, meticulously refining every itinerary to suit your preferences."
+          }
+        },
+        "feature_AqnBQL": {
+          "type": "feature",
+          "settings": {
+            "custom_svg": "<svg width=\"60\" height=\"60\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <path d=\"M10 14H14V21H10V14Z\" stroke=\"#fbbf24\" stroke-width=\"1.2\" stroke-linejoin=\"round\"></path>\n  <path d=\"M12 4C14 6 15 8 15 10C15 12 13.5 13 12 13C10.5 13 9 12 9 10C9 8 10 6 12 4Z\" stroke=\"#fbbf24\" stroke-width=\"1.2\" stroke-linecap=\"round\"></path>\n  <path d=\"M12 7C12.5 8 13 8.5 13 9.5C13 10.5 12.5 11 12 11C11.5 11 11 10.5 11 9.5C11 8.5 11.5 8 12 7Z\" stroke=\"#fbbf24\" stroke-width=\"1\"></path>\n  <path d=\"M7 5H9M15 5H17M6 8H8M16 8H18\" stroke=\"#fbbf24\" stroke-width=\"1\" stroke-linecap=\"round\" opacity=\"0.6\"></path>\n  <circle cx=\"16\" cy=\"18\" r=\"2\" stroke=\"#fbbf24\" stroke-width=\"1.2\"></circle>\n  <path d=\"M14 22C14 20 15 19 16 19C17 19 18 20 18 22\" stroke=\"#fbbf24\" stroke-width=\"1.2\" stroke-linecap=\"round\"></path>\n</svg>",
+            "item_title": "Native Professional Guides",
+            "item_desc": "Deeply connected to the destination, our guides provide profound cultural insights and exclusive access."
+          }
+        },
+        "feature_9JaHdk": {
+          "type": "feature",
+          "settings": {
+            "custom_svg": "<svg width=\"80\" height=\"80\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <path d=\"M15 8L22 20H12L15 8Z\" stroke=\"#fbbf24\" stroke-width=\"1.2\" stroke-linejoin=\"round\" opacity=\"0.6\"></path>\n  <path d=\"M3 20L8 10L13 20H3Z\" stroke=\"#fbbf24\" stroke-width=\"1.2\" stroke-linejoin=\"round\"></path>\n  <path d=\"M8 10L16 12L16 20L13 20\" stroke=\"#fbbf24\" stroke-width=\"1.2\" stroke-linejoin=\"round\"></path>\n  <path d=\"M7 20V16H9V20\" stroke=\"#fbbf24\" stroke-width=\"1\" stroke-linejoin=\"round\"></path>\n  <path d=\"M19 4C17.5 4 16 5.5 16 7C16 8.5 17.5 10 19 10C18 9 18 7 19 6\" fill=\"#fbbf24\" opacity=\"0.8\"></path>\n</svg>",
+            "item_title": "Luxury Wilderness Accommodation",
+            "item_desc": "Hand-picked luxury hotels and glamping sites that offer uncompromising comfort in the heart of nature."
+          }
+        }
+      },
+      "block_order": [
+        "feature_ab76qf",
+        "feature_AqnBQL",
+        "feature_9JaHdk"
+      ],
+      "name": "Brand Features",
+      "settings": {
+        "main_title": "Why Travel with us",
+        "columns_desktop": 3,
+        "icon_size": 60
+      }
+    },
+    "testimonials_tUNTjn": {
+      "type": "testimonials",
+      "blocks": {
+        "quote_jw6H9r": {
+          "type": "quote",
+          "settings": {
+            "rating": 5,
+            "text": "I would like to express my deepest gratitude to Lynxtour for making my Rozita Md Amin and my friend Azlina Yahya's trip to China, Province of Yunnan a very interesting and extraordinary experience. Each itinerary was arranged perfectly, while our trip was planned very well. Our tour guide in China, Ms. Darling, who was very cute, although still young, was very experienced and had in-depth knowledge of historical places in China. Not to mention the appreciation to My Lynxtour's tour guides, namely Puan Dewi and Hani, who always helped and solved all the problems of the group members with full dedication. Puan Dewi's hospitality really left the best impression on all of us.",
+            "trip_type": "Private Bespoke",
+            "travel_date": "OCT 2025",
+            "author_name": "Rozita Mohd Amin",
+            "author_meta": "GLOBAL EXPLORER",
+            "author_image": "shopify://shop_images/sfsjffs_fsebfb_es_bjfe.jpg"
+          }
+        },
+        "quote_wWHFKD": {
+          "type": "quote",
+          "settings": {
+            "rating": 5,
+            "text": "1st time travel China Yunnan with Lynxtour from 27 Dec till 6 Jan 2026. We have good experienced with tour leader Mun Mun and China tour guide Liu. Both provide good and friendly services. My hubby was sick during this trip. However both were helpful and brought hubby to hospital. Their caring, friendly reminder, informative, detailed always bring us warm welcome. We would like give big applause to Mun Mun and China tour leader Liu. Well done and good job.\"",
+            "trip_type": "Private Bespoke",
+            "travel_date": "DEC 2025",
+            "author_name": "Andrea Choong",
+            "author_meta": "Global Traveler",
+            "author_image": "shopify://shop_images/3fc73dca2afd405011cba446563a7ecc.jpg"
+          }
+        },
+        "quote_iYXMdB": {
+          "type": "quote",
+          "settings": {
+            "rating": 5,
+            "text": "Their service and organisation really stand out! A few things that impressed me: They provided a WiFi router with VPN, so we could access Facebook, Google, etc. even in China! Personalised luggage tags with our names on them — such a nice touch. Our Singapore guide Wendy sent us an SMS every night with hotel room numbers, next day's weather, schedule, and morning call time. Super organised!\nBoth guides — Wendy and Jennifer (春莲) — were caring, informative, and professional throughout. They ensured everyone was comfortable, well-fed, and safe. No one in our group of 24 had altitude or stomach issues, which says a lot about how well-prepared they were. Lynxtour has definitely left a great impression on me — they'll be at the top of my list for future holidays!",
+            "trip_type": "Luxury Group Tour",
+            "travel_date": "JAN 2026",
+            "author_name": "Verified Guest",
+            "author_meta": "Premium Traveler",
+            "author_image": "shopify://shop_images/30dff4568133150cc007b9dca0519a6b.jpg"
+          }
+        },
+        "quote_EmqjkW": {
+          "type": "quote",
+          "settings": {
+            "rating": 5,
+            "text": "I really can't say anything but positive thoughts about my experience with Lynxtour. In particular TL Dewi n Hani plus the local guide Ling the Darling. They made the trip more memorable plus the others in the group. The food was in abundance n the hotel very comfortable. Insyaallah if opportunity arise we will travel with Lynxtour again.",
+            "trip_type": "Group Exploration",
+            "travel_date": "JAN 2026",
+            "author_name": "Abu Zaidi Abu Hassan",
+            "author_meta": "Verified Guest",
+            "author_image": "shopify://shop_images/f395f2efa336bf9310dac64bb32feb08.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "quote_jw6H9r",
+        "quote_wWHFKD",
+        "quote_iYXMdB",
+        "quote_EmqjkW"
+      ],
+      "name": "Testimonials",
+      "settings": {
+        "main_title": "GUEST STORIES"
+      }
+    },
+    "footer_dKxzhP": {
+      "type": "footer",
+      "name": "Custom Footer",
+      "settings": {
+        "logo_text": "Lynxtour",
+        "brand_desc": "Lynxtour is a Yunnan private tours brand offering bespoke journeys, luxury day trips, and private charter services across Kunming, Dali, Lijiang, Shangri-La, and beyond.",
+        "social_title": "FOLLOW US",
+        "instagram_link": "https://www.instagram.com/",
+        "facebook_link": "https://www.instagram.com/",
+        "x_link": "https://www.instagram.com/",
+        "youtube_link": "https://www.youtube.com/@lynxtour_official",
+        "tiktok_link": "https://www.instagram.com/",
+        "menu_1_title": "Quick Navigation",
+        "menu_1": "link-list",
+        "menu_2_title": "Destination Inspiration",
+        "menu_2": "link-list-1",
+        "contact_title": "Contact & Support",
+        "contact_tel": "0871-63218099",
+        "contact_email": "biz@lynxtour.cn",
+        "contact_addr": "Room 3011, Building 4, Xindu Longcheng, Panlong District, Kunming City, Yunnan Province, China, Postcode: 650051.",
+        "badge_text": "YUNNAN PRIVATE TOURS",
+        "show_payment_icons": true,
+        "copyright_text": "ALL RIGHTS RESERVED.",
+        "privacy_label": "Privacy Policy",
+        "privacy_link": "shopify://pages/privacy-policy",
+        "terms_label": "Terms of Service",
+        "terms_link": "shopify://pages/terms-of-service"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "luxury_hero_header_MFwfd9",
+    "destinations",
+    "brand_features_DMqWtK",
+    "testimonials_tUNTjn",
+    "footer_dKxzhP"
+  ]
+}
