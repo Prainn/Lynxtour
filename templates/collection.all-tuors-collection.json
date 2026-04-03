@@ -1,1 +1,75 @@
-{"sections":{"global_navigation_xJr6UY":{"type":"global-navigation","name":"Global Brand Header","settings":{"logo_image":"shopify:\/\/shop_images\/LOGO2.svg","logo_height":40,"logo_text_cn":"","logo_text_en":"","show_slogan":true,"slogan_text":"","main_menu":"main-menu-1","btn_color":"#fbbf24"}},"main":{"type":"all-tours-collection","settings":{"subtitle_text":"JOURNEYS ACROSS YUNNAN","location_text":"YUNNAN \/ CHINA","hero_height_vh":40,"hero_min_height":350,"hero_brightness":50,"desktop_cols":3,"page_size":12,"badge_tag":"Route","badge_text":"PRIVATE"}}},"order":["global_navigation_xJr6UY","main"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "global_navigation_xJr6UY": {
+      "type": "global-navigation",
+      "name": "Global Brand Header",
+      "settings": {
+        "logo_image": "shopify://shop_images/LOGO2.svg",
+        "logo_height": 40,
+        "logo_text_cn": "",
+        "logo_text_en": "",
+        "show_slogan": true,
+        "slogan_text": "",
+        "main_menu": "main-menu-1",
+        "btn_color": "#fbbf24"
+      }
+    },
+    "main": {
+      "type": "all-tours-collection",
+      "settings": {
+        "subtitle_text": "JOURNEYS ACROSS YUNNAN",
+        "location_text": "YUNNAN / CHINA",
+        "hero_height_vh": 40,
+        "hero_min_height": 350,
+        "hero_brightness": 50,
+        "desktop_cols": 3,
+        "page_size": 12,
+        "badge_tag": "Route",
+        "badge_text": "PRIVATE"
+      }
+    },
+    "footer_9eJXGE": {
+      "type": "footer",
+      "name": "Custom Footer",
+      "settings": {
+        "logo_text": "LYNXTOUR",
+        "brand_desc": "Lynxtour is a Yunnan private tours brand offering bespoke journeys, luxury day trips, and private charter services across Kunming, Dali, Lijiang, Shangri-La, and beyond.",
+        "social_title": "FOLLOW US",
+        "instagram_link": "",
+        "facebook_link": "",
+        "x_link": "",
+        "youtube_link": "",
+        "tiktok_link": "",
+        "menu_1_title": "Quick Navigation",
+        "menu_1": "link-list",
+        "menu_2_title": "Destination Inspiration",
+        "menu_2": "link-list-1",
+        "contact_title": "Contact & Support",
+        "contact_tel": "0871-63218099",
+        "contact_email": "biz@lynxtour.cn",
+        "contact_addr": "Room 3011, Building 4, Xindu Longcheng, Panlong District, Kunming City, Yunnan Province, China, Postcode: 650051.",
+        "badge_text": "YUNNAN PRIVATE TOURS",
+        "show_payment_icons": true,
+        "copyright_text": "ALL RIGHTS RESERVED.",
+        "privacy_label": "PRIVACY POLICY",
+        "privacy_link": "shopify://policies/privacy-policy",
+        "terms_label": "TERMS OF SERVICE",
+        "terms_link": "shopify://policies/terms-of-service"
+      }
+    }
+  },
+  "order": [
+    "global_navigation_xJr6UY",
+    "main",
+    "footer_9eJXGE"
+  ]
+}
