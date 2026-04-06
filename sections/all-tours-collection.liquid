@@ -79,6 +79,21 @@
             </p>
           </div>
         </section>
+
+        <section class="seo-copy seo-copy-cta">
+          <div class="seo-copy-inner">
+            <div class="seo-block seo-cta-block">
+              <h2>Not Sure Which Yunnan Route Fits You?</h2>
+              <p>
+                Tell us your travel dates, pace, and interests, and we’ll suggest a suitable Yunnan private itinerary based on your route, comfort level, and travel style.
+              </p>
+              <div class="seo-links seo-links-cta">
+                <a href="/pages/contact-us">Plan a Custom Yunnan Trip</a>
+                <a href="https://api.whatsapp.com/send/?phone=8613211685553&text&type=phone_number&app_absent=0" target="_blank" rel="noopener">Chat on WhatsApp</a>
+              </div>
+            </div>
+          </div>
+        </section>
       {% endif %}
 
       <div class="compact-grid" data-cols="{{ section.settings.desktop_cols }}">
@@ -178,6 +193,14 @@
                 </div>
                 <div class="product-info-row">
                   <span class="product-type">{{ product.type | default: 'Experience' }}</span>
+                  {% if product.metafields.custom.duration != blank %}
+                    <span class="sep">·</span>
+                    <span class="product-duration">{{ product.metafields.custom.duration.value }}</span>
+                  {% endif %}
+                  {% if product.metafields.custom.start_city != blank %}
+                    <span class="sep">·</span>
+                    <span class="product-start">{{ product.metafields.custom.start_city.value }}</span>
+                  {% endif %}
                 </div>
               </div>
             </a>
@@ -195,40 +218,52 @@
         <section class="seo-copy seo-copy-bottom">
           <div class="seo-copy-inner">
             <div class="seo-block">
-              <h2>Why Choose a Private Tour in Yunnan?</h2>
+              <h2>How to Choose the Right Yunnan Private Tour</h2>
               <p>
-                Yunnan is one of China’s most diverse regions, with major differences in landscape, altitude, culture, and travel pace from one destination to another. A private tour gives you the freedom to travel comfortably between places such as Kunming, Dali, Lijiang, and Shangri-La without being tied to a rigid group schedule. It is especially suitable for couples, families, small groups, and travelers who want a more personalized route, flexible hotel choices, and better control over daily sightseeing time.
+                The best Yunnan private tour depends on your available travel time, preferred pace, and the kind of experience you want. Some travelers choose a classic first-time route linking Kunming, Dali, Lijiang, and Shangri-La, while others prefer a deeper journey with slower pacing, extra nature stops, or luxury stays. This collection is designed to help you compare different route lengths and choose a private itinerary that fits your travel style.
               </p>
             </div>
 
             <div class="seo-block">
-              <h2>Top Destinations Included in Yunnan Private Tours</h2>
+              <h2>Best Yunnan Itinerary Lengths: 6, 8, or 10 Days</h2>
               <p>
-                Most travelers begin in Kunming and continue to Dali, Lijiang, and Shangri-La for a classic Yunnan route. Kunming offers a convenient gateway and relaxed urban pace. Dali is loved for Erhai Lake, old-town charm, and slow scenic stays. Lijiang combines heritage streets, mountain views, and access to Tiger Leaping Gorge. Shangri-La brings a different atmosphere altogether, with Tibetan culture, higher-altitude landscapes, and a more spiritual, remote character.
+                A 6-day Yunnan itinerary works well for first-time visitors who want to see the region’s essential highlights within a shorter schedule. An 8-day route is often the most balanced option, giving you enough time for Kunming, Dali, Lijiang, and Shangri-La without rushing too much. A 10-day or longer Yunnan private tour is better for travelers who want deeper pacing or additional destinations such as Lugu Lake, Tengchong, Yuanyang, or Xishuangbanna.
               </p>
             </div>
 
             <div class="seo-block">
-              <h2>Best Time to Visit Yunnan</h2>
+              <h2>Who These Private Tours Are Best For</h2>
               <p>
-                Yunnan can be visited year-round, but spring and autumn are especially popular for mild weather and clear scenery. Summer is green and vibrant, though some areas may see more rain. Winter is comfortable in cities such as Kunming and Dali, while higher-altitude destinations like Shangri-La require warmer layers. A private itinerary makes it easier to adjust your route according to the season, your comfort level, and the kind of experience you want.
+                Yunnan private tours are especially suitable for couples, families, senior travelers, photographers, honeymoon trips, and travelers who want flexible pacing instead of fixed group schedules. They also work well for visitors who want private transfers, smoother route planning across multiple cities, and more control over hotel style, sightseeing rhythm, and altitude comfort.
               </p>
             </div>
 
             <div class="seo-block">
-              <h2>Popular Private Tour Styles in Yunnan</h2>
+              <h2>Where to Start Your Yunnan Route</h2>
               <p>
-                Travelers choose Yunnan private tours for many different reasons. Some prefer classic sightseeing routes covering the region’s best-known cities. Others want luxury stays, photography-friendly pacing, honeymoon travel, family-friendly itineraries, or deeper cultural experiences with more flexibility. Because the distances and travel styles across Yunnan vary so much, private tours are often the easiest way to combine comfort, efficiency, and a more personal travel rhythm.
+                Many travelers begin in Kunming because of its stronger transport access and easy arrival pace, but some private routes can also start from Dali or Lijiang depending on your flights and overall plan. Choosing the right starting point helps reduce backtracking and makes your Yunnan itinerary more comfortable, especially for shorter trips or multi-city journeys.
               </p>
             </div>
 
+            <div class="seo-block seo-cta-block">
+              <h2>Need Help Comparing Yunnan Routes?</h2>
+              <p>
+                If you are not sure which itinerary length or route order fits your dates, we can recommend a more suitable private trip based on your pace, interests, and preferred level of comfort.
+              </p>
+              <div class="seo-links seo-links-cta">
+                <a href="/pages/bespoke-custom-travel">Ask for a Custom Itinerary</a>
+                <a href="https://api.whatsapp.com/send/?phone=8613211685553&text&type=phone_number&app_absent=0" target="_blank" rel="noopener">Chat on WhatsApp</a>
+              </div>
+            </div>
+
             <div class="seo-block">
-              <h2>Related Destinations</h2>
+              <h2>Explore Related Routes and Travel Planning</h2>
               <div class="seo-links">
-                <a href="/pages/dali">Dali Travel Guide</a>
-                <a href="/pages/lijiang">Lijiang Travel Guide</a>
-                <a href="/pages/shangri-la">Shangri-La Travel Guide</a>
+                <a href="/pages/dali">Dali Private Tours &amp; Travel Guide</a>
+                <a href="/pages/lijiang">Lijiang Private Tours &amp; Travel Guide</a>
+                <a href="/pages/shangri-la">Shangri-La Private Tours &amp; Travel Guide</a>
                 <a href="/blogs/travel-guides">Yunnan Travel Guides</a>
+                <a href="/pages/contact-us">Plan a Custom Yunnan Itinerary</a>
               </div>
             </div>
 
@@ -274,6 +309,20 @@
                 <summary>Do private tours in Yunnan include airport pickup?</summary>
                 <div class="faq-answer">
                   Most custom itineraries can include airport or railway station pickup as part of the travel arrangement, depending on your route and service plan.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Can you help me choose the best Yunnan itinerary for my dates?</summary>
+                <div class="faq-answer">
+                  Yes. If you tell us your travel dates, starting city, and interests, we can recommend a more suitable Yunnan route and pacing plan for your trip.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Can I contact you before booking to discuss route ideas?</summary>
+                <div class="faq-answer">
+                  Absolutely. You can contact us before booking to discuss route ideas, trip length, hotel style, or private transfer preferences through our contact page or WhatsApp.
                 </div>
               </details>
             </div>
@@ -331,6 +380,22 @@
               "acceptedAnswer": {
                 "@type": "Answer",
                 "text": "Most custom itineraries can include airport or railway station pickup as part of the travel arrangement, depending on your route and service plan."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can you help me choose the best Yunnan itinerary for my dates?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. If you tell us your travel dates, starting city, and interests, we can recommend a more suitable Yunnan route and pacing plan for your trip."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I contact you before booking to discuss route ideas?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Absolutely. You can contact us before booking to discuss route ideas, trip length, hotel style, or private transfer preferences through our contact page or WhatsApp."
               }
             }
           ]
@@ -503,6 +568,10 @@
     margin: 72px auto 0;
   }
 
+  #CollectionProductGrid-{{ section.id }} .seo-copy-cta{
+    margin: 0 auto 42px;
+  }
+
   #CollectionProductGrid-{{ section.id }} .seo-copy-inner{
     max-width: 980px;
     margin: 0 auto;
@@ -556,6 +625,31 @@
   #CollectionProductGrid-{{ section.id }} .seo-links a:hover{
     color:#fff;
     border-color: rgba(255,255,255,0.6);
+  }
+
+  #CollectionProductGrid-{{ section.id }} .seo-cta-block{
+    padding: 26px 28px;
+    border: 1px solid rgba(196,181,166,0.16);
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  }
+
+  #CollectionProductGrid-{{ section.id }} .seo-links-cta{
+    margin-top: 18px;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .seo-links-cta a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height: 42px;
+    padding: 0 16px;
+    border: 1px solid rgba(212,194,174,0.35);
+    background: rgba(255,255,255,0.02);
+    border-bottom: none;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .seo-links-cta a:hover{
+    background: rgba(255,255,255,0.04);
   }
 
   /* --- FAQ --- */
@@ -732,6 +826,14 @@
     letter-spacing:0.1em;
     text-transform:uppercase;
     margin-top: 5px;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:6px;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .product-info-row .sep{
+    opacity:0.5;
   }
 
   /* --- BADGE --- */
@@ -808,6 +910,10 @@
       font-size: 14px;
     }
 
+    #CollectionProductGrid-{{ section.id }} .seo-cta-block{
+      padding: 20px 18px;
+    }
+
     #CollectionProductGrid-{{ section.id }} .compact-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 26px 14px;
@@ -864,6 +970,7 @@
       margin-top: 8px;
       font-size: 9px;
       letter-spacing: 0.14em;
+      gap: 5px;
     }
 
     #CollectionProductGrid-{{ section.id }} .coll-meta-bar {
@@ -901,6 +1008,11 @@
 
     #CollectionProductGrid-{{ section.id }} .seo-copy h2{
       font-size: clamp(1.5rem, 7vw, 2rem);
+    }
+
+    #CollectionProductGrid-{{ section.id }} .seo-links-cta a{
+      width:100%;
+      justify-content:center;
     }
   }
 
