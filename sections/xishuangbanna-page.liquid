@@ -15,7 +15,7 @@
 
   .xb-header {
     text-align: center;
-    padding: 140px 20px 160px;
+    padding: 140px 20px 120px;
     max-width: 1000px;
     margin: 0 auto;
     position: relative;
@@ -62,6 +62,49 @@
     letter-spacing: 0.05em;
   }
 
+  .xb-header-actions {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 34px;
+  }
+
+  .xb-top-btn {
+    min-width: 210px;
+    padding: 14px 22px;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    transition: 0.3s ease;
+    border: 1px solid transparent;
+  }
+
+  .xb-top-btn.primary {
+    background: #d6b25e;
+    color: #111;
+    border-color: #d6b25e;
+  }
+
+  .xb-top-btn.primary:hover {
+    background: #e5c06d;
+    border-color: #e5c06d;
+  }
+
+  .xb-top-btn.whatsapp,
+  .xb-top-btn.secondary {
+    background: transparent;
+    color: #fff;
+    border-color: rgba(255,255,255,0.18);
+  }
+
+  .xb-top-btn.whatsapp:hover,
+  .xb-top-btn.secondary:hover {
+    border-color: rgba(214,178,94,0.5);
+    color: #d6b25e;
+  }
+
   .xb-section-eyebrow {
     display: block;
     color: #d6b25e;
@@ -92,6 +135,7 @@
   }
 
   .xb-info-section,
+  .xb-route-section,
   .xb-related-section,
   .xb-cta-section,
   .xb-faq-section {
@@ -99,14 +143,16 @@
     text-align: center;
   }
 
-  .xb-info-grid {
+  .xb-info-grid,
+  .xb-route-grid {
     margin-top: 48px;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 24px;
   }
 
-  .xb-info-card {
+  .xb-info-card,
+  .xb-route-card {
     background: rgba(255,255,255,0.02);
     border: 1px solid rgba(214,178,94,0.14);
     padding: 30px 28px;
@@ -114,7 +160,8 @@
     min-height: 100%;
   }
 
-  .xb-info-tag {
+  .xb-info-tag,
+  .xb-route-tag {
     display: block;
     color: #d6b25e;
     font-size: 10px;
@@ -123,7 +170,8 @@
     margin-bottom: 14px;
   }
 
-  .xb-info-heading {
+  .xb-info-heading,
+  .xb-route-heading {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.9rem;
     font-style: italic;
@@ -132,11 +180,38 @@
     color: #fff;
   }
 
-  .xb-info-desc {
+  .xb-info-desc,
+  .xb-route-desc {
     color: #b9b2ab;
     font-size: 13px;
     line-height: 1.85;
     letter-spacing: 0.02em;
+  }
+
+  .xb-route-link {
+    color: #d6b25e;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 2px;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 24px;
+  }
+
+  .xb-route-link .line,
+  .xb-inline-link .line,
+  .xb-related-link .line {
+    width: 30px;
+    height: 1px;
+    background: #d6b25e;
+    transition: 0.4s;
+  }
+
+  .xb-route-link:hover .line,
+  .xb-inline-link:hover .line,
+  .xb-related-link:hover .line {
+    width: 60px;
   }
 
   .xb-stories {
@@ -233,19 +308,6 @@
     flex-direction: column;
     gap: 8px;
     margin-top: 24px;
-  }
-
-  .xb-inline-link .line,
-  .xb-related-link .line {
-    width: 30px;
-    height: 1px;
-    background: #d6b25e;
-    transition: 0.4s;
-  }
-
-  .xb-inline-link:hover .line,
-  .xb-related-link:hover .line {
-    width: 60px;
   }
 
   .xb-related-grid {
@@ -346,12 +408,14 @@
     border-color: #e5c06d;
   }
 
+  .xb-cta-btn.whatsapp,
   .xb-cta-btn.secondary {
     background: transparent;
     color: #fff;
     border: 1px solid rgba(255,255,255,0.18);
   }
 
+  .xb-cta-btn.whatsapp:hover,
   .xb-cta-btn.secondary:hover {
     border-color: rgba(214,178,94,0.5);
     color: #d6b25e;
@@ -448,6 +512,19 @@
       line-height: 1.85;
     }
 
+    .xb-header-actions {
+      flex-direction: column;
+      align-items: stretch;
+      max-width: 420px;
+      margin: 30px auto 0;
+    }
+
+    .xb-top-btn {
+      min-width: 0;
+      width: 100%;
+      text-align: center;
+    }
+
     .xb-story-row,
     .xb-story-row.row-reverse {
       flex-direction: column;
@@ -466,6 +543,7 @@
     }
 
     .xb-info-grid,
+    .xb-route-grid,
     .xb-related-grid {
       grid-template-columns: 1fr;
     }
@@ -494,6 +572,7 @@
   {% assign story_blocks = section.blocks | where: 'type', 'story' %}
   {% assign related_blocks = section.blocks | where: 'type', 'related_tour' %}
   {% assign faq_blocks = section.blocks | where: 'type', 'faq_item' %}
+  {% assign whatsapp_url = section.settings.whatsapp_url | default: 'https://api.whatsapp.com/send/?phone=8613211685553&text&type=phone_number&app_absent=0' %}
 
   <div class="xb-container">
     <header class="xb-header">
@@ -508,6 +587,18 @@
           {{ section.settings.intro_text | newline_to_br }}
         </div>
       {% endif %}
+
+      <div class="xb-header-actions">
+        {% if section.settings.cta_primary_label != blank and section.settings.cta_primary_url != blank %}
+          <a href="{{ section.settings.cta_primary_url }}" class="xb-top-btn primary">{{ section.settings.cta_primary_label }}</a>
+        {% endif %}
+        {% if section.settings.whatsapp_label != blank and whatsapp_url != blank %}
+          <a href="{{ whatsapp_url }}" class="xb-top-btn whatsapp" target="_blank" rel="noopener">{{ section.settings.whatsapp_label }}</a>
+        {% endif %}
+        {% if section.settings.cta_secondary_label != blank and section.settings.cta_secondary_url != blank %}
+          <a href="{{ section.settings.cta_secondary_url }}" class="xb-top-btn secondary">{{ section.settings.cta_secondary_label }}</a>
+        {% endif %}
+      </div>
     </header>
 
     {% if info_blocks.size > 0 %}
@@ -539,6 +630,64 @@
         </div>
       </section>
     {% endif %}
+
+    <section class="xb-route-section">
+      <span class="xb-section-eyebrow">ROUTE PLANNING</span>
+      <h2 class="xb-section-title">Plan Xishuangbanna With the Right Next Step</h2>
+      <div class="xb-section-intro">
+        Use this page as a planning hub, then move into a broader Yunnan route, a more focused Xishuangbanna stay, or a custom trip request built around your travel dates, preferred pace, and tropical interests.
+      </div>
+
+      <div class="xb-route-grid">
+        <article class="xb-route-card">
+          <span class="xb-route-tag">WIDER YUNNAN</span>
+          <h3 class="xb-route-heading">Start With Yunnan Private Tours</h3>
+          <div class="xb-route-desc">
+            Compare broader routes that connect Xishuangbanna with Kunming, Pu’er, and other parts of Yunnan. This is the best next step if you are still deciding how much of southern Yunnan to include in one trip.
+          </div>
+          <a href="/collections/yunnan-private-tours" class="xb-route-link">
+            VIEW YUNNAN TOURS
+            <span class="line"></span>
+          </a>
+        </article>
+
+        <article class="xb-route-card">
+          <span class="xb-route-tag">TROPICAL STAY</span>
+          <h3 class="xb-route-heading">Focus on Xishuangbanna Private Tours</h3>
+          <div class="xb-route-desc">
+            If you already know you want a slower tropical stay, move directly into Xishuangbanna private tours built around rainforest atmosphere, warm-weather comfort, and flexible pacing.
+          </div>
+          <a href="/collections/xishuangbanna-private-tours" class="xb-route-link">
+            VIEW XISHUANGBANNA TOURS
+            <span class="line"></span>
+          </a>
+        </article>
+
+        <article class="xb-route-card">
+          <span class="xb-route-tag">MORE IDEAS</span>
+          <h3 class="xb-route-heading">Continue With Related Travel Guides</h3>
+          <div class="xb-route-desc">
+            Browse more Yunnan guides if you are still comparing destinations, timing, and route combinations before choosing a private itinerary.
+          </div>
+          <a href="/blogs/travel-guides" class="xb-route-link">
+            READ MORE GUIDES
+            <span class="line"></span>
+          </a>
+        </article>
+
+        <article class="xb-route-card">
+          <span class="xb-route-tag">CUSTOM PLANNING</span>
+          <h3 class="xb-route-heading">Ask for a Custom Southern Yunnan Route</h3>
+          <div class="xb-route-desc">
+            If you already know your dates or want help connecting Xishuangbanna with Pu’er, tea country, or a wider Yunnan journey, move straight into a custom planning conversation.
+          </div>
+          <a href="/pages/contact-information" class="xb-route-link">
+            REQUEST A CUSTOM TRIP
+            <span class="line"></span>
+          </a>
+        </article>
+      </div>
+    </section>
 
     {% if story_blocks.size > 0 %}
       <div class="xb-stories">
@@ -634,6 +783,9 @@
           {% if section.settings.cta_primary_label != blank and section.settings.cta_primary_url != blank %}
             <a href="{{ section.settings.cta_primary_url }}" class="xb-cta-btn primary">{{ section.settings.cta_primary_label }}</a>
           {% endif %}
+          {% if section.settings.whatsapp_label != blank and whatsapp_url != blank %}
+            <a href="{{ whatsapp_url }}" class="xb-cta-btn whatsapp" target="_blank" rel="noopener">{{ section.settings.whatsapp_label }}</a>
+          {% endif %}
           {% if section.settings.cta_secondary_label != blank and section.settings.cta_secondary_url != blank %}
             <a href="{{ section.settings.cta_secondary_url }}" class="xb-cta-btn secondary">{{ section.settings.cta_secondary_label }}</a>
           {% endif %}
@@ -719,9 +871,9 @@
 {
   "name": "Xishuangbanna Stories Pro",
   "settings": [
-    { "type": "text", "id": "main_title", "label": "主标题", "default": "Xishuangbanna Travel Guide" },
+    { "type": "text", "id": "main_title", "label": "主标题", "default": "Xishuangbanna Private Tours & Travel Guide" },
     { "type": "text", "id": "sub_title", "label": "副标题", "default": "TROPICAL YUNNAN" },
-    { "type": "textarea", "id": "intro_text", "label": "引言描述", "default": "Xishuangbanna reveals a warmer, greener, and more tropical side of Yunnan, where rainforest landscapes, Dai culture, tea traditions, and slower rhythms of travel create a completely different mood from the province’s northern highlands." },
+    { "type": "textarea", "id": "intro_text", "label": "引言描述", "default": "Plan your Xishuangbanna trip with practical travel tips and private tour ideas. Explore rainforest scenery, Dai culture, tea-country routes, and tropical stays with a slower southern Yunnan rhythm shaped around your travel style." },
 
     { "type": "text", "id": "info_section_eyebrow", "label": "实用信息区眉题", "default": "PLAN YOUR STAY" },
     { "type": "text", "id": "info_section_title", "label": "实用信息区标题", "default": "Know Xishuangbanna at a Glance" },
@@ -733,13 +885,15 @@
 
     { "type": "text", "id": "cta_eyebrow", "label": "CTA区眉题", "default": "PLAN YOUR PRIVATE TRIP" },
     { "type": "text", "id": "cta_title", "label": "CTA区标题", "default": "Turn This Guide Into a Real Journey" },
-    { "type": "textarea", "id": "cta_intro", "label": "CTA区简介", "default": "If Xishuangbanna feels like your kind of Yunnan, move from the guide into a private route shaped around tropical scenery, slower pacing, Dai culture, and southern Yunnan highlights." },
+    { "type": "textarea", "id": "cta_intro", "label": "CTA区简介", "default": "If Xishuangbanna feels like your kind of Yunnan, use this guide as a starting point and move into a private route shaped around tropical scenery, Dai culture, slower pacing, and southern Yunnan highlights." },
     { "type": "text", "id": "cta_box_title", "label": "CTA主标题", "default": "Plan a Private Trip to Xishuangbanna" },
     { "type": "textarea", "id": "cta_box_desc", "label": "CTA描述", "default": "Choose a ready-made route or start a custom southern Yunnan journey shaped around rainforest atmosphere, tea-country experiences, warm-weather comfort, and the places you most want to connect." },
     { "type": "text", "id": "cta_primary_label", "label": "主按钮文案", "default": "VIEW PRIVATE TOURS" },
     { "type": "text", "id": "cta_primary_url", "label": "主按钮链接", "default": "/collections/xishuangbanna-private-tours" },
+    { "type": "text", "id": "whatsapp_label", "label": "WhatsApp按钮文案", "default": "CHAT ON WHATSAPP" },
+    { "type": "text", "id": "whatsapp_url", "label": "WhatsApp链接", "default": "https://api.whatsapp.com/send/?phone=8613211685553&text&type=phone_number&app_absent=0" },
     { "type": "text", "id": "cta_secondary_label", "label": "副按钮文案", "default": "CONTACT US" },
-    { "type": "text", "id": "cta_secondary_url", "label": "副按钮链接", "default": "/pages/contact-us" },
+    { "type": "text", "id": "cta_secondary_url", "label": "副按钮链接", "default": "/pages/contact-information" },
 
     { "type": "text", "id": "faq_section_eyebrow", "label": "FAQ区眉题", "default": "FAQ" },
     { "type": "text", "id": "faq_section_title", "label": "FAQ区标题", "default": "Before You Go" },
@@ -831,7 +985,6 @@
             "description": "Ideal for travelers who enjoy tropical scenery, warm weather, slower travel, resort stays, cultural atmosphere, and a very different side of Yunnan from the classic highland route."
           }
         },
-
         {
           "type": "story",
           "settings": {
@@ -868,7 +1021,6 @@
             "button_label": "READ THE GUIDE"
           }
         },
-
         {
           "type": "related_tour",
           "settings": {
@@ -896,7 +1048,6 @@
             "button_label": "PLAN YOUR TRIP"
           }
         },
-
         {
           "type": "faq_item",
           "settings": {
@@ -937,6 +1088,13 @@
           "settings": {
             "question": "Who is Xishuangbanna best suited for?",
             "answer": "Xishuangbanna is especially well suited to travelers who enjoy tropical scenery, slower pacing, warm weather, Dai cultural atmosphere, tea-country experiences, and a softer side of Yunnan."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I chat on WhatsApp before I book anything?",
+            "answer": "Yes. You can message us on WhatsApp first if you want help comparing routes, checking travel pace, or deciding whether Xishuangbanna fits your wider Yunnan itinerary."
           }
         }
       ]
