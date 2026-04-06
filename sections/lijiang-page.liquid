@@ -15,7 +15,7 @@
 
   .lj-header {
     text-align: center;
-    padding: 120px 20px 140px;
+    padding: 120px 20px 120px;
     max-width: 1000px;
     margin: 0 auto;
     position: relative;
@@ -62,6 +62,49 @@
     letter-spacing: 0.05em;
   }
 
+  .lj-header-actions {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 34px;
+  }
+
+  .lj-top-btn {
+    min-width: 210px;
+    padding: 14px 22px;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    transition: 0.3s ease;
+    border: 1px solid transparent;
+  }
+
+  .lj-top-btn.primary {
+    background: #d4af37;
+    color: #111;
+    border-color: #d4af37;
+  }
+
+  .lj-top-btn.primary:hover {
+    background: #e3bf4e;
+    border-color: #e3bf4e;
+  }
+
+  .lj-top-btn.whatsapp,
+  .lj-top-btn.secondary {
+    background: transparent;
+    color: #fff;
+    border-color: rgba(255,255,255,0.18);
+  }
+
+  .lj-top-btn.whatsapp:hover,
+  .lj-top-btn.secondary:hover {
+    border-color: rgba(212,175,55,0.5);
+    color: #d4af37;
+  }
+
   .lj-section-eyebrow {
     display: block;
     color: #c4b5a6;
@@ -92,6 +135,7 @@
   }
 
   .lj-info-section,
+  .lj-route-section,
   .lj-related-section,
   .lj-cta-section,
   .lj-faq-section {
@@ -99,14 +143,16 @@
     text-align: center;
   }
 
-  .lj-info-grid {
+  .lj-info-grid,
+  .lj-route-grid {
     margin-top: 48px;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 24px;
   }
 
-  .lj-info-card {
+  .lj-info-card,
+  .lj-route-card {
     background: rgba(255,255,255,0.02);
     border: 1px solid rgba(196,181,166,0.12);
     padding: 30px 28px;
@@ -114,7 +160,9 @@
     min-height: 100%;
   }
 
-  .lj-info-tag {
+  .lj-info-tag,
+  .lj-route-tag,
+  .lj-related-tag {
     display: block;
     color: #d4af37;
     font-size: 10px;
@@ -123,7 +171,9 @@
     margin-bottom: 14px;
   }
 
-  .lj-info-heading {
+  .lj-info-heading,
+  .lj-route-heading,
+  .lj-related-heading {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.9rem;
     font-style: italic;
@@ -132,11 +182,41 @@
     color: #fff;
   }
 
-  .lj-info-desc {
+  .lj-info-desc,
+  .lj-route-desc,
+  .lj-related-desc {
     color: #b9b2ab;
     font-size: 13px;
     line-height: 1.85;
     letter-spacing: 0.02em;
+  }
+
+  .lj-route-link,
+  .lj-inline-link,
+  .lj-related-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 2px;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 24px;
+  }
+
+  .lj-route-link .line,
+  .lj-inline-link .line,
+  .lj-related-link .line {
+    width: 30px;
+    height: 1px;
+    background: #d4af37;
+    transition: 0.4s;
+  }
+
+  .lj-route-link:hover .line,
+  .lj-inline-link:hover .line,
+  .lj-related-link:hover .line {
+    width: 60px;
   }
 
   .lj-stories {
@@ -223,31 +303,6 @@
     font-weight: 300;
   }
 
-  .lj-inline-link,
-  .lj-related-link {
-    color: #fff;
-    text-decoration: none;
-    font-size: 11px;
-    letter-spacing: 2px;
-    display: inline-flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 24px;
-  }
-
-  .lj-inline-link .line,
-  .lj-related-link .line {
-    width: 30px;
-    height: 1px;
-    background: #d4af37;
-    transition: 0.4s;
-  }
-
-  .lj-inline-link:hover .line,
-  .lj-related-link:hover .line {
-    width: 60px;
-  }
-
   .lj-related-grid {
     margin-top: 48px;
     display: grid;
@@ -261,31 +316,6 @@
     border: 1px solid rgba(255,255,255,0.08);
     padding: 28px 24px;
     min-height: 100%;
-  }
-
-  .lj-related-tag {
-    display: block;
-    color: #d4af37;
-    font-size: 10px;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    margin-bottom: 14px;
-  }
-
-  .lj-related-heading {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.9rem;
-    font-style: italic;
-    font-weight: 300;
-    margin: 0 0 14px;
-    color: #fff;
-  }
-
-  .lj-related-desc {
-    color: #b9b2ab;
-    font-size: 13px;
-    line-height: 1.85;
-    letter-spacing: 0.02em;
   }
 
   .lj-cta-shell {
@@ -346,12 +376,14 @@
     border-color: #e3bf4e;
   }
 
+  .lj-cta-btn.whatsapp,
   .lj-cta-btn.secondary {
     background: transparent;
     color: #fff;
     border: 1px solid rgba(255,255,255,0.18);
   }
 
+  .lj-cta-btn.whatsapp:hover,
   .lj-cta-btn.secondary:hover {
     border-color: rgba(212,175,55,0.5);
     color: #d4af37;
@@ -461,8 +493,21 @@
     }
 
     .lj-info-grid,
+    .lj-route-grid,
     .lj-related-grid {
       grid-template-columns: 1fr;
+    }
+
+    .lj-header-actions {
+      flex-direction: column;
+      align-items: stretch;
+      margin-top: 28px;
+    }
+
+    .lj-top-btn {
+      min-width: 0;
+      width: 100%;
+      text-align: center;
     }
 
     .lj-cta-shell {
@@ -489,6 +534,7 @@
   {% assign story_blocks = section.blocks | where: 'type', 'story' %}
   {% assign related_blocks = section.blocks | where: 'type', 'related_tour' %}
   {% assign faq_blocks = section.blocks | where: 'type', 'faq_item' %}
+  {% assign whatsapp_url = section.settings.whatsapp_url | default: 'https://api.whatsapp.com/send/?phone=8613211685553&text&type=phone_number&app_absent=0' %}
 
   <div class="lj-container">
     <header class="lj-header">
@@ -503,6 +549,18 @@
           {{ section.settings.intro_text | newline_to_br }}
         </div>
       {% endif %}
+
+      <div class="lj-header-actions">
+        {% if section.settings.cta_primary_label != blank and section.settings.cta_primary_url != blank %}
+          <a href="{{ section.settings.cta_primary_url }}" class="lj-top-btn primary">{{ section.settings.cta_primary_label }}</a>
+        {% endif %}
+        {% if section.settings.whatsapp_label != blank and whatsapp_url != blank %}
+          <a href="{{ whatsapp_url }}" class="lj-top-btn whatsapp" target="_blank" rel="noopener">{{ section.settings.whatsapp_label }}</a>
+        {% endif %}
+        {% if section.settings.cta_secondary_label != blank and section.settings.cta_secondary_url != blank %}
+          <a href="{{ section.settings.cta_secondary_url }}" class="lj-top-btn secondary">{{ section.settings.cta_secondary_label }}</a>
+        {% endif %}
+      </div>
     </header>
 
     {% if info_blocks.size > 0 %}
@@ -534,6 +592,64 @@
         </div>
       </section>
     {% endif %}
+
+    <section class="lj-route-section">
+      <span class="lj-section-eyebrow">ROUTE PLANNING</span>
+      <h2 class="lj-section-title">Plan Lijiang With the Right Next Step</h2>
+      <div class="lj-section-intro">
+        Use this page as a planning hub, then move into a broader Yunnan route, a connected Shangri-La journey, or a custom trip request shaped around your dates, pace, and interests.
+      </div>
+
+      <div class="lj-route-grid">
+        <article class="lj-route-card">
+          <span class="lj-route-tag">CLASSIC YUNNAN</span>
+          <h3 class="lj-route-heading">Start With Yunnan Private Tours</h3>
+          <div class="lj-route-desc">
+            Compare broader routes that connect Lijiang with Kunming, Dali, and Shangri-La, then choose the itinerary length that fits your trip best.
+          </div>
+          <a href="/collections/yunnan-private-tours" class="lj-route-link">
+            Explore Yunnan Routes
+            <span class="line"></span>
+          </a>
+        </article>
+
+        <article class="lj-route-card">
+          <span class="lj-route-tag">NORTHWEST YUNNAN</span>
+          <h3 class="lj-route-heading">Pair Lijiang With Shangri-La</h3>
+          <div class="lj-route-desc">
+            Build a stronger northwest Yunnan route by combining Lijiang’s old-town rhythm with Tibetan highlands, monasteries, and alpine scenery.
+          </div>
+          <a href="/pages/shangri-la" class="lj-route-link">
+            Continue to Shangri-La
+            <span class="line"></span>
+          </a>
+        </article>
+
+        <article class="lj-route-card">
+          <span class="lj-route-tag">TRAVEL IDEAS</span>
+          <h3 class="lj-route-heading">Explore More Yunnan Guides</h3>
+          <div class="lj-route-desc">
+            Read more destination guides, route ideas, and planning articles before you decide how to connect Lijiang with the rest of your Yunnan journey.
+          </div>
+          <a href="/blogs/travel-guides" class="lj-route-link">
+            Browse Travel Guides
+            <span class="line"></span>
+          </a>
+        </article>
+
+        <article class="lj-route-card">
+          <span class="lj-route-tag">CUSTOM SUPPORT</span>
+          <h3 class="lj-route-heading">Request a Custom Lijiang Trip</h3>
+          <div class="lj-route-desc">
+            Need help deciding how many days to stay, whether to include Jade Dragon Snow Mountain, or how to connect Lijiang with Dali and Shangri-La?
+          </div>
+          <a href="/pages/contact-information" class="lj-route-link">
+            Plan a Custom Itinerary
+            <span class="line"></span>
+          </a>
+        </article>
+      </div>
+    </section>
 
     {% if story_blocks.size > 0 %}
       <div class="lj-stories">
@@ -629,6 +745,9 @@
           {% if section.settings.cta_primary_label != blank and section.settings.cta_primary_url != blank %}
             <a href="{{ section.settings.cta_primary_url }}" class="lj-cta-btn primary">{{ section.settings.cta_primary_label }}</a>
           {% endif %}
+          {% if section.settings.whatsapp_label != blank and whatsapp_url != blank %}
+            <a href="{{ whatsapp_url }}" class="lj-cta-btn whatsapp" target="_blank" rel="noopener">{{ section.settings.whatsapp_label }}</a>
+          {% endif %}
           {% if section.settings.cta_secondary_label != blank and section.settings.cta_secondary_url != blank %}
             <a href="{{ section.settings.cta_secondary_url }}" class="lj-cta-btn secondary">{{ section.settings.cta_secondary_label }}</a>
           {% endif %}
@@ -714,9 +833,9 @@
 {
   "name": "Lijiang Page Stories Pro",
   "settings": [
-    { "type": "text", "id": "main_title", "label": "主标题", "default": "Lijiang Travel Guide" },
+    { "type": "text", "id": "main_title", "label": "主标题", "default": "Lijiang Private Tours & Travel Guide" },
     { "type": "text", "id": "sub_title", "label": "副标题", "default": "BENEATH THE JADE PEAK" },
-    { "type": "textarea", "id": "intro_text", "label": "引言描述", "default": "Lijiang is one of Yunnan’s most iconic destinations, where snow mountain grandeur, old-town texture, and Naxi cultural heritage come together in one unforgettable setting." },
+    { "type": "textarea", "id": "intro_text", "label": "引言描述", "default": "Plan your Lijiang trip with practical travel tips and private tour ideas. Explore Jade Dragon Snow Mountain, Lijiang Old Town, and Naxi culture with a route shaped around scenic pacing, heritage, and northwest Yunnan highlights." },
 
     { "type": "text", "id": "info_section_eyebrow", "label": "实用信息区眉题", "default": "PLAN YOUR STAY" },
     { "type": "text", "id": "info_section_title", "label": "实用信息区标题", "default": "Know Lijiang at a Glance" },
@@ -733,8 +852,10 @@
     { "type": "textarea", "id": "cta_box_desc", "label": "CTA描述", "default": "Choose a ready-made route or start a custom Yunnan journey shaped around Jade Dragon Snow Mountain, Naxi heritage, old-town atmosphere, and the destinations you most want to connect." },
     { "type": "text", "id": "cta_primary_label", "label": "主按钮文案", "default": "VIEW PRIVATE TOURS" },
     { "type": "text", "id": "cta_primary_url", "label": "主按钮链接", "default": "/collections/lijiang-private-tours" },
-    { "type": "text", "id": "cta_secondary_label", "label": "副按钮文案", "default": "CONTACT US" },
-    { "type": "text", "id": "cta_secondary_url", "label": "副按钮链接", "default": "/pages/contact-us" },
+    { "type": "text", "id": "cta_secondary_label", "label": "副按钮文案", "default": "CUSTOM TRIP REQUEST" },
+    { "type": "text", "id": "cta_secondary_url", "label": "副按钮链接", "default": "/pages/contact-information" },
+    { "type": "text", "id": "whatsapp_label", "label": "WhatsApp按钮文案", "default": "CHAT ON WHATSAPP" },
+    { "type": "text", "id": "whatsapp_url", "label": "WhatsApp按钮链接", "default": "https://api.whatsapp.com/send/?phone=8613211685553&text&type=phone_number&app_absent=0" },
 
     { "type": "text", "id": "faq_section_eyebrow", "label": "FAQ区眉题", "default": "FAQ" },
     { "type": "text", "id": "faq_section_title", "label": "FAQ区标题", "default": "Before You Go" },
@@ -826,7 +947,6 @@
             "description": "Ideal for first-time Yunnan visitors, photographers, mountain lovers, culture-focused travelers, and anyone drawn to historic towns with a strong sense of place."
           }
         },
-
         {
           "type": "story",
           "settings": {
@@ -859,7 +979,6 @@
             "description": "See how Lijiang comes together as a full destination, from old-town atmosphere and snow mountain highlights to local pacing and nearby extensions."
           }
         },
-
         {
           "type": "related_tour",
           "settings": {
@@ -884,7 +1003,6 @@
             "description": "A longer Yunnan journey that expands beyond Lijiang to Lugu Lake and Shangri-La."
           }
         },
-
         {
           "type": "faq_item",
           "settings": {
@@ -925,6 +1043,13 @@
           "settings": {
             "question": "Who is Lijiang best suited for?",
             "answer": "Lijiang is especially well suited to first-time Yunnan visitors, couples, photographers, mountain lovers, and travelers who want a mix of old-town atmosphere, scenic beauty, and cultural depth."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I chat on WhatsApp before I book anything?",
+            "answer": "Yes. If you want help choosing between Lijiang, Shangri-La, Jade Dragon Snow Mountain, or a broader Yunnan route, you can contact us on WhatsApp before booking."
           }
         }
       ]
