@@ -15,7 +15,7 @@
 
   .dali-header {
     text-align: center;
-    padding: 120px 20px 140px;
+    padding: 120px 20px 120px;
     max-width: 1000px;
     margin: 0 auto;
     position: relative;
@@ -62,6 +62,49 @@
     letter-spacing: 0.05em;
   }
 
+  .dali-header-actions {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 34px;
+  }
+
+  .dali-top-btn {
+    min-width: 210px;
+    padding: 14px 22px;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    transition: 0.3s ease;
+    border: 1px solid transparent;
+  }
+
+  .dali-top-btn.primary {
+    background: #d4af37;
+    color: #111;
+    border-color: #d4af37;
+  }
+
+  .dali-top-btn.primary:hover {
+    background: #e3bf4e;
+    border-color: #e3bf4e;
+  }
+
+  .dali-top-btn.whatsapp,
+  .dali-top-btn.secondary {
+    background: transparent;
+    color: #fff;
+    border-color: rgba(255,255,255,0.18);
+  }
+
+  .dali-top-btn.whatsapp:hover,
+  .dali-top-btn.secondary:hover {
+    border-color: rgba(212,175,55,0.5);
+    color: #d4af37;
+  }
+
   .dali-section-eyebrow {
     display: block;
     color: #e2e8f0;
@@ -92,6 +135,7 @@
   }
 
   .dali-info-section,
+  .dali-route-section,
   .dali-related-section,
   .dali-cta-section,
   .dali-faq-section {
@@ -99,14 +143,16 @@
     text-align: center;
   }
 
-  .dali-info-grid {
+  .dali-info-grid,
+  .dali-route-grid {
     margin-top: 48px;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 24px;
   }
 
-  .dali-info-card {
+  .dali-info-card,
+  .dali-route-card {
     background: rgba(255,255,255,0.02);
     border: 1px solid rgba(226,232,240,0.12);
     padding: 30px 28px;
@@ -114,31 +160,12 @@
     min-height: 100%;
   }
 
-  .dali-info-tag {
-    display: block;
-    color: #d4af37;
-    font-size: 10px;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    margin-bottom: 14px;
-  }
-
-  .dali-info-heading {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.9rem;
-    font-style: italic;
-    font-weight: 300;
-    margin: 0 0 14px;
-    color: #fff;
-  }
-
-  .dali-info-desc {
-    color: #b9b2ab;
-    font-size: 13px;
-    line-height: 1.85;
-    letter-spacing: 0.02em;
-  }
-
+  .dali-info-tag,
+  .dali-route-tag,
+  .dali-info-heading,
+  .dali-route-heading,
+  .dali-info-desc,
+  .dali-route-desc,
   .dali-stories {
     max-width: 1400px;
     margin: 0 auto;
@@ -223,6 +250,7 @@
     font-weight: 300;
   }
 
+  .dali-route-link,
   .dali-inline-link,
   .dali-related-link {
     color: #fff;
@@ -235,6 +263,7 @@
     margin-top: 24px;
   }
 
+  .dali-route-link .line,
   .dali-inline-link .line,
   .dali-related-link .line {
     width: 30px;
@@ -243,6 +272,7 @@
     transition: 0.4s;
   }
 
+  .dali-route-link:hover .line,
   .dali-inline-link:hover .line,
   .dali-related-link:hover .line {
     width: 60px;
@@ -346,12 +376,14 @@
     border-color: #e3bf4e;
   }
 
+  .dali-cta-btn.whatsapp,
   .dali-cta-btn.secondary {
     background: transparent;
     color: #fff;
     border: 1px solid rgba(255,255,255,0.18);
   }
 
+  .dali-cta-btn.whatsapp:hover,
   .dali-cta-btn.secondary:hover {
     border-color: rgba(212,175,55,0.5);
     color: #d4af37;
@@ -460,8 +492,21 @@
     }
 
     .dali-info-grid,
+    .dali-route-grid,
     .dali-related-grid {
       grid-template-columns: 1fr;
+    }
+
+    .dali-header-actions {
+      flex-direction: column;
+      align-items: stretch;
+      margin-top: 28px;
+    }
+
+    .dali-top-btn {
+      min-width: 0;
+      width: 100%;
+      text-align: center;
     }
 
     .dali-cta-shell {
@@ -488,6 +533,7 @@
   {% assign story_blocks = section.blocks | where: 'type', 'story' %}
   {% assign related_blocks = section.blocks | where: 'type', 'related_tour' %}
   {% assign faq_blocks = section.blocks | where: 'type', 'faq_item' %}
+  {% assign whatsapp_url = section.settings.whatsapp_url | default: 'https://api.whatsapp.com/send/?phone=8613211685553&text&type=phone_number&app_absent=0' %}
 
   <div class="dali-container">
     <header class="dali-header">
@@ -502,6 +548,18 @@
           {{ section.settings.intro_text | newline_to_br }}
         </div>
       {% endif %}
+
+      <div class="dali-header-actions">
+        {% if section.settings.cta_primary_label != blank and section.settings.cta_primary_url != blank %}
+          <a href="{{ section.settings.cta_primary_url }}" class="dali-top-btn primary">{{ section.settings.cta_primary_label }}</a>
+        {% endif %}
+        {% if section.settings.whatsapp_label != blank and whatsapp_url != blank %}
+          <a href="{{ whatsapp_url }}" class="dali-top-btn whatsapp" target="_blank" rel="noopener">{{ section.settings.whatsapp_label }}</a>
+        {% endif %}
+        {% if section.settings.cta_secondary_label != blank and section.settings.cta_secondary_url != blank %}
+          <a href="{{ section.settings.cta_secondary_url }}" class="dali-top-btn secondary">{{ section.settings.cta_secondary_label }}</a>
+        {% endif %}
+      </div>
     </header>
 
     {% if info_blocks.size > 0 %}
@@ -533,6 +591,64 @@
         </div>
       </section>
     {% endif %}
+
+    <section class="dali-route-section">
+      <span class="dali-section-eyebrow">ROUTE PLANNING</span>
+      <h2 class="dali-section-title">Plan Dali With the Right Next Step</h2>
+      <div class="dali-section-intro">
+        Use this page as a planning hub, then move into a broader Yunnan route, connect Dali with Lijiang or Shangri-La, or start a custom trip shaped around Erhai Lake, village culture, and your travel pace.
+      </div>
+
+      <div class="dali-route-grid">
+        <article class="dali-route-card">
+          <span class="dali-route-tag">CLASSIC YUNNAN</span>
+          <h3 class="dali-route-heading">Start With Yunnan Private Tours</h3>
+          <div class="dali-route-desc">
+            Compare broader itineraries that connect Dali with Kunming, Lijiang, and Shangri-La, then choose the route length that fits your travel style best.
+          </div>
+          <a href="/collections/yunnan-private-tours" class="dali-route-link">
+            Explore Yunnan Routes
+            <span class="line"></span>
+          </a>
+        </article>
+
+        <article class="dali-route-card">
+          <span class="dali-route-tag">NORTHWEST YUNNAN</span>
+          <h3 class="dali-route-heading">Pair Dali With Lijiang</h3>
+          <div class="dali-route-desc">
+            Extend your Dali stay into a wider route that combines Erhai Lake, old-town rhythm, snow mountain scenery, and stronger northwest Yunnan contrast.
+          </div>
+          <a href="/pages/lijiang" class="dali-route-link">
+            Continue to Lijiang
+            <span class="line"></span>
+          </a>
+        </article>
+
+        <article class="dali-route-card">
+          <span class="dali-route-tag">TRAVEL IDEAS</span>
+          <h3 class="dali-route-heading">Explore More Yunnan Guides</h3>
+          <div class="dali-route-desc">
+            Read more destination guides, route ideas, and planning articles before deciding how to connect Dali with the rest of your Yunnan journey.
+          </div>
+          <a href="/blogs/travel-guides" class="dali-route-link">
+            Browse Travel Guides
+            <span class="line"></span>
+          </a>
+        </article>
+
+        <article class="dali-route-card">
+          <span class="dali-route-tag">CUSTOM SUPPORT</span>
+          <h3 class="dali-route-heading">Request a Custom Dali Trip</h3>
+          <div class="dali-route-desc">
+            Need help deciding how many days to stay, whether to circle Erhai, or how to connect Dali with Lijiang and Shangri-La in one smoother route?
+          </div>
+          <a href="/pages/contact-information" class="dali-route-link">
+            Plan a Custom Itinerary
+            <span class="line"></span>
+          </a>
+        </article>
+      </div>
+    </section>
 
     {% if story_blocks.size > 0 %}
       <div class="dali-stories">
@@ -627,6 +743,9 @@
         <div class="dali-cta-actions">
           {% if section.settings.cta_primary_label != blank and section.settings.cta_primary_url != blank %}
             <a href="{{ section.settings.cta_primary_url }}" class="dali-cta-btn primary">{{ section.settings.cta_primary_label }}</a>
+          {% endif %}
+          {% if section.settings.whatsapp_label != blank and whatsapp_url != blank %}
+            <a href="{{ whatsapp_url }}" class="dali-cta-btn whatsapp" target="_blank" rel="noopener">{{ section.settings.whatsapp_label }}</a>
           {% endif %}
           {% if section.settings.cta_secondary_label != blank and section.settings.cta_secondary_url != blank %}
             <a href="{{ section.settings.cta_secondary_url }}" class="dali-cta-btn secondary">{{ section.settings.cta_secondary_label }}</a>
@@ -733,7 +852,9 @@
     { "type": "text", "id": "cta_primary_label", "label": "主按钮文案", "default": "VIEW PRIVATE TOURS" },
     { "type": "text", "id": "cta_primary_url", "label": "主按钮链接", "default": "/collections/dali-private-tours" },
     { "type": "text", "id": "cta_secondary_label", "label": "副按钮文案", "default": "CONTACT US" },
-    { "type": "text", "id": "cta_secondary_url", "label": "副按钮链接", "default": "/pages/contact-us" },
+    { "type": "text", "id": "cta_secondary_url", "label": "副按钮链接", "default": "/pages/contact-information" },
+    { "type": "text", "id": "whatsapp_label", "label": "WhatsApp按钮文案", "default": "CHAT ON WHATSAPP" },
+    { "type": "text", "id": "whatsapp_url", "label": "WhatsApp按钮链接", "default": "https://api.whatsapp.com/send/?phone=8613211685553&text&type=phone_number&app_absent=0" },
 
     { "type": "text", "id": "faq_section_eyebrow", "label": "FAQ区眉题", "default": "FAQ" },
     { "type": "text", "id": "faq_section_title", "label": "FAQ区标题", "default": "Before You Go" },
@@ -924,6 +1045,13 @@
           "settings": {
             "question": "Who is Dali best suited for?",
             "answer": "Dali is especially well suited to couples, slow-travel lovers, first-time Yunnan visitors, photographers, and travelers who want a gentler pace with strong scenery and cultural depth."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I chat on WhatsApp before I book anything?",
+            "answer": "Yes. If you want help choosing the right Dali route, connecting Erhai Lake with nearby destinations, or planning a custom Yunnan trip, you can contact us on WhatsApp before booking."
           }
         }
       ]
