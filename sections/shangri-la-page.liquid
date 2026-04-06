@@ -15,7 +15,7 @@
 
   .sr-header {
     text-align: center;
-    padding: 140px 20px 160px;
+    padding: 140px 20px 120px;
     max-width: 1000px;
     margin: 0 auto;
     position: relative;
@@ -62,6 +62,58 @@
     letter-spacing: 0.05em;
   }
 
+  .sr-header-actions {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 34px;
+  }
+
+  .sr-top-btn {
+    min-width: 210px;
+    padding: 14px 22px;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    transition: 0.3s ease;
+    border: 1px solid transparent;
+  }
+
+  .sr-top-btn.primary {
+    background: #d4af37;
+    color: #111;
+    border-color: #d4af37;
+  }
+
+  .sr-top-btn.primary:hover {
+    background: #e3bf4e;
+    border-color: #e3bf4e;
+  }
+
+  .sr-top-btn.whatsapp {
+    background: transparent;
+    color: #fff;
+    border-color: rgba(255,255,255,0.18);
+  }
+
+  .sr-top-btn.whatsapp:hover {
+    border-color: rgba(212,175,55,0.5);
+    color: #d4af37;
+  }
+
+  .sr-top-btn.secondary {
+    background: transparent;
+    color: #fff;
+    border-color: rgba(255,255,255,0.18);
+  }
+
+  .sr-top-btn.secondary:hover {
+    border-color: rgba(212,175,55,0.5);
+    color: #d4af37;
+  }
+
   .sr-section-eyebrow {
     display: block;
     color: #d4af37;
@@ -92,6 +144,7 @@
   }
 
   .sr-info-section,
+  .sr-route-section,
   .sr-related-section,
   .sr-cta-section,
   .sr-faq-section {
@@ -106,7 +159,8 @@
     gap: 24px;
   }
 
-  .sr-info-card {
+  .sr-info-card,
+  .sr-route-card {
     background: rgba(255,255,255,0.02);
     border: 1px solid rgba(212,175,55,0.14);
     padding: 30px 28px;
@@ -114,7 +168,8 @@
     min-height: 100%;
   }
 
-  .sr-info-tag {
+  .sr-info-tag,
+  .sr-route-tag {
     display: block;
     color: #d4af37;
     font-size: 10px;
@@ -123,7 +178,8 @@
     margin-bottom: 14px;
   }
 
-  .sr-info-heading {
+  .sr-info-heading,
+  .sr-route-heading {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.9rem;
     font-style: italic;
@@ -132,11 +188,41 @@
     color: #fff;
   }
 
-  .sr-info-desc {
+  .sr-info-desc,
+  .sr-route-desc {
     color: #b9b2ab;
     font-size: 13px;
     line-height: 1.85;
     letter-spacing: 0.02em;
+  }
+
+  .sr-route-grid {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .sr-route-link {
+    color: #d4af37;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 2px;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 24px;
+  }
+
+  .sr-route-link .line {
+    width: 30px;
+    height: 1px;
+    background: #d4af37;
+    transition: 0.4s;
+  }
+
+  .sr-route-link:hover .line {
+    width: 60px;
   }
 
   .sr-stories {
@@ -346,6 +432,17 @@
     border-color: #e3bf4e;
   }
 
+  .sr-cta-btn.whatsapp {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.18);
+  }
+
+  .sr-cta-btn.whatsapp:hover {
+    border-color: rgba(212,175,55,0.5);
+    color: #d4af37;
+  }
+
   .sr-cta-btn.secondary {
     background: transparent;
     color: #fff;
@@ -436,7 +533,7 @@
     }
 
     .sr-header {
-      padding: 90px 20px 110px;
+      padding: 90px 20px 90px;
     }
 
     .sr-main-title {
@@ -446,6 +543,19 @@
     .sr-intro-text {
       font-size: 14px;
       line-height: 1.85;
+    }
+
+    .sr-header-actions,
+    .sr-cta-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .sr-top-btn,
+    .sr-cta-btn {
+      min-width: 0;
+      width: 100%;
+      text-align: center;
     }
 
     .sr-story-row,
@@ -466,23 +576,13 @@
     }
 
     .sr-info-grid,
+    .sr-route-grid,
     .sr-related-grid {
       grid-template-columns: 1fr;
     }
 
     .sr-cta-shell {
       padding: 34px 22px;
-    }
-
-    .sr-cta-actions {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .sr-cta-btn {
-      min-width: 0;
-      width: 100%;
-      text-align: center;
     }
   }
 </style>
@@ -494,6 +594,7 @@
   {% assign story_blocks = section.blocks | where: 'type', 'story' %}
   {% assign related_blocks = section.blocks | where: 'type', 'related_tour' %}
   {% assign faq_blocks = section.blocks | where: 'type', 'faq_item' %}
+  {% assign whatsapp_url = section.settings.whatsapp_url | default: 'https://api.whatsapp.com/send/?phone=8613211685553&text&type=phone_number&app_absent=0' %}
 
   <div class="sr-container">
     <header class="sr-header">
@@ -508,6 +609,18 @@
           {{ section.settings.intro_text | newline_to_br }}
         </div>
       {% endif %}
+
+      <div class="sr-header-actions">
+        {% if section.settings.cta_primary_label != blank and section.settings.cta_primary_url != blank %}
+          <a href="{{ section.settings.cta_primary_url }}" class="sr-top-btn primary">{{ section.settings.cta_primary_label }}</a>
+        {% endif %}
+        {% if section.settings.whatsapp_label != blank and whatsapp_url != blank %}
+          <a href="{{ whatsapp_url }}" class="sr-top-btn whatsapp" target="_blank" rel="noopener">{{ section.settings.whatsapp_label }}</a>
+        {% endif %}
+        {% if section.settings.cta_secondary_label != blank and section.settings.cta_secondary_url != blank %}
+          <a href="{{ section.settings.cta_secondary_url }}" class="sr-top-btn secondary">{{ section.settings.cta_secondary_label }}</a>
+        {% endif %}
+      </div>
     </header>
 
     {% if info_blocks.size > 0 %}
@@ -539,6 +652,64 @@
         </div>
       </section>
     {% endif %}
+
+    <section class="sr-route-section">
+      <span class="sr-section-eyebrow">ROUTE PLANNING</span>
+      <h2 class="sr-section-title">Plan Shangri-La With the Right Next Step</h2>
+      <div class="sr-section-intro">
+        Use this page as a planning hub, then move into a broader Yunnan route, a more detailed destination guide, or a custom trip request built around your dates, altitude comfort, and travel pace.
+      </div>
+
+      <div class="sr-route-grid">
+        <article class="sr-route-card">
+          <span class="sr-route-tag">CLASSIC ROUTE</span>
+          <h3 class="sr-route-heading">Start With Yunnan Private Tours</h3>
+          <div class="sr-route-desc">
+            Compare broader routes that combine Shangri-La with Kunming, Dali, and Lijiang. This is the best next step if you are still deciding how much of Yunnan to include in one trip.
+          </div>
+          <a href="/collections/yunnan-private-tours" class="sr-route-link">
+            VIEW YUNNAN TOURS
+            <span class="line"></span>
+          </a>
+        </article>
+
+        <article class="sr-route-card">
+          <span class="sr-route-tag">NORTHWEST YUNNAN</span>
+          <h3 class="sr-route-heading">Pair Shangri-La With Lijiang</h3>
+          <div class="sr-route-desc">
+            Many travelers combine Shangri-La with Lijiang and Tiger Leaping Gorge. This route works especially well if you want culture, mountain scenery, and a smoother step up in altitude.
+          </div>
+          <a href="/pages/lijiang" class="sr-route-link">
+            EXPLORE LIJIANG
+            <span class="line"></span>
+          </a>
+        </article>
+
+        <article class="sr-route-card">
+          <span class="sr-route-tag">MORE IDEAS</span>
+          <h3 class="sr-route-heading">Continue With Related Travel Guides</h3>
+          <div class="sr-route-desc">
+            Browse more Yunnan guides if you are still comparing destinations, timing, and route combinations before choosing a private itinerary.
+          </div>
+          <a href="/blogs/travel-guides" class="sr-route-link">
+            READ MORE GUIDES
+            <span class="line"></span>
+          </a>
+        </article>
+
+        <article class="sr-route-card">
+          <span class="sr-route-tag">CUSTOM PLANNING</span>
+          <h3 class="sr-route-heading">Ask for a Custom Shangri-La Route</h3>
+          <div class="sr-route-desc">
+            If you already know your dates or need help balancing altitude, transport, and hotel style, move straight into a custom planning conversation.
+          </div>
+          <a href="/pages/contact-information" class="sr-route-link">
+            REQUEST A CUSTOM TRIP
+            <span class="line"></span>
+          </a>
+        </article>
+      </div>
+    </section>
 
     {% if story_blocks.size > 0 %}
       <div class="sr-stories">
@@ -634,6 +805,9 @@
           {% if section.settings.cta_primary_label != blank and section.settings.cta_primary_url != blank %}
             <a href="{{ section.settings.cta_primary_url }}" class="sr-cta-btn primary">{{ section.settings.cta_primary_label }}</a>
           {% endif %}
+          {% if section.settings.whatsapp_label != blank and whatsapp_url != blank %}
+            <a href="{{ whatsapp_url }}" class="sr-cta-btn whatsapp" target="_blank" rel="noopener">{{ section.settings.whatsapp_label }}</a>
+          {% endif %}
           {% if section.settings.cta_secondary_label != blank and section.settings.cta_secondary_url != blank %}
             <a href="{{ section.settings.cta_secondary_url }}" class="sr-cta-btn secondary">{{ section.settings.cta_secondary_label }}</a>
           {% endif %}
@@ -719,9 +893,9 @@
 {
   "name": "Shangri-La Page Stories ",
   "settings": [
-    { "type": "text", "id": "main_title", "label": "主标题", "default": "Shangri-La Travel Guide" },
+    { "type": "text", "id": "main_title", "label": "主标题", "default": "Shangri-La Private Tours & Travel Guide" },
     { "type": "text", "id": "sub_title", "label": "副标题", "default": "THE LOST HORIZON" },
-    { "type": "textarea", "id": "intro_text", "label": "引言描述", "default": "Shangri-La reveals a higher, quieter, and more spiritual side of Yunnan, where Tibetan culture, sacred monasteries, alpine forests, and wide plateau skies shape every journey." },
+    { "type": "textarea", "id": "intro_text", "label": "引言描述", "default": "Plan your Shangri-La trip with a practical mix of travel tips and private tour ideas. Explore Songzanlin Monastery, Pudacuo, Dukezong, Napa Lake, and Meili Snow Mountain with a route shaped around altitude comfort, scenic pacing, and your travel style." },
 
     { "type": "text", "id": "info_section_eyebrow", "label": "实用信息区眉题", "default": "PLAN YOUR STAY" },
     { "type": "text", "id": "info_section_title", "label": "实用信息区标题", "default": "Know Shangri-La at a Glance" },
@@ -733,13 +907,15 @@
 
     { "type": "text", "id": "cta_eyebrow", "label": "CTA区眉题", "default": "PLAN YOUR PRIVATE TRIP" },
     { "type": "text", "id": "cta_title", "label": "CTA区标题", "default": "Turn This Guide Into a Real Journey" },
-    { "type": "textarea", "id": "cta_intro", "label": "CTA区简介", "default": "If Shangri-La feels like the missing piece of your Yunnan route, start from the guide and move straight into a private itinerary." },
+    { "type": "textarea", "id": "cta_intro", "label": "CTA区简介", "default": "If Shangri-La feels like the missing piece of your Yunnan route, use this guide as a starting point and move straight into a private itinerary." },
     { "type": "text", "id": "cta_box_title", "label": "CTA主标题", "default": "Plan a Private Trip to Shangri-La" },
     { "type": "textarea", "id": "cta_box_desc", "label": "CTA描述", "default": "Choose a ready-made route or start a custom Yunnan plan shaped around altitude comfort, culture, scenic pacing, and your preferred travel style." },
     { "type": "text", "id": "cta_primary_label", "label": "主按钮文案", "default": "VIEW PRIVATE TOURS" },
     { "type": "text", "id": "cta_primary_url", "label": "主按钮链接", "default": "/collections/shangri-la-private-tours" },
+    { "type": "text", "id": "whatsapp_label", "label": "WhatsApp按钮文案", "default": "CHAT ON WHATSAPP" },
+    { "type": "text", "id": "whatsapp_url", "label": "WhatsApp链接", "default": "https://api.whatsapp.com/send/?phone=8613211685553&text&type=phone_number&app_absent=0" },
     { "type": "text", "id": "cta_secondary_label", "label": "副按钮文案", "default": "CUSTOM TRIP REQUEST" },
-    { "type": "text", "id": "cta_secondary_url", "label": "副按钮链接", "default": "/pages/contact-us" },
+    { "type": "text", "id": "cta_secondary_url", "label": "副按钮链接", "default": "/pages/contact-information" },
 
     { "type": "text", "id": "faq_section_eyebrow", "label": "FAQ区眉题", "default": "FAQ" },
     { "type": "text", "id": "faq_section_title", "label": "FAQ区标题", "default": "Before You Go" },
@@ -927,6 +1103,13 @@
           "settings": {
             "question": "Is altitude something I should plan for in Shangri-La?",
             "answer": "Yes. Because Shangri-La is higher than many other Yunnan destinations, a slower pace and a thoughtful route can make the trip more comfortable, especially for first-time visitors."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I chat on WhatsApp before I book anything?",
+            "answer": "Yes. If you want help choosing between Shangri-La, Lijiang, Meili Snow Mountain, or a broader Yunnan route, you can contact us on WhatsApp before booking."
           }
         }
       ]
