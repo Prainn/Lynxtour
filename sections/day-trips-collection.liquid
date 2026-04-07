@@ -1,4 +1,4 @@
-<div class="luxury-collection-wrapper" id="CollectionProductGrid">
+﻿<div class="luxury-collection-wrapper" id="CollectionProductGrid">
 
   <header class="coll-hero-compact">
     <div class="hero-bg">
@@ -15,7 +15,7 @@
         <div class="subtitle-wrap">
           <span class="coll-subtitle">
             {% if collection.handle == 'yunnan-private-day-trips' %}
-              SHORT PRIVATE JOURNEYS, DEEPER LOCAL DISCOVERY
+              PRIVATE DAY TOURS ACROSS YUNNAN
             {% else %}
               SHORT PRIVATE JOURNEYS, DEEPER LOCAL DISCOVERY
             {% endif %}
@@ -38,7 +38,7 @@
         {% elsif collection.handle == 'yunnan-private-day-trips' %}
           <div class="coll-desc-wrap">
             <div class="coll-desc">
-              Discover Yunnan through flexible private day trips from Kunming and beyond, with curated local routes, private transport, and a more comfortable travel pace.
+              Private day trips across Yunnan with flexible pacing and local-led experiences, suitable for travelers based in Kunming, Dali, Lijiang, or Shangri-La.
             </div>
           </div>
         {% endif %}
@@ -56,7 +56,7 @@
       <div class="meta-right">
         <span class="meta-location">
           {% if collection.handle == 'yunnan-private-day-trips' %}
-            KUNMING · YUNNAN
+            KUNMING • DALI • LIJIANG • SHANGRI-LA
           {% else %}
             Kunming, Yunnan
           {% endif %}
@@ -69,10 +69,10 @@
       {% if collection.handle == 'yunnan-private-day-trips' and paginate.current_page == 1 %}
         <section class="seo-copy seo-copy-top">
           <div class="seo-copy-inner">
-            <p class="seo-eyebrow">PRIVATE DAY TOURS IN YUNNAN</p>
-            <h2>Curated Yunnan Private Day Trips with Flexible, Local-Led Experiences</h2>
+            <p class="seo-eyebrow">YUNNAN PRIVATE DAY TRIPS</p>
+            <h2>Curated Private Day Tours Across Yunnan</h2>
             <p>
-              Our Yunnan private day trips are designed for travelers who want a deeper local experience without committing to a multi-day itinerary. Whether you are staying in Kunming, planning a short escape to nearby highlights, or adding a day excursion before a longer Yunnan journey, this collection brings together carefully selected private tours with flexible pacing, more comfort, and a more personal way to explore.
+              This collection brings together private day tours in Yunnan designed for flexible pacing, local-led experiences, and smooth logistics. Some day trips start from Kunming, while others start from Dali, Lijiang, or Shangri-La depending on the route, making it easier to choose experiences that match where you are based.
             </p>
           </div>
         </section>
@@ -82,7 +82,7 @@
         {% for product in collection.products %}
           {% liquid
             assign adult_variant_keywords = 'solo journey|double share|three person private group|adult|adult pricing|2 guests|3 guests|two guests|three guests|private tour' | split: '|'
-            assign excluded_keywords = 'children pricing|child|children|kid|kids|infant|baby|toddler|single room supplement|room supplement|single supplement|supplement|add-on|addon|upgrade|custom|extra bed|surcharge|儿童|小童|婴儿' | split: '|'
+            assign excluded_keywords = 'children pricing|child|children|kid|kids|infant|baby|toddler|single room supplement|room supplement|single supplement|supplement|add-on|addon|upgrade|custom|extra bed|surcharge|鍎跨|灏忕|濠村効' | split: '|'
 
             assign collection_display_price = blank
             assign valid_main_variant_count = 0
@@ -193,14 +193,14 @@
             <div class="seo-block">
               <h2>Why Choose a Private Day Trip in Yunnan?</h2>
               <p>
-                Private day trips are one of the easiest ways to experience Yunnan more comfortably, especially if you are based in Kunming or have limited time. Compared with fixed group tours, a private day trip gives you more control over pace, pick-up timing, sightseeing rhythm, and the overall travel experience. It is especially suitable for couples, families, small groups, and travelers who want a smoother, more personalized day out.
+                Private day tours in Yunnan offer a more personal way to explore without switching hotels every night. Compared with fixed group formats, private trips give you better control over timing, pacing, and daily focus, with local support that adapts to your interests and travel style.
               </p>
             </div>
 
             <div class="seo-block">
-              <h2>Popular Day Trip Experiences from Kunming</h2>
+              <h2>Day Trip Ideas in Kunming, Dali, Lijiang, and Shangri-La</h2>
               <p>
-                Many travelers begin with classic day excursions from Kunming, including cultural landmarks, natural scenery, ethnic heritage sites, and nearby old towns. Depending on your interests, a Yunnan private day trip can focus on landscape photography, local history, food discovery, cultural immersion, or a more relaxed scenic escape. This makes day trips an ideal option for first-time visitors as well as repeat travelers looking for a more tailored experience.
+                Across Yunnan, day trips can focus on old towns, mountain scenery, lakeside landscapes, cultural heritage, food discovery, or lighter nature walks. Whether you are planning Kunming day trips, Dali day trips, Lijiang day trips, or Shangri-La day trips, this collection helps you compare routes in one place.
               </p>
             </div>
 
@@ -214,7 +214,7 @@
             <div class="seo-block">
               <h2>Best Time for Day Trips in Yunnan</h2>
               <p>
-                Yunnan can be explored throughout the year, but spring and autumn are especially popular for clear weather and comfortable temperatures. Summer often brings greener scenery, while winter can be pleasant for day outings around Kunming and other lower-altitude areas. Choosing a private day trip makes it easier to adjust timing and route choices based on weather, energy level, and the type of experience you want.
+                Yunnan works well year-round, with spring and autumn often preferred for balanced weather and visibility. Summer brings greener landscapes, while winter can be crisp and photogenic in many areas. A private format makes it easier to adjust route timing by season, weather, and energy level.
               </p>
             </div>
 
@@ -224,6 +224,7 @@
                 <a href="/collections/yunnan-private-tours">Yunnan Private Tours</a>
                 <a href="/collections/dali-private-tours">Dali Private Tours</a>
                 <a href="/collections/lijiang-private-tours">Lijiang Private Tours</a>
+                <a href="/collections/shangri-la-private-tours">Shangri-La Private Tours</a>
                 <a href="/blogs/travel-guides">Yunnan Travel Guides</a>
               </div>
             </div>
@@ -239,9 +240,9 @@
               </details>
 
               <details class="faq-item">
-                <summary>Do these day trips usually start from Kunming?</summary>
+                <summary>Where do these Yunnan day trips depart from?</summary>
                 <div class="faq-answer">
-                  Many of them do, especially for travelers staying in Kunming. Exact departure arrangements depend on the specific route and product setup.
+                  Departure city depends on the route. Some day trips start from Kunming, while others start from Dali, Lijiang, or Shangri-La. Please check each product page for exact departure details.
                 </div>
               </details>
 
@@ -291,10 +292,10 @@
             },
             {
               "@type": "Question",
-              "name": "Do these day trips usually start from Kunming?",
+              "name": "Where do these Yunnan day trips depart from?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Many of them do, especially for travelers staying in Kunming. Exact departure arrangements depend on the specific route and product setup."
+                "text": "Departure city depends on the route. Some day trips start from Kunming, while others start from Dali, Lijiang, or Shangri-La. Please check each product page for exact departure details."
               }
             },
             {
@@ -738,7 +739,7 @@
   }
 
   #CollectionProductGrid .faq-item[open] summary::after {
-    content: '−';
+    content: '鈭?;
   }
 
   #CollectionProductGrid .faq-answer {
@@ -988,3 +989,4 @@ document.addEventListener('DOMContentLoaded', function() {
   items.forEach(item => observer.observe(item));
 });
 </script>
+

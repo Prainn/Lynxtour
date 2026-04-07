@@ -106,6 +106,15 @@
     endcase
   endif
 
+  if request.page_type == 'collection' and collection.handle == 'yunnan-private-day-trips'
+    if current_page > 1
+      assign seo_title = 'Yunnan Private Day Trips | Page ' | append: current_page | append: ' | Lynxtour'
+    else
+      assign seo_title = 'Yunnan Private Day Trips | Lynxtour'
+    endif
+    assign seo_description = 'Discover Yunnan private day trips and day tours in Kunming, Dali, Lijiang, and Shangri-La with flexible pacing and local-led private experiences.'
+  endif
+
   assign seo_share_image = blank
   if request.page_type == 'collection' and collection.image != blank
     assign seo_share_image = collection.image | image_url: width: 1200 | prepend: 'https:'
