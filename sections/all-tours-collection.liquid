@@ -34,7 +34,7 @@
         {% if collection.description != blank %}
           <div class="coll-desc-wrap">
             <div class="coll-desc">
-              {{ collection.description | strip_html | truncatewords: 26 }}
+              {{ collection.description | strip_html }}
             </div>
           </div>
         {% elsif collection.handle == 'yunnan-private-tours' %}

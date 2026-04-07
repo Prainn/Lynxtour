@@ -43,7 +43,7 @@
           </div>
         {% elsif collection.description != blank %}
           <div class="coll-desc-wrap">
-            <div class="coll-desc">{{ collection.description | strip_html | truncatewords: 26 }}</div>
+            <div class="coll-desc">{{ collection.description | strip_html }}</div>
           </div>
         {% endif %}
       </div>
