@@ -1050,8 +1050,8 @@
   /* =========================
      Final responsive
      ========================= */
-  .ota-page-heading {
-  margin-bottom: 26px;
+.ota-page-heading {
+  margin-bottom: 20px;
 }
 
 .ota-page-kicker {
@@ -1070,6 +1070,52 @@
   line-height: 1.2;
   font-weight: 800;
   letter-spacing: 0.01em;
+}
+
+.ota-page-intro {
+  max-width: 760px;
+  margin-top: 14px;
+}
+
+.ota-page-intro p {
+  margin: 0 0 6px;
+  color: #d6d3d1;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.ota-page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.ota-page-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 16px;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.18);
+  color: #fff;
+  transition: 0.2s ease;
+}
+
+.ota-page-btn.primary {
+  background: var(--gold);
+  color: #111;
+  border-color: var(--gold);
+}
+
+.ota-page-btn.primary:hover {
+  filter: brightness(1.05);
+}
+
+.ota-page-btn.secondary:hover {
+  border-color: rgba(255,255,255,0.34);
+  background: rgba(255,255,255,0.03);
 }
 
 .ota-sidebar-title {
@@ -1165,6 +1211,14 @@
   .ota-page-title {
     font-size: 26px;
     line-height: 1.25;
+  }
+
+  .ota-page-actions {
+    flex-direction: column;
+  }
+
+  .ota-page-btn {
+    width: 100%;
   }
 
   .ota-header {
@@ -1432,13 +1486,23 @@
 }
 </style>
 
+{% assign is_flagship_yunnan_route = false %}
+{% if product.handle == 'kunming-dali-lijiang-shangri-la-8-day-private-tour' %}
+  {% assign is_flagship_yunnan_route = true %}
+{% endif %}
+
 <div class="ota-wrapper" data-dot-style="outline" id="lx-ota-form">
   <div class="ota-container">
 
     <div class="ota-main-config">
   <div class="ota-page-heading">
-    <p class="ota-page-kicker">Lynxtour Private Tour</p>
-    <h1 class="ota-page-title">{{ product.title }}</h1>
+    <p class="ota-page-kicker">{% if is_flagship_yunnan_route %}Classic Yunnan Route{% else %}Lynxtour Private Tour{% endif %}</p>
+    <h1 class="ota-page-title">{% if is_flagship_yunnan_route %}8-Day Kunming, Dali, Lijiang &amp; Shangri-La Private Tour{% else %}{{ product.title }}{% endif %}</h1>
+    {% if is_flagship_yunnan_route %}
+      <div class="ota-page-intro">
+        <p>See Yunnan’s classic highlights in one smooth private route, from Kunming and Dali to Lijiang and Shangri-La.</p>
+      </div>
+    {% endif %}
   </div>
 
   <div class="ota-header">
@@ -1545,14 +1609,18 @@
 
       <div id="CustomTourView" class="custom-tour-view">
         <span class="custom-icon">✨</span>
-        <h3 class="custom-title">Bespoke custom itinerary</h3>
+        <h3 class="custom-title">{% if is_flagship_yunnan_route %}Can This Yunnan Itinerary Be Customized?{% else %}Bespoke custom itinerary{% endif %}</h3>
         <p class="custom-desc">
-          If the preset routes don’t fit your needs, our travel designers can tailor a trip just for you.<br>
-          Including route planning, hotel upgrades, and special activity arrangements.
+          {% if is_flagship_yunnan_route %}
+            Yes. This route can be adjusted around your travel dates, hotel style, pace, and special interests. If you want more time in Dali, a slower stay in Lijiang, or a different start city, we can reshape the itinerary for you.
+          {% else %}
+            If the preset routes don’t fit your needs, our travel designers can tailor a trip just for you.<br>
+            Including route planning, hotel upgrades, and special activity arrangements.
+          {% endif %}
         </p>
-        <a href="/pages/contact-us" class="btn-contact-custom">Contact a travel advisor</a>
+        <a href="/pages/contact-us" class="btn-contact-custom">{% if is_flagship_yunnan_route %}Customize this 8-day Yunnan itinerary{% else %}Contact a travel advisor{% endif %}</a>
         <a href="tel:0871-63218099" class="btn-contact-custom">Call hotline 0871-63218099</a>
-        <a href="https://wa.me/13211685553" target="_blank" class="btn-contact-custom">Message on WhatsApp</a>
+        <a href="https://wa.me/8613211685553" target="_blank" class="btn-contact-custom">{% if is_flagship_yunnan_route %}WhatsApp for Dates &amp; Pricing{% else %}Message on WhatsApp{% endif %}</a>
       </div>
 
       <div class="ota-footer">

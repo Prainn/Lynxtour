@@ -34,14 +34,29 @@
         {% if collection.description != blank %}
           <div class="coll-desc-wrap">
             <div class="coll-desc">
-              {{ collection.description | strip_html }}
+              {% if collection.handle == 'yunnan-private-tours' %}
+                Compare the best private tours in Yunnan, from classic first-time routes to slower multi-city journeys.
+                <br>
+                Choose a 6, 8, or 10-day itinerary, or ask us to tailor one around your dates, pace, and travel style.
+              {% else %}
+                {{ collection.description | strip_html }}
+              {% endif %}
             </div>
           </div>
         {% elsif collection.handle == 'yunnan-private-tours' %}
           <div class="coll-desc-wrap">
             <div class="coll-desc">
-              Explore Yunnan with fully private tours tailored to your pace, interests, and travel dates. Discover Kunming, Dali, Lijiang, and Shangri-La with flexible itineraries and local support.
+              Compare the best private tours in Yunnan, from classic first-time routes to slower multi-city journeys.
+              <br>
+              Choose a 6, 8, or 10-day itinerary, or ask us to tailor one around your dates, pace, and travel style.
             </div>
+          </div>
+        {% endif %}
+
+        {% if collection.handle == 'yunnan-private-tours' %}
+          <div class="coll-hero-actions">
+            <a href="#CollectionGrid-{{ section.id }}" class="coll-hero-btn primary">Compare Yunnan Routes</a>
+            <a href="/pages/bespoke-custom-travel" class="coll-hero-btn secondary">Plan a Custom Yunnan Trip</a>
           </div>
         {% endif %}
       </div>
@@ -73,19 +88,19 @@
         <section class="seo-copy seo-copy-top">
           <div class="seo-copy-inner">
             <p class="seo-eyebrow">PRIVATE YUNNAN ITINERARIES</p>
-            <h2>Custom Yunnan Private Tours Designed Around Your Pace</h2>
-            <p>
-              Our Yunnan private tours are designed for travelers who want flexibility, comfort, and a deeper experience of Southwest China. From Kunming and Dali to Lijiang and Shangri-La, each journey can be tailored to your interests, travel rhythm, and preferred level of comfort. Whether you are planning a scenic cultural escape, a luxury honeymoon, or a multi-city family trip, this collection brings together our most rewarding private tour options in Yunnan.
-            </p>
+              <h2>Best First-Time Yunnan Itinerary</h2>
+              <p>
+                For most first-time visitors, the strongest starting route is Kunming, Dali, Lijiang, and Shangri-La. It combines city arrival ease, lakeside scenery, old-town atmosphere, snow mountain views, and Tibetan highland culture in one trip.
+              </p>
           </div>
         </section>
 
         <section class="seo-copy seo-copy-cta">
           <div class="seo-copy-inner">
             <div class="seo-block seo-cta-block">
-              <h2>Not Sure Which Yunnan Route Fits You?</h2>
+              <h2>Which Yunnan Route Fits Your Travel Style?</h2>
               <p>
-                Tell us your travel dates, pace, and interests, and we’ll suggest a suitable Yunnan private itinerary based on your route, comfort level, and travel style.
+                Choose a classic route if you want Yunnan’s best-known highlights in one smooth journey. Choose a slower or longer route if you care more about photography, local culture, luxury stays, or extra nature time between destinations.
               </p>
               <div class="seo-links seo-links-cta">
                 <a href="/pages/contact-us">Plan a Custom Yunnan Trip</a>
@@ -96,7 +111,7 @@
         </section>
       {% endif %}
 
-      <div class="compact-grid" data-cols="{{ section.settings.desktop_cols }}">
+      <div class="compact-grid" data-cols="{{ section.settings.desktop_cols }}" id="CollectionGrid-{{ section.id }}">
         {% for product in collection.products %}
           {% liquid
   assign excluded_keywords = 'single room supplement|room supplement|single supplement|supplement|add-on|addon|upgrade|custom|extra bed|surcharge' | split: '|'
@@ -218,23 +233,23 @@
         <section class="seo-copy seo-copy-bottom">
           <div class="seo-copy-inner">
             <div class="seo-block">
-              <h2>How to Choose the Right Yunnan Private Tour</h2>
+              <h2>How Many Days Do You Need for a Yunnan Private Tour?</h2>
               <p>
-                The best Yunnan private tour depends on your available travel time, preferred pace, and the kind of experience you want. Some travelers choose a classic first-time route linking Kunming, Dali, Lijiang, and Shangri-La, while others prefer a deeper journey with slower pacing, extra nature stops, or luxury stays. This collection is designed to help you compare different route lengths and choose a private itinerary that fits your travel style.
+                A 6-day route works for first-time visitors who want the essential highlights. An 8-day itinerary offers the best balance of comfort and coverage, while 10 days or more gives you room for slower pacing or extra stops such as Lugu Lake, Tengchong, or Xishuangbanna.
               </p>
             </div>
 
             <div class="seo-block">
-              <h2>Best Yunnan Itinerary Lengths: 6, 8, or 10 Days</h2>
+              <h2>Which Yunnan Route Fits Your Travel Style?</h2>
               <p>
-                A 6-day Yunnan itinerary works well for first-time visitors who want to see the region’s essential highlights within a shorter schedule. An 8-day route is often the most balanced option, giving you enough time for Kunming, Dali, Lijiang, and Shangri-La without rushing too much. A 10-day or longer Yunnan private tour is better for travelers who want deeper pacing or additional destinations such as Lugu Lake, Tengchong, Yuanyang, or Xishuangbanna.
+                Choose a classic route if you want Yunnan’s best-known highlights in one smooth journey. Choose a slower or longer route if you care more about photography, local culture, luxury stays, or extra nature time between destinations.
               </p>
             </div>
 
             <div class="seo-block">
-              <h2>Who These Private Tours Are Best For</h2>
+              <h2>Best First-Time Yunnan Itinerary</h2>
               <p>
-                Yunnan private tours are especially suitable for couples, families, senior travelers, photographers, honeymoon trips, and travelers who want flexible pacing instead of fixed group schedules. They also work well for visitors who want private transfers, smoother route planning across multiple cities, and more control over hotel style, sightseeing rhythm, and altitude comfort.
+                For most first-time visitors, the strongest starting route is Kunming, Dali, Lijiang, and Shangri-La. It combines city arrival ease, lakeside scenery, old-town atmosphere, snow mountain views, and Tibetan highland culture in one trip.
               </p>
             </div>
 
@@ -248,10 +263,10 @@
             <div class="seo-block seo-cta-block">
               <h2>Need Help Comparing Yunnan Routes?</h2>
               <p>
-                If you are not sure which itinerary length or route order fits your dates, we can recommend a more suitable private trip based on your pace, interests, and preferred level of comfort.
+                Tell us your dates, pace, and travel style and we can recommend the route length and city sequence that fits best.
               </p>
               <div class="seo-links seo-links-cta">
-                <a href="/pages/bespoke-custom-travel">Ask for a Custom Itinerary</a>
+                <a href="/pages/bespoke-custom-travel">Plan a custom Yunnan itinerary</a>
                 <a href="https://api.whatsapp.com/send/?phone=8613211685553&text&type=phone_number&app_absent=0" target="_blank" rel="noopener">Chat on WhatsApp</a>
               </div>
             </div>
@@ -259,11 +274,11 @@
             <div class="seo-block">
               <h2>Explore Related Routes and Travel Planning</h2>
               <div class="seo-links">
-                <a href="/pages/dali">Dali Private Tours &amp; Travel Guide</a>
-                <a href="/pages/lijiang">Lijiang Private Tours &amp; Travel Guide</a>
-                <a href="/pages/shangri-la">Shangri-La Private Tours &amp; Travel Guide</a>
-                <a href="/blogs/travel-guides">Yunnan Travel Guides</a>
-                <a href="/pages/contact-us">Plan a Custom Yunnan Itinerary</a>
+                <a href="/collections/dali-private-tours">See Dali private tours</a>
+                <a href="/collections/lijiang-private-tours">Browse Lijiang private tours</a>
+                <a href="/collections/shangri-la-private-tours">Explore Shangri-La private tours</a>
+                <a href="/products/kunming-dali-lijiang-shangri-la-8-day-private-tour">View our 8-day Yunnan private tour</a>
+                <a href="/pages/bespoke-custom-travel">Plan a custom Yunnan itinerary</a>
               </div>
             </div>
 
@@ -465,6 +480,42 @@
   #CollectionProductGrid-{{ section.id }} .hero-content{
     max-width: 920px;
     margin: 0 auto;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .coll-hero-actions{
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-top: 22px;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .coll-hero-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height: 42px;
+    padding: 0 16px;
+    text-decoration:none;
+    border: 1px solid rgba(255,255,255,0.18);
+    color:#fff;
+    transition: .25s ease;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .coll-hero-btn.primary{
+    background:#d4af37;
+    border-color:#d4af37;
+    color:#111;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .coll-hero-btn.primary:hover{
+    background:#e3bf4e;
+    border-color:#e3bf4e;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .coll-hero-btn.secondary:hover{
+    border-color: rgba(255,255,255,0.34);
+    background: rgba(255,255,255,0.03);
   }
 
   #CollectionProductGrid-{{ section.id }} .coll-subtitle{
@@ -880,6 +931,10 @@
       padding: 0 20px;
     }
 
+    #CollectionProductGrid-{{ section.id }} .coll-hero-actions{
+      margin-top: 18px;
+    }
+
     #CollectionProductGrid-{{ section.id }} .coll-title {
       font-size: clamp(2rem, 8vw, 3.2rem);
       line-height: 1.05;
@@ -1013,6 +1068,10 @@
     #CollectionProductGrid-{{ section.id }} .seo-links-cta a{
       width:100%;
       justify-content:center;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .coll-hero-btn{
+      width:100%;
     }
   }
 

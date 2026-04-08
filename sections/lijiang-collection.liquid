@@ -55,6 +55,42 @@
     padding: 0 18px;
   }
 
+  .coll-hero-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 22px;
+  }
+
+  .coll-hero-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 16px;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.18);
+    color: #fff;
+    transition: 0.25s ease;
+  }
+
+  .coll-hero-btn.primary {
+    background: #d4af37;
+    border-color: #d4af37;
+    color: #111;
+  }
+
+  .coll-hero-btn.primary:hover {
+    background: #e3bf4e;
+    border-color: #e3bf4e;
+  }
+
+  .coll-hero-btn.secondary:hover {
+    border-color: rgba(255,255,255,0.34);
+    background: rgba(255,255,255,0.03);
+  }
+
   .subtitle-wrap {
     margin-bottom: 6px;
   }
@@ -125,6 +161,17 @@
     line-height: 1.9;
     margin: 0 0 18px;
     letter-spacing: 0.01em;
+  }
+
+  .copy-richtext a {
+    color: #e7d6bf;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(231,214,191,0.28);
+  }
+
+  .copy-richtext a:hover {
+    color: #fff;
+    border-color: rgba(255,255,255,0.45);
   }
 
   /* --- FAQ Accordion --- */
@@ -556,6 +603,10 @@
       padding: 0 20px;
     }
 
+    .coll-hero-actions {
+      margin-top: 18px;
+    }
+
     .coll-title {
       font-size: clamp(2rem, 8vw, 3.2rem);
       line-height: 1.05;
@@ -675,6 +726,10 @@
     .collection-faq-block .faq-item:hover {
       transform: translateY(-2px);
     }
+
+    .coll-hero-btn {
+      width: 100%;
+    }
   }
 
   @media (max-width: 768px) {
@@ -766,12 +821,21 @@
         {% if is_lijiang_private_tours %}
           <div class="coll-desc-wrap">
             <div class="coll-desc">
-              Discover private tours in Lijiang designed around ancient town culture, mountain scenery, Naxi heritage, and slower journeys through northwest Yunnan.
+              Explore Lijiang with a private itinerary built around old-town atmosphere, mountain scenery, and Naxi heritage.
+              <br>
+              Compare shorter Lijiang stays with wider routes linking Dali, Shangri-La, and beyond.
             </div>
           </div>
         {% elsif collection.description != blank %}
           <div class="coll-desc-wrap">
             <div class="coll-desc">{{ collection.description | strip_html }}</div>
+          </div>
+        {% endif %}
+
+        {% if is_lijiang_private_tours %}
+          <div class="coll-hero-actions">
+            <a href="#CollectionGrid" class="coll-hero-btn primary">Compare Lijiang Routes</a>
+            <a href="/pages/bespoke-custom-travel" class="coll-hero-btn secondary">Plan a Custom Lijiang Trip</a>
           </div>
         {% endif %}
       </div>
@@ -801,19 +865,16 @@
       {% if is_lijiang_private_tours and paginate.current_page == 1 %}
         <section class="collection-copy-block collection-intro-block">
           <div class="collection-copy-inner">
-            <h2 class="copy-heading">Private journeys through Lijiang</h2>
+            <h2 class="copy-heading">Why Choose a Private Tour in Lijiang?</h2>
             <div class="copy-richtext">
-              <p>Lijiang is one of the most iconic destinations in Yunnan, known for its old town atmosphere, snow mountain landscapes, Naxi culture, and its easy connection to places such as Dali, Shangri-La, and Lugu Lake. For many travelers, it is both a highlight in itself and an ideal base for a wider journey through northwest Yunnan.</p>
-
-              <p>Our Lijiang private tours are designed for travelers who value flexibility, comfort, and a more personal pace. Whether you want to explore Lijiang Old Town, visit Jade Dragon Snow Mountain, discover nearby villages, or combine Lijiang with other classic Yunnan destinations, a private tour allows you to shape the trip around your own interests, timing, and travel style.</p>
-
-              <p>This collection brings together private Lijiang tour ideas ranging from shorter cultural routes to multi-day journeys that connect Lijiang with Dali, Shangri-La, and beyond. It is ideal for couples, families, small private groups, and travelers looking for a more curated Yunnan experience.</p>
+              <p>A private tour in Lijiang gives you more freedom to balance old-town walks, scenic viewpoints, and day trips at your own pace. It works especially well for travelers who want culture, photography, and a more comfortable way to connect Lijiang with nearby destinations.</p>
+              <p><a href="/pages/lijiang">See our Lijiang travel guide</a>, <a href="/blogs/travel-guides/jade-dragon-snow-mountain-guide">Explore Jade Dragon Snow Mountain ideas</a>, or <a href="/pages/bespoke-custom-travel">Plan a custom Lijiang itinerary</a>.</p>
             </div>
           </div>
         </section>
       {% endif %}
 
-      <div class="compact-grid">
+      <div class="compact-grid" id="CollectionGrid">
         {% for product in collection.products %}
           {% liquid
   assign included_main_keywords = 'independent group of' | split: '|'
@@ -939,9 +1000,19 @@
       {% if is_lijiang_private_tours and paginate.current_page == 1 %}
         <section class="collection-copy-block collection-why-block">
           <div class="collection-copy-inner narrow">
-            <h2 class="copy-heading">Why choose a private tour in Lijiang?</h2>
+            <h2 class="copy-heading">Lijiang in 2 Days or 3 Days?</h2>
             <div class="copy-richtext">
-              <p>A private tour in Lijiang offers more than convenience. It gives you the freedom to explore the old town, mountain viewpoints, cultural landmarks, and nearby regions at a pace that suits you. Instead of following a fixed group schedule, you can spend more time where it matters most, travel more comfortably between destinations, and adapt the journey to your interests, whether that means heritage, scenery, photography, food, or a wider Yunnan route.</p>
+              <p>A 2-day Lijiang stay is enough for the old town and the main city highlights. A 3-day itinerary is better if you also want Jade Dragon Snow Mountain, a slower cultural pace, or a stronger base before continuing toward Shangri-La.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="collection-copy-block collection-outro-block">
+          <div class="collection-copy-inner narrow">
+            <h2 class="copy-heading">Can You Combine Lijiang with Shangri-La?</h2>
+            <div class="copy-richtext">
+              <p>Yes. Lijiang and Shangri-La are one of Yunnan’s strongest route pairs. Lijiang gives you heritage and mountain access, while Shangri-La adds Tibetan culture, monasteries, and a more dramatic highland atmosphere.</p>
+              <p><a href="/pages/shangri-la">Compare Lijiang and Shangri-La routes</a> or <a href="/products/kunming-dali-lijiang-shangri-la-8-day-private-tour">View our 8-day Yunnan private tour</a>.</p>
             </div>
           </div>
         </section>
@@ -1083,14 +1154,6 @@
         }
         </script>
 
-        <section class="collection-copy-block collection-outro-block">
-          <div class="collection-copy-inner narrow">
-            <h2 class="copy-heading">Explore Lijiang tour ideas with Lynxtour</h2>
-            <div class="copy-richtext">
-              <p>If you are planning a trip to northwest Yunnan, this collection is designed to help you compare different Lijiang private tour styles more easily. From shorter cultural stays to longer multi-destination routes, Lynxtour offers private tour ideas that can be tailored around comfort, pace, and the places you most want to experience.</p>
-            </div>
-          </div>
-        </section>
       {% endif %}
 
     {% endpaginate %}

@@ -2,6 +2,10 @@
 {% assign dynamic_title = product.metafields.custom.custom_flipbook_title.value %}
 {% assign dynamic_content = product.metafields.custom.custom_flipbook_content | metafield_tag %}
 {% assign dynamic_images = product.metafields.custom.custom_flipbook_images.value %}
+{% assign is_flagship_yunnan_route = false %}
+{% if product.handle == 'kunming-dali-lijiang-shangri-la-8-day-private-tour' %}
+  {% assign is_flagship_yunnan_route = true %}
+{% endif %}
 
 <!-- 如果没有动态数据，则回退使用主题编辑器里的默认设置 -->
 {% assign final_title = dynamic_title | default: section.settings.title %}
@@ -25,6 +29,22 @@
         <div class="mag-rich-content-wrap">
           <div class="mag-rich-content" id="mag-rich-{{ section.id }}">
             {{ final_content }}
+            {% if is_flagship_yunnan_route %}
+              <div class="mag-supporting-notes" aria-label="Supporting trip information">
+                <section class="mag-supporting-note">
+                  <h3>Who This 8-Day Yunnan Tour Is Best For</h3>
+                  <p>This route is best for first-time visitors who want Yunnan’s classic highlights in one trip. It suits couples, families, and small private groups looking for a balanced journey with culture, scenery, and comfortable travel between major stops.</p>
+                </section>
+                <section class="mag-supporting-note">
+                  <h3>Why Choose 8 Days Instead of 6?</h3>
+                  <p>An 8-day itinerary gives you more breathing room than a shorter route. You get time for Kunming, Dali, Lijiang, and Shangri-La without rushing every stop, which usually makes the trip feel smoother and more rewarding.</p>
+                </section>
+                <section class="mag-supporting-note">
+                  <h3>Can This Yunnan Itinerary Be Customized?</h3>
+                  <p>Yes. This route can be adjusted around your travel dates, hotel style, pace, and special interests. If you want more time in Dali, a slower stay in Lijiang, or a different start city, we can reshape the itinerary for you.</p>
+                </section>
+              </div>
+            {% endif %}
           </div>
 
           <button
@@ -222,6 +242,31 @@
 
   .mag-long-{{ section.id }} .mag-rich-content p:last-child {
     margin-bottom: 0;
+  }
+
+  .mag-long-{{ section.id }} .mag-supporting-notes {
+    margin-top: 28px;
+    padding-top: 10px;
+  }
+
+  .mag-long-{{ section.id }} .mag-supporting-note {
+    margin: 0 0 22px;
+  }
+
+  .mag-long-{{ section.id }} .mag-supporting-note:last-child {
+    margin-bottom: 0;
+  }
+
+  .mag-long-{{ section.id }} .mag-supporting-note h3 {
+    margin: 0 0 10px;
+    color: var(--text-main);
+    font-size: 20px;
+    line-height: 1.3;
+    font-weight: 500;
+  }
+
+  .mag-long-{{ section.id }} .mag-supporting-note p {
+    margin: 0;
   }
 
   .mag-long-{{ section.id }} .mag-rich-content strong,
@@ -536,6 +581,18 @@
       line-height: 1.8;
       padding-right: 0;
       max-height: 420px;
+    }
+
+    .mag-long-{{ section.id }} .mag-supporting-notes {
+      margin-top: 24px;
+    }
+
+    .mag-long-{{ section.id }} .mag-supporting-note {
+      margin-bottom: 18px;
+    }
+
+    .mag-long-{{ section.id }} .mag-supporting-note h3 {
+      font-size: 18px;
     }
 
     .mag-long-{{ section.id }} .mag-rich-content:not(.is-expanded)::after {
