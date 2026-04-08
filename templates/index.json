@@ -103,10 +103,10 @@
         "button_link": "#dest-section",
         "button_text_2": "Plan a Custom Trip",
         "button_link_2": "shopify://pages/bespoke-custom-travel",
-        "hero_eyebrow": "Yunnan Private Travel Brand",
-        "main_title": "Lynxtour",
-        "sub_title": "Yunnan Private Tours, Day Trips & Charter Services",
-        "brand_intro": "Lynxtour is a Yunnan private tours brand specializing in bespoke journeys, day trips, and charter services across Kunming, Dali, Lijiang, Shangri-La, and beyond."
+        "hero_eyebrow": "Yunnan Private Travel",
+        "main_title": "Yunnan Private Tours",
+        "sub_title": "Plan private tours across Yunnan with flexible itineraries, local support, and routes shaped around your pace.",
+        "brand_intro": "From Dali and Lijiang to Shangri-La and Kunming, start with a classic route or build a custom trip."
       }
     },
     "destinations": {
@@ -208,6 +208,18 @@
       "name": "Brand Features",
       "settings": {
         "main_title": "Why Travel with us",
+        "intro_heading_1": "Popular Yunnan Routes for First-Time Visitors",
+        "intro_body_1": "Not sure where to begin? Start with the classic Yunnan route through Kunming, Dali, Lijiang, and Shangri-La. It is the easiest way to see the province’s best-known highlights with a comfortable pace and fewer planning headaches.",
+        "intro_heading_2": "Why Choose a Private Tour in Yunnan",
+        "intro_body_2": "A private tour gives you more control over pace, hotel style, route length, and daily stops. It is the best fit for travelers who want flexibility, smoother logistics, and a trip shaped around their own interests instead of a fixed group schedule.",
+        "link_label_1": "Browse Yunnan private tours",
+        "link_url_1": "shopify://collections/yunnan-private-tours",
+        "link_label_2": "See Dali private tours",
+        "link_url_2": "shopify://collections/dali-private-tours",
+        "link_label_3": "Explore Lijiang travel guide",
+        "link_url_3": "shopify://pages/lijiang",
+        "link_label_4": "Plan a custom Yunnan trip",
+        "link_url_4": "shopify://pages/bespoke-custom-travel",
         "columns_desktop": 3,
         "icon_size": 60
       }

@@ -129,6 +129,47 @@
     assign seo_description = 'Discover Yunnan private day trips and day tours in Kunming, Dali, Lijiang, and Shangri-La with flexible pacing and local-led private experiences.'
   endif
 
+  if request.page_type == 'index'
+    assign seo_title = 'Yunnan Private Tours, Day Trips & Custom Travel | Lynxtour'
+    assign seo_description = 'Plan private tours in Yunnan with local experts. Explore Dali, Lijiang, Shangri-La and Kunming with custom itineraries, day trips and charter services.'
+  elsif request.page_type == 'collection'
+    case collection.handle
+      when 'yunnan-private-tours'
+        if current_page > 1
+          assign seo_title = 'Yunnan Private Tours & Custom Itineraries | Page ' | append: current_page | append: ' | Lynxtour'
+        else
+          assign seo_title = 'Yunnan Private Tours & Custom Itineraries | Lynxtour'
+        endif
+        assign seo_description = 'Compare Yunnan private tours from 6 to 10 days and beyond. Visit Kunming, Dali, Lijiang and Shangri-La with flexible private itineraries and local support.'
+      when 'dali-private-tours'
+        if current_page > 1
+          assign seo_title = 'Dali Private Tours | Custom Dali Itineraries | Page ' | append: current_page | append: ' | Lynxtour'
+        else
+          assign seo_title = 'Dali Private Tours | Custom Dali Itineraries | Lynxtour'
+        endif
+        assign seo_description = 'Explore Dali private tours with Erhai Lake, Dali Old Town, Xizhou and Cangshan. Compare flexible private itineraries and combine Dali with Lijiang or Shangri-La.'
+      when 'lijiang-private-tours'
+        if current_page > 1
+          assign seo_title = 'Lijiang Private Tours | Custom Lijiang Itineraries | Page ' | append: current_page | append: ' | Lynxtour'
+        else
+          assign seo_title = 'Lijiang Private Tours | Custom Lijiang Itineraries | Lynxtour'
+        endif
+        assign seo_description = 'Compare Lijiang private tours with Jade Dragon Snow Mountain, Lijiang Old Town and northwest Yunnan routes. Plan a custom Lijiang itinerary with local support.'
+    endcase
+  elsif request.page_type == 'page'
+    case page.handle
+      when 'dali'
+        assign seo_title = 'Dali Travel Guide: Best Time, Itinerary & Things to Do | Lynxtour'
+        assign seo_description = 'Plan a trip to Dali with tips on the best time to visit, how many days to stay, top attractions, and how to combine Dali with Lijiang or Shangri-La.'
+      when 'lijiang'
+        assign seo_title = 'Lijiang Travel Guide: Best Time, Itinerary & Top Things to Do | Lynxtour'
+        assign seo_description = 'Plan your Lijiang trip with advice on the best time to visit, how many days to stay, top attractions, and how to combine Lijiang with Shangri-La or Dali.'
+    endcase
+  elsif request.page_type == 'product' and product.handle == 'kunming-dali-lijiang-shangri-la-8-day-private-tour'
+    assign seo_title = '8-Day Yunnan Private Tour: Kunming, Dali, Lijiang & Shangri-La | Lynxtour'
+    assign seo_description = 'Discover Yunnan’s classic 8-day private tour through Kunming, Dali, Lijiang and Shangri-La. Flexible pacing, local support, and a customizable route for first-time visitors.'
+  endif
+
   assign seo_share_image = blank
   if request.page_type == 'collection' and collection.image != blank
     assign seo_share_image = collection.image | image_url: width: 1200 | prepend: 'https:'

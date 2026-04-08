@@ -8,6 +8,38 @@
       </div>
     {% endif %}
 
+    {% assign has_intro_modules = false %}
+    {% if section.settings.intro_heading_1 != blank and section.settings.intro_body_1 != blank %}
+      {% assign has_intro_modules = true %}
+    {% endif %}
+    {% if section.settings.intro_heading_2 != blank and section.settings.intro_body_2 != blank %}
+      {% assign has_intro_modules = true %}
+    {% endif %}
+
+    {% if has_intro_modules %}
+      <div class="brand-intro-modules">
+        {% if section.settings.intro_heading_1 != blank and section.settings.intro_body_1 != blank %}
+          <article class="brand-intro-module">
+            <h3 class="brand-intro-title">{{ section.settings.intro_heading_1 }}</h3>
+            <p class="brand-intro-body">{{ section.settings.intro_body_1 }}</p>
+          </article>
+        {% endif %}
+        {% if section.settings.intro_heading_2 != blank and section.settings.intro_body_2 != blank %}
+          <article class="brand-intro-module">
+            <h3 class="brand-intro-title">{{ section.settings.intro_heading_2 }}</h3>
+            <p class="brand-intro-body">{{ section.settings.intro_body_2 }}</p>
+          </article>
+        {% endif %}
+      </div>
+
+      <div class="brand-link-list">
+        {% if section.settings.link_label_1 != blank and section.settings.link_url_1 != blank %}<a href="{{ section.settings.link_url_1 }}" class="brand-link-chip">{{ section.settings.link_label_1 }}</a>{% endif %}
+        {% if section.settings.link_label_2 != blank and section.settings.link_url_2 != blank %}<a href="{{ section.settings.link_url_2 }}" class="brand-link-chip">{{ section.settings.link_label_2 }}</a>{% endif %}
+        {% if section.settings.link_label_3 != blank and section.settings.link_url_3 != blank %}<a href="{{ section.settings.link_url_3 }}" class="brand-link-chip">{{ section.settings.link_label_3 }}</a>{% endif %}
+        {% if section.settings.link_label_4 != blank and section.settings.link_url_4 != blank %}<a href="{{ section.settings.link_url_4 }}" class="brand-link-chip">{{ section.settings.link_label_4 }}</a>{% endif %}
+      </div>
+    {% endif %}
+
     <div class="brand-grid">
       {% for block in section.blocks %}
         <div class="brand-item" {{ block.shopify_attributes }}>
@@ -87,6 +119,63 @@
     z-index: 2;
   }
 
+  .brand-intro-modules {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+    margin: 0 auto 32px;
+    max-width: 1100px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .brand-intro-module {
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.02);
+    padding: 28px 26px;
+  }
+
+  .brand-intro-title {
+    color: #fff;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-style: italic;
+    font-weight: 400;
+    margin: 0 0 14px;
+  }
+
+  .brand-intro-body {
+    color: #cfcfcf;
+    font-size: 15px;
+    line-height: 1.85;
+    margin: 0;
+  }
+
+  .brand-link-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 14px;
+    justify-content: center;
+    margin: 0 auto 48px;
+    max-width: 1100px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .brand-link-chip {
+    color: #e7d6bf;
+    text-decoration: none;
+    border: 1px solid rgba(231,214,191,0.24);
+    padding: 10px 14px;
+    transition: 0.2s ease;
+  }
+
+  .brand-link-chip:hover {
+    color: #fff;
+    border-color: rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.03);
+  }
+
   .brand-item {
     text-align: center;
     padding: 20px;
@@ -144,6 +233,9 @@
 
   @media (max-width: 767px) {
     .brand-features-section { padding: 80px 0 100px 0; }
+    .brand-intro-modules { grid-template-columns: 1fr; margin-bottom: 24px; }
+    .brand-intro-module { padding: 22px 20px; }
+    .brand-link-list { justify-content: flex-start; margin-bottom: 36px; }
     .brand-grid { grid-template-columns: 1fr; }
     .brand-main-title { letter-spacing: 0.25em; font-size: 1.5rem; }
     .brand-item { margin-bottom: 30px; }
@@ -160,6 +252,66 @@
       "id": "main_title",
       "label": "英文大标题",
       "default": "THE ART OF CURATED TRAVEL"
+    },
+    {
+      "type": "text",
+      "id": "intro_heading_1",
+      "label": "Intro heading 1"
+    },
+    {
+      "type": "textarea",
+      "id": "intro_body_1",
+      "label": "Intro body 1"
+    },
+    {
+      "type": "text",
+      "id": "intro_heading_2",
+      "label": "Intro heading 2"
+    },
+    {
+      "type": "textarea",
+      "id": "intro_body_2",
+      "label": "Intro body 2"
+    },
+    {
+      "type": "text",
+      "id": "link_label_1",
+      "label": "Link label 1"
+    },
+    {
+      "type": "url",
+      "id": "link_url_1",
+      "label": "Link URL 1"
+    },
+    {
+      "type": "text",
+      "id": "link_label_2",
+      "label": "Link label 2"
+    },
+    {
+      "type": "url",
+      "id": "link_url_2",
+      "label": "Link URL 2"
+    },
+    {
+      "type": "text",
+      "id": "link_label_3",
+      "label": "Link label 3"
+    },
+    {
+      "type": "url",
+      "id": "link_url_3",
+      "label": "Link URL 3"
+    },
+    {
+      "type": "text",
+      "id": "link_label_4",
+      "label": "Link label 4"
+    },
+    {
+      "type": "url",
+      "id": "link_url_4",
+      "label": "Link URL 4"
     },
     {
       "type": "range",

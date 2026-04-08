@@ -46,24 +46,24 @@
           "type": "info_item",
           "settings": {
             "tag": "BEST TIME",
-            "heading": "Best Time to Visit",
-            "description": "Lijiang is rewarding year-round, with spring and autumn especially pleasant for city walks and mountain views, while winter can bring dramatic snow scenery and a calmer atmosphere."
+            "heading": "Best Time to Visit Lijiang",
+            "description": "Lijiang is rewarding year-round, but spring and autumn are often the easiest seasons for clear mountain views, old-town walks, and comfortable weather. Winter can also be a strong choice if you want a quieter atmosphere and more dramatic snow scenery."
           }
         },
         "info_item_tgkLym": {
           "type": "info_item",
           "settings": {
             "tag": "HOW LONG",
-            "heading": "How Many Days to Stay",
-            "description": "Two days is enough for the main highlights, while three days allows time for Jade Dragon Snow Mountain and a more relaxed stay in the old town."
+            "heading": "A Simple 2-Day Lijiang Itinerary",
+            "description": "Use one day for Lijiang Old Town, Black Dragon Pool, and slow city walks. Spend the second day on Jade Dragon Snow Mountain or a cultural route that adds Naxi heritage and a deeper sense of place."
           }
         },
         "info_item_FBbHTe": {
           "type": "info_item",
           "settings": {
-            "tag": "WHO IT SUITS",
-            "heading": "Who Lijiang Suits",
-            "description": "Lijiang is ideal for first-time Yunnan visitors, photographers, mountain lovers, culture-focused travelers, and anyone drawn to historic towns with a strong sense of place."
+            "tag": "ROUTE PAIRING",
+            "heading": "How to Pair Lijiang with Shangri-La",
+            "description": "If you want a stronger northwest Yunnan route, continue from Lijiang to Shangri-La. This combination gives you a fuller mix of old-town life, snow mountain scenery, Tibetan culture, and alpine landscapes in one journey."
           }
         },
         "story_qWLgFd": {
@@ -120,7 +120,7 @@
             "tag": "CLASSIC ROUTE",
             "heading": "Kunming, Dali & Lijiang 6-Day Private Tour",
             "description": "A first-time Yunnan classic linking Lijiang with Kunming and Dali. Ideal for travelers who want old towns, mountain scenery, and a smooth introduction to northwest Yunnan.",
-            "button_label": "VIEW TOUR",
+            "button_label": "Browse Lijiang private tours",
             "button_link": "shopify://products/kunming-dali-lijiang-6-day-private-tour"
           }
         },
@@ -130,7 +130,7 @@
             "tag": "GRAND HIGHLIGHTS",
             "heading": "Kunming, Dali, Lijiang & Shangri-La 8-Day Private Tour",
             "description": "A classic multi-destination route that combines Lijiang with Dali and the Tibetan highlands of Shangri-La. Best for travelers who want Yunnan’s most iconic highlights in one seamless journey.",
-            "button_label": "VIEW TOUR",
+            "button_label": "Explore Yunnan private tours",
             "button_link": "shopify://products/kunming-dali-lijiang-shangri-la-8-day-private-tour"
           }
         },
@@ -208,9 +208,9 @@
         "faq_item_DBYFYt"
       ],
       "settings": {
-        "main_title": "Lijiang Private Tours & Travel Guide",
+        "main_title": "Lijiang Travel Guide",
         "sub_title": "BENEATH THE JADE PEAK",
-        "intro_text": "Plan your Lijiang trip with practical travel tips and private tour ideas. Explore Jade Dragon Snow Mountain, Lijiang Old Town, and Naxi culture with a route shaped around scenic pacing, heritage, and northwest Yunnan highlights.",
+        "intro_text": "Plan a trip to Lijiang with practical tips on timing, route length, and the experiences that matter most.\nStart with Jade Dragon Snow Mountain, Lijiang Old Town, and Naxi culture, then turn the guide into a private itinerary.",
         "info_section_eyebrow": "PLAN YOUR STAY",
         "info_section_title": "Know Lijiang at a Glance",
         "info_section_intro": "A quick guide to why Lijiang matters, what to see, when to go, and how to plan your stay.",
@@ -222,10 +222,11 @@
         "cta_intro": "If Lijiang feels like your kind of Yunnan, move from the guide into a private route shaped around old-town rhythm, mountain scenery, and northwest Yunnan highlights.",
         "cta_box_title": "Plan a Private Trip to Lijiang",
         "cta_box_desc": "Choose a ready-made route or start a custom Yunnan journey shaped around Jade Dragon Snow Mountain, Naxi heritage, old-town atmosphere, and the destinations you most want to connect.",
-        "cta_primary_label": "VIEW PRIVATE TOURS",
+        "cta_primary_label": "Browse Lijiang Private Tours",
         "cta_primary_url": "/collections/lijiang-private-tours",
-        "cta_secondary_label": "CONTACT US",
-        "cta_secondary_url": "/pages/contact-us",
+        "cta_secondary_label": "Plan a Custom Itinerary",
+        "cta_secondary_url": "/pages/bespoke-custom-travel",
+        "whatsapp_label": "",
         "faq_section_eyebrow": "FAQ",
         "faq_section_title": "Before You Go",
         "faq_section_intro": "Helpful answers for travelers planning a first visit to Lijiang."
