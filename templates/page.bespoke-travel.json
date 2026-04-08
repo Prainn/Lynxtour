@@ -1,1 +1,47 @@
-{"sections":{"main":{"type":"main-page","disabled":true,"settings":{}},"global_navigation_XitC4r":{"type":"global-navigation","name":"Global Brand Header","settings":{"logo_image":"shopify:\/\/shop_images\/LOGO2.svg","logo_height":40,"logo_text_cn":"","logo_text_en":"","show_slogan":true,"slogan_text":"","main_menu":"main-menu-1","btn_color":"#fbbf24"}},"bespoke_travel_aiHQaY":{"type":"bespoke-travel","name":"Bespoke Travel Form","settings":{"main_title":"BESPOKE AI PLANNER","ai_pretitle":"AI POWERED","ai_title":"LYNX GUIDE PRO","cta_title":"CONFIRM PLAN"}}},"order":["main","global_navigation_XitC4r","bespoke_travel_aiHQaY"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "global_navigation_XitC4r": {
+      "type": "global-navigation",
+      "name": "Global Brand Header",
+      "settings": {
+        "logo_image": "shopify://shop_images/LOGO2.svg",
+        "logo_height": 40,
+        "logo_text_cn": "",
+        "logo_text_en": "",
+        "show_slogan": true,
+        "slogan_text": "",
+        "main_menu": "main-menu-1",
+        "btn_color": "#fbbf24"
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "bespoke_travel_aiHQaY": {
+      "type": "bespoke-travel",
+      "name": "Bespoke Travel Form",
+      "settings": {
+        "main_title": "BESPOKE PLANNER",
+        "ai_pretitle": "AI POWERED",
+        "ai_title": "LYNX GUIDE PRO",
+        "cta_title": "CONFIRM PLAN"
+      }
+    }
+  },
+  "order": [
+    "global_navigation_XitC4r",
+    "main",
+    "bespoke_travel_aiHQaY"
+  ]
+}
