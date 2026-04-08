@@ -46,24 +46,24 @@
           "type": "info_item",
           "settings": {
             "tag": "BEST TIME",
-            "heading": "BEST TIME",
-            "description": "Dali can be enjoyed year-round, but spring and autumn are especially pleasant for lakeside drives, village walks, outdoor cafés, and photography. These seasons usually offer the clearest balance of weather, atmosphere, and natural light."
+            "heading": "Best Time to Visit Dali",
+            "description": "Dali can be visited year-round, but spring and autumn are usually the most comfortable seasons for lakeside drives, village walks, and clear mountain views. These months offer the best mix of weather, atmosphere, and photography conditions."
           }
         },
         "info_item_qFxCqi": {
           "type": "info_item",
           "settings": {
             "tag": "HOW MANY DAYS",
-            "heading": "How Many Days to Stay",
-            "description": "Two days is a good introduction to Dali, while three days allows a more relaxed stay with Erhai, Dali Old Town, and nearby villages such as Xizhou. Travelers who enjoy slow travel often wish they had more time here."
+            "heading": "A Simple 2-Day Dali Itinerary",
+            "description": "Spend your first day in Dali Old Town and around Erhai Lake, then use your second day for Xizhou, village scenery, and a slower lakeside route. This is the easiest way to see Dali’s core highlights without feeling rushed."
           }
         },
         "info_item_6cHGyX": {
           "type": "info_item",
           "settings": {
-            "tag": "WHO IT SUITS",
-            "heading": "Who Dali Suits",
-            "description": "Dali is ideal for couples, photographers, first-time Yunnan visitors, culture-focused travelers, and anyone looking for a softer and more elegant pace than a typical fast-moving itinerary."
+            "tag": "ROUTE PAIRING",
+            "heading": "How to Combine Dali with Lijiang",
+            "description": "If you have more time, Dali pairs naturally with Lijiang. Start with Dali for open water, Bai heritage, and village life, then continue north for old-town atmosphere, mountain scenery, and a stronger northwest Yunnan route."
           }
         },
         "story_9aV8Cb": {
@@ -120,7 +120,7 @@
             "tag": "CLASSIC ROUTE",
             "heading": "Kunming, Dali & Lijiang 6-Day Private Tour",
             "description": "A first-time Yunnan classic linking Dali with Kunming and Lijiang. Ideal for travelers who want Erhai, old towns, mountain scenery, and a smooth introduction to northwest Yunnan.",
-            "button_label": "VIEW TOUR",
+            "button_label": "See Dali private tours",
             "button_link": "shopify://products/kunming-dali-lijiang-6-day-private-tour"
           }
         },
@@ -130,7 +130,7 @@
             "tag": "GRAND HIGHLIGHTS",
             "heading": "Kunming, Dali, Lijiang & Shangri-La 8-Day Private Tour",
             "description": "A classic multi-destination route that combines Dali with Lijiang and the Tibetan highlands of Shangri-La. Best for travelers who want Yunnan’s most iconic highlights in one seamless journey.",
-            "button_label": "VIEW TOUR",
+            "button_label": "Browse Yunnan private tours",
             "button_link": "shopify://products/kunming-dali-lijiang-shangri-la-8-day-private-tour"
           }
         },
@@ -209,9 +209,9 @@
       ],
       "name": "Dali Page Stories",
       "settings": {
-        "main_title": "Dali Private Tours & Travel Guide",
+        "main_title": "Dali Travel Guide",
         "sub_title": "BETWEEN CANGSHAN AND ERHAI",
-        "intro_text": "Plan your Dali trip with practical travel tips and private tour ideas. Explore Erhai Lake, Cangshan, Xizhou, and Dali Old Town with a relaxed route shaped around slow travel, Bai heritage, and western Yunnan highlights.",
+        "intro_text": "Plan your Dali trip with practical advice on when to go, what to see, and how many days to stay.\nExplore Erhai Lake, Xizhou, Cangshan, and Dali Old Town before choosing the right private route.",
         "info_section_eyebrow": "PLAN YOUR STAY",
         "info_section_title": "Know Dali at a Glance",
         "info_section_intro": "A quick guide to why Dali is worth visiting, what to see, when to go, and how to plan your time.",
@@ -223,9 +223,14 @@
         "cta_intro": "If Dali feels like your kind of Yunnan, move from the guide into a private route shaped around lakeside pace, village culture, and western Yunnan highlights.",
         "cta_box_title": "Plan a Private Trip to Dali",
         "cta_box_desc": "Choose a ready-made route or start a custom Yunnan journey shaped around Erhai Lake, Bai heritage, slow travel, and the destinations you most want to connect.",
-        "cta_primary_label": "VIEW PRIVATE TOURS",
+        "quick_primary_label": "See Dali Private Tours",
+        "quick_primary_url": "/collections/dali-private-tours",
+        "quick_secondary_label": "",
+        "quick_secondary_url": "",
+        "whatsapp_label": "Chat on WhatsApp",
+        "cta_primary_label": "See Dali Private Tours",
         "cta_primary_url": "/collections/dali-private-tours",
-        "cta_secondary_label": "CONTACT US",
+        "cta_secondary_label": "",
         "cta_secondary_url": "/pages/contact-us",
         "faq_section_eyebrow": "FAQ",
         "faq_section_title": "Before You Go",

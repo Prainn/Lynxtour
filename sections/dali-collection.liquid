@@ -39,12 +39,21 @@
         {% if is_dali_private_tours %}
           <div class="coll-desc-wrap">
             <div class="coll-desc">
-              Discover private tours in Dali shaped around old town life, Erhai Lake scenery, Bai culture, and slower journeys through western Yunnan.
+              Discover Dali with a private itinerary shaped around Erhai Lake, Bai culture, old-town streets, and a slower pace.
+              <br>
+              Compare short Dali stays and longer western Yunnan routes that use Dali as a key stop.
             </div>
           </div>
         {% elsif collection.description != blank %}
           <div class="coll-desc-wrap">
             <div class="coll-desc">{{ collection.description | strip_html }}</div>
+          </div>
+        {% endif %}
+
+        {% if is_dali_private_tours %}
+          <div class="coll-hero-actions">
+            <a href="#CollectionGrid-{{ section.id }}" class="coll-hero-btn primary">Compare Dali Routes</a>
+            <a href="/pages/bespoke-custom-travel" class="coll-hero-btn secondary">Plan a Custom Dali Trip</a>
           </div>
         {% endif %}
       </div>
@@ -75,19 +84,16 @@
       {% if is_dali_private_tours and paginate.current_page == 1 %}
         <section class="collection-copy-block collection-intro-block">
           <div class="collection-copy-inner">
-            <h2 class="copy-heading">Private journeys through Dali</h2>
+            <h2 class="copy-heading">Why Choose a Private Tour in Dali?</h2>
             <div class="copy-richtext">
-              <p>Dali is one of Yunnan’s most atmospheric destinations, known for its old towns, Erhai Lake, Cangshan Mountain, Bai heritage, and a slower, more open rhythm of travel. For many visitors, it offers a different side of Yunnan: less hurried, more scenic, and especially well suited to travelers who enjoy a balance of culture, nature, and time to pause.</p>
-
-              <p>Our Dali private tours are designed for travelers who value flexibility, comfort, and a more personal pace. Whether you want to explore Dali Old Town, circle Erhai Lake, discover Bai villages such as Xizhou, or connect Dali with Lijiang, Shangri-La, or Kunming, a private tour gives you more freedom to shape the trip around your own interests and timing.</p>
-
-              <p>This collection brings together private Dali tour ideas ranging from shorter scenic stays to multi-day Yunnan journeys that use Dali as a key stop. It is especially well suited to couples, families, small private groups, and travelers looking for a more curated and comfortable Yunnan experience.</p>
+              <p>Dali is best enjoyed at a slower pace. A private tour gives you more time for lakeside viewpoints, village streets, Bai culture, and flexible stops around Erhai without being rushed by a fixed group schedule.</p>
+              <p>Start here if you want to <a href="/pages/dali">See our Dali travel guide</a>, <a href="/collections/lijiang-private-tours">Compare Dali and Lijiang private tours</a>, or <a href="/collections/yunnan-private-tours">Browse western Yunnan private routes</a>.</p>
             </div>
           </div>
         </section>
       {% endif %}
 
-      <div class="compact-grid" data-cols="{{ section.settings.desktop_cols }}">
+      <div class="compact-grid" data-cols="{{ section.settings.desktop_cols }}" id="CollectionGrid-{{ section.id }}">
         {% for product in collection.products %}
           {% liquid
             assign included_main_keywords = 'independent group of' | split: '|'
@@ -213,9 +219,19 @@
       {% if is_dali_private_tours and paginate.current_page == 1 %}
         <section class="collection-copy-block collection-why-block">
           <div class="collection-copy-inner narrow">
-            <h2 class="copy-heading">Why choose a private tour in Dali?</h2>
+            <h2 class="copy-heading">Dali in 2 Days or 3 Days?</h2>
             <div class="copy-richtext">
-              <p>A private tour in Dali gives you the freedom to experience the region at a more relaxed and personal pace. Instead of following a fixed group schedule, you can spend more time in old towns, lakeside viewpoints, village streets, and cultural stops that matter most to you. It also allows for more comfortable travel around Erhai Lake and easier combinations with places such as Lijiang, Shangri-La, and Kunming.</p>
+              <p>A 2-day Dali route covers the main highlights such as Erhai Lake, Dali Old Town, and one or two scenic villages. A 3-day route works better if you want a more relaxed pace, extra time in Xizhou, or a fuller circle around Erhai.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="collection-copy-block collection-outro-block">
+          <div class="collection-copy-inner narrow">
+            <h2 class="copy-heading">Can You Combine Dali with Lijiang?</h2>
+            <div class="copy-richtext">
+              <p>Yes. Dali and Lijiang are one of the easiest and most rewarding pairs in Yunnan. Many travelers start with Dali’s open lake scenery and village life, then continue to Lijiang for old-town atmosphere and mountain views.</p>
+              <p><a href="/products/kunming-dali-lijiang-shangri-la-8-day-private-tour">Explore our 8-day Kunming, Dali, Lijiang &amp; Shangri-La private tour</a>.</p>
             </div>
           </div>
         </section>
@@ -357,14 +373,6 @@
         }
         </script>
 
-        <section class="collection-copy-block collection-outro-block">
-          <div class="collection-copy-inner narrow">
-            <h2 class="copy-heading">Explore Dali tour ideas with Lynxtour</h2>
-            <div class="copy-richtext">
-              <p>If you are planning a trip through western Yunnan, this collection is designed to help you compare different Dali private tour styles more easily. From scenic short stays to longer multi-destination journeys, Lynxtour offers private tour ideas that can be shaped around comfort, pace, and the places you most want to experience.</p>
-            </div>
-          </div>
-        </section>
       {% endif %}
 
     {% endpaginate %}
@@ -428,6 +436,42 @@
   #CollectionProductGrid-{{ section.id }} .hero-content{
     max-width: 920px;
     margin: 0 auto;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .coll-hero-actions{
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-top: 22px;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .coll-hero-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height: 42px;
+    padding: 0 16px;
+    text-decoration:none;
+    border: 1px solid rgba(255,255,255,0.18);
+    color:#fff;
+    transition: .25s ease;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .coll-hero-btn.primary{
+    background:#d4af37;
+    border-color:#d4af37;
+    color:#111;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .coll-hero-btn.primary:hover{
+    background:#e3bf4e;
+    border-color:#e3bf4e;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .coll-hero-btn.secondary:hover{
+    border-color: rgba(255,255,255,0.34);
+    background: rgba(255,255,255,0.03);
   }
 
   #CollectionProductGrid-{{ section.id }} .coll-subtitle{
@@ -553,6 +597,17 @@
     line-height:1.9;
     margin:0 0 18px;
     letter-spacing:0.01em;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .copy-richtext a{
+    color:#e7d6bf;
+    text-decoration:none;
+    border-bottom:1px solid rgba(231,214,191,0.28);
+  }
+
+  #CollectionProductGrid-{{ section.id }} .copy-richtext a:hover{
+    color:#fff;
+    border-color: rgba(255,255,255,0.45);
   }
 
   /* --- FAQ Accordion --- */
@@ -845,6 +900,10 @@
       padding: 0 20px;
     }
 
+    #CollectionProductGrid-{{ section.id }} .coll-hero-actions{
+      margin-top: 18px;
+    }
+
     #CollectionProductGrid-{{ section.id }} .coll-title {
       font-size: clamp(2rem, 8vw, 3.2rem);
       line-height: 1.05;
@@ -986,6 +1045,10 @@
 
     #CollectionProductGrid-{{ section.id }} .faq-acc-answer {
       padding-bottom: 20px;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .coll-hero-btn{
+      width:100%;
     }
   }
 
