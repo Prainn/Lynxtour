@@ -55,6 +55,7 @@
   endif
 
   assign seo_description = page_description | strip_html | strip
+  assign page_fallback_description = blank
 
   if seo_description == blank
     case request.page_type
@@ -65,7 +66,20 @@
       when 'article'
         assign seo_description = article.excerpt_or_content | strip_html | strip | truncate: 160
       when 'page'
-        assign seo_description = page.content | strip_html | strip | truncate: 160
+        assign page_fallback_description = page.content | strip_html | strip
+
+        if page_fallback_description == blank and page.title != blank
+          comment
+            Keep the priority conservative:
+            1) merchant-authored SEO description
+            2) page.content text
+            3) a minimal title-based fallback
+            This does not attempt to read section settings for custom page templates.
+          endcomment
+          assign page_fallback_description = 'Explore ' | append: page.title | append: ' with ' | append: shop.name | append: '.'
+        endif
+
+        assign seo_description = page_fallback_description | truncate: 160
       when 'blog'
         assign seo_description = 'Explore Yunnan travel guides, itinerary ideas, and destination inspiration from ' | append: shop.name | append: '.'
       when 'search'
@@ -151,7 +165,7 @@
 {% if seo_description != blank %}
   <meta name="description" content="{{ seo_description | escape }}">
 {% endif %}
-{% if collection_is_parameter_page %}
+{% if request.page_type == 'search' or collection_is_parameter_page %}
   <meta name="robots" content="noindex,follow">
 {% endif %}
 

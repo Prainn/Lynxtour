@@ -55,7 +55,11 @@
               {% if block.type == 'slide' %}
                 {%- assign has_slides = true -%}
                 <div class="swiper-slide" {{ block.shopify_attributes }}>
-                  <img src="{{ block.settings.image | image_url: width: 1500 }}" class="w-full h-full object-cover">
+                  <img
+                    src="{{ block.settings.image | image_url: width: 1500 }}"
+                    alt=""
+                    class="w-full h-full object-cover"
+                  >
                 </div>
               {% endif %}
             {% endfor %}
@@ -89,7 +93,11 @@
               <div class="swiper-slide h-auto" {{ block.shopify_attributes }}>
                 <div class="bg-stone-900/40 min-h-[420px] h-full relative group overflow-hidden border border-stone-800 rounded-sm">
                   <div class="absolute inset-0 z-0">
-                    <img src="{{ block.settings.module_img | image_url: width: 800 }}" class="w-full h-full object-cover">
+                    <img
+                      src="{{ block.settings.module_img | image_url: width: 800 }}"
+                      alt="{{ block.settings.module_name | default: section.settings.system_title | escape }}"
+                      class="w-full h-full object-cover"
+                    >
                     <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/20 to-transparent"></div>
                   </div>
                   <div class="relative z-10 p-8 h-full flex flex-col justify-end">
