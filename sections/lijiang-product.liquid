@@ -616,6 +616,13 @@
     line-height: 1.7;
   }
 
+  .custom-whatsapp-helper {
+    margin: -8px 0 8px;
+    color: rgba(255,255,255,0.62);
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
   .btn-contact-custom {
     background: var(--gold);
     color: #000;
@@ -1624,7 +1631,10 @@
         </p>
         <a href="/pages/contact-us" class="btn-contact-custom">{% if is_flagship_yunnan_route %}Customize this 8-day Yunnan itinerary{% else %}Contact a travel advisor{% endif %}</a>
         <a href="tel:0871-63218099" class="btn-contact-custom">Call hotline 0871-63218099</a>
-        <a href="https://wa.me/13211685553" target="_blank" class="btn-contact-custom">{% if is_flagship_yunnan_route %}Ask About Dates &amp; Pricing{% else %}Message on WhatsApp{% endif %}</a>
+        {% if is_flagship_yunnan_route %}
+          <div class="custom-whatsapp-helper">WhatsApp: +86 132 1168 5553</div>
+        {% endif %}
+        <a href="{% if is_flagship_yunnan_route %}https://wa.me/8613211685553{% else %}https://wa.me/13211685553{% endif %}" target="_blank" class="btn-contact-custom">{% if is_flagship_yunnan_route %}WhatsApp for Dates &amp; Pricing{% else %}Message on WhatsApp{% endif %}</a>
       </div>
 
       <div class="ota-footer">
