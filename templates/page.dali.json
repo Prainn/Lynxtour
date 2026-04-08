@@ -61,6 +61,14 @@
         "info_item_6cHGyX": {
           "type": "info_item",
           "settings": {
+            "tag": "THREE DAYS",
+            "heading": "A Simple 3-Day Dali Itinerary",
+            "description": "Use day one for Dali Old Town, day two for Erhai Lake and Xizhou, and keep day three for a slower lakeside circuit, Cangshan views, or extra village time. A 3-day stay gives Dali enough room to feel relaxed instead of rushed."
+          }
+        },
+        "info_item_f6Uc3R": {
+          "type": "info_item",
+          "settings": {
             "tag": "ROUTE PAIRING",
             "heading": "How to Combine Dali with Lijiang",
             "description": "If you have more time, Dali pairs naturally with Lijiang. Start with Dali for open water, Bai heritage, and village life, then continue north for old-town atmosphere, mountain scenery, and a stronger northwest Yunnan route."
@@ -140,7 +148,7 @@
             "tag": "DEEPER YUNNAN",
             "heading": "Kunming, Dali, Lugu Lake, Lijiang & Shangri-La 10-Day Private Tour",
             "description": "A longer and more immersive Yunnan journey that starts with Dali’s lakeside calm and continues to Lugu Lake, Lijiang, and Shangri-La for a fuller view of the province.",
-            "button_label": "VIEW TOUR",
+            "button_label": "Explore the 10-day western Yunnan route",
             "button_link": "shopify://products/kunming-dali-lugu-lake-lijiang-shangri-la-10-day-private-tour"
           }
         },
@@ -193,6 +201,7 @@
         "info_item_mfwbHk",
         "info_item_qFxCqi",
         "info_item_6cHGyX",
+        "info_item_f6Uc3R",
         "story_9aV8Cb",
         "story_f99wnn",
         "story_hRaTJm",

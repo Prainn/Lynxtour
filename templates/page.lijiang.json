@@ -61,6 +61,14 @@
         "info_item_FBbHTe": {
           "type": "info_item",
           "settings": {
+            "tag": "THREE DAYS",
+            "heading": "A Simple 3-Day Lijiang Itinerary",
+            "description": "Spend your first day in Lijiang Old Town, use the second for Jade Dragon Snow Mountain, and keep the third for Baisha, Shuhe, Black Dragon Pool, or a slower cultural day. A 3-day stay makes it easier to enjoy Lijiang without turning the route into a rush."
+          }
+        },
+        "info_item_Fn4bKs": {
+          "type": "info_item",
+          "settings": {
             "tag": "ROUTE PAIRING",
             "heading": "How to Pair Lijiang with Shangri-La",
             "description": "If you want a stronger northwest Yunnan route, continue from Lijiang to Shangri-La. This combination gives you a fuller mix of old-town life, snow mountain scenery, Tibetan culture, and alpine landscapes in one journey."
@@ -140,7 +148,7 @@
             "tag": "DEEPER YUNNAN",
             "heading": "Kunming, Dali, Lugu Lake, Lijiang & Shangri-La 10-Day Private Tour",
             "description": "A longer and more immersive Yunnan journey that starts with Lijiang’s old-town charm and snow mountain scenery, then continues to Lugu Lake and Shangri-La.",
-            "button_label": "VIEW TOUR",
+            "button_label": "Explore the 10-day northwest Yunnan route",
             "button_link": "shopify://products/kunming-dali-lugu-lake-lijiang-shangri-la-10-day-private-tour"
           }
         },
@@ -193,6 +201,7 @@
         "info_item_hVtTHp",
         "info_item_tgkLym",
         "info_item_FBbHTe",
+        "info_item_Fn4bKs",
         "story_qWLgFd",
         "story_fzjLzx",
         "story_rJ7BHV",

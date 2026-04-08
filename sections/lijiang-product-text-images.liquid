@@ -43,6 +43,33 @@
                   <h3>Can This Yunnan Itinerary Be Customized?</h3>
                   <p>Yes. This route can be adjusted around your travel dates, hotel style, pace, and special interests. If you want more time in Dali, a slower stay in Lijiang, or a different start city, we can reshape the itinerary for you.</p>
                 </section>
+                <section class="mag-supporting-note">
+                  <h3>Best Season for This Route</h3>
+                  <p>Spring and autumn are usually the easiest seasons for this 8-day Yunnan route because they offer comfortable weather, clearer mountain views, and smoother travel between Kunming, Dali, Lijiang, and Shangri-La. Winter can also work well if you want quieter pacing and stronger snow-mountain scenery, while summer is greener but more likely to bring rain.</p>
+                </section>
+                <section class="mag-supporting-note mag-supporting-faq">
+                  <h3>FAQ</h3>
+                  <details>
+                    <summary>Is this 8-day Yunnan tour suitable for first-time visitors?</summary>
+                    <p>Yes. This is one of the strongest first-time Yunnan routes because it links Kunming, Dali, Lijiang, and Shangri-La in a smooth classic sequence.</p>
+                  </details>
+                  <details>
+                    <summary>Can this itinerary be customized?</summary>
+                    <p>Yes. We can adjust the route around your dates, hotel style, pace, and the cities or experiences you want to prioritize.</p>
+                  </details>
+                  <details>
+                    <summary>What is the best season for this route?</summary>
+                    <p>Spring and autumn are usually the easiest seasons for weather, views, and travel comfort, though winter can also be rewarding for quieter travel and snow scenery.</p>
+                  </details>
+                  <details>
+                    <summary>Does the tour include hotel pickup or airport transfer?</summary>
+                    <p>Yes. The route includes arrival pickup on the first day and drop-off service on the last day of the itinerary.</p>
+                  </details>
+                  <details>
+                    <summary>How many days should I allow if I want a slower version of this route?</summary>
+                    <p>If you want a slower pace, 10 days or more is usually a better fit because it gives you more time in Dali or Lijiang and reduces the need to move quickly between stops.</p>
+                  </details>
+                </section>
               </div>
             {% endif %}
           </div>
@@ -267,6 +294,34 @@
 
   .mag-long-{{ section.id }} .mag-supporting-note p {
     margin: 0;
+  }
+
+  .mag-long-{{ section.id }} .mag-supporting-faq details {
+    margin: 0 0 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .mag-long-{{ section.id }} .mag-supporting-faq details:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .mag-long-{{ section.id }} .mag-supporting-faq summary {
+    cursor: pointer;
+    color: var(--text-main);
+    font-weight: 500;
+    line-height: 1.6;
+    list-style: none;
+  }
+
+  .mag-long-{{ section.id }} .mag-supporting-faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mag-long-{{ section.id }} .mag-supporting-faq details p {
+    margin: 10px 0 0;
   }
 
   .mag-long-{{ section.id }} .mag-rich-content strong,
