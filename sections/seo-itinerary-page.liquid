@@ -1,0 +1,593 @@
+<style>
+  .seo-itinerary {
+    background: #050505;
+    color: #f5f5f4;
+    padding: 60px 0;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .seo-itinerary__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .seo-itinerary__hero {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 120px 20px 110px;
+    text-align: center;
+  }
+
+  .seo-itinerary__eyebrow,
+  .seo-itinerary__section-eyebrow {
+    display: block;
+    margin-bottom: 16px;
+    color: #d4af37;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+  }
+
+  .seo-itinerary__title,
+  .seo-itinerary__section-title,
+  .seo-itinerary__cta-title {
+    margin: 0;
+    color: #fff;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.7rem, 6vw, 4.8rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.08;
+  }
+
+  .seo-itinerary__hero::after {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 60px;
+    margin: 42px auto 36px;
+    background: linear-gradient(to bottom, rgba(212, 175, 55, 0.8), transparent);
+  }
+
+  .seo-itinerary__intro,
+  .seo-itinerary__section-intro,
+  .seo-itinerary__cta-copy {
+    max-width: 760px;
+    margin: 0 auto;
+    color: #cfcac4;
+    font-size: 15px;
+    line-height: 1.9;
+    letter-spacing: 0.02em;
+  }
+
+  .seo-itinerary__section {
+    padding-bottom: 110px;
+    text-align: center;
+  }
+
+  .seo-itinerary__grid {
+    display: grid;
+    gap: 24px;
+    margin-top: 44px;
+  }
+
+  .seo-itinerary__grid--two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .seo-itinerary__grid--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .seo-itinerary__card {
+    min-height: 100%;
+    padding: 30px 28px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
+    text-align: left;
+  }
+
+  .seo-itinerary__card-tag {
+    display: block;
+    margin-bottom: 14px;
+    color: #d4af37;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
+
+  .seo-itinerary__card-title {
+    margin: 0 0 14px;
+    color: #fff;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.9rem;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.15;
+  }
+
+  .seo-itinerary__card-copy {
+    color: #b9b2ab;
+    font-size: 13px;
+    line-height: 1.9;
+    letter-spacing: 0.02em;
+  }
+
+  .seo-itinerary__card-copy a,
+  .seo-itinerary__extension-copy a {
+    color: #f1d995;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(241, 217, 149, 0.35);
+  }
+
+  .seo-itinerary__card-copy a:hover,
+  .seo-itinerary__extension-copy a:hover {
+    color: #d4af37;
+    border-bottom-color: rgba(212, 175, 55, 0.7);
+  }
+
+  .seo-itinerary__extension {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 42px 38px;
+    border: 1px solid rgba(212, 175, 55, 0.16);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01)),
+      radial-gradient(circle at top right, rgba(212, 175, 55, 0.08), transparent 36%);
+    text-align: left;
+  }
+
+  .seo-itinerary__extension-title {
+    margin: 0 0 16px;
+    color: #fff;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  .seo-itinerary__extension-copy {
+    color: #cfcac4;
+    font-size: 14px;
+    line-height: 1.9;
+    letter-spacing: 0.02em;
+  }
+
+  .seo-itinerary__link {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 22px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .seo-itinerary__link-line {
+    width: 34px;
+    height: 1px;
+    background: #d4af37;
+    transition: width 0.3s ease;
+  }
+
+  .seo-itinerary__link:hover .seo-itinerary__link-line {
+    width: 60px;
+  }
+
+  .seo-itinerary__cta {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 48px 42px;
+    border: 1px solid rgba(212, 175, 55, 0.16);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.008)),
+      radial-gradient(circle at top right, rgba(212, 175, 55, 0.08), transparent 34%);
+  }
+
+  .seo-itinerary__cta-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 16px;
+  }
+
+  .seo-itinerary__cta-actions {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+  }
+
+  .seo-itinerary__button {
+    min-width: 220px;
+    padding: 14px 22px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #fff;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    transition: 0.3s ease;
+  }
+
+  .seo-itinerary__button--primary {
+    background: #d4af37;
+    border-color: #d4af37;
+    color: #111;
+  }
+
+  .seo-itinerary__button--primary:hover {
+    background: #e3bf4e;
+    border-color: #e3bf4e;
+  }
+
+  .seo-itinerary__button--secondary:hover {
+    color: #d4af37;
+    border-color: rgba(212, 175, 55, 0.5);
+  }
+
+  .seo-itinerary__faq-list {
+    max-width: 900px;
+    margin: 44px auto 0;
+    text-align: left;
+  }
+
+  .seo-itinerary__faq-item {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .seo-itinerary__faq-item:last-child {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .seo-itinerary__faq-question {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 24px 0;
+    cursor: pointer;
+    color: #f5f5f4;
+    list-style: none;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+  }
+
+  .seo-itinerary__faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .seo-itinerary__faq-icon {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    flex: 0 0 14px;
+  }
+
+  .seo-itinerary__faq-icon::before,
+  .seo-itinerary__faq-icon::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background: #d4af37;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.25s ease;
+  }
+
+  .seo-itinerary__faq-icon::before {
+    width: 14px;
+    height: 1px;
+  }
+
+  .seo-itinerary__faq-icon::after {
+    width: 1px;
+    height: 14px;
+  }
+
+  .seo-itinerary__faq-item[open] .seo-itinerary__faq-icon::after {
+    opacity: 0;
+  }
+
+  .seo-itinerary__faq-answer {
+    padding: 0 0 24px;
+    color: #b9b2ab;
+    font-size: 13px;
+    line-height: 1.9;
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 989px) {
+    .seo-itinerary__container {
+      padding: 0 24px;
+    }
+
+    .seo-itinerary__hero {
+      padding: 84px 10px 90px;
+    }
+
+    .seo-itinerary__grid--two,
+    .seo-itinerary__grid--three {
+      grid-template-columns: 1fr;
+    }
+
+    .seo-itinerary__cta {
+      padding: 36px 22px;
+    }
+
+    .seo-itinerary__cta-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .seo-itinerary__button {
+      width: 100%;
+      min-width: 0;
+      text-align: center;
+    }
+  }
+</style>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+{% assign audience_blocks = section.blocks | where: 'type', 'audience' %}
+{% assign day_blocks = section.blocks | where: 'type', 'day' %}
+{% assign link_blocks = section.blocks | where: 'type', 'link_card' %}
+{% assign faq_blocks = section.blocks | where: 'type', 'faq_item' %}
+
+<div class="seo-itinerary" id="section-{{ section.id }}">
+  <div class="seo-itinerary__container">
+    <header class="seo-itinerary__hero">
+      {% if section.settings.eyebrow != blank %}
+        <span class="seo-itinerary__eyebrow">{{ section.settings.eyebrow }}</span>
+      {% endif %}
+      <h1 class="seo-itinerary__title">{{ section.settings.title | escape }}</h1>
+      {% if section.settings.intro != blank %}
+        <div class="seo-itinerary__intro">{{ section.settings.intro | newline_to_br }}</div>
+      {% endif %}
+    </header>
+
+    {% if audience_blocks.size > 0 %}
+      <section class="seo-itinerary__section">
+        {% if section.settings.audience_eyebrow != blank %}
+          <span class="seo-itinerary__section-eyebrow">{{ section.settings.audience_eyebrow }}</span>
+        {% endif %}
+        {% if section.settings.audience_title != blank %}
+          <h2 class="seo-itinerary__section-title">{{ section.settings.audience_title }}</h2>
+        {% endif %}
+        {% if section.settings.audience_intro != blank %}
+          <div class="seo-itinerary__section-intro">{{ section.settings.audience_intro | newline_to_br }}</div>
+        {% endif %}
+        <div class="seo-itinerary__grid seo-itinerary__grid--three">
+          {% for block in audience_blocks %}
+            <article class="seo-itinerary__card" {{ block.shopify_attributes }}>
+              {% if block.settings.tag != blank %}<span class="seo-itinerary__card-tag">{{ block.settings.tag }}</span>{% endif %}
+              {% if block.settings.heading != blank %}<h3 class="seo-itinerary__card-title">{{ block.settings.heading }}</h3>{% endif %}
+              {% if block.settings.copy != blank %}<div class="seo-itinerary__card-copy">{{ block.settings.copy | newline_to_br }}</div>{% endif %}
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+
+    {% if day_blocks.size > 0 %}
+      <section class="seo-itinerary__section">
+        {% if section.settings.days_eyebrow != blank %}
+          <span class="seo-itinerary__section-eyebrow">{{ section.settings.days_eyebrow }}</span>
+        {% endif %}
+        {% if section.settings.days_title != blank %}
+          <h2 class="seo-itinerary__section-title">{{ section.settings.days_title }}</h2>
+        {% endif %}
+        {% if section.settings.days_intro != blank %}
+          <div class="seo-itinerary__section-intro">{{ section.settings.days_intro | newline_to_br }}</div>
+        {% endif %}
+        <div class="seo-itinerary__grid seo-itinerary__grid--three">
+          {% for block in day_blocks %}
+            <article class="seo-itinerary__card" {{ block.shopify_attributes }}>
+              {% if block.settings.tag != blank %}<span class="seo-itinerary__card-tag">{{ block.settings.tag }}</span>{% endif %}
+              {% if block.settings.heading != blank %}<h3 class="seo-itinerary__card-title">{{ block.settings.heading }}</h3>{% endif %}
+              {% if block.settings.copy != blank %}<div class="seo-itinerary__card-copy">{{ block.settings.copy | newline_to_br }}</div>{% endif %}
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+
+    {% if section.settings.extension_title != blank or section.settings.extension_copy != blank %}
+      <section class="seo-itinerary__section">
+        {% if section.settings.extension_eyebrow != blank %}
+          <span class="seo-itinerary__section-eyebrow">{{ section.settings.extension_eyebrow }}</span>
+        {% endif %}
+        <div class="seo-itinerary__extension">
+          {% if section.settings.extension_title != blank %}<h2 class="seo-itinerary__extension-title">{{ section.settings.extension_title }}</h2>{% endif %}
+          {% if section.settings.extension_copy != blank %}<div class="seo-itinerary__extension-copy">{{ section.settings.extension_copy }}</div>{% endif %}
+        </div>
+      </section>
+    {% endif %}
+
+    {% if link_blocks.size > 0 %}
+      <section class="seo-itinerary__section">
+        {% if section.settings.links_eyebrow != blank %}
+          <span class="seo-itinerary__section-eyebrow">{{ section.settings.links_eyebrow }}</span>
+        {% endif %}
+        {% if section.settings.links_title != blank %}
+          <h2 class="seo-itinerary__section-title">{{ section.settings.links_title }}</h2>
+        {% endif %}
+        {% if section.settings.links_intro != blank %}
+          <div class="seo-itinerary__section-intro">{{ section.settings.links_intro | newline_to_br }}</div>
+        {% endif %}
+        <div class="seo-itinerary__grid seo-itinerary__grid--two">
+          {% for block in link_blocks %}
+            <article class="seo-itinerary__card" {{ block.shopify_attributes }}>
+              {% if block.settings.tag != blank %}<span class="seo-itinerary__card-tag">{{ block.settings.tag }}</span>{% endif %}
+              {% if block.settings.heading != blank %}<h3 class="seo-itinerary__card-title">{{ block.settings.heading }}</h3>{% endif %}
+              {% if block.settings.copy != blank %}<div class="seo-itinerary__card-copy">{{ block.settings.copy | newline_to_br }}</div>{% endif %}
+              {% if block.settings.link_label != blank and block.settings.link_url != blank %}
+                <a class="seo-itinerary__link" href="{{ block.settings.link_url }}">
+                  {{ block.settings.link_label }}
+                  <span class="seo-itinerary__link-line"></span>
+                </a>
+              {% endif %}
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+
+    {% if section.settings.cta_title != blank or section.settings.cta_copy != blank %}
+      <section class="seo-itinerary__section">
+        {% if section.settings.cta_eyebrow != blank %}
+          <span class="seo-itinerary__section-eyebrow">{{ section.settings.cta_eyebrow }}</span>
+        {% endif %}
+        <div class="seo-itinerary__cta">
+          {% if section.settings.cta_title != blank %}<h2 class="seo-itinerary__cta-title">{{ section.settings.cta_title }}</h2>{% endif %}
+          {% if section.settings.cta_copy != blank %}<div class="seo-itinerary__cta-copy">{{ section.settings.cta_copy | newline_to_br }}</div>{% endif %}
+          <div class="seo-itinerary__cta-actions">
+            {% if section.settings.cta_primary_label != blank and section.settings.cta_primary_url != blank %}
+              <a class="seo-itinerary__button seo-itinerary__button--primary" href="{{ section.settings.cta_primary_url }}">{{ section.settings.cta_primary_label }}</a>
+            {% endif %}
+            {% if section.settings.cta_secondary_label != blank and section.settings.cta_secondary_url != blank %}
+              <a class="seo-itinerary__button seo-itinerary__button--secondary" href="{{ section.settings.cta_secondary_url }}">{{ section.settings.cta_secondary_label }}</a>
+            {% endif %}
+          </div>
+        </div>
+      </section>
+    {% endif %}
+
+    {% if faq_blocks.size > 0 %}
+      <section class="seo-itinerary__section">
+        {% if section.settings.faq_eyebrow != blank %}
+          <span class="seo-itinerary__section-eyebrow">{{ section.settings.faq_eyebrow }}</span>
+        {% endif %}
+        {% if section.settings.faq_title != blank %}
+          <h2 class="seo-itinerary__section-title">{{ section.settings.faq_title }}</h2>
+        {% endif %}
+        {% if section.settings.faq_intro != blank %}
+          <div class="seo-itinerary__section-intro">{{ section.settings.faq_intro | newline_to_br }}</div>
+        {% endif %}
+        <div class="seo-itinerary__faq-list">
+          {% for block in faq_blocks %}
+            <details class="seo-itinerary__faq-item" {{ block.shopify_attributes }}>
+              <summary class="seo-itinerary__faq-question">
+                <span>{{ block.settings.question }}</span>
+                <span class="seo-itinerary__faq-icon"></span>
+              </summary>
+              <div class="seo-itinerary__faq-answer">{{ block.settings.answer | newline_to_br }}</div>
+            </details>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+  </div>
+</div>
+
+{% if faq_blocks.size > 0 %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {% for block in faq_blocks %}
+        {
+          "@type": "Question",
+          "name": {{ block.settings.question | strip_html | strip | json }},
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": {{ block.settings.answer | strip_html | strip | json }}
+          }
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+  }
+  </script>
+{% endif %}
+
+{% if page %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ request.origin | append: '/' | json }} },
+      { "@type": "ListItem", "position": 2, "name": {{ page.title | json }}, "item": {{ request.origin | append: page.url | json }} }
+    ]
+  }
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "SEO Itinerary Page",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "TRAVEL PLANNING" },
+    { "type": "text", "id": "title", "label": "H1 title", "default": "Sample itinerary title" },
+    { "type": "textarea", "id": "intro", "label": "Intro" },
+    { "type": "text", "id": "audience_eyebrow", "label": "Audience eyebrow", "default": "WHO THIS SUITS" },
+    { "type": "text", "id": "audience_title", "label": "Audience title", "default": "Who this itinerary suits" },
+    { "type": "textarea", "id": "audience_intro", "label": "Audience intro" },
+    { "type": "text", "id": "days_eyebrow", "label": "Days eyebrow", "default": "DAY BY DAY" },
+    { "type": "text", "id": "days_title", "label": "Days title", "default": "How to spend each day" },
+    { "type": "textarea", "id": "days_intro", "label": "Days intro" },
+    { "type": "text", "id": "extension_eyebrow", "label": "Extension eyebrow", "default": "OPTIONAL EXTENSION" },
+    { "type": "text", "id": "extension_title", "label": "Extension title", "default": "How to extend this route" },
+    { "type": "richtext", "id": "extension_copy", "label": "Extension copy" },
+    { "type": "text", "id": "links_eyebrow", "label": "Links eyebrow", "default": "PLAN THE NEXT STEP" },
+    { "type": "text", "id": "links_title", "label": "Links title", "default": "Keep building the wider route" },
+    { "type": "textarea", "id": "links_intro", "label": "Links intro" },
+    { "type": "text", "id": "cta_eyebrow", "label": "CTA eyebrow", "default": "SOFT CTA" },
+    { "type": "text", "id": "cta_title", "label": "CTA title", "default": "Need help turning this into a private trip?" },
+    { "type": "textarea", "id": "cta_copy", "label": "CTA copy" },
+    { "type": "text", "id": "cta_primary_label", "label": "Primary CTA label", "default": "Browse private tours" },
+    { "type": "url", "id": "cta_primary_url", "label": "Primary CTA URL" },
+    { "type": "text", "id": "cta_secondary_label", "label": "Secondary CTA label", "default": "Plan a custom Yunnan itinerary" },
+    { "type": "url", "id": "cta_secondary_url", "label": "Secondary CTA URL" },
+    { "type": "text", "id": "faq_eyebrow", "label": "FAQ eyebrow", "default": "FAQ" },
+    { "type": "text", "id": "faq_title", "label": "FAQ title", "default": "Before you lock it in" },
+    { "type": "textarea", "id": "faq_intro", "label": "FAQ intro" }
+  ],
+  "blocks": [
+    {
+      "type": "audience",
+      "name": "Audience card",
+      "settings": [
+        { "type": "text", "id": "tag", "label": "Tag", "default": "PACE" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Best for balanced first visits" },
+        { "type": "textarea", "id": "copy", "label": "Copy" }
+      ]
+    },
+    {
+      "type": "day",
+      "name": "Day card",
+      "settings": [
+        { "type": "text", "id": "tag", "label": "Tag", "default": "DAY 1" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Arrival and orientation" },
+        { "type": "textarea", "id": "copy", "label": "Copy" }
+      ]
+    },
+    {
+      "type": "link_card",
+      "name": "Link card",
+      "settings": [
+        { "type": "text", "id": "tag", "label": "Tag", "default": "NEXT STEP" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Continue planning" },
+        { "type": "textarea", "id": "copy", "label": "Copy" },
+        { "type": "text", "id": "link_label", "label": "Link label", "default": "Browse supporting pages" },
+        { "type": "url", "id": "link_url", "label": "Link URL" }
+      ]
+    },
+    {
+      "type": "faq_item",
+      "name": "FAQ item",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Is three days enough?" },
+        { "type": "textarea", "id": "answer", "label": "Answer" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "SEO Itinerary Page" }
+  ]
+}
+{% endschema %}

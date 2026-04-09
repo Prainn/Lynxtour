@@ -164,10 +164,25 @@
       when 'lijiang'
         assign seo_title = 'Lijiang Travel Guide: Best Time, Itinerary & Top Things to Do | Lynxtour'
         assign seo_description = 'Plan your Lijiang trip with advice on the best time to visit, how many days to stay, top attractions, and how to combine Lijiang with Shangri-La or Dali.'
+      when 'dali-itinerary-3-days'
+        assign seo_title = 'Dali Itinerary 3 Days: How to Spend 3 Days in Dali | Lynxtour'
+        assign seo_description = 'Plan a Dali itinerary for 3 days with practical pacing for Dali Old Town, Erhai Lake, Xizhou, and easy route extensions toward Lijiang or wider Yunnan travel.'
+      when 'lijiang-itinerary-3-days'
+        assign seo_title = 'Lijiang Itinerary 3 Days: How to Spend 3 Days in Lijiang | Lynxtour'
+        assign seo_description = 'Plan a Lijiang itinerary for 3 days with the right balance of Lijiang Old Town, Jade Dragon Snow Mountain, nearby cultural stops, and route extensions toward Shangri-La.'
     endcase
-  elsif request.page_type == 'product' and product.handle == 'kunming-dali-lijiang-shangri-la-8-day-private-tour'
-    assign seo_title = '8-Day Yunnan Private Tour: Kunming, Dali, Lijiang & Shangri-La | Lynxtour'
-    assign seo_description = 'Discover Yunnan’s classic 8-day private tour through Kunming, Dali, Lijiang and Shangri-La. Flexible pacing, local support, and a customizable route for first-time visitors.'
+  elsif request.page_type == 'product'
+    case product.handle
+      when 'kunming-dali-lijiang-shangri-la-8-day-private-tour'
+        assign seo_title = '8-Day Yunnan Private Tour: Kunming, Dali, Lijiang & Shangri-La | Lynxtour'
+        assign seo_description = 'Discover Yunnan classic highlights across Kunming, Dali, Lijiang and Shangri-La in one flexible 8-day private tour with local support.'
+      when 'jade-dragon-snow-mountain-private-tour'
+        assign seo_title = 'Jade Dragon Snow Mountain Private Tour from Lijiang | Lynxtour'
+        assign seo_description = 'Compare a Jade Dragon Snow Mountain private tour from Lijiang with flexible day-trip pacing, private transport convenience, and route support for a wider Yunnan itinerary.'
+      when 'lijiang-to-shangri-la-private-tour'
+        assign seo_title = 'Lijiang to Shangri-La Private Tour | Custom Northwest Yunnan Route | Lynxtour'
+        assign seo_description = 'Plan a Lijiang to Shangri-La private tour with flexible pacing, private route support, and a comfortable way to connect Lijiang with the Tibetan highlands of northwest Yunnan.'
+    endcase
   endif
 
   assign seo_share_image = blank

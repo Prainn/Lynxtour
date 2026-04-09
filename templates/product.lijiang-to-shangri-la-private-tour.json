@@ -1,0 +1,87 @@
+{
+  "sections": {
+    "global_navigation": {
+      "type": "global-navigation",
+      "name": "Global Brand Header",
+      "settings": {
+        "logo_image": "shopify://shop_images/LOGO2.svg",
+        "logo_height": 40,
+        "logo_text_cn": "",
+        "logo_text_en": "",
+        "show_slogan": true,
+        "slogan_text": "",
+        "main_menu": "main-menu-1",
+        "btn_color": "#fbbf24"
+      }
+    },
+    "main": {
+      "type": "seo-route-page",
+      "blocks": {
+        "feature_1": { "type": "feature", "settings": { "tag": "ROUTE LOGIC", "heading": "One of the strongest natural pairings in northwest Yunnan", "copy": "A Lijiang to Shangri-La private tour works because it connects old-town atmosphere and Naxi culture with higher Tibetan landscapes in a route travelers already understand. The pairing is intuitive and often becomes the core northern stretch of a Yunnan trip." } },
+        "feature_2": { "type": "feature", "settings": { "tag": "COMFORT", "heading": "Better suited to travelers who want private pacing and route support", "copy": "This route is a strong fit for travelers who care about comfort, managed transport, and the ability to shape stops around their own pace rather than treating the journey as a basic transfer." } },
+        "feature_3": { "type": "feature", "settings": { "tag": "CUSTOMIZATION", "heading": "Flexible enough for scenic stops, cultural priorities, or slower pacing", "copy": "Private handling makes it easier to adapt the journey around travel dates, road-day comfort, and which experiences matter most once you move north from Lijiang." } },
+        "feature_4": { "type": "feature", "settings": { "tag": "WHO IT SUITS", "heading": "Best for travelers building a fuller northwest Yunnan itinerary", "copy": "This route works especially well for first-time Yunnan visitors, couples, and small private groups who want Lijiang as a softer lead-in before continuing to Shangri-La's higher-altitude landscapes." } },
+        "link_1": { "type": "link_card", "settings": { "tag": "LIJIANG CLUSTER", "heading": "Compare this route with other Lijiang-based private options", "copy": "If you are deciding whether to stay local in Lijiang or continue north, the Lijiang private tours collection is the best commercial comparison point.", "link_label": "Browse Lijiang private tours", "link_url": "/collections/lijiang-private-tours" } },
+        "link_2": { "type": "link_card", "settings": { "tag": "DESTINATION CONTEXT", "heading": "Keep the Lijiang leg grounded in destination planning", "copy": "Use the Lijiang destination guide if you want to understand how much city, mountain, and cultural time to hold before the route continues north.", "link_label": "See our Lijiang travel guide", "link_url": "/pages/lijiang" } },
+        "link_3": { "type": "link_card", "settings": { "tag": "NEXT DESTINATION", "heading": "Use the Shangri-La guide for the arrival-side planning context", "copy": "The Shangri-La guide helps explain what the northern leg is building toward, especially for travelers comparing pacing, altitude comfort, and destination focus.", "link_label": "Continue to the Shangri-La travel guide", "link_url": "/pages/shangri-la" } },
+        "link_4": { "type": "link_card", "settings": { "tag": "FLAGSHIP ROUTE", "heading": "See this pairing inside the classic 8-day Yunnan journey", "copy": "The flagship route is the clearest example of how Lijiang and Shangri-La work together inside a broader private Yunnan itinerary.", "link_label": "Explore the 8-day Yunnan private tour", "link_url": "/products/kunming-dali-lijiang-shangri-la-8-day-private-tour" } },
+        "link_5": { "type": "link_card", "settings": { "tag": "CUSTOM SUPPORT", "heading": "Shape the route around your own comfort and trip length", "copy": "If you want to customize route length, add intermediate scenic logic, or soften the road-day pacing, bespoke planning is the strongest next step.", "link_label": "Plan a custom Yunnan itinerary", "link_url": "/pages/bespoke-custom-travel" } },
+        "faq_1": { "type": "faq_item", "settings": { "question": "Is this meant as a route page rather than a general Shangri-La guide?", "answer": "Yes. The page intent is commercial and route-focused, centered on why Lijiang and Shangri-La work well together as a private tour pairing." } },
+        "faq_2": { "type": "faq_item", "settings": { "question": "Why choose a Lijiang to Shangri-La private tour instead of a simple transfer?", "answer": "A private tour lets the route be shaped around comfort, scenic logic, and your wider itinerary, rather than functioning only as transport between two destinations." } },
+        "faq_3": { "type": "faq_item", "settings": { "question": "Can this route be customized with more time in Lijiang or Shangri-La?", "answer": "Yes. This pairing is especially flexible and can usually be adjusted around trip length, stop priorities, and the pace you want across northwest Yunnan." } }
+      },
+      "block_order": ["feature_1","feature_2","feature_3","feature_4","link_1","link_2","link_3","link_4","link_5","faq_1","faq_2","faq_3"],
+      "settings": {
+        "eyebrow": "PRIVATE ROUTE",
+        "title": "Lijiang to Shangri-La Private Tour",
+        "intro": "This Lijiang to Shangri-La private tour page is designed as a commercial route-support page, not a broad destination guide. The focus is why this pairing works so well, how private handling improves comfort and flexibility, and how the route fits naturally inside a wider northwest Yunnan journey.",
+        "features_eyebrow": "WHY THIS ROUTE WORKS",
+        "features_title": "Why travelers choose this private pairing",
+        "features_intro": "Use this route when the goal is a comfortable, customizable northbound journey that connects Lijiang with Shangri-La in a way that feels intentional rather than rushed.",
+        "links_eyebrow": "ROUTE CONNECTIONS",
+        "links_title": "Useful next steps around the route",
+        "links_intro": "These supporting links help travelers compare nearby route options and understand where the Lijiang-Shangri-La pairing fits inside the larger cluster.",
+        "cta_eyebrow": "CUSTOM SUPPORT",
+        "cta_title": "Want this pairing shaped around your own Yunnan route?",
+        "cta_copy": "We can adjust the Lijiang to Shangri-La flow around travel dates, route length, destination priorities, and the level of comfort you want on the northbound leg.",
+        "cta_primary_label": "Browse Lijiang private tours",
+        "cta_primary_url": "/collections/lijiang-private-tours",
+        "cta_secondary_label": "Plan a custom Yunnan itinerary",
+        "cta_secondary_url": "/pages/bespoke-custom-travel",
+        "faq_eyebrow": "FAQ",
+        "faq_title": "Quick route questions",
+        "faq_intro": "Short answers for travelers evaluating Lijiang and Shangri-La as a private route pairing."
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "name": "Custom Footer",
+      "settings": {
+        "logo_text": "Lynxtour",
+        "brand_desc": "Lynxtour is a Yunnan private tours brand offering bespoke journeys, luxury day trips, and private charter services across Kunming, Dali, Lijiang, Shangri-La, and beyond.",
+        "social_title": "FOLLOW US",
+        "instagram_link": "",
+        "facebook_link": "",
+        "x_link": "",
+        "youtube_link": "",
+        "tiktok_link": "",
+        "menu_1_title": "Quick Navigation",
+        "menu_1": "link-list",
+        "menu_2_title": "Destination Inspiration",
+        "menu_2": "link-list-1",
+        "contact_title": "Contact & Support",
+        "contact_tel": "0871-63218099",
+        "contact_email": "biz@lynxtour.cn",
+        "contact_addr": "Room 3011, Building 4, Xindu Longcheng, Panlong District, Kunming City, Yunnan Province, China, Postcode: 650051.",
+        "badge_text": "PRIVATE & BESPOKE",
+        "show_payment_icons": true,
+        "copyright_text": "ALL RIGHTS RESERVED.",
+        "privacy_label": "PRIVACY POLICY",
+        "privacy_link": "shopify://policies/privacy-policy",
+        "terms_label": "TERMS OF SERVICE",
+        "terms_link": "shopify://policies/terms-of-service"
+      }
+    }
+  },
+  "order": ["global_navigation","main","footer"]
+}
