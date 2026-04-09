@@ -15,41 +15,132 @@
       }
     },
     "main": {
-      "type": "seo-route-page",
+      "type": "one-day-trip-product",
+      "settings": {}
+    },
+    "route_support": {
+      "type": "product-route-support",
       "blocks": {
-        "feature_1": { "type": "feature", "settings": { "tag": "WHAT IT COVERS", "heading": "A Lijiang-based mountain day with private transport and clear timing", "copy": "This page is built for travelers who want Jade Dragon Snow Mountain as a private day trip from Lijiang, with route logic centered on hotel pickup, more comfortable pacing, and a cleaner sightseeing sequence." } },
-        "feature_2": { "type": "feature", "settings": { "tag": "WHO IT SUITS", "heading": "Best for travelers who want flexibility around a high-demand scenic day", "copy": "A private setup works especially well for couples, families, and first-time visitors who want mountain scenery without the friction of fixed-group timing. It also suits travelers connecting the day trip with a wider Lijiang stay." } },
-        "feature_3": { "type": "feature", "settings": { "tag": "WHY GO PRIVATE", "heading": "More control over pacing, comfort, and route handling", "copy": "Private handling gives you a better fit for early departures, changing weather, ticket-day realities, and how much time you want around mountain viewpoints. That keeps the day more practical than a one-size-fits-all group format." } },
-        "feature_4": { "type": "feature", "settings": { "tag": "ROUTE FIT", "heading": "Easy to place inside a 3-day Lijiang stay or a longer Yunnan trip", "copy": "For many travelers, Jade Dragon Snow Mountain is the core scenic day inside Lijiang. It can also work as one piece of a larger route that continues toward Dali or Shangri-La." } },
-        "link_1": { "type": "link_card", "settings": { "tag": "LIJIANG CLUSTER", "heading": "Compare this route with other Lijiang-based private options", "copy": "If you are still deciding between a dedicated mountain day and a broader multi-day route, the collection page is the best commercial comparison point.", "link_label": "Browse Lijiang private tours", "link_url": "/collections/lijiang-private-tours" } },
-        "link_2": { "type": "link_card", "settings": { "tag": "DESTINATION CONTEXT", "heading": "Use the destination guide to place the day trip in the wider stay", "copy": "The Lijiang guide helps explain where Jade Dragon Snow Mountain sits within a fuller first-time stay and how to balance it with old-town and cultural time.", "link_label": "See our Lijiang travel guide", "link_url": "/pages/lijiang" } },
-        "link_3": { "type": "link_card", "settings": { "tag": "FLAGSHIP ROUTE", "heading": "See how Lijiang and its mountain highlights fit into the core Yunnan journey", "copy": "Travelers expanding beyond a Lijiang day trip can use the flagship multi-stop route as a benchmark for how the destination connects with Dali and Shangri-La.", "link_label": "Explore the 8-day Yunnan private tour", "link_url": "/products/kunming-dali-lijiang-shangri-la-8-day-private-tour" } },
-        "link_4": { "type": "link_card", "settings": { "tag": "CUSTOM SUPPORT", "heading": "Shape the mountain day around the rest of your route", "copy": "If you want help deciding where the day trip fits, how to pace altitude-sensitive travel, or whether to add more Lijiang time, custom trip planning is the strongest next step.", "link_label": "Plan a custom Yunnan itinerary", "link_url": "/pages/bespoke-custom-travel" } },
-        "faq_1": { "type": "faq_item", "settings": { "question": "Is this page meant as a private day trip from Lijiang?", "answer": "Yes. The intent here is a commercial private tour page for travelers staying in or near Lijiang who want a smoother mountain day with private route support." } },
-        "faq_2": { "type": "faq_item", "settings": { "question": "Why choose a private Jade Dragon Snow Mountain tour instead of a fixed group?", "answer": "Private handling usually makes the day more comfortable because timing, pickup, and pacing can be managed around your group rather than a fixed shared schedule." } },
-        "faq_3": { "type": "faq_item", "settings": { "question": "Can this be combined with a wider Lijiang itinerary?", "answer": "Yes. Jade Dragon Snow Mountain often works as the anchor scenic day inside a 3-day Lijiang stay, and it can also be folded into longer Yunnan routes." } }
+        "feature_1": {
+          "type": "feature",
+          "settings": {
+            "tag": "WHY THIS DAY WORKS",
+            "heading": "A clean Lijiang mountain day with private handling from start to finish",
+            "copy": "Jade Dragon Snow Mountain is often the biggest sightseeing day in a Lijiang stay, so private transport helps the day feel more organized from hotel pickup through the return drive."
+          }
+        },
+        "feature_2": {
+          "type": "feature",
+          "settings": {
+            "tag": "WHAT IT COVERS",
+            "heading": "Built for travelers who want scenery, route logic, and less friction",
+            "copy": "This product is positioned as a sellable private day trip rather than a general guide. The focus is smoother route handling, clearer day structure, and a better fit for travelers using Lijiang as their base."
+          }
+        },
+        "feature_3": {
+          "type": "feature",
+          "settings": {
+            "tag": "WHO IT SUITS",
+            "heading": "A strong fit for couples, families, and first-time Lijiang visitors",
+            "copy": "Private handling works especially well for travelers who want flexibility around timing, a more comfortable pace at altitude, and easier coordination than a fixed group day."
+          }
+        },
+        "feature_4": {
+          "type": "feature",
+          "settings": {
+            "tag": "KNOW BEFORE YOU GO",
+            "heading": "Mountain timing and weather matter more than they do on a city day",
+            "copy": "This is best treated as a dedicated scenic day with an earlier start, layered clothing, and realistic pacing. Conditions can shift quickly, which is one reason private support is useful."
+          }
+        },
+        "link_1": {
+          "type": "link_card",
+          "settings": {
+            "tag": "LIJIANG OPTIONS",
+            "heading": "Compare this mountain day with other Lijiang-based private tours",
+            "copy": "If you are deciding whether to keep Lijiang as a day-trip base or expand into a longer route, the Lijiang collection is the best next commercial comparison.",
+            "link_label": "Browse Lijiang private tours",
+            "link_url": "/collections/lijiang-private-tours"
+          }
+        },
+        "link_2": {
+          "type": "link_card",
+          "settings": {
+            "tag": "DESTINATION CONTEXT",
+            "heading": "Use the destination guide to place the mountain day inside a fuller stay",
+            "copy": "The Lijiang guide helps explain how Jade Dragon Snow Mountain fits with old-town time, nearby culture, and the pacing of a first visit.",
+            "link_label": "See our Lijiang travel guide",
+            "link_url": "/pages/lijiang"
+          }
+        },
+        "link_3": {
+          "type": "link_card",
+          "settings": {
+            "tag": "FLAGSHIP ROUTE",
+            "heading": "See how Lijiang fits into the wider classic Yunnan route",
+            "copy": "Travelers extending beyond a standalone day trip can use the flagship multi-stop itinerary as a benchmark for connecting Lijiang with Dali and Shangri-La.",
+            "link_label": "Explore the 8-day Yunnan private tour",
+            "link_url": "/products/kunming-dali-lijiang-shangri-la-8-day-private-tour"
+          }
+        },
+        "link_4": {
+          "type": "link_card",
+          "settings": {
+            "tag": "CUSTOM PLANNING",
+            "heading": "Shape the mountain day around the rest of your Yunnan trip",
+            "copy": "If you want help deciding how this day fits into a longer route, custom planning is the cleanest next step.",
+            "link_label": "Plan a custom Yunnan itinerary",
+            "link_url": "/pages/bespoke-custom-travel"
+          }
+        },
+        "faq_1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is this page positioned as a private day trip from Lijiang?",
+            "answer": "Yes. This is a sellable Lijiang-based private day trip built around Jade Dragon Snow Mountain, with the booking experience staying in the existing Lynxtour day-trip product format."
+          }
+        },
+        "faq_2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Why book a private Jade Dragon Snow Mountain day instead of a fixed group?",
+            "answer": "Private handling gives you more control over timing, pickup, route comfort, and how the day fits around the rest of your Lijiang stay."
+          }
+        },
+        "faq_3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can this day trip be paired with a wider Lijiang or northwest Yunnan route?",
+            "answer": "Yes. Jade Dragon Snow Mountain often works as the main scenic day inside a Lijiang stay and can also be folded into a longer Yunnan itinerary."
+          }
+        }
       },
-      "block_order": ["feature_1","feature_2","feature_3","feature_4","link_1","link_2","link_3","link_4","faq_1","faq_2","faq_3"],
+      "block_order": [
+        "feature_1",
+        "feature_2",
+        "feature_3",
+        "feature_4",
+        "link_1",
+        "link_2",
+        "link_3",
+        "link_4",
+        "faq_1",
+        "faq_2",
+        "faq_3"
+      ],
       "settings": {
-        "eyebrow": "PRIVATE TOUR",
-        "title": "Jade Dragon Snow Mountain Private Tour",
-        "intro": "This Jade Dragon Snow Mountain private tour page is built for travelers who want a dedicated commercial route from Lijiang, not a general travel guide. The focus is private transport convenience, day-trip comfort, and how this route fits naturally into a Lijiang-based Yunnan itinerary.",
-        "features_eyebrow": "WHY THIS ROUTE WORKS",
-        "features_title": "What this private tour covers",
-        "features_intro": "Use this route if the goal is a smoother, more flexible mountain day rather than a fixed-group outing or a broad destination guide.",
-        "links_eyebrow": "ROUTE CONNECTIONS",
-        "links_title": "Useful next steps around the Lijiang cluster",
-        "links_intro": "These supporting links keep the commercial intent clean while helping travelers compare route options and place the day trip inside a wider Yunnan plan.",
-        "cta_eyebrow": "CUSTOM SUPPORT",
-        "cta_title": "Need this mountain day to fit a wider private route?",
-        "cta_copy": "We can help place Jade Dragon Snow Mountain inside a Lijiang stay, a Dali to Lijiang route, or a broader northwest Yunnan itinerary with more comfortable pacing.",
-        "cta_primary_label": "Browse Lijiang private tours",
-        "cta_primary_url": "/collections/lijiang-private-tours",
-        "cta_secondary_label": "Plan a custom Yunnan itinerary",
-        "cta_secondary_url": "/pages/bespoke-custom-travel",
+        "eyebrow": "DAY-TRIP PLANNING NOTES",
+        "title": "Helpful planning context for this private mountain day",
+        "intro": "These notes sit below the real Lynxtour day-trip booking module and keep the page commercially focused on a sellable Jade Dragon Snow Mountain private tour from Lijiang.",
+        "features_eyebrow": "PRIVATE DAY SUPPORT",
+        "features_title": "What travelers usually want clarified before booking",
+        "features_intro": "",
+        "links_eyebrow": "RELATED PLANNING",
+        "links_title": "Planning links around this Lijiang-based day trip",
+        "links_intro": "",
         "faq_eyebrow": "FAQ",
         "faq_title": "Quick route questions",
-        "faq_intro": "Short answers for travelers considering a private Jade Dragon Snow Mountain day trip from Lijiang."
+        "faq_intro": ""
       }
     },
     "footer": {
@@ -82,5 +173,10 @@
       }
     }
   },
-  "order": ["global_navigation","main","footer"]
+  "order": [
+    "global_navigation",
+    "main",
+    "route_support",
+    "footer"
+  ]
 }

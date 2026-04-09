@@ -15,42 +15,152 @@
       }
     },
     "main": {
-      "type": "seo-route-page",
+      "type": "lijiang-product",
+      "settings": {}
+    },
+    "route_support": {
+      "type": "product-route-support",
       "blocks": {
-        "feature_1": { "type": "feature", "settings": { "tag": "ROUTE LOGIC", "heading": "One of the strongest natural pairings in northwest Yunnan", "copy": "A Lijiang to Shangri-La private tour works because it connects old-town atmosphere and Naxi culture with higher Tibetan landscapes in a route travelers already understand. The pairing is intuitive and often becomes the core northern stretch of a Yunnan trip." } },
-        "feature_2": { "type": "feature", "settings": { "tag": "COMFORT", "heading": "Better suited to travelers who want private pacing and route support", "copy": "This route is a strong fit for travelers who care about comfort, managed transport, and the ability to shape stops around their own pace rather than treating the journey as a basic transfer." } },
-        "feature_3": { "type": "feature", "settings": { "tag": "CUSTOMIZATION", "heading": "Flexible enough for scenic stops, cultural priorities, or slower pacing", "copy": "Private handling makes it easier to adapt the journey around travel dates, road-day comfort, and which experiences matter most once you move north from Lijiang." } },
-        "feature_4": { "type": "feature", "settings": { "tag": "WHO IT SUITS", "heading": "Best for travelers building a fuller northwest Yunnan itinerary", "copy": "This route works especially well for first-time Yunnan visitors, couples, and small private groups who want Lijiang as a softer lead-in before continuing to Shangri-La's higher-altitude landscapes." } },
-        "link_1": { "type": "link_card", "settings": { "tag": "LIJIANG CLUSTER", "heading": "Compare this route with other Lijiang-based private options", "copy": "If you are deciding whether to stay local in Lijiang or continue north, the Lijiang private tours collection is the best commercial comparison point.", "link_label": "Browse Lijiang private tours", "link_url": "/collections/lijiang-private-tours" } },
-        "link_2": { "type": "link_card", "settings": { "tag": "DESTINATION CONTEXT", "heading": "Keep the Lijiang leg grounded in destination planning", "copy": "Use the Lijiang destination guide if you want to understand how much city, mountain, and cultural time to hold before the route continues north.", "link_label": "See our Lijiang travel guide", "link_url": "/pages/lijiang" } },
-        "link_3": { "type": "link_card", "settings": { "tag": "NEXT DESTINATION", "heading": "Use the Shangri-La guide for the arrival-side planning context", "copy": "The Shangri-La guide helps explain what the northern leg is building toward, especially for travelers comparing pacing, altitude comfort, and destination focus.", "link_label": "Continue to the Shangri-La travel guide", "link_url": "/pages/shangri-la" } },
-        "link_4": { "type": "link_card", "settings": { "tag": "FLAGSHIP ROUTE", "heading": "See this pairing inside the classic 8-day Yunnan journey", "copy": "The flagship route is the clearest example of how Lijiang and Shangri-La work together inside a broader private Yunnan itinerary.", "link_label": "Explore the 8-day Yunnan private tour", "link_url": "/products/kunming-dali-lijiang-shangri-la-8-day-private-tour" } },
-        "link_5": { "type": "link_card", "settings": { "tag": "CUSTOM SUPPORT", "heading": "Shape the route around your own comfort and trip length", "copy": "If you want to customize route length, add intermediate scenic logic, or soften the road-day pacing, bespoke planning is the strongest next step.", "link_label": "Plan a custom Yunnan itinerary", "link_url": "/pages/bespoke-custom-travel" } },
-        "faq_1": { "type": "faq_item", "settings": { "question": "Is this meant as a route page rather than a general Shangri-La guide?", "answer": "Yes. The page intent is commercial and route-focused, centered on why Lijiang and Shangri-La work well together as a private tour pairing." } },
-        "faq_2": { "type": "faq_item", "settings": { "question": "Why choose a Lijiang to Shangri-La private tour instead of a simple transfer?", "answer": "A private tour lets the route be shaped around comfort, scenic logic, and your wider itinerary, rather than functioning only as transport between two destinations." } },
-        "faq_3": { "type": "faq_item", "settings": { "question": "Can this route be customized with more time in Lijiang or Shangri-La?", "answer": "Yes. This pairing is especially flexible and can usually be adjusted around trip length, stop priorities, and the pace you want across northwest Yunnan." } }
+        "feature_1": {
+          "type": "feature",
+          "settings": {
+            "tag": "WHY THIS PAIRING WORKS",
+            "heading": "A natural northwest Yunnan route with a softer lead-in before Shangri-La",
+            "copy": "Lijiang gives travelers an easier cultural and scenic base before moving north into Shangri-La, which is why this pairing is one of the strongest building blocks for a private Yunnan itinerary."
+          }
+        },
+        "feature_2": {
+          "type": "feature",
+          "settings": {
+            "tag": "WHAT IT COVERS",
+            "heading": "More than a transfer, with route logic and comfort built into the trip",
+            "copy": "This page is positioned as a sellable route product rather than a generic destination guide. The focus is private pacing, route flow, and how the journey fits inside a wider northwest Yunnan trip."
+          }
+        },
+        "feature_3": {
+          "type": "feature",
+          "settings": {
+            "tag": "WHO IT SUITS",
+            "heading": "Best for first-time Yunnan visitors, couples, and small private groups",
+            "copy": "Travelers who want a managed road day, more flexibility around stops, and a smoother step up toward higher-altitude landscapes are usually the best fit for this pairing."
+          }
+        },
+        "feature_4": {
+          "type": "feature",
+          "settings": {
+            "tag": "ALTITUDE AND PACING",
+            "heading": "A comfortable route still needs realistic expectations around altitude",
+            "copy": "Private handling helps you keep the route comfortable, but Shangri-La still sits at higher elevation. A sensible pace, lighter first evening, and clear route planning matter."
+          }
+        },
+        "feature_5": {
+          "type": "feature",
+          "settings": {
+            "tag": "EXTENSION IDEAS",
+            "heading": "Easy to extend south into Dali or north within northwest Yunnan",
+            "copy": "Many travelers either connect this route back to Dali and Kunming or treat it as the northern core of a longer itinerary with more time in Lijiang and Shangri-La."
+          }
+        },
+        "link_1": {
+          "type": "link_card",
+          "settings": {
+            "tag": "LIJIANG OPTIONS",
+            "heading": "Compare this route with other Lijiang-based private tours",
+            "copy": "The Lijiang collection is the best next commercial comparison if you are deciding between a local stay and a longer northbound route.",
+            "link_label": "Browse Lijiang private tours",
+            "link_url": "/collections/lijiang-private-tours"
+          }
+        },
+        "link_2": {
+          "type": "link_card",
+          "settings": {
+            "tag": "STARTING CONTEXT",
+            "heading": "Keep the Lijiang leg grounded in destination planning",
+            "copy": "Use the Lijiang guide if you want to understand how much old-town, mountain, and cultural time to keep before continuing north.",
+            "link_label": "See our Lijiang travel guide",
+            "link_url": "/pages/lijiang"
+          }
+        },
+        "link_3": {
+          "type": "link_card",
+          "settings": {
+            "tag": "ARRIVAL CONTEXT",
+            "heading": "Use the Shangri-La guide for the arrival-side planning context",
+            "copy": "The Shangri-La guide helps travelers think through pacing, focus, and what the higher-altitude leg is building toward.",
+            "link_label": "Continue to the Shangri-La travel guide",
+            "link_url": "/pages/shangri-la"
+          }
+        },
+        "link_4": {
+          "type": "link_card",
+          "settings": {
+            "tag": "FLAGSHIP ROUTE",
+            "heading": "See this pairing inside the classic 8-day Yunnan journey",
+            "copy": "The flagship route is the clearest benchmark for how Lijiang and Shangri-La fit together inside a broader private Yunnan itinerary.",
+            "link_label": "Explore the 8-day Yunnan private tour",
+            "link_url": "/products/kunming-dali-lijiang-shangri-la-8-day-private-tour"
+          }
+        },
+        "link_5": {
+          "type": "link_card",
+          "settings": {
+            "tag": "CUSTOM PLANNING",
+            "heading": "Shape the route around your own trip length and comfort priorities",
+            "copy": "If you want to add nights, adjust road-day pacing, or connect this route with the rest of Yunnan, bespoke planning is the cleanest next step.",
+            "link_label": "Plan a custom Yunnan itinerary",
+            "link_url": "/pages/bespoke-custom-travel"
+          }
+        },
+        "faq_1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is this page meant as a real multi-day route product rather than a generic guide?",
+            "answer": "Yes. This page is built as a sellable Lynxtour multi-day private route that keeps the normal booking structure in place and adds supporting route content below it."
+          }
+        },
+        "faq_2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Why choose a private Lijiang to Shangri-La route instead of a simple transfer?",
+            "answer": "A private route lets the journey be shaped around comfort, scenic priorities, and the pacing of your wider Yunnan itinerary instead of functioning only as point-to-point transport."
+          }
+        },
+        "faq_3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can this route be customized with more time in Lijiang or Shangri-La?",
+            "answer": "Yes. This pairing is flexible and can usually be adjusted around trip length, stop priorities, and the pace you want across northwest Yunnan."
+          }
+        }
       },
-      "block_order": ["feature_1","feature_2","feature_3","feature_4","link_1","link_2","link_3","link_4","link_5","faq_1","faq_2","faq_3"],
+      "block_order": [
+        "feature_1",
+        "feature_2",
+        "feature_3",
+        "feature_4",
+        "feature_5",
+        "link_1",
+        "link_2",
+        "link_3",
+        "link_4",
+        "link_5",
+        "faq_1",
+        "faq_2",
+        "faq_3"
+      ],
       "settings": {
-        "eyebrow": "PRIVATE ROUTE",
-        "title": "Lijiang to Shangri-La Private Tour",
-        "intro": "This Lijiang to Shangri-La private tour page is designed as a commercial route-support page, not a broad destination guide. The focus is why this pairing works so well, how private handling improves comfort and flexibility, and how the route fits naturally inside a wider northwest Yunnan journey.",
-        "features_eyebrow": "WHY THIS ROUTE WORKS",
-        "features_title": "Why travelers choose this private pairing",
-        "features_intro": "Use this route when the goal is a comfortable, customizable northbound journey that connects Lijiang with Shangri-La in a way that feels intentional rather than rushed.",
-        "links_eyebrow": "ROUTE CONNECTIONS",
-        "links_title": "Useful next steps around the route",
-        "links_intro": "These supporting links help travelers compare nearby route options and understand where the Lijiang-Shangri-La pairing fits inside the larger cluster.",
-        "cta_eyebrow": "CUSTOM SUPPORT",
-        "cta_title": "Want this pairing shaped around your own Yunnan route?",
-        "cta_copy": "We can adjust the Lijiang to Shangri-La flow around travel dates, route length, destination priorities, and the level of comfort you want on the northbound leg.",
-        "cta_primary_label": "Browse Lijiang private tours",
-        "cta_primary_url": "/collections/lijiang-private-tours",
-        "cta_secondary_label": "Plan a custom Yunnan itinerary",
-        "cta_secondary_url": "/pages/bespoke-custom-travel",
+        "eyebrow": "ROUTE PLANNING NOTES",
+        "title": "Helpful planning context for this Lijiang to Shangri-La route",
+        "intro": "These notes sit below the real Lynxtour multi-day booking module so the page still behaves like a sellable private route product while adding useful commercial support content.",
+        "features_eyebrow": "ROUTE SUPPORT",
+        "features_title": "What travelers usually want clarified before booking",
+        "features_intro": "",
+        "links_eyebrow": "RELATED PLANNING",
+        "links_title": "Planning links around this northwest Yunnan pairing",
+        "links_intro": "",
         "faq_eyebrow": "FAQ",
         "faq_title": "Quick route questions",
-        "faq_intro": "Short answers for travelers evaluating Lijiang and Shangri-La as a private route pairing."
+        "faq_intro": ""
       }
     },
     "footer": {
@@ -83,5 +193,10 @@
       }
     }
   },
-  "order": ["global_navigation","main","footer"]
+  "order": [
+    "global_navigation",
+    "main",
+    "route_support",
+    "footer"
+  ]
 }
