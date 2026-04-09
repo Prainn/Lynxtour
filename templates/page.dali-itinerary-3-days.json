@@ -26,40 +26,150 @@
     "main": {
       "type": "seo-itinerary-page",
       "blocks": {
-        "audience_1": { "type": "audience", "settings": { "tag": "FIRST-TIME DALI", "heading": "Best for travelers who want a calm first look at Dali", "copy": "This pacing works well for first-time visitors who want Dali Old Town, Erhai Lake, and a village stop without turning the route into a rush. It keeps the trip scenic and practical rather than overloaded." } },
-        "audience_2": { "type": "audience", "settings": { "tag": "SLOW TRAVEL", "heading": "Strong fit for couples, photographers, and slower planners", "copy": "Three days in Dali suits travelers who care about lakeside rhythm, mountain views, and heritage towns. It leaves room for sunrise or sunset timing instead of forcing every stop into a single long day." } },
-        "audience_3": { "type": "audience", "settings": { "tag": "ROUTE BUILDING", "heading": "Easy to pair with Lijiang or a wider Yunnan route", "copy": "If Dali is one stop within a longer Yunnan trip, three days is a useful planning baseline. You cover the core highlights while keeping the route flexible enough to continue north toward Lijiang." } },
-        "day_1": { "type": "day", "settings": { "tag": "DAY 1", "heading": "Dali Old Town and an easy first orientation", "copy": "Start with Dali Old Town for gates, lanes, local food, and a relaxed feel for the city. Keep the first day light so arrival logistics do not compete with sightseeing, then finish with a slower evening walk and early views toward Cangshan." } },
-        "day_2": { "type": "day", "settings": { "tag": "DAY 2", "heading": "Erhai Lake, Xizhou, and the classic Dali circuit", "copy": "Use the second day for the route most travelers picture when they think of Dali: Erhai Lake viewpoints, a scenic lakeside drive, and time in Xizhou for Bai architecture and village atmosphere. This is the day to connect scenery with local character." } },
-        "day_3": { "type": "day", "settings": { "tag": "DAY 3", "heading": "Cangshan views or a slower village day", "copy": "Keep the third day flexible. Travelers who want bigger scenery can focus on Cangshan and mountain perspectives, while slower-paced travelers can stay near the lake, revisit favorite stretches, or add extra village time before moving on." } },
-        "link_1": { "type": "link_card", "settings": { "tag": "DESTINATION HUB", "heading": "Use the wider Dali guide for timing and attraction context", "copy": "If you want background on when to visit, what to prioritize, and how Dali fits into a first Yunnan route, the main guide gives the broader planning context behind this three-day outline.", "link_label": "See our Dali travel guide", "link_url": "/pages/dali" } },
-        "link_2": { "type": "link_card", "settings": { "tag": "COMMERCIAL NEXT STEP", "heading": "Compare private routes that already include Dali", "copy": "Once the itinerary logic feels right, move into the commercial route layer and compare ready-made options that include Dali with private pacing and flexible support.", "link_label": "Browse Dali private tours", "link_url": "/collections/dali-private-tours" } },
-        "link_3": { "type": "link_card", "settings": { "tag": "WIDER YUNNAN", "heading": "See how Dali fits inside the flagship 8-day route", "copy": "Travelers planning beyond Dali can use the classic multi-stop journey through Kunming, Dali, Lijiang, and Shangri-La as a practical benchmark for route flow.", "link_label": "Explore the 8-day Yunnan private tour", "link_url": "/products/kunming-dali-lijiang-shangri-la-8-day-private-tour" } },
-        "link_4": { "type": "link_card", "settings": { "tag": "CUSTOM PLANNING", "heading": "Turn this guide into a route shaped around your own pace", "copy": "If you want more village time, a gentler arrival day, or a stronger connection onward to Lijiang, custom planning is the cleanest next step.", "link_label": "Plan a custom Yunnan itinerary", "link_url": "/pages/bespoke-custom-travel" } },
-        "faq_1": { "type": "faq_item", "settings": { "question": "Is 3 days enough for Dali?", "answer": "Yes. Three days is usually enough for Dali Old Town, Erhai Lake, Xizhou, and a slower third day with either Cangshan views or extra village time." } },
-        "faq_2": { "type": "faq_item", "settings": { "question": "Should I stay in Dali Old Town or around Erhai Lake?", "answer": "Many first-time travelers stay near Dali Old Town for convenience, then use private transport for lake and village days. The best base depends on whether you value easy evening walks or a quieter lakeside setting." } },
-        "faq_3": { "type": "faq_item", "settings": { "question": "Can this Dali itinerary be paired with Lijiang?", "answer": "Yes. Dali and Lijiang are one of the most natural pairings in Yunnan, and a three-day Dali stay still leaves room to continue north into a wider northwest Yunnan route." } }
+        "audience_1": {
+          "type": "audience",
+          "settings": {
+            "tag": "FIRST-TIME DALI",
+            "heading": "Best for travelers who want a calm first look at Dali",
+            "copy": "This plan works well for first-time visitors who want Dali Old Town, Erhai Lake, and a village stop without making the trip feel rushed. It covers the main highlights while keeping the pace easy."
+          }
+        },
+        "audience_2": {
+          "type": "audience",
+          "settings": {
+            "tag": "SLOW TRAVEL",
+            "heading": "Strong fit for couples, photographers, and slower planners",
+            "copy": "Three days in Dali suits travelers who care about lakeside rhythm, mountain views, and heritage towns. It leaves room for sunrise or sunset timing instead of forcing every stop into a single long day."
+          }
+        },
+        "audience_3": {
+          "type": "audience",
+          "settings": {
+            "tag": "ROUTE BUILDING",
+            "heading": "Easy to pair with Lijiang or a wider Yunnan route",
+            "copy": "Dali fits naturally into a wider Yunnan route. Three days gives you enough time to enjoy the main highlights, then continue north to Lijiang without making the trip feel packed."
+          }
+        },
+        "day_1": {
+          "type": "day",
+          "settings": {
+            "tag": "DAY 1",
+            "heading": "Dali Old Town and an easy first orientation",
+            "copy": "Start with Dali Old Town for gates, lanes, local food, and a relaxed feel for the city. Keep the first day light so arrival logistics do not compete with sightseeing, then finish with a slower evening walk and early views toward Cangshan."
+          }
+        },
+        "day_2": {
+          "type": "day",
+          "settings": {
+            "tag": "DAY 2",
+            "heading": "Erhai Lake, Xizhou, and the classic Dali circuit",
+            "copy": "Use the second day for the route most travelers picture when they think of Dali: Erhai Lake viewpoints, a scenic lakeside drive, and time in Xizhou for Bai architecture and village atmosphere. This is the day to connect scenery with local character."
+          }
+        },
+        "day_3": {
+          "type": "day",
+          "settings": {
+            "tag": "DAY 3",
+            "heading": "Cangshan views or a slower village day",
+            "copy": "Keep the third day flexible. Travelers who want bigger scenery can focus on Cangshan and mountain perspectives, while slower-paced travelers can stay near the lake, revisit favorite stretches, or add extra village time before moving on."
+          }
+        },
+        "link_1": {
+          "type": "link_card",
+          "settings": {
+            "tag": "DESTINATION HUB",
+            "heading": "Use the wider Dali guide for timing and attraction context",
+            "copy": "If you want broader advice on when to visit, what to prioritize, and how Dali fits into a first Yunnan trip, the main guide is the best next page to read.",
+            "link_label": "See our Dali travel guide",
+            "link_url": "/pages/dali"
+          }
+        },
+        "link_2": {
+          "type": "link_card",
+          "settings": {
+            "tag": "COMMERCIAL NEXT STEP",
+            "heading": "Compare private routes that already include Dali",
+            "copy": "If you would rather follow a ready-made private route, browse our Dali tours to compare different trip lengths, pacing, and onward connections.",
+            "link_label": "Browse Dali private tours",
+            "link_url": "/collections/dali-private-tours"
+          }
+        },
+        "link_3": {
+          "type": "link_card",
+          "settings": {
+            "tag": "WIDER YUNNAN",
+            "heading": "See how Dali fits inside the flagship 8-day route",
+            "copy": "Travelers planning beyond Dali can use the classic multi-stop journey through Kunming, Dali, Lijiang, and Shangri-La as a practical benchmark for route flow.",
+            "link_label": "Explore the 8-day Yunnan private tour",
+            "link_url": "/products/kunming-dali-lijiang-shangri-la-8-day-private-tour"
+          }
+        },
+        "link_4": {
+          "type": "link_card",
+          "settings": {
+            "tag": "CUSTOM PLANNING",
+            "heading": "Turn this guide into a route shaped around your own pace",
+            "copy": "If you want more village time, a gentler arrival day, or a stronger connection onward to Lijiang, custom planning is the cleanest next step.",
+            "link_label": "Plan a custom Yunnan itinerary",
+            "link_url": "/pages/bespoke-custom-travel"
+          }
+        },
+        "faq_1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is 3 days enough for Dali?",
+            "answer": "Yes. Three days is usually enough for Dali Old Town, Erhai Lake, Xizhou, and a slower third day with either Cangshan views or extra village time."
+          }
+        },
+        "faq_2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Should I stay in Dali Old Town or around Erhai Lake?",
+            "answer": "Many first-time travelers stay near Dali Old Town for convenience, then use private transport for lake and village days. The best base depends on whether you value easy evening walks or a quieter lakeside setting."
+          }
+        },
+        "faq_3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can this Dali itinerary be paired with Lijiang?",
+            "answer": "Yes. Dali and Lijiang are one of the most natural pairings in Yunnan, and a three-day Dali stay still leaves room to continue north into a wider northwest Yunnan route."
+          }
+        }
       },
-      "block_order": ["audience_1","audience_2","audience_3","day_1","day_2","day_3","link_1","link_2","link_3","link_4","faq_1","faq_2","faq_3"],
+      "block_order": [
+        "audience_1",
+        "audience_2",
+        "audience_3",
+        "day_1",
+        "day_2",
+        "day_3",
+        "link_1",
+        "link_2",
+        "link_3",
+        "link_4",
+        "faq_1",
+        "faq_2",
+        "faq_3"
+      ],
       "settings": {
         "eyebrow": "DALI ITINERARY",
         "title": "Dali Itinerary 3 Days",
-        "intro": "This Dali itinerary 3 days plan is built for travelers who want a clear, comfortable way to see the destination without flattening it into a checklist. It focuses on practical pacing, route flow, and how to spread Dali Old Town, Erhai Lake, Xizhou, and mountain views across three usable days.",
+        "intro": "This 3-day Dali itinerary is a comfortable way to see the city without rushing. It gives you time for Dali Old Town, Erhai Lake, Xizhou, and mountain views, while still leaving room to travel onward to Lijiang or the rest of Yunnan.",
         "audience_eyebrow": "WHO THIS SUITS",
         "audience_title": "Who this 3-day Dali itinerary suits",
-        "audience_intro": "Use this version if you want enough time for Dali to feel relaxed, scenic, and well paced rather than compressed into a fast overnight stop.",
+        "audience_intro": "Choose this plan if you want Dali to feel relaxed rather than rushed. Three days is usually enough to enjoy the old town, lake views, local villages, and a slower final day.",
         "days_eyebrow": "DAY BY DAY",
         "days_title": "How to spend 3 days in Dali",
-        "days_intro": "The structure below keeps the most natural route flow: old town first, lake and heritage towns second, then a more flexible final day.",
+        "days_intro": "A simple way to pace Dali is to start with the old town, spend a full day around Erhai Lake and Xizhou, then leave the final day more flexible.",
         "extension_eyebrow": "OPTIONAL EXTENSION",
         "extension_title": "Where this itinerary pairs well next",
-        "extension_copy": "<p>If you have more time, Dali connects especially well with <a href=\"/pages/lijiang\">Lijiang travel planning</a> or a broader <a href=\"/products/kunming-dali-lijiang-shangri-la-8-day-private-tour\">8-day Yunnan private route</a>. That makes this page a practical starting point for travelers building a larger northwest Yunnan trip.</p>",
+        "extension_copy": "<p>If you have more time, Dali connects especially well with <a href=\"/pages/lijiang\" title=\"lijiang\">Lijiang travel </a>planning or a broader <a href=\"/products/kunming\" title=\"Kunming, Dali& Nujiang 8-Day Private Tour\">8-day Yunnan private route</a>. It is an easy place to continue north without making the trip feel rushed.</p>",
         "links_eyebrow": "PLAN THE NEXT STEP",
         "links_title": "Useful next pages after the itinerary",
-        "links_intro": "These supporting pages keep the informational journey clean while giving travelers natural next steps when they want route help or commercial options.",
+        "links_intro": "If you want to keep planning after this itinerary, these pages are the most useful next steps.",
         "cta_eyebrow": "SOFT CTA",
         "cta_title": "Want help turning this 3-day Dali plan into a private route?",
-        "cta_copy": "Use the itinerary first, then move into route support only if you want transport, pacing help, or a wider Yunnan journey built around the same logic.",
+        "cta_copy": "If you want help with transport, route pacing, or combining Dali with other parts of Yunnan, we can help turn this plan into a smoother private trip.",
         "cta_primary_label": "Browse Dali private tours",
         "cta_primary_url": "/collections/dali-private-tours",
         "cta_secondary_label": "Plan a custom Yunnan itinerary",
@@ -99,5 +209,9 @@
       }
     }
   },
-  "order": ["global_navigation","main","footer"]
+  "order": [
+    "global_navigation",
+    "main",
+    "footer"
+  ]
 }

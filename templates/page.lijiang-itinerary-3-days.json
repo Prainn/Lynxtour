@@ -26,41 +26,161 @@
     "main": {
       "type": "seo-itinerary-page",
       "blocks": {
-        "audience_1": { "type": "audience", "settings": { "tag": "FIRST-TIME LIJIANG", "heading": "Best for travelers who want Lijiang beyond a quick overnight stop", "copy": "Three days gives Lijiang enough room for old-town atmosphere, a full mountain day, and one slower cultural or nearby extension day. That balance suits first-time visitors better than trying to compress everything into two days." } },
-        "audience_2": { "type": "audience", "settings": { "tag": "SCENERY + CULTURE", "heading": "Strong fit for travelers who want both old town and high mountain scenery", "copy": "This pacing works especially well if you want a real day for Jade Dragon Snow Mountain without losing time for Lijiang Old Town, Baisha, Shuhe, or Naxi cultural stops." } },
-        "audience_3": { "type": "audience", "settings": { "tag": "NORTHWEST YUNNAN", "heading": "Useful base before continuing to Shangri-La", "copy": "If Lijiang is part of a larger route, three days gives you a strong transition point before heading deeper into northwest Yunnan. It keeps the trip comfortable while preserving onward route options." } },
-        "day_1": { "type": "day", "settings": { "tag": "DAY 1", "heading": "Lijiang Old Town, Black Dragon Pool, and a slower arrival day", "copy": "Use the first day to settle into Lijiang through the old town, canals, viewpoints, and nearby Black Dragon Pool. This is the right moment to absorb the city rhythm before adding mountain travel or broader route movement." } },
-        "day_2": { "type": "day", "settings": { "tag": "DAY 2", "heading": "Jade Dragon Snow Mountain as the major scenic day", "copy": "Keep the second day for Jade Dragon Snow Mountain and related high-altitude scenery such as Blue Moon Valley. Giving the mountain a full day keeps transport, ticketing, and pacing much easier than trying to fit it around old-town sightseeing." } },
-        "day_3": { "type": "day", "settings": { "tag": "DAY 3", "heading": "Baisha, Shuhe, or a slower cultural day before moving on", "copy": "The third day works best as a flexible cultural buffer. Travelers can focus on Baisha murals, Shuhe's quieter feel, or extra local time before continuing toward Shangri-La or the next stop in a wider Yunnan route." } },
-        "link_1": { "type": "link_card", "settings": { "tag": "DESTINATION HUB", "heading": "Use the main Lijiang guide for broader trip planning context", "copy": "The core guide helps with seasonality, attraction priorities, and how Lijiang fits into a wider first-time Yunnan route before or after this three-day plan.", "link_label": "See our Lijiang travel guide", "link_url": "/pages/lijiang" } },
-        "link_2": { "type": "link_card", "settings": { "tag": "COMMERCIAL NEXT STEP", "heading": "Compare private routes that already build around Lijiang", "copy": "Once the pacing is clear, use the private tour layer to compare Lijiang-based routes, route length, and where to add transport comfort or customization.", "link_label": "Browse Lijiang private tours", "link_url": "/collections/lijiang-private-tours" } },
-        "link_3": { "type": "link_card", "settings": { "tag": "ROUTE PAIRING", "heading": "Continue north if you want a stronger highland route", "copy": "Lijiang pairs especially naturally with Shangri-La, so travelers building a larger northwest Yunnan trip can use the destination guide there as the next planning step.", "link_label": "Continue to the Shangri-La travel guide", "link_url": "/pages/shangri-la" } },
-        "link_4": { "type": "link_card", "settings": { "tag": "FLAGSHIP ROUTE", "heading": "See how Lijiang fits into the classic 8-day Yunnan journey", "copy": "The flagship route is a useful benchmark if you want to connect Kunming, Dali, Lijiang, and Shangri-La in one smoother private itinerary.", "link_label": "Explore the 8-day Yunnan private tour", "link_url": "/products/kunming-dali-lijiang-shangri-la-8-day-private-tour" } },
-        "link_5": { "type": "link_card", "settings": { "tag": "CUSTOM PLANNING", "heading": "Shape the route around your own pace and mountain priorities", "copy": "If you want more time in the old town, help with altitude pacing, or a cleaner transition toward Shangri-La, bespoke planning is the right commercial next step.", "link_label": "Plan a custom Yunnan itinerary", "link_url": "/pages/bespoke-custom-travel" } },
-        "faq_1": { "type": "faq_item", "settings": { "question": "Is 3 days enough for Lijiang?", "answer": "Yes. Three days is usually enough for Lijiang Old Town, Jade Dragon Snow Mountain, and one additional cultural or nearby stop without making the trip feel rushed." } },
-        "faq_2": { "type": "faq_item", "settings": { "question": "Should Jade Dragon Snow Mountain take a full day?", "answer": "Usually yes. It is easier to keep transport, ticketing, altitude comfort, and sightseeing manageable if Jade Dragon Snow Mountain is treated as the main focus of one day." } },
-        "faq_3": { "type": "faq_item", "settings": { "question": "Can I continue to Shangri-La after 3 days in Lijiang?", "answer": "Yes. Lijiang is one of the most natural staging points before Shangri-La, and three days in Lijiang usually still leaves the route balanced enough for that extension." } }
+        "audience_1": {
+          "type": "audience",
+          "settings": {
+            "tag": "FIRST-TIME LIJIANG",
+            "heading": "Best for travelers who want Lijiang beyond a quick overnight stop",
+            "copy": "Three days gives Lijiang enough room for old-town atmosphere, a full mountain day, and one slower cultural or nearby extension day. That balance suits first-time visitors better than trying to compress everything into two days."
+          }
+        },
+        "audience_2": {
+          "type": "audience",
+          "settings": {
+            "tag": "SCENERY + CULTURE",
+            "heading": "Strong fit for travelers who want both old town and high mountain scenery",
+            "copy": "This plan works especially well if you want to enjoy Jade Dragon Snow Mountain properly without giving up time in Lijiang Old Town, Baisha, Shuhe, or nearby Naxi cultural stops."
+          }
+        },
+        "audience_3": {
+          "type": "audience",
+          "settings": {
+            "tag": "NORTHWEST YUNNAN",
+            "heading": "Useful base before continuing to Shangri-La",
+            "copy": "Lijiang is one of the easiest places to connect with Shangri-La. Three days gives you time to enjoy the old town and mountain scenery first, then continue north at a comfortable pace."
+          }
+        },
+        "day_1": {
+          "type": "day",
+          "settings": {
+            "tag": "DAY 1",
+            "heading": "Lijiang Old Town, Black Dragon Pool, and a slower arrival day",
+            "copy": "Use the first day to settle into Lijiang through the old town, canals, viewpoints, and nearby Black Dragon Pool. It is the easiest way to adjust to the pace of the city before a fuller mountain day."
+          }
+        },
+        "day_2": {
+          "type": "day",
+          "settings": {
+            "tag": "DAY 2",
+            "heading": "Jade Dragon Snow Mountain as the major scenic day",
+            "copy": "Keep the second day for Jade Dragon Snow Mountain and related high-altitude scenery such as Blue Moon Valley. Giving the mountain a full day keeps transport, ticketing, and pacing much easier than trying to fit it around old-town sightseeing."
+          }
+        },
+        "day_3": {
+          "type": "day",
+          "settings": {
+            "tag": "DAY 3",
+            "heading": "Baisha, Shuhe, or a slower cultural day before moving on",
+            "copy": "The third day works best as a flexible cultural buffer. Travelers can focus on Baisha murals, Shuhe's quieter feel, or extra local time before continuing toward Shangri-La or the next stop in a wider Yunnan route."
+          }
+        },
+        "link_1": {
+          "type": "link_card",
+          "settings": {
+            "tag": "DESTINATION HUB",
+            "heading": "Use the main Lijiang guide for broader trip planning context",
+            "copy": "The main Lijiang guide is the best next page if you want broader advice on seasons, major sights, and how Lijiang fits into a first Yunnan trip.",
+            "link_label": "See our Lijiang travel guide",
+            "link_url": "/pages/lijiang"
+          }
+        },
+        "link_2": {
+          "type": "link_card",
+          "settings": {
+            "tag": "COMMERCIAL NEXT STEP",
+            "heading": "Compare private routes that already build around Lijiang",
+            "copy": "If you prefer a ready-made private trip, browse our Lijiang tours to compare different route lengths, private transport options, and onward extensions.",
+            "link_label": "Browse Lijiang private tours",
+            "link_url": "/collections/lijiang-private-tours"
+          }
+        },
+        "link_3": {
+          "type": "link_card",
+          "settings": {
+            "tag": "ROUTE PAIRING",
+            "heading": "Continue north if you want a stronger highland route",
+            "copy": "Lijiang and Shangri-La are one of the easiest route pairings in Yunnan, so this is the most useful next page if you want to keep building the trip north.",
+            "link_label": "Continue to the Shangri-La travel guide",
+            "link_url": "/pages/shangri-la"
+          }
+        },
+        "link_4": {
+          "type": "link_card",
+          "settings": {
+            "tag": "FLAGSHIP ROUTE",
+            "heading": "See how Lijiang fits into the classic 8-day Yunnan journey",
+            "copy": "The flagship route is a useful benchmark if you want to connect Kunming, Dali, Lijiang, and Shangri-La in one smoother private itinerary.",
+            "link_label": "Explore the 8-day Yunnan private tour",
+            "link_url": "/products/kunming-dali-lijiang-shangri-la-8-day-private-tour"
+          }
+        },
+        "link_5": {
+          "type": "link_card",
+          "settings": {
+            "tag": "CUSTOM PLANNING",
+            "heading": "Shape the route around your own pace and mountain priorities",
+            "copy": "If you want more old-town time, a smoother mountain day, or a more comfortable connection onward to Shangri-La, custom planning is the easiest next step.",
+            "link_label": "Plan a custom Yunnan itinerary",
+            "link_url": "/pages/bespoke-custom-travel"
+          }
+        },
+        "faq_1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is 3 days enough for Lijiang?",
+            "answer": "Yes. Three days is usually enough for Lijiang Old Town, Jade Dragon Snow Mountain, and one additional cultural or nearby stop without making the trip feel rushed."
+          }
+        },
+        "faq_2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Should Jade Dragon Snow Mountain take a full day?",
+            "answer": "Usually yes. It is easier to keep transport, ticketing, altitude comfort, and sightseeing manageable if Jade Dragon Snow Mountain is treated as the main focus of one day."
+          }
+        },
+        "faq_3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I continue to Shangri-La after 3 days in Lijiang?",
+            "answer": "Yes. Lijiang is one of the most natural staging points before Shangri-La, and three days in Lijiang usually still leaves the route balanced enough for that extension."
+          }
+        }
       },
-      "block_order": ["audience_1","audience_2","audience_3","day_1","day_2","day_3","link_1","link_2","link_3","link_4","link_5","faq_1","faq_2","faq_3"],
+      "block_order": [
+        "audience_1",
+        "audience_2",
+        "audience_3",
+        "day_1",
+        "day_2",
+        "day_3",
+        "link_1",
+        "link_2",
+        "link_3",
+        "link_4",
+        "link_5",
+        "faq_1",
+        "faq_2",
+        "faq_3"
+      ],
       "settings": {
         "eyebrow": "LIJIANG ITINERARY",
         "title": "Lijiang Itinerary 3 Days",
-        "intro": "This Lijiang itinerary 3 days plan is designed for travelers who want a practical first stay with the right balance of old-town time, mountain scenery, and nearby cultural stops. It keeps the route clear: settle into Lijiang first, give Jade Dragon Snow Mountain its own day, then use the final day for cultural depth or onward route logic.",
+        "intro": "This 3-day Lijiang itinerary works well for first-time visitors who want a balanced stay. It gives you time for Lijiang Old Town, Jade Dragon Snow Mountain, and one slower cultural day before continuing to Shangri-La or elsewhere in Yunnan.",
         "audience_eyebrow": "WHO THIS SUITS",
         "audience_title": "Who this 3-day Lijiang itinerary suits",
-        "audience_intro": "Use this structure if you want Lijiang to feel complete but still keep room for the next stage of a northwest Yunnan trip.",
+        "audience_intro": "Choose this plan if you want enough time to enjoy Lijiang properly without turning the trip into a long stay. Three days is usually the right balance for first-time visitors.",
         "days_eyebrow": "DAY BY DAY",
         "days_title": "How to spend 3 days in Lijiang",
-        "days_intro": "This pacing keeps the old town, Jade Dragon Snow Mountain, and nearby cultural stops in the most natural sequence for first-time visitors.",
+        "days_intro": "A simple way to pace Lijiang is to start with the old town, keep one full day for Jade Dragon Snow Mountain, and leave the final day for Baisha, Shuhe, or a slower cultural stop.",
         "extension_eyebrow": "OPTIONAL EXTENSION",
         "extension_title": "How to keep the route moving after Lijiang",
-        "extension_copy": "<p>If you want to continue north, this itinerary pairs especially well with the <a href=\"/pages/shangri-la\">Shangri-La travel guide</a> or the broader <a href=\"/products/kunming-dali-lijiang-shangri-la-8-day-private-tour\">8-day Yunnan private tour</a>. That makes three days in Lijiang a strong bridge between old-town travel and the higher northwest Yunnan route.</p>",
+        "extension_copy": "<p>If you want to continue north, this itinerary pairs especially well with the <a href=\"/pages/shangri-la\" title=\"shangri-la\">Shangri-La travel guide</a>  or the broader <a href=\"/products/kunming\" title=\"Kunming, Dali& Nujiang 8-Day Private Tour\">8-day Yunnan private tour</a>.  Three days in Lijiang is usually enough before moving into the higher-altitude part of northwest Yunnan.<br/><br/></p>",
         "links_eyebrow": "PLAN THE NEXT STEP",
         "links_title": "Useful next pages after the itinerary",
-        "links_intro": "These supporting pages help travelers move naturally from planning content into route support without blurring the page intent.",
+        "links_intro": "If you want to keep planning after this itinerary, these pages are the most useful places to continue.",
         "cta_eyebrow": "SOFT CTA",
         "cta_title": "Need help turning this into a smoother private route?",
-        "cta_copy": "Keep the itinerary informational first. When you want transport comfort, route customization, or a cleaner extension toward Shangri-La, use the commercial options below.",
+        "cta_copy": "If you want help with transport, timing, or extending the trip toward Shangri-La, we can turn this outline into a smoother private route.",
         "cta_primary_label": "Browse Lijiang private tours",
         "cta_primary_url": "/collections/lijiang-private-tours",
         "cta_secondary_label": "Plan a custom Yunnan itinerary",
@@ -100,5 +220,9 @@
       }
     }
   },
-  "order": ["global_navigation","main","footer"]
+  "order": [
+    "global_navigation",
+    "main",
+    "footer"
+  ]
 }
