@@ -26,24 +26,126 @@
     "main": {
       "type": "seo-itinerary-page",
       "blocks": {
-        "audience_1": { "type": "audience", "settings": { "tag": "FAST FIRST VISIT", "heading": "Best for travelers who want Lijiang's essentials in one short stay", "copy": "This plan is built for travelers with only two useful days who still want a balanced first look at Lijiang rather than a rushed checklist." } },
-        "audience_2": { "type": "audience", "settings": { "tag": "OLD TOWN + SCENERY", "heading": "A strong fit if you want one town day and one mountain day", "copy": "Two days in Lijiang works best when you keep the structure simple: old town and nearby sights first, then a full day for Jade Dragon Snow Mountain or equivalent big scenery." } },
-        "audience_3": { "type": "audience", "settings": { "tag": "TIGHTER YUNNAN ROUTE", "heading": "Useful when Lijiang is one stop inside a wider northwest Yunnan trip", "copy": "This tighter version is especially practical if you are connecting Lijiang with Dali or Shangri-La and cannot afford a slower 3-day stay." } },
-        "day_1": { "type": "day", "settings": { "tag": "DAY 1", "heading": "Lijiang Old Town, Black Dragon Pool, and an easy local first day", "copy": "Use the first day to settle into Lijiang through the old town, canals, viewpoints, and nearby Black Dragon Pool. This gives you the strongest cultural feel for the city without taking time away from the mountain day." } },
-        "day_2": { "type": "day", "settings": { "tag": "DAY 2", "heading": "Jade Dragon Snow Mountain as the main scenic day", "copy": "Keep the second day for the destination's biggest scenic priority: Jade Dragon Snow Mountain and related nearby views. In a 2-day stay, this day usually needs to be the main focus rather than sharing time with too many extra stops." } },
-        "link_1": { "type": "link_card", "settings": { "tag": "DESTINATION HUB", "heading": "Use the wider Lijiang guide for seasonality and attraction context", "copy": "The main guide gives broader planning advice if you are still deciding how much time Lijiang deserves in your route.", "link_label": "See our Lijiang travel guide", "link_url": "/pages/lijiang" } },
-        "link_2": { "type": "link_card", "settings": { "tag": "LONGER VERSION", "heading": "Compare this shorter stay with the fuller 3-day version", "copy": "The 3-day itinerary shows what changes when you have room for extra cultural stops, more flexible pacing, and an easier onward transition.", "link_label": "See the 3-day Lijiang itinerary", "link_url": "/pages/lijiang-itinerary-3-days" } },
-        "link_3": { "type": "link_card", "settings": { "tag": "PRIVATE ROUTES", "heading": "Compare private routes that already build around Lijiang", "copy": "If you want transport comfort or a wider route around Lijiang, the private tours collection is the best next planning step.", "link_label": "Browse Lijiang private tours", "link_url": "/collections/lijiang-private-tours" } },
-        "link_4": { "type": "link_card", "settings": { "tag": "CUSTOM PLANNING", "heading": "Fit this short stay into the rest of your Yunnan trip", "copy": "If you want a smoother route through Lijiang, custom planning can help you connect the short stay with the next stop more comfortably.", "link_label": "Plan a custom Yunnan itinerary", "link_url": "/pages/bespoke-custom-travel" } },
-        "faq_1": { "type": "faq_item", "settings": { "question": "Is 2 days enough for Lijiang?", "answer": "Yes, if you stay selective. Two days is enough for Lijiang Old Town and one major scenic day, but not enough for every nearby cultural stop." } },
-        "faq_2": { "type": "faq_item", "settings": { "question": "What gets left out if I only have 2 days in Lijiang?", "answer": "You usually leave out slower time in Baisha or Shuhe, extra local culture, and the gentler pacing that fits better in a 3-day visit." } },
-        "faq_3": { "type": "faq_item", "settings": { "question": "Is 3 days better for Lijiang if I can spare the time?", "answer": "Usually yes. A third day gives Lijiang more room and makes it easier to add cultural stops without compressing the mountain day." } }
+        "audience_1": {
+          "type": "audience",
+          "settings": {
+            "tag": "FAST FIRST VISIT",
+            "heading": "Best for travelers who want Lijiang's essentials in one short stay",
+            "copy": "This plan is built for travelers with only two useful days who still want a balanced first look at Lijiang rather than a rushed checklist."
+          }
+        },
+        "audience_2": {
+          "type": "audience",
+          "settings": {
+            "tag": "OLD TOWN + SCENERY",
+            "heading": "A strong fit if you want one town day and one mountain day",
+            "copy": "Two days in Lijiang works best when you keep the structure simple: old town and nearby sights first, then a full day for Jade Dragon Snow Mountain or equivalent big scenery."
+          }
+        },
+        "audience_3": {
+          "type": "audience",
+          "settings": {
+            "tag": "TIGHTER YUNNAN ROUTE",
+            "heading": "Useful when Lijiang is one stop inside a wider northwest Yunnan trip",
+            "copy": "This tighter version is especially practical if you are connecting Lijiang with Dali or Shangri-La and cannot afford a slower 3-day stay."
+          }
+        },
+        "day_1": {
+          "type": "day",
+          "settings": {
+            "tag": "DAY 1",
+            "heading": "Lijiang Old Town, Black Dragon Pool, and an easy local first day",
+            "copy": "Use the first day to settle into Lijiang through the old town, canals, viewpoints, and nearby Black Dragon Pool. This gives you the strongest cultural feel for the city without taking time away from the mountain day."
+          }
+        },
+        "day_2": {
+          "type": "day",
+          "settings": {
+            "tag": "DAY 2",
+            "heading": "Jade Dragon Snow Mountain as the main scenic day",
+            "copy": "Keep the second day for the destination's biggest scenic priority: Jade Dragon Snow Mountain and related nearby views. In a 2-day stay, this day usually needs to be the main focus rather than sharing time with too many extra stops."
+          }
+        },
+        "link_1": {
+          "type": "link_card",
+          "settings": {
+            "tag": "DESTINATION HUB",
+            "heading": "Use the wider Lijiang guide for seasonality and attraction context",
+            "copy": "The main guide gives broader planning advice if you are still deciding how much time Lijiang deserves in your route.",
+            "link_label": "See our Lijiang travel guide",
+            "link_url": "/pages/lijiang"
+          }
+        },
+        "link_2": {
+          "type": "link_card",
+          "settings": {
+            "tag": "LONGER VERSION",
+            "heading": "Compare this shorter stay with the fuller 3-day version",
+            "copy": "The 3-day itinerary shows what changes when you have room for extra cultural stops, more flexible pacing, and an easier onward transition.",
+            "link_label": "See the 3-day Lijiang itinerary",
+            "link_url": "/pages/lijiang-itinerary-3-days"
+          }
+        },
+        "link_3": {
+          "type": "link_card",
+          "settings": {
+            "tag": "PRIVATE ROUTES",
+            "heading": "Compare private routes that already build around Lijiang",
+            "copy": "If you want transport comfort or a wider route around Lijiang, the private tours collection is the best next planning step.",
+            "link_label": "Browse Lijiang private tours",
+            "link_url": "/collections/lijiang-private-tours"
+          }
+        },
+        "link_4": {
+          "type": "link_card",
+          "settings": {
+            "tag": "CUSTOM PLANNING",
+            "heading": "Fit this short stay into the rest of your Yunnan trip",
+            "copy": "If you want a smoother route through Lijiang, custom planning can help you connect the short stay with the next stop more comfortably.",
+            "link_label": "Plan a custom Yunnan itinerary",
+            "link_url": "/pages/bespoke-custom-travel"
+          }
+        },
+        "faq_1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is 2 days enough for Lijiang?",
+            "answer": "Yes, if you stay selective. Two days is enough for Lijiang Old Town and one major scenic day, but not enough for every nearby cultural stop."
+          }
+        },
+        "faq_2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What gets left out if I only have 2 days in Lijiang?",
+            "answer": "You usually leave out slower time in Baisha or Shuhe, extra local culture, and the gentler pacing that fits better in a 3-day visit."
+          }
+        },
+        "faq_3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is 3 days better for Lijiang if I can spare the time?",
+            "answer": "Usually yes. A third day gives Lijiang more room and makes it easier to add cultural stops without compressing the mountain day."
+          }
+        }
       },
-      "block_order": ["audience_1","audience_2","audience_3","day_1","day_2","link_1","link_2","link_3","link_4","faq_1","faq_2","faq_3"],
+      "block_order": [
+        "audience_1",
+        "audience_2",
+        "audience_3",
+        "day_1",
+        "day_2",
+        "link_1",
+        "link_2",
+        "link_3",
+        "link_4",
+        "faq_1",
+        "faq_2",
+        "faq_3"
+      ],
       "settings": {
         "eyebrow": "LIJIANG ITINERARY",
         "title": "Lijiang Itinerary 2 Days",
-        "intro": "This Lijiang itinerary for 2 days is designed for travelers who want the destination's essentials without stretching a short stay too far. The clearest structure is simple: one day for old town and nearby local sights, one day for the mountain scenery that makes Lijiang memorable.",
+        "intro": "This 2-day Lijiang itinerary works best for travelers who want the essentials of the destination in a short stay. The simplest balance is one day for the old town and nearby sights, and one day for the mountain scenery that makes Lijiang stand out.",
         "audience_eyebrow": "WHO THIS SUITS",
         "audience_title": "Who this 2-day Lijiang itinerary suits",
         "audience_intro": "Use this shorter version if your time is limited and you want the strongest first taste of Lijiang without trying to fit in every nearby stop.",
@@ -98,5 +200,9 @@
       }
     }
   },
-  "order": ["global_navigation","main","footer"]
+  "order": [
+    "global_navigation",
+    "main",
+    "footer"
+  ]
 }
