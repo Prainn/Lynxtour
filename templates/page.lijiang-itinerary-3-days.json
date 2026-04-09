@@ -99,7 +99,7 @@
           "settings": {
             "tag": "ROUTE PAIRING",
             "heading": "Continue north if you want a stronger highland route",
-            "copy": "Lijiang and Shangri-La are one of the most natural pairings in Yunnan, so this is the next page to open if you want to keep building the route north.",
+            "copy": "Lijiang and Shangri-La are one of the easiest route pairings in Yunnan, so this is the most useful next page if you want to keep building the trip north.",
             "link_label": "Continue to the Shangri-La travel guide",
             "link_url": "/pages/shangri-la"
           }
@@ -119,7 +119,7 @@
           "settings": {
             "tag": "CUSTOM PLANNING",
             "heading": "Shape the route around your own pace and mountain priorities",
-            "copy": "If you want extra old-town time, a smoother mountain day, or a more comfortable connection onward to Shangri-La, custom planning is the easiest next step.",
+            "copy": "If you want more old-town time, a smoother mountain day, or a more comfortable connection onward to Shangri-La, custom planning is the easiest next step.",
             "link_label": "Plan a custom Yunnan itinerary",
             "link_url": "/pages/bespoke-custom-travel"
           }
