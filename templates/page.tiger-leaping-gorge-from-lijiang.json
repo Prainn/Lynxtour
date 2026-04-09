@@ -1,0 +1,92 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "global_navigation": {
+      "type": "global-navigation",
+      "name": "Global Brand Header",
+      "settings": {
+        "logo_image": "shopify://shop_images/LOGO2.svg",
+        "logo_height": 40,
+        "logo_text_cn": "",
+        "logo_text_en": "",
+        "show_slogan": true,
+        "slogan_text": "",
+        "main_menu": "main-menu-1",
+        "btn_color": "#fbbf24"
+      }
+    },
+    "main": {
+      "type": "page-route-support",
+      "blocks": {
+        "feature_1": { "type": "feature", "settings": { "tag": "WHY IT WORKS", "heading": "One of the strongest dramatic landscape days from a Lijiang base", "copy": "Tiger Leaping Gorge works well from Lijiang because the route is direct enough for a focused private day or a scenic onward leg, while still feeling very different from the old-town and mountain scenery around Lijiang itself." } },
+        "feature_2": { "type": "feature", "settings": { "tag": "WHAT IT COVERS", "heading": "A route built around canyon scenery, road comfort, and easier handling", "copy": "Most travelers use this route for gorge viewpoints, a cleaner road-day sequence, and a smoother experience than trying to piece the trip together with fixed shared timing." } },
+        "feature_3": { "type": "feature", "settings": { "tag": "WHO IT SUITS", "heading": "Best for travelers who want big scenery without turning the day into a full hiking-focused trip", "copy": "This route is especially useful for couples, families, and first-time Yunnan travelers who want Tiger Leaping Gorge access from Lijiang without needing the page to function as a full trekking guide." } },
+        "feature_4": { "type": "feature", "settings": { "tag": "DAY TRIP OR ONWARD", "heading": "Works either as a dedicated outing or as part of the northbound route", "copy": "Some travelers return to Lijiang after the gorge, while others use the day as the natural bridge toward Shangri-La. The right choice depends on your pace, interests, and how far north the trip continues." } },
+        "feature_5": { "type": "feature", "settings": { "tag": "WHEN TO CONTINUE", "heading": "A useful stepping stone when Shangri-La is next in the route", "copy": "If the wider plan already moves north, Tiger Leaping Gorge often fits best on the way toward Shangri-La rather than as an isolated separate outing from Lijiang." } },
+        "link_1": { "type": "link_card", "settings": { "tag": "LIJIANG OPTIONS", "heading": "Compare this route with other Lijiang-based private options", "copy": "The Lijiang collection is the best next stop if you want to compare a gorge day with mountain, old-town, or multi-day route options.", "link_label": "Browse Lijiang private tours", "link_url": "/collections/lijiang-private-tours" } },
+        "link_2": { "type": "link_card", "settings": { "tag": "STARTING POINT", "heading": "Use the Lijiang guide for wider trip context before the gorge day", "copy": "The destination guide helps explain how Tiger Leaping Gorge fits into a first stay in Lijiang and how much local time to keep before heading out.", "link_label": "See our Lijiang travel guide", "link_url": "/pages/lijiang" } },
+        "link_3": { "type": "link_card", "settings": { "tag": "ONWARD ROUTE", "heading": "Keep going north if Shangri-La is part of the plan", "copy": "Many travelers pair the gorge with the next stage north, making the Shangri-La guide the strongest next planning stop.", "link_label": "Continue to the Shangri-La travel guide", "link_url": "/pages/shangri-la" } },
+        "link_4": { "type": "link_card", "settings": { "tag": "CUSTOM PLANNING", "heading": "Shape the gorge day around the rest of your Yunnan route", "copy": "If you want help deciding whether this works better as a day trip or as part of a northbound route, custom planning is the cleanest next step.", "link_label": "Plan a custom Yunnan itinerary", "link_url": "/pages/bespoke-custom-travel" } },
+        "faq_1": { "type": "faq_item", "settings": { "question": "Can Tiger Leaping Gorge be done from Lijiang?", "answer": "Yes. It can work as a long scenic outing from Lijiang or as part of the route north toward Shangri-La, depending on your wider plan." } },
+        "faq_2": { "type": "faq_item", "settings": { "question": "Is this page meant as a full hiking guide?", "answer": "No. The focus here is the route from Lijiang, private handling, and how Tiger Leaping Gorge fits into a wider Yunnan trip." } },
+        "faq_3": { "type": "faq_item", "settings": { "question": "When is it better to continue on to Shangri-La after the gorge?", "answer": "It usually makes sense when your trip is already moving north and you want to avoid backtracking to Lijiang after the gorge day." } }
+      },
+      "block_order": ["feature_1","feature_2","feature_3","feature_4","feature_5","link_1","link_2","link_3","link_4","faq_1","faq_2","faq_3"],
+      "settings": {
+        "eyebrow": "PRIVATE ROUTE",
+        "title": "Tiger Leaping Gorge From Lijiang",
+        "intro": "Tiger Leaping Gorge is one of the most dramatic landscape routes travelers add from Lijiang. For many visitors, the appeal is not just the gorge itself, but how easily it fits into a private day with more comfortable transport, clearer pacing, and the option to keep moving north afterward.",
+        "features_eyebrow": "WHY THIS ROUTE WORKS",
+        "features_title": "What travelers usually want to know before adding the gorge",
+        "features_intro": "The route works best when you treat it as a clear scenic priority rather than trying to fold it into too many other stops on the same day.",
+        "note_eyebrow": "ROUTE LOGIC",
+        "note_title": "How this fits into a wider northwest Yunnan trip",
+        "note_copy": "<p>If you are staying longer in Lijiang, Tiger Leaping Gorge can work as a dedicated outing from the city. If the wider route already continues north, it often makes more sense to use the gorge as the scenic bridge toward <a href=\"/pages/shangri-la\">Shangri-La travel planning</a> rather than backtracking. The right choice depends on how much time you want in Lijiang itself and whether the trip is meant to keep moving after the canyon day.</p>",
+        "links_eyebrow": "PLAN THE NEXT STEP",
+        "links_title": "Useful next pages around this route",
+        "links_intro": "These pages help place the gorge route inside the wider Lijiang and northwest Yunnan cluster.",
+        "faq_eyebrow": "FAQ",
+        "faq_title": "Quick route questions",
+        "faq_intro": "Short answers for travelers comparing Tiger Leaping Gorge as a day from Lijiang or as part of the road north."
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "name": "Custom Footer",
+      "settings": {
+        "logo_text": "Lynxtour",
+        "brand_desc": "Lynxtour is a Yunnan private tours brand offering bespoke journeys, luxury day trips, and private charter services across Kunming, Dali, Lijiang, Shangri-La, and beyond.",
+        "social_title": "FOLLOW US",
+        "instagram_link": "",
+        "facebook_link": "",
+        "x_link": "",
+        "youtube_link": "",
+        "tiktok_link": "",
+        "menu_1_title": "Quick Navigation",
+        "menu_1": "link-list",
+        "menu_2_title": "Destination Inspiration",
+        "menu_2": "link-list-1",
+        "contact_title": "Contact & Support",
+        "contact_tel": "0871-63218099",
+        "contact_email": "biz@lynxtour.cn",
+        "contact_addr": "Room 3011, Building 4, Xindu Longcheng, Panlong District, Kunming City, Yunnan Province, China, Postcode: 650051.",
+        "badge_text": "PRIVATE & BESPOKE",
+        "show_payment_icons": true,
+        "copyright_text": "ALL RIGHTS RESERVED.",
+        "privacy_label": "PRIVACY POLICY",
+        "privacy_link": "shopify://policies/privacy-policy",
+        "terms_label": "TERMS OF SERVICE",
+        "terms_link": "shopify://policies/terms-of-service"
+      }
+    }
+  },
+  "order": ["global_navigation","main","footer"]
+}

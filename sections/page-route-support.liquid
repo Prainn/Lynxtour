@@ -1,0 +1,459 @@
+{% assign feature_blocks = section.blocks | where: 'type', 'feature' %}
+{% assign link_blocks = section.blocks | where: 'type', 'link_card' %}
+{% assign faq_blocks = section.blocks | where: 'type', 'faq_item' %}
+
+<style>
+  .page-route-support {
+    background: #050505;
+    color: #f5f5f4;
+    padding: 60px 0;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .page-route-support__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .page-route-support__hero {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 120px 20px 96px;
+    text-align: center;
+  }
+
+  .page-route-support__eyebrow,
+  .page-route-support__section-eyebrow {
+    display: block;
+    margin-bottom: 16px;
+    color: #d4af37;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+  }
+
+  .page-route-support__title,
+  .page-route-support__section-title,
+  .page-route-support__note-title {
+    margin: 0;
+    color: #fff;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.7rem, 6vw, 4.8rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.08;
+  }
+
+  .page-route-support__hero::after {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 60px;
+    margin: 42px auto 36px;
+    background: linear-gradient(to bottom, rgba(212, 175, 55, 0.8), transparent);
+  }
+
+  .page-route-support__intro,
+  .page-route-support__section-intro,
+  .page-route-support__note-copy,
+  .page-route-support__faq-answer {
+    max-width: 820px;
+    margin: 0 auto;
+    color: #cfcac4;
+    font-size: 15px;
+    line-height: 1.9;
+    letter-spacing: 0.02em;
+  }
+
+  .page-route-support__section {
+    padding-bottom: 100px;
+    text-align: center;
+  }
+
+  .page-route-support__grid {
+    display: grid;
+    gap: 24px;
+    margin-top: 44px;
+  }
+
+  .page-route-support__grid--two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .page-route-support__grid--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .page-route-support__card {
+    min-height: 100%;
+    padding: 30px 28px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
+    text-align: left;
+  }
+
+  .page-route-support__card-tag {
+    display: block;
+    margin-bottom: 14px;
+    color: #d4af37;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
+
+  .page-route-support__card-title {
+    margin: 0 0 14px;
+    color: #fff;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.9rem;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.15;
+  }
+
+  .page-route-support__card-copy {
+    color: #b9b2ab;
+    font-size: 13px;
+    line-height: 1.9;
+    letter-spacing: 0.02em;
+  }
+
+  .page-route-support__link {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 22px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .page-route-support__link-line {
+    width: 34px;
+    height: 1px;
+    background: #d4af37;
+    transition: width 0.3s ease;
+  }
+
+  .page-route-support__link:hover .page-route-support__link-line {
+    width: 60px;
+  }
+
+  .page-route-support__note {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 42px 38px;
+    border: 1px solid rgba(212, 175, 55, 0.16);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01)),
+      radial-gradient(circle at top right, rgba(212, 175, 55, 0.08), transparent 36%);
+    text-align: left;
+  }
+
+  .page-route-support__note-title {
+    margin-bottom: 16px;
+    font-size: 2.2rem;
+  }
+
+  .page-route-support__note-copy {
+    max-width: none;
+    margin: 0;
+  }
+
+  .page-route-support__note-copy a,
+  .page-route-support__card-copy a {
+    color: #f1d995;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(241, 217, 149, 0.35);
+  }
+
+  .page-route-support__note-copy a:hover,
+  .page-route-support__card-copy a:hover {
+    color: #d4af37;
+    border-bottom-color: rgba(212, 175, 55, 0.7);
+  }
+
+  .page-route-support__faq-list {
+    max-width: 900px;
+    margin: 44px auto 0;
+    text-align: left;
+  }
+
+  .page-route-support__faq-item {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .page-route-support__faq-item:last-child {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .page-route-support__faq-question {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 24px 0;
+    cursor: pointer;
+    color: #f5f5f4;
+    list-style: none;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+  }
+
+  .page-route-support__faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .page-route-support__faq-icon {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    flex: 0 0 14px;
+  }
+
+  .page-route-support__faq-icon::before,
+  .page-route-support__faq-icon::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background: #d4af37;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.25s ease;
+  }
+
+  .page-route-support__faq-icon::before {
+    width: 14px;
+    height: 1px;
+  }
+
+  .page-route-support__faq-icon::after {
+    width: 1px;
+    height: 14px;
+  }
+
+  .page-route-support__faq-item[open] .page-route-support__faq-icon::after {
+    opacity: 0;
+  }
+
+  .page-route-support__faq-answer {
+    padding: 0 0 24px;
+    max-width: none;
+    margin: 0;
+    color: #b9b2ab;
+    font-size: 13px;
+  }
+
+  @media (max-width: 989px) {
+    .page-route-support__container {
+      padding: 0 24px;
+    }
+
+    .page-route-support__hero {
+      padding: 84px 10px 82px;
+    }
+
+    .page-route-support__grid--two,
+    .page-route-support__grid--three {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+<div class="page-route-support" id="section-{{ section.id }}">
+  <div class="page-route-support__container">
+    <header class="page-route-support__hero">
+      {% if section.settings.eyebrow != blank %}
+        <span class="page-route-support__eyebrow">{{ section.settings.eyebrow }}</span>
+      {% endif %}
+      <h1 class="page-route-support__title">{{ section.settings.title | escape }}</h1>
+      {% if section.settings.intro != blank %}
+        <div class="page-route-support__intro">{{ section.settings.intro | newline_to_br }}</div>
+      {% endif %}
+    </header>
+
+    {% if feature_blocks.size > 0 %}
+      <section class="page-route-support__section">
+        {% if section.settings.features_eyebrow != blank %}
+          <span class="page-route-support__section-eyebrow">{{ section.settings.features_eyebrow }}</span>
+        {% endif %}
+        {% if section.settings.features_title != blank %}
+          <h2 class="page-route-support__section-title">{{ section.settings.features_title }}</h2>
+        {% endif %}
+        {% if section.settings.features_intro != blank %}
+          <div class="page-route-support__section-intro">{{ section.settings.features_intro | newline_to_br }}</div>
+        {% endif %}
+        <div class="page-route-support__grid page-route-support__grid--three">
+          {% for block in feature_blocks %}
+            <article class="page-route-support__card" {{ block.shopify_attributes }}>
+              {% if block.settings.tag != blank %}<span class="page-route-support__card-tag">{{ block.settings.tag }}</span>{% endif %}
+              {% if block.settings.heading != blank %}<h3 class="page-route-support__card-title">{{ block.settings.heading }}</h3>{% endif %}
+              {% if block.settings.copy != blank %}<div class="page-route-support__card-copy">{{ block.settings.copy | newline_to_br }}</div>{% endif %}
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+
+    {% if section.settings.note_title != blank or section.settings.note_copy != blank %}
+      <section class="page-route-support__section">
+        {% if section.settings.note_eyebrow != blank %}
+          <span class="page-route-support__section-eyebrow">{{ section.settings.note_eyebrow }}</span>
+        {% endif %}
+        <div class="page-route-support__note">
+          {% if section.settings.note_title != blank %}<h2 class="page-route-support__note-title">{{ section.settings.note_title }}</h2>{% endif %}
+          {% if section.settings.note_copy != blank %}<div class="page-route-support__note-copy">{{ section.settings.note_copy }}</div>{% endif %}
+        </div>
+      </section>
+    {% endif %}
+
+    {% if link_blocks.size > 0 %}
+      <section class="page-route-support__section">
+        {% if section.settings.links_eyebrow != blank %}
+          <span class="page-route-support__section-eyebrow">{{ section.settings.links_eyebrow }}</span>
+        {% endif %}
+        {% if section.settings.links_title != blank %}
+          <h2 class="page-route-support__section-title">{{ section.settings.links_title }}</h2>
+        {% endif %}
+        {% if section.settings.links_intro != blank %}
+          <div class="page-route-support__section-intro">{{ section.settings.links_intro | newline_to_br }}</div>
+        {% endif %}
+        <div class="page-route-support__grid page-route-support__grid--two">
+          {% for block in link_blocks %}
+            <article class="page-route-support__card" {{ block.shopify_attributes }}>
+              {% if block.settings.tag != blank %}<span class="page-route-support__card-tag">{{ block.settings.tag }}</span>{% endif %}
+              {% if block.settings.heading != blank %}<h3 class="page-route-support__card-title">{{ block.settings.heading }}</h3>{% endif %}
+              {% if block.settings.copy != blank %}<div class="page-route-support__card-copy">{{ block.settings.copy | newline_to_br }}</div>{% endif %}
+              {% if block.settings.link_label != blank and block.settings.link_url != blank %}
+                <a class="page-route-support__link" href="{{ block.settings.link_url }}">
+                  {{ block.settings.link_label }}
+                  <span class="page-route-support__link-line"></span>
+                </a>
+              {% endif %}
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+
+    {% if faq_blocks.size > 0 %}
+      <section class="page-route-support__section">
+        {% if section.settings.faq_eyebrow != blank %}
+          <span class="page-route-support__section-eyebrow">{{ section.settings.faq_eyebrow }}</span>
+        {% endif %}
+        {% if section.settings.faq_title != blank %}
+          <h2 class="page-route-support__section-title">{{ section.settings.faq_title }}</h2>
+        {% endif %}
+        {% if section.settings.faq_intro != blank %}
+          <div class="page-route-support__section-intro">{{ section.settings.faq_intro | newline_to_br }}</div>
+        {% endif %}
+        <div class="page-route-support__faq-list">
+          {% for block in faq_blocks %}
+            <details class="page-route-support__faq-item" {{ block.shopify_attributes }}>
+              <summary class="page-route-support__faq-question">
+                <span>{{ block.settings.question }}</span>
+                <span class="page-route-support__faq-icon"></span>
+              </summary>
+              <div class="page-route-support__faq-answer">{{ block.settings.answer | newline_to_br }}</div>
+            </details>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+  </div>
+</div>
+
+{% if faq_blocks.size > 0 %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {% for block in faq_blocks %}
+        {
+          "@type": "Question",
+          "name": {{ block.settings.question | strip_html | strip | json }},
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": {{ block.settings.answer | strip_html | strip | json }}
+          }
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+  }
+  </script>
+{% endif %}
+
+{% if page %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ request.origin | append: '/' | json }} },
+      { "@type": "ListItem", "position": 2, "name": {{ page.title | json }}, "item": {{ request.origin | append: page.url | json }} }
+    ]
+  }
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Page Route Support",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "PRIVATE ROUTE" },
+    { "type": "text", "id": "title", "label": "H1 title", "default": "Sample route support title" },
+    { "type": "textarea", "id": "intro", "label": "Intro" },
+    { "type": "text", "id": "features_eyebrow", "label": "Features eyebrow", "default": "WHY THIS ROUTE WORKS" },
+    { "type": "text", "id": "features_title", "label": "Features title", "default": "Why travelers choose this route" },
+    { "type": "textarea", "id": "features_intro", "label": "Features intro" },
+    { "type": "text", "id": "note_eyebrow", "label": "Note eyebrow", "default": "ROUTE LOGIC" },
+    { "type": "text", "id": "note_title", "label": "Note title", "default": "How this route fits into the wider trip" },
+    { "type": "richtext", "id": "note_copy", "label": "Note copy" },
+    { "type": "text", "id": "links_eyebrow", "label": "Links eyebrow", "default": "PLAN THE NEXT STEP" },
+    { "type": "text", "id": "links_title", "label": "Links title", "default": "Useful next pages" },
+    { "type": "textarea", "id": "links_intro", "label": "Links intro" },
+    { "type": "text", "id": "faq_eyebrow", "label": "FAQ eyebrow", "default": "FAQ" },
+    { "type": "text", "id": "faq_title", "label": "FAQ title", "default": "Common route questions" },
+    { "type": "textarea", "id": "faq_intro", "label": "FAQ intro" }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature card",
+      "settings": [
+        { "type": "text", "id": "tag", "label": "Tag", "default": "ROUTE" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Why this route works well" },
+        { "type": "textarea", "id": "copy", "label": "Copy" }
+      ]
+    },
+    {
+      "type": "link_card",
+      "name": "Link card",
+      "settings": [
+        { "type": "text", "id": "tag", "label": "Tag", "default": "NEXT STEP" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Continue planning" },
+        { "type": "textarea", "id": "copy", "label": "Copy" },
+        { "type": "text", "id": "link_label", "label": "Link label", "default": "Browse supporting pages" },
+        { "type": "url", "id": "link_url", "label": "Link URL" }
+      ]
+    },
+    {
+      "type": "faq_item",
+      "name": "FAQ item",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Can this route be customized?" },
+        { "type": "textarea", "id": "answer", "label": "Answer" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Page Route Support" }
+  ]
+}
+{% endschema %}

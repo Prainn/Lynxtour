@@ -1,0 +1,94 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "global_navigation": {
+      "type": "global-navigation",
+      "name": "Global Brand Header",
+      "settings": {
+        "logo_image": "shopify://shop_images/LOGO2.svg",
+        "logo_height": 40,
+        "logo_text_cn": "",
+        "logo_text_en": "",
+        "show_slogan": true,
+        "slogan_text": "",
+        "main_menu": "main-menu-1",
+        "btn_color": "#fbbf24"
+      }
+    },
+    "main": {
+      "type": "page-route-support",
+      "blocks": {
+        "feature_1": { "type": "feature", "settings": { "tag": "WHY THIS PAIRING WORKS", "heading": "One of the most natural route combinations in northwest Yunnan", "copy": "Dali and Lijiang work well together because they feel connected without being repetitive: Dali brings lake scenery and Bai heritage, while Lijiang adds old-town atmosphere, mountain views, and a stronger jump-off point for the north." } },
+        "feature_2": { "type": "feature", "settings": { "tag": "WHAT IT INCLUDES", "heading": "A route built around scenery, town atmosphere, and easier pacing between stops", "copy": "Most travelers use this pairing for a comfortable sequence of old town, village, lake, and mountain highlights rather than treating the route as a simple transfer between two cities." } },
+        "feature_3": { "type": "feature", "settings": { "tag": "WHO IT SUITS", "heading": "Best for first-time Yunnan visitors who want a balanced private route", "copy": "This is a strong fit for couples, families, and small private groups who want two of Yunnan's most traveler-friendly destinations in one route without overloading the schedule." } },
+        "feature_4": { "type": "feature", "settings": { "tag": "FLEXIBILITY", "heading": "Easy to shape around village time, scenic stops, and route pace", "copy": "Private handling makes the Dali-Lijiang pairing easier to adjust around slower travel, different hotel styles, and how much time you want by Erhai Lake, in the old towns, or on the road between them." } },
+        "feature_5": { "type": "feature", "settings": { "tag": "ONWARD ROUTE", "heading": "A natural stepping stone before the route continues north", "copy": "For many travelers, Dali and Lijiang form the middle of a wider Yunnan trip and connect especially naturally with the next stage toward Shangri-La." } },
+        "link_1": { "type": "link_card", "settings": { "tag": "DALI OPTIONS", "heading": "Compare Dali-based private routes before linking onward", "copy": "If you are still deciding how much Dali deserves in the route, the Dali collection is the strongest place to compare nearby options.", "link_label": "Browse Dali private tours", "link_url": "/collections/dali-private-tours" } },
+        "link_2": { "type": "link_card", "settings": { "tag": "LIJIANG OPTIONS", "heading": "Compare how Lijiang fits once the route moves north", "copy": "The Lijiang collection is useful if you want to compare short stays, mountain-focused routes, or wider private travel beyond the old town.", "link_label": "Browse Lijiang private tours", "link_url": "/collections/lijiang-private-tours" } },
+        "link_3": { "type": "link_card", "settings": { "tag": "DESTINATION CONTEXT", "heading": "Use the destination guides to compare the two stops more closely", "copy": "The main destination pages help explain how Dali and Lijiang differ in pace, scenery, and what each one adds to the route.", "link_label": "See our Dali travel guide", "link_url": "/pages/dali" } },
+        "link_4": { "type": "link_card", "settings": { "tag": "DESTINATION CONTEXT", "heading": "Keep the northern leg grounded in Lijiang planning", "copy": "Use the Lijiang guide if you want to think through old-town time, mountain priorities, and what to add before the route continues further north.", "link_label": "See our Lijiang travel guide", "link_url": "/pages/lijiang" } },
+        "link_5": { "type": "link_card", "settings": { "tag": "FLAGSHIP ROUTE", "heading": "See this pairing inside the wider classic Yunnan journey", "copy": "The flagship 8-day route is the clearest benchmark for how Dali and Lijiang fit together inside a broader Yunnan trip.", "link_label": "Explore the 8-day Yunnan private tour", "link_url": "/products/kunming-dali-lijiang-shangri-la-8-day-private-tour" } },
+        "link_6": { "type": "link_card", "settings": { "tag": "CUSTOM PLANNING", "heading": "Shape the route around your own pace and onward plans", "copy": "If you want to vary the length of each stop or continue farther north afterward, custom planning is the best next step.", "link_label": "Plan a custom Yunnan itinerary", "link_url": "/pages/bespoke-custom-travel" } },
+        "faq_1": { "type": "faq_item", "settings": { "question": "Do Dali and Lijiang work well together in one private route?", "answer": "Yes. They are one of Yunnan's most natural pairings because they combine different scenery and atmosphere without making the trip feel repetitive." } },
+        "faq_2": { "type": "faq_item", "settings": { "question": "Is this route better as a short standalone trip or part of a longer Yunnan itinerary?", "answer": "It works both ways, but many travelers use Dali and Lijiang as the middle stretch of a wider route that may continue north afterward." } },
+        "faq_3": { "type": "faq_item", "settings": { "question": "Can the Dali-Lijiang route be customized around pace and stop priorities?", "answer": "Yes. One of the main advantages of private travel on this pairing is that it can be adjusted around hotel style, sightseeing pace, and how long you want in each destination." } }
+      },
+      "block_order": ["feature_1","feature_2","feature_3","feature_4","feature_5","link_1","link_2","link_3","link_4","link_5","link_6","faq_1","faq_2","faq_3"],
+      "settings": {
+        "eyebrow": "PRIVATE ROUTE",
+        "title": "Dali to Lijiang Private Tour",
+        "intro": "Dali and Lijiang are one of the strongest route pairings in Yunnan. Together they give travelers lake scenery, old towns, village atmosphere, and mountain views in a sequence that feels balanced, comfortable, and easy to shape around different travel styles.",
+        "features_eyebrow": "WHY THIS ROUTE WORKS",
+        "features_title": "What makes the Dali-Lijiang pairing so useful",
+        "features_intro": "For many travelers, this is the clearest core route in northwest Yunnan before deciding whether to keep the trip shorter or continue farther north.",
+        "note_eyebrow": "NATURAL EXTENSION",
+        "note_title": "How this route fits into a wider Yunnan trip",
+        "note_copy": "<p>Dali and Lijiang can work well as a shorter standalone journey, but they also sit naturally inside a broader Yunnan route. Travelers who want to keep moving often continue north after Lijiang, while others use these two destinations as the calmer middle of a trip that starts in Kunming. If you want a benchmark for how the route can expand, the <a href=\"/products/kunming-dali-lijiang-shangri-la-8-day-private-tour\">8-day Yunnan private tour</a> is the strongest reference point.</p>",
+        "links_eyebrow": "PLAN THE NEXT STEP",
+        "links_title": "Useful next pages around this route",
+        "links_intro": "These related pages help you compare the pairing with destination-level planning and wider route options.",
+        "faq_eyebrow": "FAQ",
+        "faq_title": "Quick route questions",
+        "faq_intro": "Short answers for travelers comparing Dali and Lijiang as a private route pairing."
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "name": "Custom Footer",
+      "settings": {
+        "logo_text": "Lynxtour",
+        "brand_desc": "Lynxtour is a Yunnan private tours brand offering bespoke journeys, luxury day trips, and private charter services across Kunming, Dali, Lijiang, Shangri-La, and beyond.",
+        "social_title": "FOLLOW US",
+        "instagram_link": "",
+        "facebook_link": "",
+        "x_link": "",
+        "youtube_link": "",
+        "tiktok_link": "",
+        "menu_1_title": "Quick Navigation",
+        "menu_1": "link-list",
+        "menu_2_title": "Destination Inspiration",
+        "menu_2": "link-list-1",
+        "contact_title": "Contact & Support",
+        "contact_tel": "0871-63218099",
+        "contact_email": "biz@lynxtour.cn",
+        "contact_addr": "Room 3011, Building 4, Xindu Longcheng, Panlong District, Kunming City, Yunnan Province, China, Postcode: 650051.",
+        "badge_text": "PRIVATE & BESPOKE",
+        "show_payment_icons": true,
+        "copyright_text": "ALL RIGHTS RESERVED.",
+        "privacy_label": "PRIVACY POLICY",
+        "privacy_link": "shopify://policies/privacy-policy",
+        "terms_label": "TERMS OF SERVICE",
+        "terms_link": "shopify://policies/terms-of-service"
+      }
+    }
+  },
+  "order": ["global_navigation","main","footer"]
+}
