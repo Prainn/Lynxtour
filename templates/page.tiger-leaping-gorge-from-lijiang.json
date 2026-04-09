@@ -26,24 +26,126 @@
     "main": {
       "type": "page-route-support",
       "blocks": {
-        "feature_1": { "type": "feature", "settings": { "tag": "WHY IT WORKS", "heading": "One of the strongest dramatic landscape days from a Lijiang base", "copy": "Tiger Leaping Gorge works well from Lijiang because the route is direct enough for a focused private day or a scenic onward leg, while still feeling very different from the old-town and mountain scenery around Lijiang itself." } },
-        "feature_2": { "type": "feature", "settings": { "tag": "WHAT IT COVERS", "heading": "A route built around canyon scenery, road comfort, and easier handling", "copy": "Most travelers use this route for gorge viewpoints, a cleaner road-day sequence, and a smoother experience than trying to piece the trip together with fixed shared timing." } },
-        "feature_3": { "type": "feature", "settings": { "tag": "WHO IT SUITS", "heading": "Best for travelers who want big scenery without turning the day into a full hiking-focused trip", "copy": "This route is especially useful for couples, families, and first-time Yunnan travelers who want Tiger Leaping Gorge access from Lijiang without needing the page to function as a full trekking guide." } },
-        "feature_4": { "type": "feature", "settings": { "tag": "DAY TRIP OR ONWARD", "heading": "Works either as a dedicated outing or as part of the northbound route", "copy": "Some travelers return to Lijiang after the gorge, while others use the day as the natural bridge toward Shangri-La. The right choice depends on your pace, interests, and how far north the trip continues." } },
-        "feature_5": { "type": "feature", "settings": { "tag": "WHEN TO CONTINUE", "heading": "A useful stepping stone when Shangri-La is next in the route", "copy": "If the wider plan already moves north, Tiger Leaping Gorge often fits best on the way toward Shangri-La rather than as an isolated separate outing from Lijiang." } },
-        "link_1": { "type": "link_card", "settings": { "tag": "LIJIANG OPTIONS", "heading": "Compare this route with other Lijiang-based private options", "copy": "The Lijiang collection is the best next stop if you want to compare a gorge day with mountain, old-town, or multi-day route options.", "link_label": "Browse Lijiang private tours", "link_url": "/collections/lijiang-private-tours" } },
-        "link_2": { "type": "link_card", "settings": { "tag": "STARTING POINT", "heading": "Use the Lijiang guide for wider trip context before the gorge day", "copy": "The destination guide helps explain how Tiger Leaping Gorge fits into a first stay in Lijiang and how much local time to keep before heading out.", "link_label": "See our Lijiang travel guide", "link_url": "/pages/lijiang" } },
-        "link_3": { "type": "link_card", "settings": { "tag": "ONWARD ROUTE", "heading": "Keep going north if Shangri-La is part of the plan", "copy": "Many travelers pair the gorge with the next stage north, making the Shangri-La guide the strongest next planning stop.", "link_label": "Continue to the Shangri-La travel guide", "link_url": "/pages/shangri-la" } },
-        "link_4": { "type": "link_card", "settings": { "tag": "CUSTOM PLANNING", "heading": "Shape the gorge day around the rest of your Yunnan route", "copy": "If you want help deciding whether this works better as a day trip or as part of a northbound route, custom planning is the cleanest next step.", "link_label": "Plan a custom Yunnan itinerary", "link_url": "/pages/bespoke-custom-travel" } },
-        "faq_1": { "type": "faq_item", "settings": { "question": "Can Tiger Leaping Gorge be done from Lijiang?", "answer": "Yes. It can work as a long scenic outing from Lijiang or as part of the route north toward Shangri-La, depending on your wider plan." } },
-        "faq_2": { "type": "faq_item", "settings": { "question": "Is this page meant as a full hiking guide?", "answer": "No. The focus here is the route from Lijiang, private handling, and how Tiger Leaping Gorge fits into a wider Yunnan trip." } },
-        "faq_3": { "type": "faq_item", "settings": { "question": "When is it better to continue on to Shangri-La after the gorge?", "answer": "It usually makes sense when your trip is already moving north and you want to avoid backtracking to Lijiang after the gorge day." } }
+        "feature_1": {
+          "type": "feature",
+          "settings": {
+            "tag": "WHY IT WORKS",
+            "heading": "One of the strongest dramatic landscape days from a Lijiang base",
+            "copy": "Tiger Leaping Gorge works well from Lijiang because the route is direct enough for a focused private day or a scenic onward leg, while still feeling very different from the old-town and mountain scenery around Lijiang itself."
+          }
+        },
+        "feature_2": {
+          "type": "feature",
+          "settings": {
+            "tag": "WHAT IT COVERS",
+            "heading": "A route built around canyon scenery, road comfort, and easier handling",
+            "copy": "Most travelers use this route for gorge viewpoints, a cleaner road-day sequence, and a smoother experience than trying to piece the trip together with fixed shared timing."
+          }
+        },
+        "feature_3": {
+          "type": "feature",
+          "settings": {
+            "tag": "WHO IT SUITS",
+            "heading": "Best for travelers who want big scenery without turning the day into a full hiking-focused trip",
+            "copy": "This route works especially well for couples, families, and first-time Yunnan travelers who want dramatic scenery from Lijiang without turning the day into a full trekking plan."
+          }
+        },
+        "feature_4": {
+          "type": "feature",
+          "settings": {
+            "tag": "DAY TRIP OR ONWARD",
+            "heading": "Works either as a dedicated outing or as part of the northbound route",
+            "copy": "Some travelers return to Lijiang after the gorge, while others use the day as the natural bridge toward Shangri-La. The right choice depends on your pace, interests, and how far north the trip continues."
+          }
+        },
+        "feature_5": {
+          "type": "feature",
+          "settings": {
+            "tag": "WHEN TO CONTINUE",
+            "heading": "A useful stepping stone when Shangri-La is next in the route",
+            "copy": "If the wider plan already moves north, Tiger Leaping Gorge often fits best on the way toward Shangri-La rather than as an isolated separate outing from Lijiang."
+          }
+        },
+        "link_1": {
+          "type": "link_card",
+          "settings": {
+            "tag": "LIJIANG OPTIONS",
+            "heading": "Compare this route with other Lijiang-based private options",
+            "copy": "The Lijiang collection is the best next stop if you want to compare a gorge day with mountain, old-town, or multi-day route options.",
+            "link_label": "Browse Lijiang private tours",
+            "link_url": "/collections/lijiang-private-tours"
+          }
+        },
+        "link_2": {
+          "type": "link_card",
+          "settings": {
+            "tag": "STARTING POINT",
+            "heading": "Use the Lijiang guide for wider trip context before the gorge day",
+            "copy": "The destination guide helps explain how Tiger Leaping Gorge fits into a first stay in Lijiang and how much local time to keep before heading out.",
+            "link_label": "See our Lijiang travel guide",
+            "link_url": "/pages/lijiang"
+          }
+        },
+        "link_3": {
+          "type": "link_card",
+          "settings": {
+            "tag": "ONWARD ROUTE",
+            "heading": "Keep going north if Shangri-La is part of the plan",
+            "copy": "Many travelers pair the gorge with the next stage north, making the Shangri-La guide the strongest next planning stop.",
+            "link_label": "Continue to the Shangri-La travel guide",
+            "link_url": "/pages/shangri-la"
+          }
+        },
+        "link_4": {
+          "type": "link_card",
+          "settings": {
+            "tag": "CUSTOM PLANNING",
+            "heading": "Shape the gorge day around the rest of your Yunnan route",
+            "copy": "If you want help deciding whether this works better as a day trip or as part of a northbound route, custom planning is the cleanest next step.",
+            "link_label": "Plan a custom Yunnan itinerary",
+            "link_url": "/pages/bespoke-custom-travel"
+          }
+        },
+        "faq_1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can Tiger Leaping Gorge be done from Lijiang?",
+            "answer": "Yes. It can work as a long scenic outing from Lijiang or as part of the route north toward Shangri-La, depending on your wider plan."
+          }
+        },
+        "faq_2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is Tiger Leaping Gorge better as a day trip or as part of the road to Shangri-La?",
+            "answer": "It depends on your route. If you are staying longer in Lijiang, it can work as a dedicated scenic day. If your trip is already moving north, it often fits better on the way toward Shangri-La."
+          }
+        },
+        "faq_3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "When is it better to continue on to Shangri-La after the gorge?",
+            "answer": "It usually makes sense when your trip is already moving north and you want to avoid backtracking to Lijiang after the gorge day."
+          }
+        }
       },
-      "block_order": ["feature_1","feature_2","feature_3","feature_4","feature_5","link_1","link_2","link_3","link_4","faq_1","faq_2","faq_3"],
+      "block_order": [
+        "feature_1",
+        "feature_2",
+        "feature_3",
+        "feature_4",
+        "feature_5",
+        "link_1",
+        "link_2",
+        "link_3",
+        "link_4",
+        "faq_1",
+        "faq_2",
+        "faq_3"
+      ],
       "settings": {
         "eyebrow": "PRIVATE ROUTE",
         "title": "Tiger Leaping Gorge From Lijiang",
-        "intro": "Tiger Leaping Gorge is one of the most dramatic landscape routes travelers add from Lijiang. For many visitors, the appeal is not just the gorge itself, but how easily it fits into a private day with more comfortable transport, clearer pacing, and the option to keep moving north afterward.",
+        "intro": "Tiger Leaping Gorge is one of the easiest big-scenery additions from a Lijiang base. For many travelers, the appeal is the mix of dramatic canyon views, a clear road route, and the option to continue north afterward without making the trip feel disjointed.",
         "features_eyebrow": "WHY THIS ROUTE WORKS",
         "features_title": "What travelers usually want to know before adding the gorge",
         "features_intro": "The route works best when you treat it as a clear scenic priority rather than trying to fold it into too many other stops on the same day.",
@@ -88,5 +190,9 @@
       }
     }
   },
-  "order": ["global_navigation","main","footer"]
+  "order": [
+    "global_navigation",
+    "main",
+    "footer"
+  ]
 }
