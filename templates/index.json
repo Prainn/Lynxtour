@@ -51,7 +51,7 @@
         "mega_guide_label": "EDITORIAL GUIDE",
         "mega_guide_title": "Read before you go",
         "mega_guide_text": "Explore destination guides, landmark features, and practical travel ideas to plan a more informed, more atmospheric, and more rewarding Yunnan trip.",
-        "mega_guide_btn": "Read the guides",
+        "mega_guide_btn": "Explore travel guides",
         "mega_support_label": "HELP & SUPPORT",
         "mega_support_title": "Get help before you book",
         "mega_support_text": "Find answers to common questions about booking, payment, travel planning, and service details in one place.",
@@ -78,12 +78,12 @@
         "mega_services_side_label": "BESPOKE SUPPORT",
         "mega_services_side_title": "Support built around your trip",
         "mega_services_side_text": "Access private transfers, custom planning, and flexible support services that make independent travel across Yunnan smoother and more personal.",
-        "mega_services_side_btn": "View services",
+        "mega_services_side_btn": "Explore travel services",
         "mega_services_side_link": "shopify://pages/bespoke-custom-travel",
         "mega_guide_side_label": "PLAN SMARTER",
         "mega_guide_side_title": "Useful reads before you travel",
         "mega_guide_side_text": "Read destination notes, planning ideas, and practical guidance that help turn inspiration into a more informed Yunnan trip.",
-        "mega_guide_side_btn": "Read more",
+        "mega_guide_side_btn": "Browse travel guides",
         "mega_guide_side_link": "shopify://blogs/travel-guides",
         "mega_support_side_label": "HELP CENTER",
         "mega_support_side_title": "Answers for a smoother booking experience",
@@ -120,7 +120,7 @@
             "location_tag": "YUNNAN · LIJIANG",
             "title": "Beneath the Jade Dragon, Slumber by the Water",
             "description": "Retreat from the bustle of the Ancient Town and settle into a quieter Lijiang shaped by mountain light, courtyard living, and the poetry of water.",
-            "cta_text": "View Journey",
+            "cta_text": "Explore Lijiang private tours",
             "link": "shopify://collections/lijiang-private-tours"
           }
         },
@@ -132,7 +132,7 @@
             "location_tag": "YUNNAN · DALI",
             "title": "By Erhai, Time Learns to Slow",
             "description": "Wake to mountain light, open water, and a softer Yunnan mood shaped by Bai heritage, village texture, and lakeside calm.",
-            "cta_text": "View Journey",
+            "cta_text": "Explore Dali private tours",
             "link": "shopify://collections/dali-private-tours"
           }
         },
@@ -144,7 +144,7 @@
             "location_tag": "YUNNAN · SHANGRI-LA",
             "title": "Where the Plateau Opens into Silence",
             "description": "Enter a higher, quieter Yunnan, where monasteries, grasslands, and Tibetan character create a journey of altitude, stillness, and wonder.",
-            "cta_text": "View Journey",
+            "cta_text": "Explore Shangri-La private tours",
             "link": "shopify://collections/shangri-la-private-tours"
           }
         },
@@ -156,7 +156,7 @@
             "location_tag": "YUNNAN · XISHUANGBANNA",
             "title": "Where Rainforest Light Turns Golden",
             "description": "Discover Yunnan’s tropical south through Dai culture, warm air, riverside ease, and a more exotic, slower-paced escape.",
-            "cta_text": "View Journey",
+            "cta_text": "Explore Xishuangbanna private tours",
             "link": "shopify://collections/xishuangbanna-private-tours"
           }
         }

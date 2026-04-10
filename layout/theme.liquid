@@ -26,29 +26,19 @@
 
   if request.page_type == 'index'
     assign seo_title = 'Lynxtour | Yunnan Private Tours, Day Trips & Charter Services'
-  elsif request.page_type == 'product'
-    assign seo_title = page_title | append: ' | Private Tour | ' | append: shop.name
-  elsif request.page_type == 'collection'
-    assign seo_title = page_title | append: ' | Tour Collection | ' | append: shop.name
-  elsif request.page_type == 'article'
-    assign seo_title = page_title | append: ' | Travel Guide | ' | append: shop.name
-  elsif request.page_type == 'blog'
-    assign seo_title = page_title | append: ' | Blog | ' | append: shop.name
-  elsif request.page_type == 'page'
-    assign seo_title = page_title | append: ' | ' | append: shop.name
   elsif request.page_type == 'search'
-    assign seo_title = 'Search Results | ' | append: shop.name
-  else
-    assign seo_title = page_title | append: ' | ' | append: shop.name
+    assign seo_title = 'Search Results'
+  elsif seo_title == blank
+    assign seo_title = shop.name
   endif
 
   if current_page > 1
     if request.page_type == 'collection' and collection.title != blank
-      assign seo_title = collection.title | append: ' | Page ' | append: current_page | append: ' | ' | append: shop.name
+      assign seo_title = collection.title | append: ' | Page ' | append: current_page
     elsif request.page_type == 'blog' and blog.title != blank
-      assign seo_title = blog.title | append: ' | Page ' | append: current_page | append: ' | ' | append: shop.name
+      assign seo_title = blog.title | append: ' | Page ' | append: current_page
     elsif request.page_type == 'search'
-      assign seo_title = 'Search Results | Page ' | append: current_page | append: ' | ' | append: shop.name
+      assign seo_title = 'Search Results | Page ' | append: current_page
     else
       assign seo_title = seo_title | append: ' | Page ' | append: current_page
     endif
@@ -61,8 +51,14 @@
     case request.page_type
       when 'product'
         assign seo_description = product.description | strip_html | strip | truncate: 160
+        if seo_description == blank and product.title != blank
+          assign seo_description = 'Explore ' | append: product.title | append: ' with ' | append: shop.name | append: '.'
+        endif
       when 'collection'
         assign seo_description = collection.description | strip_html | strip | truncate: 160
+        if seo_description == blank and collection.title != blank
+          assign seo_description = 'Browse ' | append: collection.title | append: ' with private tour options from ' | append: shop.name | append: '.'
+        endif
       when 'article'
         assign seo_description = article.excerpt_or_content | strip_html | strip | truncate: 160
       when 'page'
@@ -93,7 +89,7 @@
 
   if request.page_type == 'collection' and seo_description == blank
     if collection.title != blank
-      assign seo_description = 'Browse the ' | append: collection.title | append: ' collection on ' | append: shop.name | append: '.'
+      assign seo_description = 'Browse ' | append: collection.title | append: ' with private tour options from ' | append: shop.name | append: '.'
     elsif shop.description != blank
       assign seo_description = shop.description | strip_html | strip | truncate: 160
     endif
@@ -226,6 +222,14 @@
 
   assign seo_title = seo_title | strip
   assign seo_description = seo_description | strip
+
+  assign seo_title_downcase = seo_title | downcase
+  assign shop_name_downcase = shop.name | downcase
+  if seo_title != blank
+    unless seo_title_downcase contains shop_name_downcase
+    assign seo_title = seo_title | append: ' | ' | append: shop.name
+    endunless
+  endif
 -%}
 
 <title>{{ seo_title | escape }}</title>

@@ -562,9 +562,20 @@
               {% if block.settings.description != blank %}
                 <div class="story-desc">{{ block.settings.description | newline_to_br }}</div>
               {% endif %}
-              {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+              {% liquid
+                assign story_cta_label = block.settings.button_label | strip
+                assign story_cta_label_downcase = story_cta_label | downcase
+                if story_cta_label_downcase == 'read the guide' or story_cta_label_downcase == 'read more'
+                  if block.settings.heading != blank
+                    assign story_cta_label = 'Read the ' | append: block.settings.heading | append: ' guide'
+                  else
+                    assign story_cta_label = 'Read the guide'
+                  endif
+                endif
+              %}
+              {% if story_cta_label != blank and block.settings.button_link != blank %}
                 <a href="{{ block.settings.button_link }}" class="km-inline-link">
-                  {{ block.settings.button_label }}
+                  {{ story_cta_label }}
                   <span class="line"></span>
                 </a>
               {% endif %}
@@ -598,9 +609,20 @@
               {% if block.settings.description != blank %}
                 <div class="km-related-desc">{{ block.settings.description | newline_to_br }}</div>
               {% endif %}
-              {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+              {% liquid
+                assign related_cta_label = block.settings.button_label | strip
+                assign related_cta_label_downcase = related_cta_label | downcase
+                if related_cta_label_downcase == 'view tour' or related_cta_label_downcase == 'view journey' or related_cta_label_downcase == 'learn more'
+                  if block.settings.heading != blank
+                    assign related_cta_label = 'Explore ' | append: block.settings.heading
+                  else
+                    assign related_cta_label = 'See tour details'
+                  endif
+                endif
+              %}
+              {% if related_cta_label != blank and block.settings.button_link != blank %}
                 <a href="{{ block.settings.button_link }}" class="km-related-link">
-                  {{ block.settings.button_label }}
+                  {{ related_cta_label }}
                   <span class="line"></span>
                 </a>
               {% endif %}
