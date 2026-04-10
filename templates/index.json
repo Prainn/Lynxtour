@@ -99,14 +99,14 @@
         "bg_alignment": "center",
         "btn_color": "#fbbf24",
         "btn_text_color": "#1c1917",
-        "button_text": "Explore Yunnan Private Tours",
+        "button_text": "Explore Yunnan tour routes",
         "button_link": "#dest-section",
-        "button_text_2": "Plan a Custom Trip",
+        "button_text_2": "Plan a custom trip",
         "button_link_2": "shopify://pages/bespoke-custom-travel",
         "hero_eyebrow": "Yunnan Private Travel",
-        "main_title": "Yunnan Private Tours",
-        "sub_title": "Plan private tours across Yunnan with flexible itineraries, local support, and routes shaped around your pace.",
-        "brand_intro": "From Dali and Lijiang to Shangri-La and Kunming, start with a classic route or build a custom trip."
+        "main_title": "Yunnan Private Travel",
+        "sub_title": "Plan private travel across Yunnan with flexible itineraries, local support, day trips, and charter services shaped around your pace.",
+        "brand_intro": "Start with a classic route, compare destination ideas, or plan a custom trip across Kunming, Dali, Lijiang, Shangri-La, and beyond."
       }
     },
     "destinations": {

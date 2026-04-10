@@ -25,7 +25,7 @@
   assign seo_title = page_title | strip
 
   if request.page_type == 'index'
-    assign seo_title = 'Lynxtour | Yunnan Private Tours, Day Trips & Charter Services'
+    assign seo_title = 'Private Yunnan Travel, Day Trips & Charter Services | Lynxtour'
   elsif request.page_type == 'search'
     assign seo_title = 'Search Results'
   elsif seo_title == blank
@@ -126,7 +126,7 @@
   endif
 
   if request.page_type == 'index'
-    assign seo_title = 'Yunnan Private Tours, Day Trips & Custom Travel | Lynxtour'
+    assign seo_title = 'Private Yunnan Travel, Day Trips & Charter Services | Lynxtour'
     assign seo_description = 'Plan private tours in Yunnan with local experts. Explore Dali, Lijiang, Shangri-La and Kunming with custom itineraries, day trips and charter services.'
   elsif request.page_type == 'collection'
     case collection.handle
@@ -160,6 +160,10 @@
       when 'lijiang'
         assign seo_title = 'Lijiang Travel Guide: Best Time, Itinerary & Top Things to Do | Lynxtour'
         assign seo_description = 'Plan your Lijiang trip with advice on the best time to visit, how many days to stay, top attractions, and how to combine Lijiang with Shangri-La or Dali.'
+      when 'shangri-la'
+        assign seo_title = 'Shangri-La Travel Guide: Best Time, Itinerary Ideas & Top Things to Do | Lynxtour'
+      when 'xishuangbanna'
+        assign seo_title = 'Xishuangbanna Travel Guide: Best Time, Itinerary Ideas & Top Things to Do | Lynxtour'
       when 'dali-itinerary-3-days'
         assign seo_title = 'Dali Itinerary 3 Days: How to Spend 3 Days in Dali | Lynxtour'
         assign seo_description = 'Plan a Dali itinerary for 3 days with practical pacing for Dali Old Town, Erhai Lake, Xizhou, and easy route extensions toward Lijiang or wider Yunnan travel.'
