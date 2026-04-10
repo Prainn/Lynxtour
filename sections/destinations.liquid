@@ -19,7 +19,31 @@
     <div class="destinations-grid">
       {%- for block in section.blocks -%}
         {%- assign card_url = block.settings.link | default: '#' -%}
-        {%- assign cta_label = block.settings.cta_text | default: 'View Journey' -%}
+        {%- assign cta_label = block.settings.cta_text | strip -%}
+        {%- assign destination_name = block.settings.title | strip -%}
+        {%- assign cta_label_downcase = cta_label | downcase -%}
+
+        {%- if card_url contains '/dali' -%}
+          {%- assign destination_name = 'Dali' -%}
+        {%- elsif card_url contains '/lijiang' -%}
+          {%- assign destination_name = 'Lijiang' -%}
+        {%- elsif card_url contains '/shangri-la' -%}
+          {%- assign destination_name = 'Shangri-La' -%}
+        {%- elsif card_url contains '/xishuangbanna' -%}
+          {%- assign destination_name = 'Xishuangbanna' -%}
+        {%- elsif card_url contains '/kunming' -%}
+          {%- assign destination_name = 'Kunming' -%}
+        {%- endif -%}
+
+        {%- if cta_label == blank or cta_label_downcase == 'view journey' or cta_label_downcase == 'learn more' or cta_label_downcase == 'read more' or cta_label_downcase == 'explore more' -%}
+          {%- if card_url contains '/collections/' and destination_name != blank -%}
+            {%- assign cta_label = 'Explore ' | append: destination_name | append: ' private tours' -%}
+          {%- elsif card_url contains '/pages/' and destination_name != blank -%}
+            {%- assign cta_label = 'Continue to the ' | append: destination_name | append: ' travel guide' -%}
+          {%- else -%}
+            {%- assign cta_label = 'Explore the journey' -%}
+          {%- endif -%}
+        {%- endif -%}
 
         {%- assign object_position = 'center center' -%}
         {%- case block.settings.img_align -%}
@@ -536,7 +560,7 @@
           "type": "text",
           "id": "cta_text",
           "label": "按钮文字",
-          "default": "View Journey"
+          "default": "Explore destination"
         },
         {
           "type": "url",
@@ -556,7 +580,7 @@
             "location_tag": "YUNNAN · KUNMING",
             "title": "Where Spring Light Meets the Lake",
             "description": "Begin your Yunnan journey with flower markets, lakeside air, and an easy rhythm shaped by city comfort and graceful day trips.",
-            "cta_text": "View Journey"
+            "cta_text": "Explore Kunming private tours"
           }
         },
         {
@@ -565,7 +589,7 @@
             "location_tag": "YUNNAN · DALI",
             "title": "By Erhai, Time Learns to Slow",
             "description": "Wake to mountain light, open water, and a softer Yunnan mood shaped by Bai heritage, village texture, and lakeside calm.",
-            "cta_text": "View Journey"
+            "cta_text": "Explore Dali private tours"
           }
         },
         {
@@ -574,7 +598,7 @@
             "location_tag": "YUNNAN · LIJIANG",
             "title": "Beneath the Jade Dragon, Slumber by the Water",
             "description": "Retreat from the bustle of the Ancient Town and settle into a quieter Lijiang shaped by mountain light, courtyard living, and the poetry of water.",
-            "cta_text": "View Journey"
+            "cta_text": "Explore Lijiang private tours"
           }
         },
         {
@@ -583,7 +607,16 @@
             "location_tag": "YUNNAN · SHANGRI-LA",
             "title": "Where the Plateau Opens into Silence",
             "description": "Enter a higher, quieter Yunnan, where monasteries, grasslands, and Tibetan character create a journey of altitude, stillness, and wonder.",
-            "cta_text": "View Journey"
+            "cta_text": "Explore Shangri-La private tours"
+          }
+        },
+        {
+          "type": "destination",
+          "settings": {
+            "location_tag": "YUNNAN · XISHUANGBANNA",
+            "title": "Where Rainforest Light Turns Golden",
+            "description": "Discover Yunnan’s tropical south through Dai culture, warm air, riverside ease, and a more exotic, slower-paced escape.",
+            "cta_text": "Explore Xishuangbanna private tours"
           }
         }
       ]

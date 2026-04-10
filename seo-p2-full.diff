@@ -1,0 +1,1891 @@
+﻿diff --git a/layout/theme.liquid b/layout/theme.liquid
+index 8886396..a7c986a 100644
+--- a/layout/theme.liquid
++++ b/layout/theme.liquid
+@@ -21,39 +21,29 @@
+       >
+     {% endif %}
+ 
+-    {%- liquid
+-  assign seo_title = page_title | strip
+-
+-  if request.page_type == 'index'
+-    assign seo_title = 'Lynxtour | Yunnan Private Tours, Day Trips & Charter Services'
+-  elsif request.page_type == 'product'
+-    assign seo_title = page_title | append: ' | Private Tour | ' | append: shop.name
+-  elsif request.page_type == 'collection'
+-    assign seo_title = page_title | append: ' | Tour Collection | ' | append: shop.name
+-  elsif request.page_type == 'article'
+-    assign seo_title = page_title | append: ' | Travel Guide | ' | append: shop.name
+-  elsif request.page_type == 'blog'
+-    assign seo_title = page_title | append: ' | Blog | ' | append: shop.name
+-  elsif request.page_type == 'page'
+-    assign seo_title = page_title | append: ' | ' | append: shop.name
+-  elsif request.page_type == 'search'
+-    assign seo_title = 'Search Results | ' | append: shop.name
+-  else
+-    assign seo_title = page_title | append: ' | ' | append: shop.name
+-  endif
+-
+-  if current_page > 1
+-    if request.page_type == 'collection' and collection.title != blank
+-      assign seo_title = collection.title | append: ' | Page ' | append: current_page | append: ' | ' | append: shop.name
+-    elsif request.page_type == 'blog' and blog.title != blank
+-      assign seo_title = blog.title | append: ' | Page ' | append: current_page | append: ' | ' | append: shop.name
+-    elsif request.page_type == 'search'
+-      assign seo_title = 'Search Results | Page ' | append: current_page | append: ' | ' | append: shop.name
+-    else
+-      assign seo_title = seo_title | append: ' | Page ' | append: current_page
+-    endif
+-  endif
+-
++    {%- liquid
++  assign seo_title = page_title | strip
++
++  if request.page_type == 'index'
++    assign seo_title = 'Lynxtour | Yunnan Private Tours, Day Trips & Charter Services'
++  elsif request.page_type == 'search'
++    assign seo_title = 'Search Results'
++  elsif seo_title == blank
++    assign seo_title = shop.name
++  endif
++
++  if current_page > 1
++    if request.page_type == 'collection' and collection.title != blank
++      assign seo_title = collection.title | append: ' | Page ' | append: current_page
++    elsif request.page_type == 'blog' and blog.title != blank
++      assign seo_title = blog.title | append: ' | Page ' | append: current_page
++    elsif request.page_type == 'search'
++      assign seo_title = 'Search Results | Page ' | append: current_page
++    else
++      assign seo_title = seo_title | append: ' | Page ' | append: current_page
++    endif
++  endif
++
+   assign seo_description = page_description | strip_html | strip
+   assign page_fallback_description = blank
+ 
+@@ -61,8 +51,14 @@
+     case request.page_type
+       when 'product'
+         assign seo_description = product.description | strip_html | strip | truncate: 160
+-      when 'collection'
+-        assign seo_description = collection.description | strip_html | strip | truncate: 160
++        if seo_description == blank and product.title != blank
++          assign seo_description = 'Explore ' | append: product.title | append: ' with ' | append: shop.name | append: '.'
++        endif
++      when 'collection'
++        assign seo_description = collection.description | strip_html | strip | truncate: 160
++        if seo_description == blank and collection.title != blank
++          assign seo_description = 'Browse ' | append: collection.title | append: ' with private tour options from ' | append: shop.name | append: '.'
++        endif
+       when 'article'
+         assign seo_description = article.excerpt_or_content | strip_html | strip | truncate: 160
+       when 'page'
+@@ -84,8 +80,8 @@
+         assign seo_description = 'Explore Yunnan travel guides, itinerary ideas, and destination inspiration from ' | append: shop.name | append: '.'
+       when 'search'
+         assign seo_description = 'Search ' | append: shop.name | append: ' for Yunnan private tours, day trips, travel guides, and charter services.'
+-      when 'index'
+-        assign seo_description = 'Discover private tours, curated day trips, and charter services across Yunnan with ' | append: shop.name | append: '.'
++      when 'index'
++        assign seo_description = 'Discover private tours, curated day trips, and charter services across Yunnan with ' | append: shop.name | append: '.'
+       else
+         assign seo_description = shop.description | strip_html | strip | truncate: 160
+     endcase
+@@ -93,7 +89,7 @@
+ 
+   if request.page_type == 'collection' and seo_description == blank
+     if collection.title != blank
+-      assign seo_description = 'Browse the ' | append: collection.title | append: ' collection on ' | append: shop.name | append: '.'
++      assign seo_description = 'Browse ' | append: collection.title | append: ' with private tour options from ' | append: shop.name | append: '.'
+     elsif shop.description != blank
+       assign seo_description = shop.description | strip_html | strip | truncate: 160
+     endif
+@@ -226,6 +222,14 @@
+ 
+   assign seo_title = seo_title | strip
+   assign seo_description = seo_description | strip
++
++  assign seo_title_downcase = seo_title | downcase
++  assign shop_name_downcase = shop.name | downcase
++  if seo_title != blank
++    unless seo_title_downcase contains shop_name_downcase
++    assign seo_title = seo_title | append: ' | ' | append: shop.name
++    endunless
++  endif
+ -%}
+ 
+ <title>{{ seo_title | escape }}</title>
+diff --git a/sections/all-tours-collection.liquid b/sections/all-tours-collection.liquid
+index dd7ffcd..49adb40 100644
+--- a/sections/all-tours-collection.liquid
++++ b/sections/all-tours-collection.liquid
+@@ -188,7 +188,7 @@
+                 {% endif %}
+ 
+                 <div class="card-overlay">
+-                  <div class="card-btn">EXPLORE</div>
++                  <div class="card-btn">SEE TOUR DETAILS</div>
+                 </div>
+ 
+                 {% if product.tags contains section.settings.badge_tag %}
+@@ -352,9 +352,9 @@
+           </div>
+         </section>
+ 
+-        <script type="application/ld+json">
+-        {
+-          "@context": "https://schema.org",
++        <script type="application/ld+json">
++        {
++          "@context": "https://schema.org",
+           "@type": "FAQPage",
+           "mainEntity": [
+             {
+@@ -421,14 +421,35 @@
+                 "text": "Absolutely. You can contact us before booking to discuss route ideas, trip length, hotel style, or private transfer preferences through our contact page or WhatsApp."
+               }
+             }
+-          ]
+-        }
+-        </script>
+-      {% endif %}
+-
+-    {% endpaginate %}
+-  </div>
+-</section>
++          ]
++        }
++        </script>
++
++      {% endif %}
++
++    {% endpaginate %}
++    <script type="application/ld+json">
++    {
++      "@context": "https://schema.org",
++      "@type": "BreadcrumbList",
++      "itemListElement": [
++        {
++          "@type": "ListItem",
++          "position": 1,
++          "name": "Home",
++          "item": {{ request.origin | append: '/' | json }}
++        },
++        {
++          "@type": "ListItem",
++          "position": 2,
++          "name": {{ collection.title | json }},
++          "item": {{ canonical_url | json }}
++        }
++      ]
++    }
++    </script>
++  </div>
++</section>
+ 
+ <style>
+   /* ===== Scope to this section only ===== */
+diff --git a/sections/dali-collection.liquid b/sections/dali-collection.liquid
+index dd55d23..3505baa 100644
+--- a/sections/dali-collection.liquid
++++ b/sections/dali-collection.liquid
+@@ -183,7 +183,7 @@
+                 {% endif %}
+ 
+                 <div class="card-overlay">
+-                  <div class="card-btn">EXPLORE</div>
++                  <div class="card-btn">SEE TOUR DETAILS</div>
+                 </div>
+ 
+                 {% if product.tags contains section.settings.badge_tag %}
+@@ -316,9 +316,9 @@
+           </div>
+         </section>
+ 
+-        <script type="application/ld+json">
+-        {
+-          "@context": "https://schema.org",
++        <script type="application/ld+json">
++        {
++          "@context": "https://schema.org",
+           "@type": "FAQPage",
+           "mainEntity": [
+             {
+@@ -369,15 +369,35 @@
+                 "text": "Dali can be visited throughout the year, but spring and autumn are often especially pleasant for weather, visibility, and overall travel comfort. Summer brings greener scenery around Erhai and the surrounding mountains, while winter can feel quieter and more open. The best season depends on whether you prioritize scenery, weather, photography, or a wider Yunnan route."
+               }
+             }
+-          ]
+-        }
+-        </script>
+-
++          ]
++        }
++        </script>
++
+       {% endif %}
+-
+-    {% endpaginate %}
+-  </div>
+-</section>
++
++    {% endpaginate %}
++    <script type="application/ld+json">
++    {
++      "@context": "https://schema.org",
++      "@type": "BreadcrumbList",
++      "itemListElement": [
++        {
++          "@type": "ListItem",
++          "position": 1,
++          "name": "Home",
++          "item": {{ request.origin | append: '/' | json }}
++        },
++        {
++          "@type": "ListItem",
++          "position": 2,
++          "name": {{ collection.title | json }},
++          "item": {{ canonical_url | json }}
++        }
++      ]
++    }
++    </script>
++  </div>
++</section>
+ 
+ <style>
+   #CollectionProductGrid-{{ section.id }}{
+diff --git a/sections/dali-page.liquid b/sections/dali-page.liquid
+index f6a8a95..5121740 100644
+--- a/sections/dali-page.liquid
++++ b/sections/dali-page.liquid
+@@ -742,12 +742,23 @@
+               {% if block.settings.description != blank %}
+                 <div class="story-desc">{{ block.settings.description | newline_to_br }}</div>
+               {% endif %}
+-              {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+-                <a href="{{ block.settings.button_link }}" class="dali-inline-link">
+-                  {{ block.settings.button_label }}
+-                  <span class="line"></span>
+-                </a>
+-              {% endif %}
++              {% liquid
++                assign story_cta_label = block.settings.button_label | strip
++                assign story_cta_label_downcase = story_cta_label | downcase
++                if story_cta_label_downcase == 'read the guide' or story_cta_label_downcase == 'read more'
++                  if block.settings.heading != blank
++                    assign story_cta_label = 'Read the ' | append: block.settings.heading | append: ' guide'
++                  else
++                    assign story_cta_label = 'Read the guide'
++                  endif
++                endif
++              %}
++              {% if story_cta_label != blank and block.settings.button_link != blank %}
++                <a href="{{ block.settings.button_link }}" class="dali-inline-link">
++                  {{ story_cta_label }}
++                  <span class="line"></span>
++                </a>
++              {% endif %}
+             </div>
+           </div>
+         {% endfor %}
+@@ -778,12 +789,23 @@
+               {% if block.settings.description != blank %}
+                 <div class="dali-related-desc">{{ block.settings.description | newline_to_br }}</div>
+               {% endif %}
+-              {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+-                <a href="{{ block.settings.button_link }}" class="dali-related-link">
+-                  {{ block.settings.button_label }}
+-                  <span class="line"></span>
+-                </a>
+-              {% endif %}
++              {% liquid
++                assign related_cta_label = block.settings.button_label | strip
++                assign related_cta_label_downcase = related_cta_label | downcase
++                if related_cta_label_downcase == 'view tour' or related_cta_label_downcase == 'view journey' or related_cta_label_downcase == 'learn more'
++                  if block.settings.heading != blank
++                    assign related_cta_label = 'Explore ' | append: block.settings.heading
++                  else
++                    assign related_cta_label = 'See tour details'
++                  endif
++                endif
++              %}
++              {% if related_cta_label != blank and block.settings.button_link != blank %}
++                <a href="{{ block.settings.button_link }}" class="dali-related-link">
++                  {{ related_cta_label }}
++                  <span class="line"></span>
++                </a>
++              {% endif %}
+             </article>
+           {% endfor %}
+         </div>
+diff --git a/sections/dali-product.liquid b/sections/dali-product.liquid
+index 8e35f62..e86cab3 100644
+--- a/sections/dali-product.liquid
++++ b/sections/dali-product.liquid
+@@ -1,114 +1,5 @@
+-{% assign seo_shop_url = shop.url %}
+-{% assign seo_product_url = shop.url | append: product.url %}
+-{% assign seo_currency = shop.currency %}
+-{% assign seo_collection = product.collections.first %}
+-{% assign seo_crumb_name = 'Products' %}
+-{% assign seo_crumb_url = shop.url | append: '/collections/all' %}
+-
+-{% if seo_collection %}
+-  {% assign seo_crumb_name = seo_collection.title %}
+-  {% assign seo_crumb_url = shop.url | append: seo_collection.url %}
+-{% endif %}
+-
+-{% assign seo_description = product.description | strip_html | strip_newlines | replace: '  ', ' ' | truncate: 500 %}
+-
+-{% assign seo_offer_count = 0 %}
+-{% assign seo_low_price = blank %}
+-{% assign seo_high_price = blank %}
+-{% assign seo_any_in_stock = false %}
+-
+-{% for variant in product.variants %}
+-  {% if variant.available %}
+-    {% assign seo_any_in_stock = true %}
+-    {% assign seo_offer_count = seo_offer_count | plus: 1 %}
+-
+-    {% if seo_low_price == blank or variant.price < seo_low_price %}
+-      {% assign seo_low_price = variant.price %}
+-    {% endif %}
+-
+-    {% if seo_high_price == blank or variant.price > seo_high_price %}
+-      {% assign seo_high_price = variant.price %}
+-    {% endif %}
+-  {% endif %}
+-{% endfor %}
+-
+-{% if seo_offer_count == 0 %}
+-  {% assign seo_offer_count = product.variants.size %}
+-
+-  {% for variant in product.variants %}
+-    {% if seo_low_price == blank or variant.price < seo_low_price %}
+-      {% assign seo_low_price = variant.price %}
+-    {% endif %}
+-
+-    {% if seo_high_price == blank or variant.price > seo_high_price %}
+-      {% assign seo_high_price = variant.price %}
+-    {% endif %}
+-  {% endfor %}
+-{% endif %}
+-
+-{% assign seo_availability = 'https://schema.org/OutOfStock' %}
+-{% if seo_any_in_stock %}
+-  {% assign seo_availability = 'https://schema.org/InStock' %}
+-{% endif %}
+-
+-<script type="application/ld+json">
+-{
+-  "@context": "https://schema.org",
+-  "@graph": [
+-    {
+-      "@type": "Product",
+-      "@id": {{ seo_product_url | append: '#product' | json }},
+-      "url": {{ seo_product_url | json }},
+-      "name": {{ product.title | strip | json }},
+-      "description": {{ seo_description | json }}{% if product.vendor != blank %},
+-      "brand": {
+-        "@type": "Brand",
+-        "name": {{ product.vendor | json }}
+-      }{% endif %}{% if product.type != blank %},
+-      "category": {{ product.type | json }}{% endif %}{% if product.images.size > 0 %},
+-      "image": [{% for image in product.images limit: 8 %}{{ image | image_url: width: 1600 | prepend: 'https:' | json }}{% unless forloop.last %}, {% endunless %}{% endfor %}]{% endif %},
+-      "offers": {
+-        "@type": "AggregateOffer",
+-        "url": {{ seo_product_url | json }},
+-        "priceCurrency": {{ seo_currency | json }},
+-        "lowPrice": {{ seo_low_price | divided_by: 100.0 | round: 2 }},
+-        "highPrice": {{ seo_high_price | divided_by: 100.0 | round: 2 }},
+-        "offerCount": {{ seo_offer_count }},
+-        "availability": {{ seo_availability | json }},
+-        "seller": {
+-          "@type": "Organization",
+-          "name": {{ shop.name | json }}
+-        }
+-      }
+-    },
+-    {
+-      "@type": "BreadcrumbList",
+-      "@id": {{ seo_product_url | append: '#breadcrumb' | json }},
+-      "itemListElement": [
+-        {
+-          "@type": "ListItem",
+-          "position": 1,
+-          "name": "Home",
+-          "item": {{ shop.url | append: '/' | json }}
+-        },
+-        {
+-          "@type": "ListItem",
+-          "position": 2,
+-          "name": {{ seo_crumb_name | json }},
+-          "item": {{ seo_crumb_url | json }}
+-        },
+-        {
+-          "@type": "ListItem",
+-          "position": 3,
+-          "name": {{ product.title | strip | json }},
+-          "item": {{ seo_product_url | json }}
+-        }
+-      ]
+-    }
+-  ]
+-}
+-</script>
+-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css">
++{% render 'seo-product-jsonld', product: product, current_collection: collection %}
++<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css">
+ 
+ <style>
+   :root {
+diff --git a/sections/day-trips-collection.liquid b/sections/day-trips-collection.liquid
+index a376127..5b66f4e 100644
+--- a/sections/day-trips-collection.liquid
++++ b/sections/day-trips-collection.liquid
+@@ -154,7 +154,7 @@
+                 {% endif %}
+ 
+                 <div class="card-overlay">
+-                  <div class="card-btn">EXPLORE</div>
++                  <div class="card-btn">SEE TOUR DETAILS</div>
+                 </div>
+ 
+                 {% if product.tags contains 'Route' %}
+@@ -277,9 +277,9 @@
+           </div>
+         </section>
+ 
+-        <script type="application/ld+json">
+-        {
+-          "@context": "https://schema.org",
++        <script type="application/ld+json">
++        {
++          "@context": "https://schema.org",
+           "@type": "FAQPage",
+           "mainEntity": [
+             {
+@@ -330,14 +330,35 @@
+                 "text": "Yes. A private day trip can work well as a standalone local experience or as an extension before or after a longer Yunnan private tour."
+               }
+             }
+-          ]
+-        }
+-        </script>
+-      {% endif %}
+-
+-    {% endpaginate %}
+-  </div>
+-</div>
++          ]
++        }
++        </script>
++
++      {% endif %}
++
++    {% endpaginate %}
++    <script type="application/ld+json">
++    {
++      "@context": "https://schema.org",
++      "@type": "BreadcrumbList",
++      "itemListElement": [
++        {
++          "@type": "ListItem",
++          "position": 1,
++          "name": "Home",
++          "item": {{ request.origin | append: '/' | json }}
++        },
++        {
++          "@type": "ListItem",
++          "position": 2,
++          "name": {{ collection.title | json }},
++          "item": {{ canonical_url | json }}
++        }
++      ]
++    }
++    </script>
++  </div>
++</div>
+ 
+ <style>
+   #CollectionProductGrid {
+diff --git a/sections/destinations-page-overview.liquid b/sections/destinations-page-overview.liquid
+index 1226b31..3a47210 100644
+--- a/sections/destinations-page-overview.liquid
++++ b/sections/destinations-page-overview.liquid
+@@ -681,35 +681,35 @@
+               <td>First-time arrivals, easy planning, city + day trips</td>
+               <td>Gentle, urban, practical</td>
+               <td>1–3 days</td>
+-              <td><a href="/pages/kunming">View guide</a></td>
++              <td><a href="/pages/kunming">Read the Kunming guide</a></td>
+             </tr>
+             <tr>
+               <td>Dali</td>
+               <td>Slow travel, scenery, Bai culture, lakeside atmosphere</td>
+               <td>Soft, open, restorative</td>
+               <td>2–4 days</td>
+-              <td><a href="/pages/dali">View guide</a></td>
++              <td><a href="/pages/dali">Read the Dali guide</a></td>
+             </tr>
+             <tr>
+               <td>Lijiang</td>
+               <td>Old towns, mountain icons, photography, classic Yunnan imagery</td>
+               <td>Romantic, vivid, layered</td>
+               <td>2–4 days</td>
+-              <td><a href="/pages/lijiang">View guide</a></td>
++              <td><a href="/pages/lijiang">Read the Lijiang guide</a></td>
+             </tr>
+             <tr>
+               <td>Shangri-La</td>
+               <td>Plateau journeys, Tibetan culture, deeper landscape contrast</td>
+               <td>Spiritual, elevated, expansive</td>
+               <td>2–4 days</td>
+-              <td><a href="/pages/shangri-la">View guide</a></td>
++              <td><a href="/pages/shangri-la">Read the Shangri-La guide</a></td>
+             </tr>
+             <tr>
+               <td>Xishuangbanna</td>
+               <td>Tropical scenery, Dai culture, warm-weather escapes, rainforest journeys</td>
+               <td>Exotic, lush, warm, slow</td>
+               <td>3–5 days</td>
+-              <td><a href="/pages/xishuangbanna">View guide</a></td>
++              <td><a href="/pages/xishuangbanna">Read the Xishuangbanna guide</a></td>
+             </tr>
+           </tbody>
+         </table>
+@@ -730,7 +730,7 @@
+           <p class="lx-card-kicker">Editorial guide</p>
+           <h3>Travel Guides</h3>
+           <p>Read deeper destination articles, landmark features, and planning ideas before you choose your route.</p>
+-          <span>Read the guides</span>
++          <span>Explore travel guides</span>
+         </a>
+ 
+         <a href="/collections/yunnan-private-tours" class="lx-link-card">
+@@ -936,4 +936,4 @@
+     }
+   ]
+ }
+-{% endschema %}
+\ No newline at end of file
++{% endschema %}
+diff --git a/sections/destinations.liquid b/sections/destinations.liquid
+index 128889f..1173eb8 100644
+--- a/sections/destinations.liquid
++++ b/sections/destinations.liquid
+@@ -17,9 +17,33 @@
+     {% endif %}
+ 
+     <div class="destinations-grid">
+-      {%- for block in section.blocks -%}
+-        {%- assign card_url = block.settings.link | default: '#' -%}
+-        {%- assign cta_label = block.settings.cta_text | default: 'View Journey' -%}
++      {%- for block in section.blocks -%}
++        {%- assign card_url = block.settings.link | default: '#' -%}
++        {%- assign cta_label = block.settings.cta_text | strip -%}
++        {%- assign destination_name = block.settings.title | strip -%}
++        {%- assign cta_label_downcase = cta_label | downcase -%}
++
++        {%- if card_url contains '/dali' -%}
++          {%- assign destination_name = 'Dali' -%}
++        {%- elsif card_url contains '/lijiang' -%}
++          {%- assign destination_name = 'Lijiang' -%}
++        {%- elsif card_url contains '/shangri-la' -%}
++          {%- assign destination_name = 'Shangri-La' -%}
++        {%- elsif card_url contains '/xishuangbanna' -%}
++          {%- assign destination_name = 'Xishuangbanna' -%}
++        {%- elsif card_url contains '/kunming' -%}
++          {%- assign destination_name = 'Kunming' -%}
++        {%- endif -%}
++
++        {%- if cta_label == blank or cta_label_downcase == 'view journey' or cta_label_downcase == 'learn more' or cta_label_downcase == 'read more' or cta_label_downcase == 'explore more' -%}
++          {%- if card_url contains '/collections/' and destination_name != blank -%}
++            {%- assign cta_label = 'Explore ' | append: destination_name | append: ' private tours' -%}
++          {%- elsif card_url contains '/pages/' and destination_name != blank -%}
++            {%- assign cta_label = 'Continue to the ' | append: destination_name | append: ' travel guide' -%}
++          {%- else -%}
++            {%- assign cta_label = 'Explore the journey' -%}
++          {%- endif -%}
++        {%- endif -%}
+ 
+         {%- assign object_position = 'center center' -%}
+         {%- case block.settings.img_align -%}
+@@ -536,7 +560,7 @@
+           "type": "text",
+           "id": "cta_text",
+           "label": "按钮文字",
+-          "default": "View Journey"
++          "default": "Explore destination"
+         },
+         {
+           "type": "url",
+@@ -556,7 +580,7 @@
+             "location_tag": "YUNNAN · KUNMING",
+             "title": "Where Spring Light Meets the Lake",
+             "description": "Begin your Yunnan journey with flower markets, lakeside air, and an easy rhythm shaped by city comfort and graceful day trips.",
+-            "cta_text": "View Journey"
++            "cta_text": "Explore Lijiang private tours"
+           }
+         },
+         {
+@@ -565,7 +589,7 @@
+             "location_tag": "YUNNAN · DALI",
+             "title": "By Erhai, Time Learns to Slow",
+             "description": "Wake to mountain light, open water, and a softer Yunnan mood shaped by Bai heritage, village texture, and lakeside calm.",
+-            "cta_text": "View Journey"
++            "cta_text": "Explore Dali private tours"
+           }
+         },
+         {
+@@ -574,7 +598,7 @@
+             "location_tag": "YUNNAN · LIJIANG",
+             "title": "Beneath the Jade Dragon, Slumber by the Water",
+             "description": "Retreat from the bustle of the Ancient Town and settle into a quieter Lijiang shaped by mountain light, courtyard living, and the poetry of water.",
+-            "cta_text": "View Journey"
++            "cta_text": "Explore Shangri-La private tours"
+           }
+         },
+         {
+@@ -583,11 +607,11 @@
+             "location_tag": "YUNNAN · SHANGRI-LA",
+             "title": "Where the Plateau Opens into Silence",
+             "description": "Enter a higher, quieter Yunnan, where monasteries, grasslands, and Tibetan character create a journey of altitude, stillness, and wonder.",
+-            "cta_text": "View Journey"
++            "cta_text": "Explore Xishuangbanna private tours"
+           }
+         }
+       ]
+     }
+   ]
+ }
+-{% endschema %}
+\ No newline at end of file
++{% endschema %}
+diff --git a/sections/kunming-page.liquid b/sections/kunming-page.liquid
+index 988990d..a93cc9c 100644
+--- a/sections/kunming-page.liquid
++++ b/sections/kunming-page.liquid
+@@ -562,12 +562,23 @@
+               {% if block.settings.description != blank %}
+                 <div class="story-desc">{{ block.settings.description | newline_to_br }}</div>
+               {% endif %}
+-              {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+-                <a href="{{ block.settings.button_link }}" class="km-inline-link">
+-                  {{ block.settings.button_label }}
+-                  <span class="line"></span>
+-                </a>
+-              {% endif %}
++              {% liquid
++                assign story_cta_label = block.settings.button_label | strip
++                assign story_cta_label_downcase = story_cta_label | downcase
++                if story_cta_label_downcase == 'read the guide' or story_cta_label_downcase == 'read more'
++                  if block.settings.heading != blank
++                    assign story_cta_label = 'Read the ' | append: block.settings.heading | append: ' guide'
++                  else
++                    assign story_cta_label = 'Read the guide'
++                  endif
++                endif
++              %}
++              {% if story_cta_label != blank and block.settings.button_link != blank %}
++                <a href="{{ block.settings.button_link }}" class="km-inline-link">
++                  {{ story_cta_label }}
++                  <span class="line"></span>
++                </a>
++              {% endif %}
+             </div>
+           </div>
+         {% endfor %}
+@@ -598,12 +609,23 @@
+               {% if block.settings.description != blank %}
+                 <div class="km-related-desc">{{ block.settings.description | newline_to_br }}</div>
+               {% endif %}
+-              {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+-                <a href="{{ block.settings.button_link }}" class="km-related-link">
+-                  {{ block.settings.button_label }}
+-                  <span class="line"></span>
+-                </a>
+-              {% endif %}
++              {% liquid
++                assign related_cta_label = block.settings.button_label | strip
++                assign related_cta_label_downcase = related_cta_label | downcase
++                if related_cta_label_downcase == 'view tour' or related_cta_label_downcase == 'view journey' or related_cta_label_downcase == 'learn more'
++                  if block.settings.heading != blank
++                    assign related_cta_label = 'Explore ' | append: block.settings.heading
++                  else
++                    assign related_cta_label = 'See tour details'
++                  endif
++                endif
++              %}
++              {% if related_cta_label != blank and block.settings.button_link != blank %}
++                <a href="{{ block.settings.button_link }}" class="km-related-link">
++                  {{ related_cta_label }}
++                  <span class="line"></span>
++                </a>
++              {% endif %}
+             </article>
+           {% endfor %}
+         </div>
+@@ -935,4 +957,4 @@
+     }
+   ]
+ }
+-{% endschema %}
+\ No newline at end of file
++{% endschema %}
+diff --git a/sections/lijiang-collection.liquid b/sections/lijiang-collection.liquid
+index 65e9e6b..bb02adb 100644
+--- a/sections/lijiang-collection.liquid
++++ b/sections/lijiang-collection.liquid
+@@ -964,7 +964,7 @@
+                 {% endif %}
+ 
+                 <div class="card-overlay">
+-                  <div class="card-btn">EXPLORE</div>
++                  <div class="card-btn">SEE TOUR DETAILS</div>
+                 </div>
+ 
+                 {% if product.tags contains 'Route' %}
+@@ -1106,9 +1106,9 @@
+           </div>
+         </section>
+ 
+-        <script type="application/ld+json">
+-        {
+-          "@context": "https://schema.org",
++        <script type="application/ld+json">
++        {
++          "@context": "https://schema.org",
+           "@type": "FAQPage",
+           "mainEntity": [
+             {
+@@ -1159,15 +1159,35 @@
+                 "text": "Lijiang can be visited year-round, but spring and autumn are often considered especially pleasant for weather, visibility, and overall travel comfort. Summer is greener and more vibrant, while winter can offer crisp mountain views and a quieter atmosphere. The best season depends on whether you prioritize scenery, photography, weather, or a broader regional itinerary."
+               }
+             }
+-          ]
+-        }
+-        </script>
+-
++          ]
++        }
++        </script>
++
+       {% endif %}
+-
+-    {% endpaginate %}
+-  </div>
+-</div>
++
++    {% endpaginate %}
++    <script type="application/ld+json">
++    {
++      "@context": "https://schema.org",
++      "@type": "BreadcrumbList",
++      "itemListElement": [
++        {
++          "@type": "ListItem",
++          "position": 1,
++          "name": "Home",
++          "item": {{ request.origin | append: '/' | json }}
++        },
++        {
++          "@type": "ListItem",
++          "position": 2,
++          "name": {{ collection.title | json }},
++          "item": {{ canonical_url | json }}
++        }
++      ]
++    }
++    </script>
++  </div>
++</div>
+ 
+ <script>
+ document.addEventListener('DOMContentLoaded', function() {
+diff --git a/sections/lijiang-page.liquid b/sections/lijiang-page.liquid
+index e8b2f40..40cdd3a 100644
+--- a/sections/lijiang-page.liquid
++++ b/sections/lijiang-page.liquid
+@@ -674,12 +674,23 @@
+               {% if block.settings.description != blank %}
+                 <div class="story-desc">{{ block.settings.description | newline_to_br }}</div>
+               {% endif %}
+-              {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+-                <a href="{{ block.settings.button_link }}" class="lj-inline-link">
+-                  {{ block.settings.button_label }}
+-                  <span class="line"></span>
+-                </a>
+-              {% endif %}
++              {% liquid
++                assign story_cta_label = block.settings.button_label | strip
++                assign story_cta_label_downcase = story_cta_label | downcase
++                if story_cta_label_downcase == 'read the guide' or story_cta_label_downcase == 'read more'
++                  if block.settings.heading != blank
++                    assign story_cta_label = 'Read the ' | append: block.settings.heading | append: ' guide'
++                  else
++                    assign story_cta_label = 'Read the guide'
++                  endif
++                endif
++              %}
++              {% if story_cta_label != blank and block.settings.button_link != blank %}
++                <a href="{{ block.settings.button_link }}" class="lj-inline-link">
++                  {{ story_cta_label }}
++                  <span class="line"></span>
++                </a>
++              {% endif %}
+             </div>
+           </div>
+         {% endfor %}
+@@ -710,12 +721,23 @@
+               {% if block.settings.description != blank %}
+                 <div class="lj-related-desc">{{ block.settings.description | newline_to_br }}</div>
+               {% endif %}
+-              {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+-                <a href="{{ block.settings.button_link }}" class="lj-related-link">
+-                  {{ block.settings.button_label }}
+-                  <span class="line"></span>
+-                </a>
+-              {% endif %}
++              {% liquid
++                assign related_cta_label = block.settings.button_label | strip
++                assign related_cta_label_downcase = related_cta_label | downcase
++                if related_cta_label_downcase == 'view tour' or related_cta_label_downcase == 'view journey' or related_cta_label_downcase == 'learn more'
++                  if block.settings.heading != blank
++                    assign related_cta_label = 'Explore ' | append: block.settings.heading
++                  else
++                    assign related_cta_label = 'See tour details'
++                  endif
++                endif
++              %}
++              {% if related_cta_label != blank and block.settings.button_link != blank %}
++                <a href="{{ block.settings.button_link }}" class="lj-related-link">
++                  {{ related_cta_label }}
++                  <span class="line"></span>
++                </a>
++              {% endif %}
+             </article>
+           {% endfor %}
+         </div>
+diff --git a/sections/lijiang-product.liquid b/sections/lijiang-product.liquid
+index 5fe6411..120deaf 100644
+--- a/sections/lijiang-product.liquid
++++ b/sections/lijiang-product.liquid
+@@ -1,114 +1,5 @@
+-{% assign seo_shop_url = shop.url %}
+-{% assign seo_product_url = shop.url | append: product.url %}
+-{% assign seo_currency = shop.currency %}
+-{% assign seo_collection = product.collections.first %}
+-{% assign seo_crumb_name = 'Products' %}
+-{% assign seo_crumb_url = shop.url | append: '/collections/all' %}
+-
+-{% if seo_collection %}
+-  {% assign seo_crumb_name = seo_collection.title %}
+-  {% assign seo_crumb_url = shop.url | append: seo_collection.url %}
+-{% endif %}
+-
+-{% assign seo_description = product.description | strip_html | strip_newlines | replace: '  ', ' ' | truncate: 500 %}
+-
+-{% assign seo_offer_count = 0 %}
+-{% assign seo_low_price = blank %}
+-{% assign seo_high_price = blank %}
+-{% assign seo_any_in_stock = false %}
+-
+-{% for variant in product.variants %}
+-  {% if variant.available %}
+-    {% assign seo_any_in_stock = true %}
+-    {% assign seo_offer_count = seo_offer_count | plus: 1 %}
+-
+-    {% if seo_low_price == blank or variant.price < seo_low_price %}
+-      {% assign seo_low_price = variant.price %}
+-    {% endif %}
+-
+-    {% if seo_high_price == blank or variant.price > seo_high_price %}
+-      {% assign seo_high_price = variant.price %}
+-    {% endif %}
+-  {% endif %}
+-{% endfor %}
+-
+-{% if seo_offer_count == 0 %}
+-  {% assign seo_offer_count = product.variants.size %}
+-
+-  {% for variant in product.variants %}
+-    {% if seo_low_price == blank or variant.price < seo_low_price %}
+-      {% assign seo_low_price = variant.price %}
+-    {% endif %}
+-
+-    {% if seo_high_price == blank or variant.price > seo_high_price %}
+-      {% assign seo_high_price = variant.price %}
+-    {% endif %}
+-  {% endfor %}
+-{% endif %}
+-
+-{% assign seo_availability = 'https://schema.org/OutOfStock' %}
+-{% if seo_any_in_stock %}
+-  {% assign seo_availability = 'https://schema.org/InStock' %}
+-{% endif %}
+-
+-<script type="application/ld+json">
+-{
+-  "@context": "https://schema.org",
+-  "@graph": [
+-    {
+-      "@type": "Product",
+-      "@id": {{ seo_product_url | append: '#product' | json }},
+-      "url": {{ seo_product_url | json }},
+-      "name": {{ product.title | strip | json }},
+-      "description": {{ seo_description | json }}{% if product.vendor != blank %},
+-      "brand": {
+-        "@type": "Brand",
+-        "name": {{ product.vendor | json }}
+-      }{% endif %}{% if product.type != blank %},
+-      "category": {{ product.type | json }}{% endif %}{% if product.images.size > 0 %},
+-      "image": [{% for image in product.images limit: 8 %}{{ image | image_url: width: 1600 | prepend: 'https:' | json }}{% unless forloop.last %}, {% endunless %}{% endfor %}]{% endif %},
+-      "offers": {
+-        "@type": "AggregateOffer",
+-        "url": {{ seo_product_url | json }},
+-        "priceCurrency": {{ seo_currency | json }},
+-        "lowPrice": {{ seo_low_price | divided_by: 100.0 | round: 2 }},
+-        "highPrice": {{ seo_high_price | divided_by: 100.0 | round: 2 }},
+-        "offerCount": {{ seo_offer_count }},
+-        "availability": {{ seo_availability | json }},
+-        "seller": {
+-          "@type": "Organization",
+-          "name": {{ shop.name | json }}
+-        }
+-      }
+-    },
+-    {
+-      "@type": "BreadcrumbList",
+-      "@id": {{ seo_product_url | append: '#breadcrumb' | json }},
+-      "itemListElement": [
+-        {
+-          "@type": "ListItem",
+-          "position": 1,
+-          "name": "Home",
+-          "item": {{ shop.url | append: '/' | json }}
+-        },
+-        {
+-          "@type": "ListItem",
+-          "position": 2,
+-          "name": {{ seo_crumb_name | json }},
+-          "item": {{ seo_crumb_url | json }}
+-        },
+-        {
+-          "@type": "ListItem",
+-          "position": 3,
+-          "name": {{ product.title | strip | json }},
+-          "item": {{ seo_product_url | json }}
+-        }
+-      ]
+-    }
+-  ]
+-}
+-</script>
+-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css">
++{% render 'seo-product-jsonld', product: product, current_collection: collection %}
++<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css">
+ 
+ <style>
+   :root {
+diff --git a/sections/luxury-hero-header.liquid b/sections/luxury-hero-header.liquid
+index e2393a4..4cf41af 100644
+--- a/sections/luxury-hero-header.liquid
++++ b/sections/luxury-hero-header.liquid
+@@ -1725,7 +1725,7 @@ document.addEventListener('DOMContentLoaded', function() {
+     { "type": "text", "id": "mega_guide_label", "label": "Travel Guide 顶部小标签", "default": "EDITORIAL GUIDE" },
+     { "type": "text", "id": "mega_guide_title", "label": "Travel Guide 顶部标题", "default": "Read before you go" },
+     { "type": "textarea", "id": "mega_guide_text", "label": "Travel Guide 顶部描述", "default": "Explore destination guides, landmark features, and practical travel ideas to plan a more informed, more atmospheric, and more rewarding Yunnan trip." },
+-    { "type": "text", "id": "mega_guide_btn", "label": "Travel Guide 顶部按钮文字", "default": "Read the guides" },
++    { "type": "text", "id": "mega_guide_btn", "label": "Travel Guide 顶部按钮文字", "default": "Explore travel guides" },
+ 
+     { "type": "text", "id": "mega_support_label", "label": "Support 顶部小标签", "default": "HELP & SUPPORT" },
+     { "type": "text", "id": "mega_support_title", "label": "Support 顶部标题", "default": "Get help before you book" },
+@@ -1760,13 +1760,13 @@ document.addEventListener('DOMContentLoaded', function() {
+     { "type": "text", "id": "mega_services_side_label", "label": "Travel Services 右侧小标签", "default": "BESPOKE SUPPORT" },
+     { "type": "text", "id": "mega_services_side_title", "label": "Travel Services 右侧标题", "default": "Support built around your trip" },
+     { "type": "textarea", "id": "mega_services_side_text", "label": "Travel Services 右侧描述", "default": "Access private transfers, custom planning, and flexible support services that make independent travel across Yunnan smoother and more personal." },
+-    { "type": "text", "id": "mega_services_side_btn", "label": "Travel Services 右侧按钮文字", "default": "View services" },
++    { "type": "text", "id": "mega_services_side_btn", "label": "Travel Services 右侧按钮文字", "default": "Explore travel services" },
+     { "type": "url", "id": "mega_services_side_link", "label": "Travel Services 右侧按钮链接" },
+ 
+     { "type": "text", "id": "mega_guide_side_label", "label": "Travel Guide 右侧小标签", "default": "PLAN SMARTER" },
+     { "type": "text", "id": "mega_guide_side_title", "label": "Travel Guide 右侧标题", "default": "Useful reads before you travel" },
+     { "type": "textarea", "id": "mega_guide_side_text", "label": "Travel Guide 右侧描述", "default": "Read destination notes, planning ideas, and practical guidance that help turn inspiration into a more informed Yunnan trip." },
+-    { "type": "text", "id": "mega_guide_side_btn", "label": "Travel Guide 右侧按钮文字", "default": "Read more" },
++    { "type": "text", "id": "mega_guide_side_btn", "label": "Travel Guide 右侧按钮文字", "default": "Browse travel guides" },
+     { "type": "url", "id": "mega_guide_side_link", "label": "Travel Guide 右侧按钮链接" },
+ 
+     { "type": "text", "id": "mega_support_side_label", "label": "Support 右侧小标签", "default": "HELP CENTER" },
+diff --git a/sections/luxury-private-tour-product.liquid b/sections/luxury-private-tour-product.liquid
+index b1185be..4c2d38d 100644
+--- a/sections/luxury-private-tour-product.liquid
++++ b/sections/luxury-private-tour-product.liquid
+@@ -1,114 +1,5 @@
+-{% assign seo_shop_url = shop.url %}
+-{% assign seo_product_url = shop.url | append: product.url %}
+-{% assign seo_currency = shop.currency %}
+-{% assign seo_collection = product.collections.first %}
+-{% assign seo_crumb_name = 'Products' %}
+-{% assign seo_crumb_url = shop.url | append: '/collections/all' %}
+-
+-{% if seo_collection %}
+-  {% assign seo_crumb_name = seo_collection.title %}
+-  {% assign seo_crumb_url = shop.url | append: seo_collection.url %}
+-{% endif %}
+-
+-{% assign seo_description = product.description | strip_html | strip_newlines | replace: '  ', ' ' | truncate: 500 %}
+-
+-{% assign seo_offer_count = 0 %}
+-{% assign seo_low_price = blank %}
+-{% assign seo_high_price = blank %}
+-{% assign seo_any_in_stock = false %}
+-
+-{% for variant in product.variants %}
+-  {% if variant.available %}
+-    {% assign seo_any_in_stock = true %}
+-    {% assign seo_offer_count = seo_offer_count | plus: 1 %}
+-
+-    {% if seo_low_price == blank or variant.price < seo_low_price %}
+-      {% assign seo_low_price = variant.price %}
+-    {% endif %}
+-
+-    {% if seo_high_price == blank or variant.price > seo_high_price %}
+-      {% assign seo_high_price = variant.price %}
+-    {% endif %}
+-  {% endif %}
+-{% endfor %}
+-
+-{% if seo_offer_count == 0 %}
+-  {% assign seo_offer_count = product.variants.size %}
+-
+-  {% for variant in product.variants %}
+-    {% if seo_low_price == blank or variant.price < seo_low_price %}
+-      {% assign seo_low_price = variant.price %}
+-    {% endif %}
+-
+-    {% if seo_high_price == blank or variant.price > seo_high_price %}
+-      {% assign seo_high_price = variant.price %}
+-    {% endif %}
+-  {% endfor %}
+-{% endif %}
+-
+-{% assign seo_availability = 'https://schema.org/OutOfStock' %}
+-{% if seo_any_in_stock %}
+-  {% assign seo_availability = 'https://schema.org/InStock' %}
+-{% endif %}
+-
+-<script type="application/ld+json">
+-{
+-  "@context": "https://schema.org",
+-  "@graph": [
+-    {
+-      "@type": "Product",
+-      "@id": {{ seo_product_url | append: '#product' | json }},
+-      "url": {{ seo_product_url | json }},
+-      "name": {{ product.title | strip | json }},
+-      "description": {{ seo_description | json }}{% if product.vendor != blank %},
+-      "brand": {
+-        "@type": "Brand",
+-        "name": {{ product.vendor | json }}
+-      }{% endif %}{% if product.type != blank %},
+-      "category": {{ product.type | json }}{% endif %}{% if product.images.size > 0 %},
+-      "image": [{% for image in product.images limit: 8 %}{{ image | image_url: width: 1600 | prepend: 'https:' | json }}{% unless forloop.last %}, {% endunless %}{% endfor %}]{% endif %},
+-      "offers": {
+-        "@type": "AggregateOffer",
+-        "url": {{ seo_product_url | json }},
+-        "priceCurrency": {{ seo_currency | json }},
+-        "lowPrice": {{ seo_low_price | divided_by: 100.0 | round: 2 }},
+-        "highPrice": {{ seo_high_price | divided_by: 100.0 | round: 2 }},
+-        "offerCount": {{ seo_offer_count }},
+-        "availability": {{ seo_availability | json }},
+-        "seller": {
+-          "@type": "Organization",
+-          "name": {{ shop.name | json }}
+-        }
+-      }
+-    },
+-    {
+-      "@type": "BreadcrumbList",
+-      "@id": {{ seo_product_url | append: '#breadcrumb' | json }},
+-      "itemListElement": [
+-        {
+-          "@type": "ListItem",
+-          "position": 1,
+-          "name": "Home",
+-          "item": {{ shop.url | append: '/' | json }}
+-        },
+-        {
+-          "@type": "ListItem",
+-          "position": 2,
+-          "name": {{ seo_crumb_name | json }},
+-          "item": {{ seo_crumb_url | json }}
+-        },
+-        {
+-          "@type": "ListItem",
+-          "position": 3,
+-          "name": {{ product.title | strip | json }},
+-          "item": {{ seo_product_url | json }}
+-        }
+-      ]
+-    }
+-  ]
+-}
+-</script>
+-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css">
++{% render 'seo-product-jsonld', product: product, current_collection: collection %}
++<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css">
+ 
+ <style>
+   :root {
+diff --git a/sections/one-day-trip-product.liquid b/sections/one-day-trip-product.liquid
+index de3671f..9657737 100644
+--- a/sections/one-day-trip-product.liquid
++++ b/sections/one-day-trip-product.liquid
+@@ -1,114 +1,5 @@
+-{% assign seo_shop_url = shop.url %}
+-{% assign seo_product_url = shop.url | append: product.url %}
+-{% assign seo_currency = shop.currency %}
+-{% assign seo_collection = product.collections.first %}
+-{% assign seo_crumb_name = 'Products' %}
+-{% assign seo_crumb_url = shop.url | append: '/collections/all' %}
+-
+-{% if seo_collection %}
+-  {% assign seo_crumb_name = seo_collection.title %}
+-  {% assign seo_crumb_url = shop.url | append: seo_collection.url %}
+-{% endif %}
+-
+-{% assign seo_description = product.description | strip_html | strip_newlines | replace: '  ', ' ' | truncate: 500 %}
+-
+-{% assign seo_offer_count = 0 %}
+-{% assign seo_low_price = blank %}
+-{% assign seo_high_price = blank %}
+-{% assign seo_any_in_stock = false %}
+-
+-{% for variant in product.variants %}
+-  {% if variant.available %}
+-    {% assign seo_any_in_stock = true %}
+-    {% assign seo_offer_count = seo_offer_count | plus: 1 %}
+-
+-    {% if seo_low_price == blank or variant.price < seo_low_price %}
+-      {% assign seo_low_price = variant.price %}
+-    {% endif %}
+-
+-    {% if seo_high_price == blank or variant.price > seo_high_price %}
+-      {% assign seo_high_price = variant.price %}
+-    {% endif %}
+-  {% endif %}
+-{% endfor %}
+-
+-{% if seo_offer_count == 0 %}
+-  {% assign seo_offer_count = product.variants.size %}
+-
+-  {% for variant in product.variants %}
+-    {% if seo_low_price == blank or variant.price < seo_low_price %}
+-      {% assign seo_low_price = variant.price %}
+-    {% endif %}
+-
+-    {% if seo_high_price == blank or variant.price > seo_high_price %}
+-      {% assign seo_high_price = variant.price %}
+-    {% endif %}
+-  {% endfor %}
+-{% endif %}
+-
+-{% assign seo_availability = 'https://schema.org/OutOfStock' %}
+-{% if seo_any_in_stock %}
+-  {% assign seo_availability = 'https://schema.org/InStock' %}
+-{% endif %}
+-
+-<script type="application/ld+json">
+-{
+-  "@context": "https://schema.org",
+-  "@graph": [
+-    {
+-      "@type": "Product",
+-      "@id": {{ seo_product_url | append: '#product' | json }},
+-      "url": {{ seo_product_url | json }},
+-      "name": {{ product.title | strip | json }},
+-      "description": {{ seo_description | json }}{% if product.vendor != blank %},
+-      "brand": {
+-        "@type": "Brand",
+-        "name": {{ product.vendor | json }}
+-      }{% endif %}{% if product.type != blank %},
+-      "category": {{ product.type | json }}{% endif %}{% if product.images.size > 0 %},
+-      "image": [{% for image in product.images limit: 8 %}{{ image | image_url: width: 1600 | prepend: 'https:' | json }}{% unless forloop.last %}, {% endunless %}{% endfor %}]{% endif %},
+-      "offers": {
+-        "@type": "AggregateOffer",
+-        "url": {{ seo_product_url | json }},
+-        "priceCurrency": {{ seo_currency | json }},
+-        "lowPrice": {{ seo_low_price | divided_by: 100.0 | round: 2 }},
+-        "highPrice": {{ seo_high_price | divided_by: 100.0 | round: 2 }},
+-        "offerCount": {{ seo_offer_count }},
+-        "availability": {{ seo_availability | json }},
+-        "seller": {
+-          "@type": "Organization",
+-          "name": {{ shop.name | json }}
+-        }
+-      }
+-    },
+-    {
+-      "@type": "BreadcrumbList",
+-      "@id": {{ seo_product_url | append: '#breadcrumb' | json }},
+-      "itemListElement": [
+-        {
+-          "@type": "ListItem",
+-          "position": 1,
+-          "name": "Home",
+-          "item": {{ shop.url | append: '/' | json }}
+-        },
+-        {
+-          "@type": "ListItem",
+-          "position": 2,
+-          "name": {{ seo_crumb_name | json }},
+-          "item": {{ seo_crumb_url | json }}
+-        },
+-        {
+-          "@type": "ListItem",
+-          "position": 3,
+-          "name": {{ product.title | strip | json }},
+-          "item": {{ seo_product_url | json }}
+-        }
+-      ]
+-    }
+-  ]
+-}
+-</script>
+-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css">
++{% render 'seo-product-jsonld', product: product, current_collection: collection %}
++<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css">
+ 
+ <style>
+   :root {
+diff --git a/sections/private-charter-service.liquid b/sections/private-charter-service.liquid
+index 2b3bc07..1b47f45 100644
+--- a/sections/private-charter-service.liquid
++++ b/sections/private-charter-service.liquid
+@@ -1428,27 +1428,7 @@
+   </div>
+ </div>
+ 
+-<script type="application/ld+json">
+-{
+-  "@context": "https://schema.org",
+-  "@type": "Product",
+-  "name": {{ product.title | strip | json }}{% if seo_product_description != blank %},
+-  "description": {{ seo_product_description | json }}{% endif %}{% if product.featured_image %},
+-  "image": {{ product.featured_image | image_url: width: 1600 | prepend: 'https:' | json }}{% endif %}{% if seo_variant and seo_variant.sku != blank %},
+-  "sku": {{ seo_variant.sku | json }}{% endif %}{% if product.vendor != blank %},
+-  "brand": {
+-    "@type": "Brand",
+-    "name": {{ product.vendor | json }}
+-  }{% endif %}{% if seo_variant and cart.currency.iso_code != blank %},
+-  "offers": {
+-    "@type": "Offer",
+-    "priceCurrency": {{ cart.currency.iso_code | json }},
+-    "price": {{ seo_variant.price | divided_by: 100.0 | json }},
+-    "availability": {% if seo_variant.available %}"https://schema.org/InStock"{% else %}"https://schema.org/OutOfStock"{% endif %},
+-    "url": {{ seo_product_url | json }}
+-  }{% endif %}
+-}
+-</script>
++{% render 'seo-product-jsonld', product: product, current_collection: collection %}
+ 
+ <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+ 
+diff --git a/sections/shangri-la-collection.liquid b/sections/shangri-la-collection.liquid
+index 31ac0f9..39e573b 100644
+--- a/sections/shangri-la-collection.liquid
++++ b/sections/shangri-la-collection.liquid
+@@ -175,7 +175,7 @@
+                 {% endif %}
+ 
+                 <div class="card-overlay">
+-                  <div class="card-btn">EXPLORE</div>
++                  <div class="card-btn">SEE TOUR DETAILS</div>
+                 </div>
+ 
+                 {% if product.tags contains 'Mountain View' or product.tags contains 'Monastery' %}
+@@ -298,9 +298,9 @@
+           </div>
+         </section>
+ 
+-        <script type="application/ld+json">
+-        {
+-          "@context": "https://schema.org",
++        <script type="application/ld+json">
++        {
++          "@context": "https://schema.org",
+           "@type": "FAQPage",
+           "mainEntity": [
+             {
+@@ -351,11 +351,11 @@
+                 "text": "Shangri-La can be visited throughout the year, but spring and autumn are often especially rewarding for clear views, comfortable weather, and balanced travel conditions. Summer brings greener landscapes, while winter can feel quieter and more atmospheric. The best season depends on whether you prioritize scenery, cultural depth, photography, or a wider Yunnan route."
+               }
+             }
+-          ]
+-        }
+-        </script>
+-
+-        <section class="collection-copy-block collection-outro-block">
++          ]
++        }
++        </script>
++
++        <section class="collection-copy-block collection-outro-block">
+           <div class="collection-copy-inner narrow">
+             <h2 class="copy-heading">Explore Shangri-La tour ideas with Lynxtour</h2>
+             <div class="copy-richtext">
+@@ -363,11 +363,31 @@
+             </div>
+           </div>
+         </section>
+-      {% endif %}
+-
+-    {% endpaginate %}
+-  </div>
+-</section>
++      {% endif %}
++
++    {% endpaginate %}
++    <script type="application/ld+json">
++    {
++      "@context": "https://schema.org",
++      "@type": "BreadcrumbList",
++      "itemListElement": [
++        {
++          "@type": "ListItem",
++          "position": 1,
++          "name": "Home",
++          "item": {{ request.origin | append: '/' | json }}
++        },
++        {
++          "@type": "ListItem",
++          "position": 2,
++          "name": {{ collection.title | json }},
++          "item": {{ canonical_url | json }}
++        }
++      ]
++    }
++    </script>
++  </div>
++</section>
+ 
+ <style>
+   #CollectionProductGrid{
+diff --git a/sections/shangri-la-page.liquid b/sections/shangri-la-page.liquid
+index eb97e86..7c28b2f 100644
+--- a/sections/shangri-la-page.liquid
++++ b/sections/shangri-la-page.liquid
+@@ -734,12 +734,23 @@
+               {% if block.settings.description != blank %}
+                 <div class="story-desc">{{ block.settings.description | newline_to_br }}</div>
+               {% endif %}
+-              {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+-                <a href="{{ block.settings.button_link }}" class="sr-inline-link">
+-                  {{ block.settings.button_label }}
+-                  <span class="line"></span>
+-                </a>
+-              {% endif %}
++              {% liquid
++                assign story_cta_label = block.settings.button_label | strip
++                assign story_cta_label_downcase = story_cta_label | downcase
++                if story_cta_label_downcase == 'read the guide' or story_cta_label_downcase == 'read more'
++                  if block.settings.heading != blank
++                    assign story_cta_label = 'Read the ' | append: block.settings.heading | append: ' guide'
++                  else
++                    assign story_cta_label = 'Read the guide'
++                  endif
++                endif
++              %}
++              {% if story_cta_label != blank and block.settings.button_link != blank %}
++                <a href="{{ block.settings.button_link }}" class="sr-inline-link">
++                  {{ story_cta_label }}
++                  <span class="line"></span>
++                </a>
++              {% endif %}
+             </div>
+           </div>
+         {% endfor %}
+@@ -770,12 +781,23 @@
+               {% if block.settings.description != blank %}
+                 <div class="sr-related-desc">{{ block.settings.description | newline_to_br }}</div>
+               {% endif %}
+-              {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+-                <a href="{{ block.settings.button_link }}" class="sr-related-link">
+-                  {{ block.settings.button_label }}
+-                  <span class="line"></span>
+-                </a>
+-              {% endif %}
++              {% liquid
++                assign related_cta_label = block.settings.button_label | strip
++                assign related_cta_label_downcase = related_cta_label | downcase
++                if related_cta_label_downcase == 'view tour' or related_cta_label_downcase == 'view journey' or related_cta_label_downcase == 'learn more'
++                  if block.settings.heading != blank
++                    assign related_cta_label = 'Explore ' | append: block.settings.heading
++                  else
++                    assign related_cta_label = 'See tour details'
++                  endif
++                endif
++              %}
++              {% if related_cta_label != blank and block.settings.button_link != blank %}
++                <a href="{{ block.settings.button_link }}" class="sr-related-link">
++                  {{ related_cta_label }}
++                  <span class="line"></span>
++                </a>
++              {% endif %}
+             </article>
+           {% endfor %}
+         </div>
+diff --git a/sections/shangri-la-product.liquid b/sections/shangri-la-product.liquid
+index 7a83e73..22c9749 100644
+--- a/sections/shangri-la-product.liquid
++++ b/sections/shangri-la-product.liquid
+@@ -1,114 +1,5 @@
+-{% assign seo_shop_url = shop.url %}
+-{% assign seo_product_url = shop.url | append: product.url %}
+-{% assign seo_currency = shop.currency %}
+-{% assign seo_collection = product.collections.first %}
+-{% assign seo_crumb_name = 'Products' %}
+-{% assign seo_crumb_url = shop.url | append: '/collections/all' %}
+-
+-{% if seo_collection %}
+-  {% assign seo_crumb_name = seo_collection.title %}
+-  {% assign seo_crumb_url = shop.url | append: seo_collection.url %}
+-{% endif %}
+-
+-{% assign seo_description = product.description | strip_html | strip_newlines | replace: '  ', ' ' | truncate: 500 %}
+-
+-{% assign seo_offer_count = 0 %}
+-{% assign seo_low_price = blank %}
+-{% assign seo_high_price = blank %}
+-{% assign seo_any_in_stock = false %}
+-
+-{% for variant in product.variants %}
+-  {% if variant.available %}
+-    {% assign seo_any_in_stock = true %}
+-    {% assign seo_offer_count = seo_offer_count | plus: 1 %}
+-
+-    {% if seo_low_price == blank or variant.price < seo_low_price %}
+-      {% assign seo_low_price = variant.price %}
+-    {% endif %}
+-
+-    {% if seo_high_price == blank or variant.price > seo_high_price %}
+-      {% assign seo_high_price = variant.price %}
+-    {% endif %}
+-  {% endif %}
+-{% endfor %}
+-
+-{% if seo_offer_count == 0 %}
+-  {% assign seo_offer_count = product.variants.size %}
+-
+-  {% for variant in product.variants %}
+-    {% if seo_low_price == blank or variant.price < seo_low_price %}
+-      {% assign seo_low_price = variant.price %}
+-    {% endif %}
+-
+-    {% if seo_high_price == blank or variant.price > seo_high_price %}
+-      {% assign seo_high_price = variant.price %}
+-    {% endif %}
+-  {% endfor %}
+-{% endif %}
+-
+-{% assign seo_availability = 'https://schema.org/OutOfStock' %}
+-{% if seo_any_in_stock %}
+-  {% assign seo_availability = 'https://schema.org/InStock' %}
+-{% endif %}
+-
+-<script type="application/ld+json">
+-{
+-  "@context": "https://schema.org",
+-  "@graph": [
+-    {
+-      "@type": "Product",
+-      "@id": {{ seo_product_url | append: '#product' | json }},
+-      "url": {{ seo_product_url | json }},
+-      "name": {{ product.title | strip | json }},
+-      "description": {{ seo_description | json }}{% if product.vendor != blank %},
+-      "brand": {
+-        "@type": "Brand",
+-        "name": {{ product.vendor | json }}
+-      }{% endif %}{% if product.type != blank %},
+-      "category": {{ product.type | json }}{% endif %}{% if product.images.size > 0 %},
+-      "image": [{% for image in product.images limit: 8 %}{{ image | image_url: width: 1600 | prepend: 'https:' | json }}{% unless forloop.last %}, {% endunless %}{% endfor %}]{% endif %},
+-      "offers": {
+-        "@type": "AggregateOffer",
+-        "url": {{ seo_product_url | json }},
+-        "priceCurrency": {{ seo_currency | json }},
+-        "lowPrice": {{ seo_low_price | divided_by: 100.0 | round: 2 }},
+-        "highPrice": {{ seo_high_price | divided_by: 100.0 | round: 2 }},
+-        "offerCount": {{ seo_offer_count }},
+-        "availability": {{ seo_availability | json }},
+-        "seller": {
+-          "@type": "Organization",
+-          "name": {{ shop.name | json }}
+-        }
+-      }
+-    },
+-    {
+-      "@type": "BreadcrumbList",
+-      "@id": {{ seo_product_url | append: '#breadcrumb' | json }},
+-      "itemListElement": [
+-        {
+-          "@type": "ListItem",
+-          "position": 1,
+-          "name": "Home",
+-          "item": {{ shop.url | append: '/' | json }}
+-        },
+-        {
+-          "@type": "ListItem",
+-          "position": 2,
+-          "name": {{ seo_crumb_name | json }},
+-          "item": {{ seo_crumb_url | json }}
+-        },
+-        {
+-          "@type": "ListItem",
+-          "position": 3,
+-          "name": {{ product.title | strip | json }},
+-          "item": {{ seo_product_url | json }}
+-        }
+-      ]
+-    }
+-  ]
+-}
+-</script>
+-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css">
++{% render 'seo-product-jsonld', product: product, current_collection: collection %}
++<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css">
+ 
+ <style>
+   :root {
+diff --git a/sections/xishuangbanna-collection.liquid b/sections/xishuangbanna-collection.liquid
+index 7ee3aa9..02568e7 100644
+--- a/sections/xishuangbanna-collection.liquid
++++ b/sections/xishuangbanna-collection.liquid
+@@ -827,7 +827,7 @@
+                 {% endif %}
+ 
+                 <div class="card-overlay">
+-                  <div class="card-btn">EXPLORE</div>
++                  <div class="card-btn">SEE TOUR DETAILS</div>
+                 </div>
+ 
+                 {% if product.tags contains 'Rainforest' or product.tags contains 'Dai Culture' or product.tags contains 'Tea' %}
+@@ -950,9 +950,9 @@
+           </div>
+         </section>
+ 
+-        <script type="application/ld+json">
+-        {
+-          "@context": "https://schema.org",
++        <script type="application/ld+json">
++        {
++          "@context": "https://schema.org",
+           "@type": "FAQPage",
+           "mainEntity": [
+             {
+@@ -1003,11 +1003,11 @@
+                 "text": "Xishuangbanna can be visited throughout the year, but autumn and winter are often especially comfortable thanks to the warm climate and pleasant travel conditions. Spring can also be rewarding, while summer is greener and more humid. The best season depends on whether you prioritize weather, tropical scenery, local festivals, or a wider Yunnan route."
+               }
+             }
+-          ]
+-        }
+-        </script>
+-
+-        <section class="collection-copy-block collection-outro-block">
++          ]
++        }
++        </script>
++
++        <section class="collection-copy-block collection-outro-block">
+           <div class="collection-copy-inner narrow">
+             <h2 class="copy-heading">Explore Xishuangbanna tour ideas with Lynxtour</h2>
+             <div class="copy-richtext">
+@@ -1015,11 +1015,31 @@
+             </div>
+           </div>
+         </section>
+-      {% endif %}
+-
+-    {% endpaginate %}
+-  </div>
+-</div>
++      {% endif %}
++
++    {% endpaginate %}
++    <script type="application/ld+json">
++    {
++      "@context": "https://schema.org",
++      "@type": "BreadcrumbList",
++      "itemListElement": [
++        {
++          "@type": "ListItem",
++          "position": 1,
++          "name": "Home",
++          "item": {{ request.origin | append: '/' | json }}
++        },
++        {
++          "@type": "ListItem",
++          "position": 2,
++          "name": {{ collection.title | json }},
++          "item": {{ canonical_url | json }}
++        }
++      ]
++    }
++    </script>
++  </div>
++</div>
+ 
+ <script>
+ document.addEventListener('DOMContentLoaded', function() {
+diff --git a/sections/xishuangbanna-page.liquid b/sections/xishuangbanna-page.liquid
+index febe3a8..a5785a4 100644
+--- a/sections/xishuangbanna-page.liquid
++++ b/sections/xishuangbanna-page.liquid
+@@ -712,12 +712,23 @@
+               {% if block.settings.description != blank %}
+                 <div class="story-desc">{{ block.settings.description | newline_to_br }}</div>
+               {% endif %}
+-              {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+-                <a href="{{ block.settings.button_link }}" class="xb-inline-link">
+-                  {{ block.settings.button_label }}
+-                  <span class="line"></span>
+-                </a>
+-              {% endif %}
++              {% liquid
++                assign story_cta_label = block.settings.button_label | strip
++                assign story_cta_label_downcase = story_cta_label | downcase
++                if story_cta_label_downcase == 'read the guide' or story_cta_label_downcase == 'read more'
++                  if block.settings.heading != blank
++                    assign story_cta_label = 'Read the ' | append: block.settings.heading | append: ' guide'
++                  else
++                    assign story_cta_label = 'Read the guide'
++                  endif
++                endif
++              %}
++              {% if story_cta_label != blank and block.settings.button_link != blank %}
++                <a href="{{ block.settings.button_link }}" class="xb-inline-link">
++                  {{ story_cta_label }}
++                  <span class="line"></span>
++                </a>
++              {% endif %}
+             </div>
+           </div>
+         {% endfor %}
+@@ -748,12 +759,23 @@
+               {% if block.settings.description != blank %}
+                 <div class="xb-related-desc">{{ block.settings.description | newline_to_br }}</div>
+               {% endif %}
+-              {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+-                <a href="{{ block.settings.button_link }}" class="xb-related-link">
+-                  {{ block.settings.button_label }}
+-                  <span class="line"></span>
+-                </a>
+-              {% endif %}
++              {% liquid
++                assign related_cta_label = block.settings.button_label | strip
++                assign related_cta_label_downcase = related_cta_label | downcase
++                if related_cta_label_downcase == 'view tour' or related_cta_label_downcase == 'view journey' or related_cta_label_downcase == 'learn more'
++                  if block.settings.heading != blank
++                    assign related_cta_label = 'Explore ' | append: block.settings.heading
++                  else
++                    assign related_cta_label = 'See tour details'
++                  endif
++                endif
++              %}
++              {% if related_cta_label != blank and block.settings.button_link != blank %}
++                <a href="{{ block.settings.button_link }}" class="xb-related-link">
++                  {{ related_cta_label }}
++                  <span class="line"></span>
++                </a>
++              {% endif %}
+             </article>
+           {% endfor %}
+         </div>
+diff --git a/sections/xishuangbanna-product.liquid b/sections/xishuangbanna-product.liquid
+index 5a333ca..2806fff 100644
+--- a/sections/xishuangbanna-product.liquid
++++ b/sections/xishuangbanna-product.liquid
+@@ -1,114 +1,5 @@
+-{% assign seo_shop_url = shop.url %}
+-{% assign seo_product_url = shop.url | append: product.url %}
+-{% assign seo_currency = shop.currency %}
+-{% assign seo_collection = product.collections.first %}
+-{% assign seo_crumb_name = 'Products' %}
+-{% assign seo_crumb_url = shop.url | append: '/collections/all' %}
+-
+-{% if seo_collection %}
+-  {% assign seo_crumb_name = seo_collection.title %}
+-  {% assign seo_crumb_url = shop.url | append: seo_collection.url %}
+-{% endif %}
+-
+-{% assign seo_description = product.description | strip_html | strip_newlines | replace: '  ', ' ' | truncate: 500 %}
+-
+-{% assign seo_offer_count = 0 %}
+-{% assign seo_low_price = blank %}
+-{% assign seo_high_price = blank %}
+-{% assign seo_any_in_stock = false %}
+-
+-{% for variant in product.variants %}
+-  {% if variant.available %}
+-    {% assign seo_any_in_stock = true %}
+-    {% assign seo_offer_count = seo_offer_count | plus: 1 %}
+-
+-    {% if seo_low_price == blank or variant.price < seo_low_price %}
+-      {% assign seo_low_price = variant.price %}
+-    {% endif %}
+-
+-    {% if seo_high_price == blank or variant.price > seo_high_price %}
+-      {% assign seo_high_price = variant.price %}
+-    {% endif %}
+-  {% endif %}
+-{% endfor %}
+-
+-{% if seo_offer_count == 0 %}
+-  {% assign seo_offer_count = product.variants.size %}
+-
+-  {% for variant in product.variants %}
+-    {% if seo_low_price == blank or variant.price < seo_low_price %}
+-      {% assign seo_low_price = variant.price %}
+-    {% endif %}
+-
+-    {% if seo_high_price == blank or variant.price > seo_high_price %}
+-      {% assign seo_high_price = variant.price %}
+-    {% endif %}
+-  {% endfor %}
+-{% endif %}
+-
+-{% assign seo_availability = 'https://schema.org/OutOfStock' %}
+-{% if seo_any_in_stock %}
+-  {% assign seo_availability = 'https://schema.org/InStock' %}
+-{% endif %}
+-
+-<script type="application/ld+json">
+-{
+-  "@context": "https://schema.org",
+-  "@graph": [
+-    {
+-      "@type": "Product",
+-      "@id": {{ seo_product_url | append: '#product' | json }},
+-      "url": {{ seo_product_url | json }},
+-      "name": {{ product.title | strip | json }},
+-      "description": {{ seo_description | json }}{% if product.vendor != blank %},
+-      "brand": {
+-        "@type": "Brand",
+-        "name": {{ product.vendor | json }}
+-      }{% endif %}{% if product.type != blank %},
+-      "category": {{ product.type | json }}{% endif %}{% if product.images.size > 0 %},
+-      "image": [{% for image in product.images limit: 8 %}{{ image | image_url: width: 1600 | prepend: 'https:' | json }}{% unless forloop.last %}, {% endunless %}{% endfor %}]{% endif %},
+-      "offers": {
+-        "@type": "AggregateOffer",
+-        "url": {{ seo_product_url | json }},
+-        "priceCurrency": {{ seo_currency | json }},
+-        "lowPrice": {{ seo_low_price | divided_by: 100.0 | round: 2 }},
+-        "highPrice": {{ seo_high_price | divided_by: 100.0 | round: 2 }},
+-        "offerCount": {{ seo_offer_count }},
+-        "availability": {{ seo_availability | json }},
+-        "seller": {
+-          "@type": "Organization",
+-          "name": {{ shop.name | json }}
+-        }
+-      }
+-    },
+-    {
+-      "@type": "BreadcrumbList",
+-      "@id": {{ seo_product_url | append: '#breadcrumb' | json }},
+-      "itemListElement": [
+-        {
+-          "@type": "ListItem",
+-          "position": 1,
+-          "name": "Home",
+-          "item": {{ shop.url | append: '/' | json }}
+-        },
+-        {
+-          "@type": "ListItem",
+-          "position": 2,
+-          "name": {{ seo_crumb_name | json }},
+-          "item": {{ seo_crumb_url | json }}
+-        },
+-        {
+-          "@type": "ListItem",
+-          "position": 3,
+-          "name": {{ product.title | strip | json }},
+-          "item": {{ seo_product_url | json }}
+-        }
+-      ]
+-    }
+-  ]
+-}
+-</script>
+-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css">
++{% render 'seo-product-jsonld', product: product, current_collection: collection %}
++<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css">
+ 
+ <style>
+   :root {
+diff --git a/templates/index.json b/templates/index.json
+index d4f1620..f75f71b 100644
+--- a/templates/index.json
++++ b/templates/index.json
+@@ -51,7 +51,7 @@
+         "mega_guide_label": "EDITORIAL GUIDE",
+         "mega_guide_title": "Read before you go",
+         "mega_guide_text": "Explore destination guides, landmark features, and practical travel ideas to plan a more informed, more atmospheric, and more rewarding Yunnan trip.",
+-        "mega_guide_btn": "Read the guides",
++        "mega_guide_btn": "Explore travel guides",
+         "mega_support_label": "HELP & SUPPORT",
+         "mega_support_title": "Get help before you book",
+         "mega_support_text": "Find answers to common questions about booking, payment, travel planning, and service details in one place.",
+@@ -78,12 +78,12 @@
+         "mega_services_side_label": "BESPOKE SUPPORT",
+         "mega_services_side_title": "Support built around your trip",
+         "mega_services_side_text": "Access private transfers, custom planning, and flexible support services that make independent travel across Yunnan smoother and more personal.",
+-        "mega_services_side_btn": "View services",
++        "mega_services_side_btn": "Explore travel services",
+         "mega_services_side_link": "shopify://pages/bespoke-custom-travel",
+         "mega_guide_side_label": "PLAN SMARTER",
+         "mega_guide_side_title": "Useful reads before you travel",
+         "mega_guide_side_text": "Read destination notes, planning ideas, and practical guidance that help turn inspiration into a more informed Yunnan trip.",
+-        "mega_guide_side_btn": "Read more",
++        "mega_guide_side_btn": "Browse travel guides",
+         "mega_guide_side_link": "shopify://blogs/travel-guides",
+         "mega_support_side_label": "HELP CENTER",
+         "mega_support_side_title": "Answers for a smoother booking experience",
+@@ -120,7 +120,7 @@
+             "location_tag": "YUNNAN · LIJIANG",
+             "title": "Beneath the Jade Dragon, Slumber by the Water",
+             "description": "Retreat from the bustle of the Ancient Town and settle into a quieter Lijiang shaped by mountain light, courtyard living, and the poetry of water.",
+-            "cta_text": "View Journey",
++            "cta_text": "Explore Lijiang private tours",
+             "link": "shopify://collections/lijiang-private-tours"
+           }
+         },
+@@ -132,7 +132,7 @@
+             "location_tag": "YUNNAN · DALI",
+             "title": "By Erhai, Time Learns to Slow",
+             "description": "Wake to mountain light, open water, and a softer Yunnan mood shaped by Bai heritage, village texture, and lakeside calm.",
+-            "cta_text": "View Journey",
++            "cta_text": "Explore Dali private tours",
+             "link": "shopify://collections/dali-private-tours"
+           }
+         },
+@@ -144,7 +144,7 @@
+             "location_tag": "YUNNAN · SHANGRI-LA",
+             "title": "Where the Plateau Opens into Silence",
+             "description": "Enter a higher, quieter Yunnan, where monasteries, grasslands, and Tibetan character create a journey of altitude, stillness, and wonder.",
+-            "cta_text": "View Journey",
++            "cta_text": "Explore Shangri-La private tours",
+             "link": "shopify://collections/shangri-la-private-tours"
+           }
+         },
+@@ -156,7 +156,7 @@
+             "location_tag": "YUNNAN · XISHUANGBANNA",
+             "title": "Where Rainforest Light Turns Golden",
+             "description": "Discover Yunnan’s tropical south through Dai culture, warm air, riverside ease, and a more exotic, slower-paced escape.",
+-            "cta_text": "View Journey",
++            "cta_text": "Explore Xishuangbanna private tours",
+             "link": "shopify://collections/xishuangbanna-private-tours"
+           }
+         }
