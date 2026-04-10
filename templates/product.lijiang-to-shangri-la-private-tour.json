@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "global_navigation": {
@@ -34,7 +43,7 @@
           "settings": {
             "tag": "WHAT IT COVERS",
             "heading": "More than a transfer, with route logic and comfort built into the trip",
-            "copy": "This page is positioned as a sellable route product rather than a generic destination guide. The focus is private pacing, route flow, and how the journey fits inside a wider northwest Yunnan trip."
+            "copy": "This route is designed for travelers who want more than a simple transfer. It combines private pacing, scenic highlights, and a more comfortable way to connect Lijiang with Shangri-La."
           }
         },
         "feature_3": {
@@ -50,7 +59,7 @@
           "settings": {
             "tag": "ALTITUDE AND PACING",
             "heading": "A comfortable route still needs realistic expectations around altitude",
-            "copy": "Private handling helps you keep the route comfortable, but Shangri-La still sits at higher elevation. A sensible pace, lighter first evening, and clear route planning matter."
+            "copy": "A private route makes the journey more comfortable, but Shangri-La still sits at a higher elevation. A sensible pace, a lighter first evening, and realistic expectations all help the trip feel smoother."
           }
         },
         "feature_5": {
@@ -114,8 +123,8 @@
         "faq_1": {
           "type": "faq_item",
           "settings": {
-            "question": "Is this page meant as a real multi-day route product rather than a generic guide?",
-            "answer": "Yes. This page is built as a sellable Lynxtour multi-day private route that keeps the normal booking structure in place and adds supporting route content below it."
+            "question": "Why choose a private Lijiang to Shangri-La route instead of traveling between the two cities on your own?",
+            "answer": "A private route makes the journey easier to pace and more comfortable on the road. It also gives you more flexibility around scenic stops, timing, and how the trip connects with the rest of your Yunnan itinerary."
           }
         },
         "faq_2": {
@@ -151,7 +160,7 @@
       "settings": {
         "eyebrow": "ROUTE PLANNING NOTES",
         "title": "Helpful planning context for this Lijiang to Shangri-La route",
-        "intro": "These notes sit below the real Lynxtour multi-day booking module so the page still behaves like a sellable private route product while adding useful commercial support content.",
+        "intro": "These planning notes help travelers understand why the Lijiang to Shangri-La route works so well, how the pace feels on the ground, and where it fits in a wider Yunnan trip.",
         "features_eyebrow": "ROUTE SUPPORT",
         "features_title": "What travelers usually want clarified before booking",
         "features_intro": "",
