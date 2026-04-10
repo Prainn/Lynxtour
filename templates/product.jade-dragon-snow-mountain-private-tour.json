@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "global_navigation": {
@@ -34,7 +43,7 @@
           "settings": {
             "tag": "WHAT IT COVERS",
             "heading": "Built for travelers who want scenery, route logic, and less friction",
-            "copy": "This product is positioned as a sellable private day trip rather than a general guide. The focus is smoother route handling, clearer day structure, and a better fit for travelers using Lijiang as their base."
+            "copy": "This route is designed for travelers who want a clear mountain day from Lijiang, with scenic highlights, practical pacing, and less friction from pickup to return."
           }
         },
         "feature_3": {
@@ -42,7 +51,7 @@
           "settings": {
             "tag": "WHO IT SUITS",
             "heading": "A strong fit for couples, families, and first-time Lijiang visitors",
-            "copy": "Private handling works especially well for travelers who want flexibility around timing, a more comfortable pace at altitude, and easier coordination than a fixed group day."
+            "copy": "This route suits travelers who want more control over timing, a steadier pace at altitude, and a more comfortable mountain day than a fixed-group outing."
           }
         },
         "feature_4": {
@@ -96,8 +105,8 @@
         "faq_1": {
           "type": "faq_item",
           "settings": {
-            "question": "Is this page positioned as a private day trip from Lijiang?",
-            "answer": "Yes. This is a sellable Lijiang-based private day trip built around Jade Dragon Snow Mountain, with the booking experience staying in the existing Lynxtour day-trip product format."
+            "question": "Is Jade Dragon Snow Mountain best done as a private day trip from Lijiang?",
+            "answer": "For many travelers, yes. A private day trip from Lijiang is the easiest way to keep the route smooth, manage the timing better, and enjoy the mountain highlights without rushing between stops."
           }
         },
         "faq_2": {
@@ -131,7 +140,7 @@
       "settings": {
         "eyebrow": "DAY-TRIP PLANNING NOTES",
         "title": "Helpful planning context for this private mountain day",
-        "intro": "These notes sit below the real Lynxtour day-trip booking module and keep the page commercially focused on a sellable Jade Dragon Snow Mountain private tour from Lijiang.",
+        "intro": "These planning notes help travelers understand how a Jade Dragon Snow Mountain day fits into a Lijiang stay, and why a private route can make the day smoother.",
         "features_eyebrow": "PRIVATE DAY SUPPORT",
         "features_title": "What travelers usually want clarified before booking",
         "features_intro": "",
