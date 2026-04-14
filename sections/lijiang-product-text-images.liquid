@@ -70,6 +70,19 @@
                     <p>If you want a slower pace, 10 days or more is usually a better fit because it gives you more time in Dali or Lijiang and reduces the need to move quickly between stops.</p>
                   </details>
                 </section>
+                <section class="mag-supporting-note mag-route-planning-links" aria-label="Related route planning">
+                  <h3>Continue Planning the Core Yunnan Route</h3>
+                  <p>Use these route and guide pages to compare how this flagship journey connects with the wider Yunnan cluster, from core collections to destination-level planning that supports the route.</p>
+                  <div class="mag-route-link-grid">
+                    <a href="/collections/yunnan-private-tours">Browse Yunnan private tours</a>
+                    <a href="/collections/yunnan-private-day-trips">See Yunnan private day trips</a>
+                    <a href="/pages/dali">Continue to the Dali travel guide</a>
+                    <a href="/pages/lijiang">Explore the Lijiang travel guide</a>
+                    <a href="/pages/shangri-la">Continue to the Shangri-La travel guide</a>
+                    <a href="/pages/dali-itinerary-3-days">Compare 3-day itinerary ideas in Dali</a>
+                    <a href="/pages/lijiang-itinerary-3-days">Compare 3-day itinerary ideas in Lijiang</a>
+                  </div>
+                </section>
               </div>
             {% endif %}
           </div>
@@ -294,6 +307,20 @@
 
   .mag-long-{{ section.id }} .mag-supporting-note p {
     margin: 0;
+  }
+
+  .mag-long-{{ section.id }} .mag-route-planning-links p {
+    margin: 0 0 14px;
+  }
+
+  .mag-long-{{ section.id }} .mag-route-link-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 18px;
+  }
+
+  .mag-long-{{ section.id }} .mag-route-link-grid a {
+    display: inline-block;
   }
 
   .mag-long-{{ section.id }} .mag-supporting-faq details {
@@ -648,6 +675,11 @@
 
     .mag-long-{{ section.id }} .mag-supporting-note h3 {
       font-size: 18px;
+    }
+
+    .mag-long-{{ section.id }} .mag-route-link-grid {
+      grid-template-columns: 1fr;
+      gap: 8px;
     }
 
     .mag-long-{{ section.id }} .mag-rich-content:not(.is-expanded)::after {

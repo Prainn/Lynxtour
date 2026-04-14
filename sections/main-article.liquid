@@ -391,6 +391,7 @@
 </style>
 
 {% liquid
+  assign end_cta_eyebrow = section.settings.end_cta_eyebrow
   assign end_cta_heading = article.metafields.custom.end_cta_heading.value | default: section.settings.end_cta_heading
   assign end_cta_text = article.metafields.custom.end_cta_text.value | default: section.settings.end_cta_text
   assign end_cta_primary_text = article.metafields.custom.end_cta_button_text.value | default: section.settings.end_cta_button_text
@@ -399,15 +400,18 @@
   assign end_cta_secondary_link = article.metafields.custom.end_cta_secondary_link.value | default: section.settings.end_cta_secondary_link
   assign tour_list = article.metafields.custom.recommended_tour.value
   assign is_dianchi_guide = false
+  assign dianchi_route_handles = 'kunming-highlights-1-day-tour-western-hills-dianchi-ethnic-village|kunming-provincial-museum-dounan-flower-market-1-day-private-tour|kunming-stone-forest-old-street-night-market-1-day-private-tour' | split: '|'
 
   if article.handle == 'dianchi-lake-guide'
     assign is_dianchi_guide = true
-    assign end_cta_heading = 'Plan Dianchi Lake as Part of a Kunming Route'
-    assign end_cta_text = 'Dianchi usually works best as a half-day or easy full-day stop inside a Kunming stay. Use this guide as the scenic planning layer, then move into relevant private day trips or a wider Yunnan route if you want a smoother journey.'
+    assign end_cta_eyebrow = 'Kunming Route Planning'
+    assign end_cta_heading = 'Move from the Dianchi guide into the right Kunming route'
+    assign end_cta_text = 'Dianchi is usually strongest as part of a well-paced Kunming stay. Start with relevant private day trips first, then widen into a longer Yunnan route only if the lake is one stop inside a bigger journey.'
     assign end_cta_primary_text = 'See Yunnan private day trips'
     assign end_cta_primary_link = '/collections/yunnan-private-day-trips'
     assign end_cta_secondary_text = 'Browse Yunnan private tours'
     assign end_cta_secondary_link = '/collections/yunnan-private-tours'
+    assign tour_list = blank
   endif
 %}
 
@@ -445,8 +449,8 @@
     {% if is_dianchi_guide %}
       <section class="article-guide-brief">
         <p class="article-guide-brief__eyebrow">KUNMING LAKESIDE GUIDE</p>
-        <p>Dianchi Lake is Kunming's best-known lakeside escape, valued for broad water views, relaxed shoreline walks, and the winter arrival of black-headed gulls. For most travelers, the best season is late autumn through early spring, especially from November to March when the gulls are most associated with the lakefront experience.</p>
-        <p>It is usually not planned as a full standalone trip. Instead, travelers often <a href="/products/kunming-highlights-1-day-tour-western-hills-dianchi-ethnic-village">add Dianchi Lake to a Kunming private trip</a>, <a href="/collections/yunnan-private-day-trips">see Yunnan private day trips</a>, or <a href="/collections/yunnan-private-tours">browse Yunnan private tours</a> before continuing deeper into Yunnan.</p>
+        <p>Dianchi Lake is Kunming's best-known lakeside escape, valued for wide water views, easy shoreline walks, and the seasonal arrival of black-headed gulls. It is worth visiting because it shows the softer, more open side of Kunming and works well for scenic pacing, photography, and a gentler city day.</p>
+        <p>For most travelers, the best season is late autumn through early spring, especially from November to March when the gulls are most associated with the lakefront experience. Dianchi is usually not a standalone destination, so travelers often <a href="/products/kunming-highlights-1-day-tour-western-hills-dianchi-ethnic-village">add Dianchi Lake to a Kunming private trip</a>, <a href="/collections/yunnan-private-day-trips">see Yunnan private day trips</a>, or <a href="/collections/yunnan-private-tours">browse Yunnan private tours</a> before continuing deeper into Yunnan.</p>
       </section>
     {% endif %}
 
@@ -458,7 +462,7 @@
       <section class="article-planning-note">
         <p class="article-planning-note__eyebrow">ROUTE PLANNING</p>
         <h2>How to Add Dianchi Lake to a Kunming Itinerary</h2>
-        <p>Dianchi is usually easiest as a half-day stop or a relaxed full-day plan paired with Western Hills, Haigeng Dam, or another city highlight. If you want the most direct match, <a href="/products/kunming-highlights-1-day-tour-western-hills-dianchi-ethnic-village">see the Kunming private day trip that includes Dianchi and Western Hills</a>. Travelers comparing softer city routes can also <a href="/products/kunming-provincial-museum-dounan-flower-market-1-day-private-tour">explore another Kunming private trip idea</a> or <a href="/products/kunming-stone-forest-old-street-night-market-1-day-private-tour">explore nearby day trip ideas around Kunming</a>.</p>
+        <p>Dianchi is usually easiest as a half-day stop or a relaxed full-day plan paired with Western Hills, Haigeng Dam, or another city highlight. If you want the most direct match, <a href="/products/kunming-highlights-1-day-tour-western-hills-dianchi-ethnic-village">see the Kunming private day trip that includes Dianchi and Western Hills</a>. Travelers comparing softer city routes can also <a href="/products/kunming-provincial-museum-dounan-flower-market-1-day-private-tour">add a museum and flower market Kunming private trip</a> or <a href="/products/kunming-stone-forest-old-street-night-market-1-day-private-tour">explore Kunming day trip ideas that combine Stone Forest and the old city</a>.</p>
         <p>If Dianchi is only one stop inside a longer province-wide route, you can also <a href="/collections/yunnan-private-day-trips">see Yunnan private day trips</a> and <a href="/collections/yunnan-private-tours">continue planning your Yunnan route</a> while keeping the wider trip practical.</p>
       </section>
     {% endif %}
@@ -466,8 +470,8 @@
     {% if section.settings.show_end_cta and end_cta_primary_text != blank and end_cta_primary_link != blank %}
       <section class="article-end-cta">
         <div class="article-end-cta__box">
-          {% if section.settings.end_cta_eyebrow != blank %}
-            <p class="article-end-cta__eyebrow">{{ section.settings.end_cta_eyebrow }}</p>
+          {% if end_cta_eyebrow != blank %}
+            <p class="article-end-cta__eyebrow">{{ end_cta_eyebrow }}</p>
           {% endif %}
 
           {% if end_cta_heading != blank %}
@@ -495,7 +499,121 @@
       </section>
     {% endif %}
 
-    {% if tour_list %}
+    {% if is_dianchi_guide %}
+  <h3 style="color: #D4AF37; margin-top: 60px; margin-bottom: 0; font-size: 1.5em; text-transform: uppercase; letter-spacing: 2px;">
+    Recommended Kunming Routes
+  </h3>
+
+  <div class="premium-tour-scroll-container">
+    {% for route_handle in dianchi_route_handles %}
+      {% assign tour_item = all_products[route_handle] %}
+      {% if tour_item != blank %}
+        {% assign tour_image = tour_item.featured_media.preview_image | default: tour_item.featured_image %}
+
+        {% liquid
+          assign included_main_keywords = 'independent group of|solo journey|double share|family & friends private group|three person private group' | split: '|'
+          assign excluded_keywords = 'single room supplement|room supplement|single supplement|supplement|children pricing|child|children|kid|kids|infant|baby|toddler|add-on|addon|upgrade|custom|extra bed|surcharge' | split: '|'
+
+          assign display_price = blank
+          assign valid_main_variant_count = 0
+          assign found_main_variant = false
+
+          for variant in tour_item.variants
+            assign variant_title = variant.title | downcase | strip
+            assign is_main_variant = false
+            assign is_excluded = false
+
+            for keyword in excluded_keywords
+              if variant_title contains keyword
+                assign is_excluded = true
+                break
+              endif
+            endfor
+
+            unless is_excluded
+              for keyword in included_main_keywords
+                if variant_title contains keyword
+                  assign is_main_variant = true
+                  break
+                endif
+              endfor
+
+              if is_main_variant
+                assign found_main_variant = true
+                assign valid_main_variant_count = valid_main_variant_count | plus: 1
+
+                if display_price == blank or variant.price < display_price
+                  assign display_price = variant.price
+                endif
+              endif
+            endunless
+          endfor
+
+          if found_main_variant == false
+            assign valid_main_variant_count = 0
+            assign display_price = blank
+
+            for variant in tour_item.variants
+              assign variant_title = variant.title | downcase | strip
+              assign is_excluded = false
+
+              for keyword in excluded_keywords
+                if variant_title contains keyword
+                  assign is_excluded = true
+                  break
+                endif
+              endfor
+
+              unless is_excluded
+                assign valid_main_variant_count = valid_main_variant_count | plus: 1
+
+                if display_price == blank or variant.price < display_price
+                  assign display_price = variant.price
+                endif
+              endunless
+            endfor
+          endif
+
+          if display_price == blank
+            assign display_price = tour_item.price
+          endif
+
+          assign show_from_prefix = false
+          if valid_main_variant_count > 1
+            assign show_from_prefix = true
+          endif
+        %}
+
+        <div class="premium-tour-card-vertical">
+          <div class="premium-tour-img-box">
+            <a href="{{ tour_item.url }}">
+              {% if tour_image %}
+                <img src="{{ tour_image | img_url: '600x' }}" alt="{{ tour_item.title }}">
+              {% else %}
+                {{ 'product-1' | placeholder_svg_tag }}
+              {% endif %}
+            </a>
+          </div>
+
+          <div class="premium-tour-content">
+            <div class="premium-tour-title-v">
+              <a href="{{ tour_item.url }}">{{ tour_item.title }}</a>
+            </div>
+
+            <div class="premium-tour-price-v">
+              {% if show_from_prefix %}
+                <span>From </span>
+              {% endif %}
+              {{ display_price | money }}
+            </div>
+
+            <a href="{{ tour_item.url }}" class="premium-tour-btn-v">Book Now</a>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% elsif tour_list %}
   <h3 style="color: #D4AF37; margin-top: 60px; margin-bottom: 0; font-size: 1.5em; text-transform: uppercase; letter-spacing: 2px;">
     Recommended Experiences
   </h3>
