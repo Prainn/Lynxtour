@@ -375,6 +375,17 @@
     letter-spacing: 0.02em;
   }
 
+  .dali-route-desc a {
+    color: #f1d995;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(241, 217, 149, 0.35);
+  }
+
+  .dali-route-desc a:hover {
+    color: #d4af37;
+    border-bottom-color: rgba(212, 175, 55, 0.7);
+  }
+
   .dali-route-link {
     color: #fff;
     text-decoration: none;
@@ -683,42 +694,6 @@
       </section>
     {% endif %}
 
-    <section class="dali-route-section">
-      <span class="dali-section-eyebrow">ROUTE PLANNING</span>
-      <h2 class="dali-section-title">Plan Beyond Dali</h2>
-      <div class="dali-section-intro">Use Dali as a relaxed base for Erhai Lake, village culture, and wider western Yunnan journeys that connect smoothly with Lijiang and custom private routes.</div>
-
-      <div class="dali-route-grid">
-        <article class="dali-route-card">
-          <span class="dali-route-tag">YUNNAN HUB</span>
-          <h3 class="dali-route-heading">Browse Yunnan Private Tours</h3>
-          <div class="dali-route-desc">Compare broader Yunnan private itineraries if you want to connect Dali with Lijiang, Shangri-La, Kunming, or longer province-wide routes.</div>
-          <a href="/collections/yunnan-private-tours" class="dali-route-link">Browse Yunnan private tours<span class="line"></span></a>
-        </article>
-
-        <article class="dali-route-card">
-          <span class="dali-route-tag">NEXT STOP</span>
-          <h3 class="dali-route-heading">Continue to the Lijiang Travel Guide</h3>
-          <div class="dali-route-desc">Many travelers pair Dali with Lijiang for old-town atmosphere, mountain scenery, and a natural next step through northwest Yunnan.</div>
-          <a href="/pages/lijiang" class="dali-route-link">Continue to the Lijiang travel guide<span class="line"></span></a>
-        </article>
-
-        <article class="dali-route-card">
-          <span class="dali-route-tag">TRAVEL IDEAS</span>
-          <h3 class="dali-route-heading">Explore Erhai Lake Travel Ideas</h3>
-          <div class="dali-route-desc">Use our wider travel guide library to compare destinations, seasonal advice, and scenic route ideas before choosing your final itinerary.</div>
-          <a href="/blogs/travel-guides/erhai-lake-guide" class="dali-route-link">Explore Erhai Lake travel ideas<span class="line"></span></a>
-        </article>
-
-        <article class="dali-route-card">
-          <span class="dali-route-tag">CUSTOM HELP</span>
-          <h3 class="dali-route-heading">Contact Our Local Travel Team</h3>
-          <div class="dali-route-desc">Need help deciding how many days to stay, whether to circle Erhai, or how to connect Dali with other Yunnan stops? Talk to us directly.</div>
-          <a href="/pages/contact-us" class="dali-route-link">Contact our local travel team<span class="line"></span></a>
-        </article>
-      </div>
-    </section>
-
     {% if story_blocks.size > 0 %}
       <div class="dali-stories">
         {% for block in story_blocks %}
@@ -764,6 +739,42 @@
         {% endfor %}
       </div>
     {% endif %}
+
+    <section class="dali-route-section">
+      <span class="dali-section-eyebrow">ROUTE PLANNING</span>
+      <h2 class="dali-section-title">Plan the Next Step After the Guide</h2>
+      <div class="dali-section-intro">Once the destination basics are clear, move into the pages that compare Dali stays, itinerary length, and the route north toward Lijiang.</div>
+
+      <div class="dali-route-grid">
+        <article class="dali-route-card">
+          <span class="dali-route-tag">COMMERCIAL NEXT STEP</span>
+          <h3 class="dali-route-heading">Browse Dali Private Tours</h3>
+          <div class="dali-route-desc">Compare ready-made routes, trip lengths, and private travel styles built around Erhai Lake, village time, and a slower Dali pace.</div>
+          <a href="/collections/dali-private-tours" class="dali-route-link">Browse Dali private tours<span class="line"></span></a>
+        </article>
+
+        <article class="dali-route-card">
+          <span class="dali-route-tag">ITINERARY OPTIONS</span>
+          <h3 class="dali-route-heading">See 2-Day and 3-Day Dali Itineraries</h3>
+          <div class="dali-route-desc">Use the <a href="/pages/dali-itinerary-2-days">2-day Dali itinerary</a> for a shorter first visit, or compare it with the <a href="/pages/dali-itinerary-3-days">3-day Dali itinerary</a> if you want more village time and a slower lakeside rhythm.</div>
+          <a href="/pages/dali-itinerary-3-days" class="dali-route-link">See 2-day and 3-day Dali itineraries<span class="line"></span></a>
+        </article>
+
+        <article class="dali-route-card">
+          <span class="dali-route-tag">ROUTE PAIRING</span>
+          <h3 class="dali-route-heading">See the Dali to Lijiang Private Tour</h3>
+          <div class="dali-route-desc">Many first-time travelers turn Dali into a wider northwest Yunnan route by continuing north for old-town atmosphere, mountain scenery, and a more connected two-stop journey.</div>
+          <a href="/pages/dali-to-lijiang-private-tour" class="dali-route-link">See the Dali to Lijiang private tour<span class="line"></span></a>
+        </article>
+
+        <article class="dali-route-card">
+          <span class="dali-route-tag">WIDER YUNNAN</span>
+          <h3 class="dali-route-heading">Browse Yunnan Private Tours</h3>
+          <div class="dali-route-desc">If Dali is only one part of the plan, compare broader Yunnan private routes that connect Dali with Lijiang, Shangri-La, and the flagship multi-city journeys.</div>
+          <a href="/collections/yunnan-private-tours" class="dali-route-link">Browse Yunnan private tours<span class="line"></span></a>
+        </article>
+      </div>
+    </section>
 
     {% if related_blocks.size > 0 %}
       <section class="dali-related-section">

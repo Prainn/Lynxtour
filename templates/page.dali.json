@@ -31,7 +31,7 @@
           "settings": {
             "tag": "WHY VISIT",
             "heading": "Why Visit Dali",
-            "description": "Dali is one of Yunnan’s most graceful destinations, where mountain light, lakeside calm, Bai heritage, and slow travel come together naturally. It is ideal for travelers who want scenery, culture, and a more restorative rhythm in one place."
+            "description": "Dali is one of Yunnan鈥檚 most graceful destinations, where mountain light, lakeside calm, Bai heritage, and slow travel come together naturally. It is ideal for travelers who want scenery, culture, and a more restorative rhythm in one place."
           }
         },
         "info_item_tfGBAa": {
@@ -55,7 +55,7 @@
           "settings": {
             "tag": "HOW MANY DAYS",
             "heading": "A Simple 2-Day Dali Itinerary",
-            "description": "Spend your first day in Dali Old Town and around Erhai Lake, then use your second day for Xizhou, village scenery, and a slower lakeside route. This is the easiest way to see Dali’s core highlights without feeling rushed."
+            "description": "Spend your first day in Dali Old Town and around Erhai Lake, then use your second day for Xizhou, village scenery, and a slower lakeside route. This is the easiest way to see Dali鈥檚 core highlights without feeling rushed."
           }
         },
         "info_item_6cHGyX": {
@@ -76,7 +76,7 @@
         },
         "story_9aV8Cb": {
           "type": "story",
-          "name": "苍山 | 云横苍山",
+          "name": "Cangshan Mountain",
           "settings": {
             "image": "shopify://shop_images/8f0c7cb09759672b2a63f0ced8e44263.jpg",
             "tag": "MAJESTIC PEAKS",
@@ -88,31 +88,31 @@
         },
         "story_f99wnn": {
           "type": "story",
-          "name": "洱海  | 洱海留蓝",
+          "name": "Erhai Lake",
           "settings": {
             "image": "shopify://shop_images/2eb2c1c64ee1d877b97ea1fa6b834aa6.jpg",
             "tag": "AZURE REFLECTION",
             "heading": "Erhai Lake Slow Horizons",
-            "description": "Erhai is the visual soul of Dali: a vast alpine lake framed by sky, villages, and the distant line of Cangshan. From cycling routes and sunrise piers to quiet bays and sunset viewpoints, it is the place where Dali’s calmest rhythm reveals itself.",
+            "description": "Erhai is the visual soul of Dali: a vast alpine lake framed by sky, villages, and the distant line of Cangshan. From cycling routes and sunrise piers to quiet bays and sunset viewpoints, it is the place where Dali鈥檚 calmest rhythm reveals itself.",
             "button_label": "READ THE GUIDE",
             "button_link": "shopify://blogs/travel-guides/erhai-lake-guide"
           }
         },
         "story_hRaTJm": {
           "type": "story",
-          "name": "喜洲  | 白墙青瓦",
+          "name": "Xizhou Heritage",
           "settings": {
             "image": "shopify://shop_images/42cbc2a2d1c3c1fc2ec00690f69de091.jpg",
             "tag": "ARCHITECTURAL SOUL",
             "heading": "Xizhou & Bai Heritage",
-            "description": "Step into one of Dali’s most culturally rich towns, where Bai courtyard architecture, indigo craft traditions, local flavors, and rice-field scenery create a living portrait of heritage. Xizhou is not only beautiful to see, but deeply rooted in everyday life.",
+            "description": "Step into one of Dali鈥檚 most culturally rich towns, where Bai courtyard architecture, indigo craft traditions, local flavors, and rice-field scenery create a living portrait of heritage. Xizhou is not only beautiful to see, but deeply rooted in everyday life.",
             "button_label": "READ THE GUIDE",
             "button_link": "shopify://blogs/travel-guides/xizhou-ancient-town-guide"
           }
         },
         "story_dp8tbb": {
           "type": "story",
-          "name": "THE DALI WAY | 大理式隐居",
+          "name": "The Dali Way | Everyday Dali",
           "settings": {
             "image": "shopify://shop_images/3bb446e892ae371fb40ff2a2ad9d1b20.jpg",
             "tag": "THE DALI WAY",
@@ -137,7 +137,7 @@
           "settings": {
             "tag": "GRAND HIGHLIGHTS",
             "heading": "Kunming, Dali, Lijiang & Shangri-La 8-Day Private Tour",
-            "description": "A classic multi-destination route that combines Dali with Lijiang and the Tibetan highlands of Shangri-La. Best for travelers who want Yunnan’s most iconic highlights in one seamless journey.",
+            "description": "A classic multi-destination route that combines Dali with Lijiang and the Tibetan highlands of Shangri-La. Best for travelers who want Yunnan鈥檚 most iconic highlights in one seamless journey.",
             "button_label": "Browse Yunnan private tours",
             "button_link": "shopify://products/kunming-dali-lijiang-shangri-la-8-day-private-tour"
           }
@@ -147,7 +147,7 @@
           "settings": {
             "tag": "DEEPER YUNNAN",
             "heading": "Kunming, Dali, Lugu Lake, Lijiang & Shangri-La 10-Day Private Tour",
-            "description": "A longer and more immersive Yunnan journey that starts with Dali’s lakeside calm and continues to Lugu Lake, Lijiang, and Shangri-La for a fuller view of the province.",
+            "description": "A longer and more immersive Yunnan journey that starts with Dali鈥檚 lakeside calm and continues to Lugu Lake, Lijiang, and Shangri-La for a fuller view of the province.",
             "button_label": "Explore the 10-day western Yunnan route",
             "button_link": "shopify://products/kunming-dali-lugu-lake-lijiang-shangri-la-10-day-private-tour"
           }
@@ -190,7 +190,7 @@
         "faq_item_7WyWAc": {
           "type": "faq_item",
           "settings": {
-            "question": "Who is Dali best suited for？",
+            "question": "Who is Dali best suited for?",
             "answer": "Dali is especially well suited to couples, slow-travel lovers, first-time Yunnan visitors, photographers, and travelers who want a gentler pace with strong scenery and cultural depth."
           }
         }
@@ -220,7 +220,7 @@
       "settings": {
         "main_title": "Dali Travel Guide",
         "sub_title": "BETWEEN CANGSHAN AND ERHAI",
-        "intro_text": "Plan your Dali trip with practical advice on when to go, what to see, and how many days to stay.\nExplore Erhai Lake, Xizhou, Cangshan, and Dali Old Town before choosing the right private route.",
+        "intro_text": "Plan your Dali trip with practical advice on when to go, what to see, and how many days to stay.\nUse this guide to understand Erhai Lake, Xizhou, Cangshan, Dali Old Town, and how Dali fits into a first western Yunnan journey.",
         "info_section_eyebrow": "PLAN YOUR STAY",
         "info_section_title": "Know Dali at a Glance",
         "info_section_intro": "A quick guide to why Dali is worth visiting, what to see, when to go, and how to plan your time.",

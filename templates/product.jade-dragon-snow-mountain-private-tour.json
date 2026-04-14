@@ -102,6 +102,16 @@
             "link_url": "/pages/bespoke-custom-travel"
           }
         },
+        "link_5": {
+          "type": "link_card",
+          "settings": {
+            "tag": "LIJIANG ROUTE LOGIC",
+            "heading": "Use the 3-day Lijiang itinerary to place this mountain day inside a fuller stay",
+            "copy": "Travelers comparing a standalone day trip with a fuller first stay in Lijiang can use the itinerary page as the clearest planning reference.",
+            "link_label": "See the Lijiang itinerary for 3 days",
+            "link_url": "/pages/lijiang-itinerary-3-days"
+          }
+        },
         "faq_1": {
           "type": "faq_item",
           "settings": {
@@ -133,6 +143,7 @@
         "link_2",
         "link_3",
         "link_4",
+        "link_5",
         "faq_1",
         "faq_2",
         "faq_3"

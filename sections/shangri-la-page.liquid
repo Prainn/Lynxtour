@@ -196,6 +196,17 @@
     letter-spacing: 0.02em;
   }
 
+  .sr-route-desc a {
+    color: #f1d995;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(241, 217, 149, 0.35);
+  }
+
+  .sr-route-desc a:hover {
+    color: #d4af37;
+    border-bottom-color: rgba(212, 175, 55, 0.7);
+  }
+
   .sr-route-grid {
     margin-top: 48px;
     display: grid;
@@ -653,7 +664,7 @@
       </section>
     {% endif %}
 
-    <section class="sr-route-section">
+    {% comment %}<section class="sr-route-section">
       <span class="sr-section-eyebrow">ROUTE PLANNING</span>
       <h2 class="sr-section-title">Plan Shangri-La With the Right Next Step</h2>
       <div class="sr-section-intro">
@@ -709,7 +720,7 @@
           </a>
         </article>
       </div>
-    </section>
+    </section>{% endcomment %}
 
     {% if story_blocks.size > 0 %}
       <div class="sr-stories">
@@ -756,6 +767,64 @@
         {% endfor %}
       </div>
     {% endif %}
+
+    <section class="sr-route-section">
+      <span class="sr-section-eyebrow">ROUTE PLANNING</span>
+      <h2 class="sr-section-title">Plan the Next Step Into Northwest Yunnan</h2>
+      <div class="sr-section-intro">
+        After the destination overview, move into the pages that compare Shangri-La stays, northbound route products, and the wider Yunnan journeys that bring the highlands into a fuller trip.
+      </div>
+
+      <div class="sr-route-grid">
+        <article class="sr-route-card">
+          <span class="sr-route-tag">COMMERCIAL NEXT STEP</span>
+          <h3 class="sr-route-heading">Browse Shangri-La Private Tours</h3>
+          <div class="sr-route-desc">
+            Compare shorter cultural stays and longer highland routes built around monasteries, old-town atmosphere, Tibetan landscapes, and a slower plateau pace.
+          </div>
+          <a href="/collections/shangri-la-private-tours" class="sr-route-link">
+            Browse Shangri-La private tours
+            <span class="line"></span>
+          </a>
+        </article>
+
+        <article class="sr-route-card">
+          <span class="sr-route-tag">NORTHBOUND PRODUCT</span>
+          <h3 class="sr-route-heading">See the Lijiang to Shangri-La Private Tour</h3>
+          <div class="sr-route-desc">
+            If Shangri-La is the northern leg of your route, this is the clearest next product page for comparing pacing, altitude build-up, and the overland connection from Lijiang.
+          </div>
+          <a href="/products/lijiang-to-shangri-la-private-tour" class="sr-route-link">
+            See the Lijiang to Shangri-La private tour
+            <span class="line"></span>
+          </a>
+        </article>
+
+        <article class="sr-route-card">
+          <span class="sr-route-tag">WIDER YUNNAN</span>
+          <h3 class="sr-route-heading">Browse Yunnan Private Tours</h3>
+          <div class="sr-route-desc">
+            Compare broader Yunnan routes if Shangri-La is only one stop inside a longer journey that also includes Kunming, Dali, and Lijiang.
+          </div>
+          <a href="/collections/yunnan-private-tours" class="sr-route-link">
+            Browse Yunnan private tours
+            <span class="line"></span>
+          </a>
+        </article>
+
+        <article class="sr-route-card">
+          <span class="sr-route-tag">ROUTE LOGIC</span>
+          <h3 class="sr-route-heading">See the Tiger Leaping Gorge Route</h3>
+          <div class="sr-route-desc">
+            Travelers comparing how to move between Lijiang and Shangri-La can use the <a href="/pages/tiger-leaping-gorge-from-lijiang">Tiger Leaping Gorge route</a> to understand the most natural scenic bridge into the highlands.
+          </div>
+          <a href="/pages/tiger-leaping-gorge-from-lijiang" class="sr-route-link">
+            See the Tiger Leaping Gorge route
+            <span class="line"></span>
+          </a>
+        </article>
+      </div>
+    </section>
 
     {% if related_blocks.size > 0 %}
       <section class="sr-related-section">

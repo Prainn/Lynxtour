@@ -120,6 +120,16 @@
             "link_url": "/pages/bespoke-custom-travel"
           }
         },
+        "link_6": {
+          "type": "link_card",
+          "settings": {
+            "tag": "SCENIC DETOUR",
+            "heading": "Compare this route with the Tiger Leaping Gorge planning page",
+            "copy": "If you want to understand how the gorge works as a scenic bridge rather than a standalone outing, the route page is the best companion read.",
+            "link_label": "See the Tiger Leaping Gorge route",
+            "link_url": "/pages/tiger-leaping-gorge-from-lijiang"
+          }
+        },
         "faq_1": {
           "type": "faq_item",
           "settings": {
@@ -153,6 +163,7 @@
         "link_3",
         "link_4",
         "link_5",
+        "link_6",
         "faq_1",
         "faq_2",
         "faq_3"

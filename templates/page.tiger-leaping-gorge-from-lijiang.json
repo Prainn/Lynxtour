@@ -106,6 +106,16 @@
             "link_url": "/pages/bespoke-custom-travel"
           }
         },
+        "link_5": {
+          "type": "link_card",
+          "settings": {
+            "tag": "NORTHBOUND ROUTE",
+            "heading": "See the route product that carries this day onward to Shangri-La",
+            "copy": "Travelers who do not want the gorge to sit as an isolated outing can compare the private route that connects Lijiang with Shangri-La more directly.",
+            "link_label": "Explore the Lijiang to Shangri-La private tour",
+            "link_url": "/products/lijiang-to-shangri-la-private-tour"
+          }
+        },
         "faq_1": {
           "type": "faq_item",
           "settings": {
@@ -138,6 +148,7 @@
         "link_2",
         "link_3",
         "link_4",
+        "link_5",
         "faq_1",
         "faq_2",
         "faq_3"

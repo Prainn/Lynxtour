@@ -31,7 +31,7 @@
           "settings": {
             "tag": "WHY VISIT",
             "heading": "Why Visit Shangri-La",
-            "description": "Shangri-La offers one of Yunnan’s most distinctive travel experiences, combining Tibetan culture, monasteries, alpine lakes, grasslands, and a powerful highland atmosphere."
+            "description": "Shangri-La offers one of Yunnan's most distinctive travel experiences, combining Tibetan culture, monasteries, alpine lakes, grasslands, and a powerful highland atmosphere."
           }
         },
         "info_item_pyWHkx": {
@@ -68,19 +68,19 @@
         },
         "story_hJRHNd": {
           "type": "story",
-          "name": "松赞林寺| 梵音咏赞",
+          "name": "Songzanlin Guide",
           "settings": {
             "image": "shopify://shop_images/szls1.jpg",
             "tag": "SPIRITUAL HERITAGE",
             "heading": "Songzanlin & Sacred Stillness",
-            "description": "Step into the spiritual heart of Shangri-La through golden roofs, monastery courtyards, prayer wheels, and mountain light reflected in Lamuyangcuo Lake. This guide leads you into the region’s most important Tibetan Buddhist landmark, where architecture, ritual, and atmosphere come together in unforgettable balance.",
+            "description": "Step into the spiritual heart of Shangri-La through golden roofs, monastery courtyards, prayer wheels, and mountain light reflected in Lamuyangcuo Lake. This guide leads you into the region's most important Tibetan Buddhist landmark, where architecture, ritual, and atmosphere come together in unforgettable balance.",
             "button_label": "READ THE GUIDE",
             "button_link": "shopify://blogs/travel-guides/songzanlin-monastery-guide"
           }
         },
         "story_B6NX39": {
           "type": "story",
-          "name": "普达措| 原始净土",
+          "name": "Pudacuo Guide",
           "settings": {
             "image": "shopify://shop_images/pudacuo11111.jpg",
             "tag": "ALPINE WILDERNESS",
@@ -92,19 +92,19 @@
         },
         "story_4TCF8A": {
           "type": "story",
-          "name": "梅里雪山| 日照金山",
+          "name": "Meili Guide",
           "settings": {
             "image": "shopify://shop_images/mlxues121121.jpg",
             "tag": "SACRED PEAKS",
             "heading": "Meili in Golden Light",
-            "description": "Journey toward one of Yunnan’s most awe-inspiring mountain experiences. Meili Snow Mountain is known for its sacred presence, dramatic ridgelines, Feilai Temple viewpoints, and the legendary sunrise that turns the peaks to gold, drawing travelers into the deeper spirit of the plateau.",
+            "description": "Journey toward one of Yunnan's most awe-inspiring mountain experiences. Meili Snow Mountain is known for its sacred presence, dramatic ridgelines, Feilai Temple viewpoints, and the legendary sunrise that turns the peaks to gold, drawing travelers into the deeper spirit of the plateau.",
             "button_label": "READ THE GUIDE",
             "button_link": "shopify://blogs/travel-guides/meili-snow-mountain-travel-guide"
           }
         },
         "story_AEzJeQ": {
           "type": "story",
-          "name": "Tibetan Life| 高原礼赞",
+          "name": "Complete Shangri-La Guide",
           "settings": {
             "image": "shopify://shop_images/20260130092319_6_2.jpg",
             "tag": "HIGHLAND WORLD",
@@ -119,7 +119,7 @@
           "settings": {
             "tag": "GRAND HIGHLIGHTS",
             "heading": "Kunming, Dali, Lijiang & Shangri-La 8-Day Private Tour",
-            "description": "A classic route that brings together Shangri-La with Dali and Lijiang across Yunnan’s most iconic highlights.",
+            "description": "A classic route that brings together Shangri-La with Dali and Lijiang across Yunnan's most iconic highlights.",
             "button_label": "VIEW TOUR",
             "button_link": "shopify://products/kunming-dali-lijiang-shangri-la-8-day-private-tour"
           }
@@ -148,7 +148,7 @@
           "type": "faq_item",
           "settings": {
             "question": "Is Shangri-La worth visiting on a first trip to Yunnan?",
-            "answer": "Yes. Shangri-La offers one of Yunnan’s most distinctive experiences, especially for travelers who want Tibetan culture, monasteries, alpine scenery, and a stronger sense of altitude and atmosphere."
+            "answer": "Yes. Shangri-La offers one of Yunnan's most distinctive experiences, especially for travelers who want Tibetan culture, monasteries, alpine scenery, and a stronger sense of altitude and atmosphere."
           }
         },
         "faq_item_Bfj68M": {
@@ -168,21 +168,21 @@
         "faq_item_AVPcHy": {
           "type": "faq_item",
           "settings": {
-            "question": "Can Shangri-La be combined with Lijiang and Tiger Leaping Gorge",
+            "question": "Can Shangri-La be combined with Lijiang and Tiger Leaping Gorge?",
             "answer": "Yes. This is one of the most popular northwest Yunnan routes, allowing travelers to combine monastery culture, old-town atmosphere, dramatic gorges, and highland landscapes in one trip."
           }
         },
         "faq_item_bBYdxK": {
           "type": "faq_item",
           "settings": {
-            "question": "When is the best time to visit Shangri-La",
+            "question": "When is the best time to visit Shangri-La?",
             "answer": "Spring and autumn are especially rewarding for clear views and balanced weather, while summer is greener and winter offers quieter highland scenery. The best season depends on your priorities and wider Yunnan route."
           }
         },
         "faq_item_UEWhpc": {
           "type": "faq_item",
           "settings": {
-            "question": "Is altitude something I should plan for in Shangri-La",
+            "question": "Is altitude something I should plan for in Shangri-La?",
             "answer": "Yes. Because Shangri-La is higher than many other Yunnan destinations, a slower pace and a thoughtful route can make the trip more comfortable, especially for first-time visitors."
           }
         }

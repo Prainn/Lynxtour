@@ -124,6 +124,46 @@
     color: #888;
   }
 
+  .article-guide-brief,
+  .article-planning-note {
+    margin: 42px 0;
+    padding: 26px 24px;
+    background: linear-gradient(180deg, rgba(17,17,17,0.96) 0%, rgba(10,10,10,0.96) 100%);
+    border: 1px solid #2b2b2b;
+    border-radius: 8px;
+  }
+
+  .article-guide-brief__eyebrow,
+  .article-planning-note__eyebrow {
+    margin: 0 0 12px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #D4AF37;
+  }
+
+  .article-guide-brief p,
+  .article-planning-note p {
+    margin: 0 0 18px;
+    color: #cfcfcf;
+    font-size: 1.02em;
+    line-height: 1.8;
+  }
+
+  .article-guide-brief p:last-child,
+  .article-planning-note p:last-child {
+    margin-bottom: 0;
+  }
+
+  .article-planning-note h2 {
+    margin: 0 0 14px;
+    font-size: 1.7em;
+    line-height: 1.35;
+    color: #fff;
+    border: 0;
+    padding: 0;
+  }
+
   /* ====== End CTA ====== */
   .article-end-cta {
     margin-top: 60px;
@@ -358,6 +398,17 @@
   assign end_cta_secondary_text = article.metafields.custom.end_cta_secondary_text.value | default: section.settings.end_cta_secondary_text
   assign end_cta_secondary_link = article.metafields.custom.end_cta_secondary_link.value | default: section.settings.end_cta_secondary_link
   assign tour_list = article.metafields.custom.recommended_tour.value
+  assign is_dianchi_guide = false
+
+  if article.handle == 'dianchi-lake-guide'
+    assign is_dianchi_guide = true
+    assign end_cta_heading = 'Plan Dianchi Lake as Part of a Kunming Route'
+    assign end_cta_text = 'Dianchi usually works best as a half-day or easy full-day stop inside a Kunming stay. Use this guide as the scenic planning layer, then move into relevant private day trips or a wider Yunnan route if you want a smoother journey.'
+    assign end_cta_primary_text = 'See Yunnan private day trips'
+    assign end_cta_primary_link = '/collections/yunnan-private-day-trips'
+    assign end_cta_secondary_text = 'Browse Yunnan private tours'
+    assign end_cta_secondary_link = '/collections/yunnan-private-tours'
+  endif
 %}
 
 <!-- ====== 2. 黑金风格 HTML 结构 ====== -->
@@ -391,9 +442,26 @@
       </div>
     {% endif %}
 
+    {% if is_dianchi_guide %}
+      <section class="article-guide-brief">
+        <p class="article-guide-brief__eyebrow">KUNMING LAKESIDE GUIDE</p>
+        <p>Dianchi Lake is Kunming's best-known lakeside escape, valued for broad water views, relaxed shoreline walks, and the winter arrival of black-headed gulls. For most travelers, the best season is late autumn through early spring, especially from November to March when the gulls are most associated with the lakefront experience.</p>
+        <p>It is usually not planned as a full standalone trip. Instead, travelers often <a href="/products/kunming-highlights-1-day-tour-western-hills-dianchi-ethnic-village">add Dianchi Lake to a Kunming private trip</a>, <a href="/collections/yunnan-private-day-trips">see Yunnan private day trips</a>, or <a href="/collections/yunnan-private-tours">browse Yunnan private tours</a> before continuing deeper into Yunnan.</p>
+      </section>
+    {% endif %}
+
     <div class="article-content">
       {{ article.content }}
     </div>
+
+    {% if is_dianchi_guide %}
+      <section class="article-planning-note">
+        <p class="article-planning-note__eyebrow">ROUTE PLANNING</p>
+        <h2>How to Add Dianchi Lake to a Kunming Itinerary</h2>
+        <p>Dianchi is usually easiest as a half-day stop or a relaxed full-day plan paired with Western Hills, Haigeng Dam, or another city highlight. If you want the most direct match, <a href="/products/kunming-highlights-1-day-tour-western-hills-dianchi-ethnic-village">see the Kunming private day trip that includes Dianchi and Western Hills</a>. Travelers comparing softer city routes can also <a href="/products/kunming-provincial-museum-dounan-flower-market-1-day-private-tour">explore another Kunming private trip idea</a> or <a href="/products/kunming-stone-forest-old-street-night-market-1-day-private-tour">explore nearby day trip ideas around Kunming</a>.</p>
+        <p>If Dianchi is only one stop inside a longer province-wide route, you can also <a href="/collections/yunnan-private-day-trips">see Yunnan private day trips</a> and <a href="/collections/yunnan-private-tours">continue planning your Yunnan route</a> while keeping the wider trip practical.</p>
+      </section>
+    {% endif %}
 
     {% if section.settings.show_end_cta and end_cta_primary_text != blank and end_cta_primary_link != blank %}
       <section class="article-end-cta">

@@ -191,6 +191,17 @@
     letter-spacing: 0.02em;
   }
 
+  .lj-route-desc a {
+    color: #f1d995;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(241, 217, 149, 0.35);
+  }
+
+  .lj-route-desc a:hover {
+    color: #d4af37;
+    border-bottom-color: rgba(212, 175, 55, 0.7);
+  }
+
   .lj-route-link,
   .lj-inline-link,
   .lj-related-link {
@@ -593,7 +604,7 @@
       </section>
     {% endif %}
 
-    <section class="lj-route-section">
+    {% comment %}<section class="lj-route-section">
       <span class="lj-section-eyebrow">ROUTE PLANNING</span>
       <h2 class="lj-section-title">Plan Lijiang With the Right Next Step</h2>
       <div class="lj-section-intro">
@@ -649,7 +660,7 @@
           </a>
         </article>
       </div>
-    </section>
+    </section>{% endcomment %}
 
     {% if story_blocks.size > 0 %}
       <div class="lj-stories">
@@ -696,6 +707,76 @@
         {% endfor %}
       </div>
     {% endif %}
+
+    <section class="lj-route-section">
+      <span class="lj-section-eyebrow">ROUTE PLANNING</span>
+      <h2 class="lj-section-title">Plan the Next Step After Lijiang</h2>
+      <div class="lj-section-intro">
+        Once the destination basics are clear, use these route pages to compare Lijiang stays, mountain days, scenic detours, and the northbound route toward Shangri-La.
+      </div>
+
+      <div class="lj-route-grid">
+        <article class="lj-route-card">
+          <span class="lj-route-tag">COMMERCIAL NEXT STEP</span>
+          <h3 class="lj-route-heading">Explore Lijiang Private Tours</h3>
+          <div class="lj-route-desc">
+            Compare route lengths and private travel styles built around old-town time, Jade Dragon Snow Mountain, and the wider northwest Yunnan cluster.
+          </div>
+          <a href="/collections/lijiang-private-tours" class="lj-route-link">
+            Explore Lijiang private tours
+            <span class="line"></span>
+          </a>
+        </article>
+
+        <article class="lj-route-card">
+          <span class="lj-route-tag">ITINERARY OPTIONS</span>
+          <h3 class="lj-route-heading">See 2-Day and 3-Day Lijiang Itineraries</h3>
+          <div class="lj-route-desc">
+            Use the <a href="/pages/lijiang-itinerary-2-days">2-day Lijiang itinerary</a> if you are short on time, or compare it with the <a href="/pages/lijiang-itinerary-3-days">3-day Lijiang itinerary</a> if you want a fuller balance of old town, mountain scenery, and cultural stops.
+          </div>
+          <a href="/pages/lijiang-itinerary-3-days" class="lj-route-link">
+            See 2-day and 3-day Lijiang itineraries
+            <span class="line"></span>
+          </a>
+        </article>
+
+        <article class="lj-route-card">
+          <span class="lj-route-tag">FLAGSHIP DAY</span>
+          <h3 class="lj-route-heading">Explore the Jade Dragon Snow Mountain Private Tour</h3>
+          <div class="lj-route-desc">
+            If the main decision is how to handle the mountain day itself, this product page is the clearest route from destination research into a bookable Lijiang experience.
+          </div>
+          <a href="/products/jade-dragon-snow-mountain-private-tour" class="lj-route-link">
+            Explore the Jade Dragon Snow Mountain private tour
+            <span class="line"></span>
+          </a>
+        </article>
+
+        <article class="lj-route-card">
+          <span class="lj-route-tag">SCENIC DETOUR</span>
+          <h3 class="lj-route-heading">See the Tiger Leaping Gorge Route</h3>
+          <div class="lj-route-desc">
+            Compare the gorge as a scenic day from Lijiang or as part of the road north if you want more dramatic landscape logic in the wider route.
+          </div>
+          <a href="/pages/tiger-leaping-gorge-from-lijiang" class="lj-route-link">
+            See the Tiger Leaping Gorge route
+            <span class="line"></span>
+          </a>
+        </article>
+
+        <article class="lj-route-card">
+          <span class="lj-route-tag">NORTHBOUND ROUTE</span>
+          <h3 class="lj-route-heading">See the Lijiang to Shangri-La Private Tour</h3>
+          <div class="lj-route-desc">
+            This is the strongest next page if your Lijiang stay is meant to continue north into Tibetan highlands, monasteries, and a fuller northwest Yunnan pairing.
+          </div>
+          <a href="/products/lijiang-to-shangri-la-private-tour" class="lj-route-link">
+            See the Lijiang to Shangri-La private tour
+            <span class="line"></span>
+          </a>
+        </article>
+      </div>
+    </section>
 
     {% if related_blocks.size > 0 %}
       <section class="lj-related-section">

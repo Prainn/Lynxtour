@@ -31,7 +31,7 @@
           "settings": {
             "tag": "WHY VISIT",
             "heading": "Why Visit Lijiang",
-            "description": "Lijiang is one of Yunnan’s most iconic destinations, bringing together snow mountain grandeur, old-town texture, and Naxi cultural heritage in one unforgettable setting."
+            "description": "Lijiang is one of Yunnan's most iconic destinations, bringing together snow mountain grandeur, old-town texture, and Naxi cultural heritage in one unforgettable setting."
           }
         },
         "info_item_cXLajW": {
@@ -76,19 +76,19 @@
         },
         "story_qWLgFd": {
           "type": "story",
-          "name": "玉龙雪山| 冰川回响",
+          "name": "Jade Dragon Guide",
           "settings": {
             "image": "shopify://shop_images/4_55ef80d8-808e-4924-8561-6897888e14bb.jpg",
             "tag": "SNOW MOUNTAIN",
             "heading": "Jade Dragon Above the Clouds",
-            "description": "Discover Lijiang’s most iconic natural landmark through glacier views, alpine meadows, Blue Moon Valley, and the dramatic presence of Jade Dragon Snow Mountain. This is the essential guide for travelers planning one of the most unforgettable mountain days in Yunnan.",
+            "description": "Discover Lijiang's most iconic natural landmark through glacier views, alpine meadows, Blue Moon Valley, and the dramatic presence of Jade Dragon Snow Mountain. This is the essential guide for travelers planning one of the most unforgettable mountain days in Yunnan.",
             "button_label": "READ THE GUIDE",
             "button_link": "shopify://blogs/travel-guides/jade-dragon-snow-mountain-guide"
           }
         },
         "story_fzjLzx": {
           "type": "story",
-          "name": "丽江古城| 茶马遗风",
+          "name": "Old Town Guide",
           "settings": {
             "image": "shopify://shop_images/1_1d545510-c3ce-4859-b6b3-92d16d16db2f.jpg",
             "tag": "ANCIENT TOWN",
@@ -100,7 +100,7 @@
         },
         "story_rJ7BHV": {
           "type": "story",
-          "name": "纳西文化/东巴文| 秘境图腾",
+          "name": "Naxi Culture Guide",
           "settings": {
             "image": "shopify://shop_images/97a4230f88e27ceb7fdd3a11c33b0f67.jpg",
             "tag": "LIVING HERITAGE",
@@ -112,7 +112,7 @@
         },
         "story_bpNiXM": {
           "type": "story",
-          "name": "隐奢酒店/野奢生活| 雪山隐逸",
+          "name": "Complete Lijiang Guide",
           "settings": {
             "image": "shopify://shop_images/20260129145744_29_9.jpg",
             "tag": "HIGHLAND RHYTHM",
@@ -137,7 +137,7 @@
           "settings": {
             "tag": "GRAND HIGHLIGHTS",
             "heading": "Kunming, Dali, Lijiang & Shangri-La 8-Day Private Tour",
-            "description": "A classic multi-destination route that combines Lijiang with Dali and the Tibetan highlands of Shangri-La. Best for travelers who want Yunnan’s most iconic highlights in one seamless journey.",
+            "description": "A classic multi-destination route that combines Lijiang with Dali and the Tibetan highlands of Shangri-La. Best for travelers who want Yunnan's most iconic highlights in one seamless journey.",
             "button_label": "Explore Yunnan private tours",
             "button_link": "shopify://products/kunming-dali-lijiang-shangri-la-8-day-private-tour"
           }
@@ -147,7 +147,7 @@
           "settings": {
             "tag": "DEEPER YUNNAN",
             "heading": "Kunming, Dali, Lugu Lake, Lijiang & Shangri-La 10-Day Private Tour",
-            "description": "A longer and more immersive Yunnan journey that starts with Lijiang’s old-town charm and snow mountain scenery, then continues to Lugu Lake and Shangri-La.",
+            "description": "A longer and more immersive Yunnan journey that starts with Lijiang's old-town charm and snow mountain scenery, then continues to Lugu Lake and Shangri-La.",
             "button_label": "Explore the 10-day northwest Yunnan route",
             "button_link": "shopify://products/kunming-dali-lugu-lake-lijiang-shangri-la-10-day-private-tour"
           }
@@ -156,7 +156,7 @@
           "type": "faq_item",
           "settings": {
             "question": "Is Lijiang worth visiting on a first trip to Yunnan?",
-            "answer": "Yes. Lijiang is one of Yunnan’s most iconic destinations, combining mountain scenery, old-town charm, and strong cultural character in one easy-to-understand stop."
+            "answer": "Yes. Lijiang is one of Yunnan's most iconic destinations, combining mountain scenery, old-town charm, and strong cultural character in one easy-to-understand stop."
           }
         },
         "faq_item_dCyMHQ": {

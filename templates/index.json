@@ -214,12 +214,12 @@
         "intro_body_2": "A private tour gives you more control over pace, hotel style, route length, and daily stops. It is the best fit for travelers who want flexibility, smoother logistics, and a trip shaped around their own interests instead of a fixed group schedule.",
         "link_label_1": "Browse Yunnan private tours",
         "link_url_1": "shopify://collections/yunnan-private-tours",
-        "link_label_2": "See Dali private tours",
-        "link_url_2": "shopify://collections/dali-private-tours",
-        "link_label_3": "Explore Lijiang travel guide",
-        "link_url_3": "shopify://pages/lijiang",
-        "link_label_4": "Plan a custom Yunnan trip",
-        "link_url_4": "shopify://pages/bespoke-custom-travel",
+        "link_label_2": "See Yunnan private day trips",
+        "link_url_2": "shopify://collections/yunnan-private-day-trips",
+        "link_label_3": "Continue to the Shangri-La travel guide",
+        "link_url_3": "shopify://pages/shangri-la",
+        "link_label_4": "Explore the 8-day Yunnan private tour",
+        "link_url_4": "shopify://products/kunming-dali-lijiang-shangri-la-8-day-private-tour",
         "columns_desktop": 3,
         "icon_size": 60
       }

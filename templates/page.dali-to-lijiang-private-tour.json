@@ -126,6 +126,16 @@
             "link_url": "/pages/bespoke-custom-travel"
           }
         },
+        "link_7": {
+          "type": "link_card",
+          "settings": {
+            "tag": "WIDER ROUTE CLUSTER",
+            "heading": "Use the main Yunnan collection to compare this pairing with longer routes",
+            "copy": "If you are deciding whether Dali and Lijiang should stay a two-stop trip or grow into a fuller multi-city journey, the main collection is the best comparison page.",
+            "link_label": "Browse Yunnan private tours",
+            "link_url": "/collections/yunnan-private-tours"
+          }
+        },
         "faq_1": {
           "type": "faq_item",
           "settings": {
@@ -160,6 +170,7 @@
         "link_4",
         "link_5",
         "link_6",
+        "link_7",
         "faq_1",
         "faq_2",
         "faq_3"
