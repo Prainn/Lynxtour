@@ -7,6 +7,7 @@
 {% assign is_extended_yunnan_route_10_day = false %}
 {% assign is_shangri_la_day_tour = false %}
 {% assign is_meili_luxury_retreat = false %}
+{% assign is_shangri_la_luxury_route_5_day = false %}
 {% if product.handle == 'kunming-dali-lijiang-shangri-la-8-day-private-tour' %}
   {% assign is_flagship_yunnan_route = true %}
 {% elsif product.handle == 'kunming-dali-lijiang-6-day-private-tour' %}
@@ -17,6 +18,8 @@
   {% assign is_shangri_la_day_tour = true %}
 {% elsif product.handle == 'meili-snow-mountain-3-day-luxury-retreat' %}
   {% assign is_meili_luxury_retreat = true %}
+{% elsif product.handle == 'shangri-la-meili-napa-lake-5-day-luxury-tour' %}
+  {% assign is_shangri_la_luxury_route_5_day = true %}
 {% endif %}
 
 <!-- 如果没有动态数据，则回退使用主题编辑器里的默认设置 -->
@@ -299,6 +302,54 @@
           >
             Read More
           </button>
+
+          {% if is_shangri_la_luxury_route_5_day %}
+            <div class="mag-supporting-notes" aria-label="Supporting trip information">
+              <section class="mag-supporting-note">
+                <h3>Who This 5-Day Shangri-La Luxury Route Is Best For</h3>
+                <p>This route is best for travelers who want a premium northwestern Yunnan journey centered on Shangri-La, Meili Snow Mountain, and plateau scenery rather than a broader multi-city province-wide circuit. It suits couples, milestone trips, photographers, and luxury travelers who want privacy, stronger hotel standards, and a more atmospheric highland rhythm.</p>
+              </section>
+              <section class="mag-supporting-note">
+                <h3>How It Differs from Shorter or Less Luxury-Focused Routes</h3>
+                <p>This 5-day route gives you more regional depth than a short Meili retreat while keeping the journey focused on Shangri-La and the surrounding highland landscape. Compared with a standard private tour, the emphasis is more clearly on premium pacing, scenic immersion, and a refined route feel rather than simply covering stops efficiently.</p>
+              </section>
+              <section class="mag-supporting-note">
+                <h3>How This Route Fits the Wider Cluster</h3>
+                <p>This journey works well as a standalone luxury plateau route, but it also fits naturally inside the wider Shangri-La and Yunnan luxury cluster. It is a strong choice when you want a scenic highland experience with more route substance than a short retreat, without stretching into a much broader Yunnan itinerary.</p>
+              </section>
+              <section class="mag-supporting-note mag-supporting-faq">
+                <h3>FAQ</h3>
+                <details>
+                  <summary>Who is this 5-day Shangri-La luxury route best for?</summary>
+                  <p>It is best for luxury travelers who want a private highland journey with premium pacing, stronger stays, and deeper scenic coverage around Shangri-La and Meili.</p>
+                </details>
+                <details>
+                  <summary>How is this different from a focused Meili Snow Mountain luxury retreat?</summary>
+                  <p>This route is broader and gives you more Shangri-La regional coverage, while the shorter Meili retreat is a tighter luxury format built around a more concentrated mountain stay.</p>
+                </details>
+                <details>
+                  <summary>Is this better than a standard Yunnan route if I want a premium highland experience?</summary>
+                  <p>Yes, if your priority is a more refined Shangri-La and Meili journey with stronger comfort, private pacing, and a clearer luxury retreat feel.</p>
+                </details>
+                <details>
+                  <summary>Can this route be customized or extended?</summary>
+                  <p>Yes. It can be adjusted around your pace, hotel preferences, and onward route plans through Shangri-La, Lijiang, or wider Yunnan.</p>
+                </details>
+              </section>
+              <section class="mag-supporting-note mag-route-planning-links" aria-label="Related route planning">
+                <h3>Continue Planning Around Shangri-La and Meili</h3>
+                <p>Use these route and guide pages to place this premium 5-day journey inside the wider Shangri-La and Yunnan luxury cluster.</p>
+                <div class="mag-route-link-grid">
+                  <a href="/collections/yunnan-luxury-private-tours">Browse Yunnan luxury private tours</a>
+                  <a href="/products/meili-snow-mountain-3-day-luxury-retreat">Compare with a focused Meili Snow Mountain luxury retreat</a>
+                  <a href="/pages/shangri-la">Continue to the Shangri-La travel guide</a>
+                  <a href="/collections/shangri-la-private-tours">Browse Shangri-La private tours</a>
+                  <a href="/collections/yunnan-private-tours">Browse Yunnan private tours</a>
+                  <a href="/products/lijiang-to-shangri-la-private-tour">See the Lijiang to Shangri-La private tour</a>
+                </div>
+              </section>
+            </div>
+          {% endif %}
         </div>
       </div>
 
