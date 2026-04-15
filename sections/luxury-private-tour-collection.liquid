@@ -1,4 +1,3 @@
-{% assign is_yunnan_luxury_private_tours = collection.handle == 'yunnan-luxury-private-tours' %}
 <div class="luxury-collection-wrapper" id="CollectionProductGrid">
 
   {%- comment -%} 1. Bright & Full Hero Section (Shangri-La Optimized) {%- endcomment -%}
@@ -144,7 +143,7 @@
         </div>
       {% endif %}
 
-      {% if is_yunnan_luxury_private_tours %}
+      {% if collection.handle == 'yunnan-luxury-private-tours' %}
         <section class="collection-copy-block luxury-support-block" aria-label="Yunnan luxury private tour planning guide">
           <div class="luxury-support-grid">
             <div class="luxury-support-main">
