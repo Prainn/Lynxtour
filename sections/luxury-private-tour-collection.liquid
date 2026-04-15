@@ -1,3 +1,4 @@
+{% assign is_yunnan_luxury_private_tours = collection.handle == 'yunnan-luxury-private-tours' %}
 <div class="luxury-collection-wrapper" id="CollectionProductGrid">
 
   {%- comment -%} 1. Bright & Full Hero Section (Shangri-La Optimized) {%- endcomment -%}
@@ -141,6 +142,66 @@
         <div class="luxury-pagination">
           {{ paginate | default_pagination }}
         </div>
+      {% endif %}
+
+      {% if is_yunnan_luxury_private_tours %}
+        <section class="collection-copy-block luxury-support-block" aria-label="Yunnan luxury private tour planning guide">
+          <div class="luxury-support-grid">
+            <div class="luxury-support-main">
+              <h2 class="copy-heading">Why this Yunnan luxury private tours collection stands apart</h2>
+              <div class="copy-richtext">
+                <p>On Lynxtour, Yunnan luxury private tours are premium, fully private journeys designed around refined pacing, stronger hotel standards, private vehicle comfort, and more curated route design than a standard private tour. This collection is for travelers who want Yunnan’s scenery and culture without rushing between stops or treating every night as a basic transit stay.</p>
+                <p>It suits couples, milestone trips, families wanting privacy and comfort, and travelers who prefer boutique stays, mountain-view retreats, hot spring downtime, or a more seamless driver-guide journey across Yunnan’s longer distances. Compared with standard private tours, the emphasis here is less on covering the most stops and more on how the route feels: quieter pacing, better recovery time, more atmospheric hotels, and stronger destination fit for a premium travel style.</p>
+
+                <h3>Luxury route types across Yunnan</h3>
+                <p><strong>Short luxury retreats</strong> work best for travelers who want a focused reset rather than a long circuit. Meili Snow Mountain retreats, Shangri-La premium stays, and boutique Lijiang extensions fit travelers who care about scenery, design, and slower mornings.</p>
+                <p><strong>Highland spiritual and alpine scenery routes</strong> are strongest in Shangri-La and Meili Snow Mountain, where monastery landscapes, wide mountain views, and remote luxury lodges create the clearest difference from mainstream Yunnan touring.</p>
+                <p><strong>Tropical slow-travel luxury routes</strong> fit Xishuangbanna, where resort-style stays, softer pacing, and nature-meets-culture experiences suit travelers looking for warmth, privacy, and downtime.</p>
+                <p><strong>Design-led boutique and restorative journeys</strong> often combine Lijiang, Tengchong, and selected mountain-view or hot spring stays for travelers who want beauty, comfort, and a more intimate route shape rather than a checklist itinerary.</p>
+
+                <h3>Who this collection suits best</h3>
+                <p>This collection is best for travelers choosing privacy, premium stays, deeper comfort on the road, and a more polished travel rhythm. It becomes a better fit than a standard Yunnan private tour when hotel quality, vehicle comfort, recovery time, and the overall emotional tone of the journey matter as much as the destination list itself.</p>
+
+                <h3>Quick FAQ</h3>
+                <div class="luxury-faq-list">
+                  <details class="luxury-faq-item">
+                    <summary>What makes a Yunnan private tour “luxury” here?</summary>
+                    <p>It means fully private travel with stronger hotels, more refined pacing, private vehicle comfort, and route design built around premium stays and atmosphere rather than just coverage.</p>
+                  </details>
+                  <details class="luxury-faq-item">
+                    <summary>Are these tours fully private and customizable?</summary>
+                    <p>Yes. These are private journeys and the route, stay style, and pace can be adjusted around your dates, interests, and comfort preferences.</p>
+                  </details>
+                  <details class="luxury-faq-item">
+                    <summary>Which Yunnan destinations are best for luxury travel?</summary>
+                    <p>Shangri-La, Meili Snow Mountain, Tengchong, Xishuangbanna, and selected Lijiang-based routes are among the strongest luxury fits for scenery, retreats, and premium stays.</p>
+                  </details>
+                  <details class="luxury-faq-item">
+                    <summary>Are these tours suitable for couples, families, or milestone trips?</summary>
+                    <p>Yes. They are especially well suited to couples, anniversaries, family journeys, and travelers who want privacy and comfort throughout the trip.</p>
+                  </details>
+                  <details class="luxury-faq-item">
+                    <summary>Can a luxury route be combined with other Yunnan destinations?</summary>
+                    <p>Yes. A luxury route can be extended or combined with other parts of Yunnan if the pacing and hotel logic still support a premium experience.</p>
+                  </details>
+                </div>
+              </div>
+            </div>
+
+            <aside class="luxury-support-side" aria-label="Luxury route planning links">
+              <h3 class="copy-heading">Continue planning</h3>
+              <p>Use these pages to compare premium route ideas with broader Yunnan trip planning.</p>
+              <div class="luxury-link-list">
+                <a href="/collections/yunnan-private-tours">Browse Yunnan private tours</a>
+                <a href="/pages/shangri-la">Continue to the Shangri-La travel guide</a>
+                <a href="/pages/lijiang">Explore the Lijiang travel guide</a>
+                <a href="/pages/kunming">Continue to the Kunming travel guide</a>
+                <a href="/products/shangri-la-meili-napa-lake-5-day-luxury-tour">Explore premium Shangri-La luxury routes</a>
+                <a href="/products/meili-snow-mountain-3-day-luxury-retreat">Compare shorter luxury retreat ideas</a>
+              </div>
+            </aside>
+          </div>
+        </section>
       {% endif %}
     {% endpaginate %}
   </div>
@@ -420,6 +481,107 @@
     margin-top: 6px;
   }
 
+  #CollectionProductGrid .collection-copy-block{
+    margin-top: 78px;
+    padding-top: 34px;
+    border-top: 1px solid rgba(196,181,166,0.15);
+  }
+
+  #CollectionProductGrid .copy-heading{
+    margin: 0 0 14px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.08;
+    color: #fff;
+  }
+
+  #CollectionProductGrid .copy-richtext p{
+    margin: 0 0 14px;
+    color: rgba(255,255,255,0.78);
+    font-size: 15px;
+    line-height: 1.9;
+  }
+
+  #CollectionProductGrid .copy-richtext h3{
+    margin: 26px 0 10px;
+    font-size: 18px;
+    line-height: 1.35;
+    color: #fff;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  #CollectionProductGrid .luxury-support-grid{
+    display: grid;
+    grid-template-columns: minmax(0, 1.65fr) minmax(270px, 0.95fr);
+    gap: 30px;
+    align-items: start;
+  }
+
+  #CollectionProductGrid .luxury-support-side{
+    padding: 22px 24px;
+    border: 1px solid rgba(196,181,166,0.12);
+    background: rgba(255,255,255,0.02);
+  }
+
+  #CollectionProductGrid .luxury-support-side p{
+    margin: 0 0 16px;
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  #CollectionProductGrid .luxury-link-list{
+    display: grid;
+    gap: 10px;
+  }
+
+  #CollectionProductGrid .luxury-link-list a{
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  #CollectionProductGrid .luxury-link-list a:hover{
+    text-decoration: underline;
+  }
+
+  #CollectionProductGrid .luxury-faq-list{
+    display: grid;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  #CollectionProductGrid .luxury-faq-item{
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  #CollectionProductGrid .luxury-faq-item:last-child{
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  #CollectionProductGrid .luxury-faq-item summary{
+    cursor: pointer;
+    list-style: none;
+    color: #fff;
+    font-size: 15px;
+    line-height: 1.6;
+    font-weight: 600;
+  }
+
+  #CollectionProductGrid .luxury-faq-item summary::-webkit-details-marker{
+    display: none;
+  }
+
+  #CollectionProductGrid .luxury-faq-item p{
+    margin: 10px 0 0;
+  }
+
   #CollectionProductGrid .grid-item:hover img{ transform: scale(1.08); }
   #CollectionProductGrid .grid-item:hover .card-overlay{
     background: rgba(0,0,0,0.30);
@@ -609,6 +771,11 @@
   #CollectionProductGrid .collection-copy-block {
     padding-top: 28px;
     margin-bottom: 42px;
+  }
+
+  #CollectionProductGrid .luxury-support-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 
   #CollectionProductGrid .copy-heading {

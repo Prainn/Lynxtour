@@ -94,6 +94,7 @@
 
   .km-info-section,
   .km-related-section,
+  .km-planning-section,
   .km-cta-section,
   .km-faq-section {
     padding: 0 0 120px;
@@ -298,6 +299,61 @@
       radial-gradient(circle at top right, rgba(251,191,36,0.08), transparent 35%);
   }
 
+  .km-planning-shell {
+    max-width: 980px;
+    margin: 48px auto 0;
+    padding: 40px 36px;
+    border: 1px solid rgba(251,191,36,0.14);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.018) 0%, rgba(255,255,255,0.008) 100%),
+      radial-gradient(circle at top left, rgba(251,191,36,0.07), transparent 34%);
+    text-align: left;
+  }
+
+  .km-planning-copy {
+    color: #cfcac4;
+    font-size: 14px;
+    line-height: 1.9;
+    letter-spacing: 0.02em;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .km-planning-copy p {
+    margin: 0 0 18px;
+  }
+
+  .km-planning-copy p:last-child {
+    margin-bottom: 0;
+  }
+
+  .km-planning-links {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 28px;
+  }
+
+  .km-planning-link {
+    display: block;
+    padding: 16px 18px;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #f5f5f4;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1.7;
+    transition: 0.3s ease;
+    background: rgba(255,255,255,0.015);
+  }
+
+  .km-planning-link:hover {
+    border-color: rgba(251,191,36,0.45);
+    color: #fbbf24;
+    transform: translateY(-1px);
+  }
+
   .km-cta-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(2rem, 4vw, 3rem);
@@ -465,10 +521,12 @@
     }
 
     .km-info-grid,
-    .km-related-grid {
+    .km-related-grid,
+    .km-planning-links {
       grid-template-columns: 1fr;
     }
 
+    .km-planning-shell,
     .km-cta-shell {
       padding: 34px 22px;
     }
@@ -631,6 +689,30 @@
         </div>
       </section>
     {% endif %}
+
+    <section class="km-planning-section">
+      <span class="km-section-eyebrow">ROUTE PLANNING</span>
+      <h2 class="km-section-title">Use Kunming as Your Yunnan Starting Point</h2>
+      <div class="km-section-intro">Kunming works best when you use it as both a destination and a gateway into the wider Yunnan route cluster.</div>
+
+      <div class="km-planning-shell">
+        <div class="km-planning-copy">
+          <p>Kunming is often the natural first stop for a Yunnan private journey because it combines easy flight access, a mild city pace, and practical links to both city highlights and classic day trips. It works well for travelers who want to settle in gently before moving onward into western and northwestern Yunnan.</p>
+          <p>For many first-time routes, the strongest next step is to decide whether Kunming should stay a city-base stop with one focused day trip, expand into a flexible private car charter, or connect directly into longer journeys through Dali and Lijiang. The pages below help place Kunming inside that wider route logic without changing the guide-first role of this page.</p>
+        </div>
+
+        <div class="km-planning-links" aria-label="Kunming route planning links">
+          <a href="/collections/yunnan-private-tours" class="km-planning-link">Browse Yunnan private tours</a>
+          <a href="/collections/yunnan-private-day-trips" class="km-planning-link">See Yunnan private day trips</a>
+          <a href="/products/kunming-highlights-1-day-tour-western-hills-dianchi-ethnic-village" class="km-planning-link">Explore Kunming city highlights in one day</a>
+          <a href="/products/kunming-provincial-museum-dounan-flower-market-1-day-private-tour" class="km-planning-link">See a culture-focused Kunming day trip</a>
+          <a href="/products/kunming-stone-forest-old-street-night-market-1-day-private-tour" class="km-planning-link">Compare a Stone Forest and old-city day route</a>
+          <a href="/products/yunnan-private-car-charter-tour" class="km-planning-link">Plan a private Yunnan car charter</a>
+          <a href="/pages/dali" class="km-planning-link">Continue to the Dali travel guide</a>
+          <a href="/pages/lijiang" class="km-planning-link">Explore the Lijiang travel guide</a>
+        </div>
+      </div>
+    </section>
 
     <section class="km-cta-section">
       {% if section.settings.cta_eyebrow != blank %}

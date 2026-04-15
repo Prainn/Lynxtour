@@ -164,6 +164,63 @@
     padding: 0;
   }
 
+  .article-guide-faq {
+    margin: 42px 0;
+    padding: 26px 24px;
+    background: linear-gradient(180deg, rgba(17,17,17,0.96) 0%, rgba(10,10,10,0.96) 100%);
+    border: 1px solid #2b2b2b;
+    border-radius: 8px;
+  }
+
+  .article-guide-faq__eyebrow {
+    margin: 0 0 12px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #D4AF37;
+  }
+
+  .article-guide-faq h2 {
+    margin: 0 0 14px;
+    font-size: 1.7em;
+    line-height: 1.35;
+    color: #fff;
+    border: 0;
+    padding: 0;
+  }
+
+  .article-guide-faq details {
+    margin: 0 0 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #2b2b2b;
+  }
+
+  .article-guide-faq details:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .article-guide-faq summary {
+    cursor: pointer;
+    list-style: none;
+    color: #fff;
+    font-size: 1.02em;
+    line-height: 1.7;
+    font-weight: 600;
+  }
+
+  .article-guide-faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .article-guide-faq p {
+    margin: 10px 0 0;
+    color: #cfcfcf;
+    font-size: 1em;
+    line-height: 1.8;
+  }
+
   /* ====== End CTA ====== */
   .article-end-cta {
     margin-top: 60px;
@@ -400,6 +457,10 @@
   assign end_cta_secondary_link = article.metafields.custom.end_cta_secondary_link.value | default: section.settings.end_cta_secondary_link
   assign tour_list = article.metafields.custom.recommended_tour.value
   assign is_dianchi_guide = false
+  assign is_lijiang_travel_guide = false
+  assign is_shangri_la_travel_guide = false
+  assign is_cangshan_mountain_guide = false
+  assign is_erhai_lake_guide = false
   assign dianchi_route_handles = 'kunming-highlights-1-day-tour-western-hills-dianchi-ethnic-village|kunming-provincial-museum-dounan-flower-market-1-day-private-tour|kunming-stone-forest-old-street-night-market-1-day-private-tour' | split: '|'
 
   if article.handle == 'dianchi-lake-guide'
@@ -412,6 +473,42 @@
     assign end_cta_secondary_text = 'Browse Yunnan private tours'
     assign end_cta_secondary_link = '/collections/yunnan-private-tours'
     assign tour_list = blank
+  elsif article.handle == 'lijiang-travel-guide'
+    assign is_lijiang_travel_guide = true
+    assign end_cta_eyebrow = 'Lijiang Route Planning'
+    assign end_cta_heading = 'Move from the Lijiang guide into the right route'
+    assign end_cta_text = 'Lijiang works both as a rewarding standalone stop and as one of the strongest anchors inside a wider Yunnan journey. Start with the right Lijiang day trips and route extensions, then compare how the destination fits into your larger Yunnan plan.'
+    assign end_cta_primary_text = 'Browse Lijiang private tours'
+    assign end_cta_primary_link = '/collections/lijiang-private-tours'
+    assign end_cta_secondary_text = 'Browse Yunnan private tours'
+    assign end_cta_secondary_link = '/collections/yunnan-private-tours'
+  elsif article.handle == 'shangri-la-travel-guide'
+    assign is_shangri_la_travel_guide = true
+    assign end_cta_eyebrow = 'Shangri-La Route Planning'
+    assign end_cta_heading = 'Move from the Shangri-La guide into the right route'
+    assign end_cta_text = 'Shangri-La is strongest when you match the destination to the right pacing and route shape. Start with the most relevant Shangri-La day trips and northwestern Yunnan extensions, then compare how the destination fits into your wider Yunnan plan.'
+    assign end_cta_primary_text = 'Browse Shangri-La private tours'
+    assign end_cta_primary_link = '/collections/shangri-la-private-tours'
+    assign end_cta_secondary_text = 'Browse Yunnan private tours'
+    assign end_cta_secondary_link = '/collections/yunnan-private-tours'
+  elsif article.handle == 'cangshan-mountain-guide'
+    assign is_cangshan_mountain_guide = true
+    assign end_cta_eyebrow = 'Dali Attraction Planning'
+    assign end_cta_heading = 'Move from the Cangshan guide into the right Dali route'
+    assign end_cta_text = 'Cangshan is usually strongest when you place it inside the right Dali pacing, whether as a half-day mountain stop, part of a fuller Dali stay, or one piece inside a wider western Yunnan journey.'
+    assign end_cta_primary_text = 'Browse Dali private tours'
+    assign end_cta_primary_link = '/collections/dali-private-tours'
+    assign end_cta_secondary_text = 'Continue to the Dali travel guide'
+    assign end_cta_secondary_link = '/pages/dali'
+  elsif article.handle == 'erhai-lake-guide'
+    assign is_erhai_lake_guide = true
+    assign end_cta_eyebrow = 'Dali Attraction Planning'
+    assign end_cta_heading = 'Move from the Erhai guide into the right Dali route'
+    assign end_cta_text = 'Erhai usually works best when you place it inside the right Dali pacing, whether as a half-day lakeside stop, part of a fuller Dali stay, or one scenic element inside a wider Yunnan journey.'
+    assign end_cta_primary_text = 'Browse Dali private tours'
+    assign end_cta_primary_link = '/collections/dali-private-tours'
+    assign end_cta_secondary_text = 'Continue to the Dali travel guide'
+    assign end_cta_secondary_link = '/pages/dali'
   endif
 %}
 
@@ -452,6 +549,30 @@
         <p>Dianchi Lake is Kunming's best-known lakeside escape, valued for wide water views, easy shoreline walks, and the seasonal arrival of black-headed gulls. It is worth visiting because it shows the softer, more open side of Kunming and works well for scenic pacing, photography, and a gentler city day.</p>
         <p>For most travelers, the best season is late autumn through early spring, especially from November to March when the gulls are most associated with the lakefront experience. Dianchi is usually not a standalone destination, so travelers often <a href="/products/kunming-highlights-1-day-tour-western-hills-dianchi-ethnic-village">add Dianchi Lake to a Kunming private trip</a>, <a href="/collections/yunnan-private-day-trips">see Yunnan private day trips</a>, or <a href="/collections/yunnan-private-tours">browse Yunnan private tours</a> before continuing deeper into Yunnan.</p>
       </section>
+    {% elsif is_lijiang_travel_guide %}
+      <section class="article-guide-brief">
+        <p class="article-guide-brief__eyebrow">LIJIANG DESTINATION GUIDE</p>
+        <p>Lijiang is one of Yunnan’s most important travel bases, valued for its old-town atmosphere, mountain scenery, Naxi cultural context, and practical position between Jade Dragon Snow Mountain, Baisha, Tiger Leaping Gorge, and Shangri-La. Travelers go there because it combines iconic sightseeing with a flexible base for day trips and northbound route extensions.</p>
+        <p>For most travelers, Lijiang suits two to three days and works especially well in first-time Yunnan itineraries alongside Kunming and Dali. It can be used as a standalone stop, but it is often strongest as a planning hub before travelers <a href="/products/jade-dragon-snow-mountain-private-tour">explore Jade Dragon Snow Mountain</a>, <a href="/pages/tiger-leaping-gorge-from-lijiang">continue to Tiger Leaping Gorge planning</a>, or <a href="/products/lijiang-to-shangri-la-private-tour">extend north toward Shangri-La</a>.</p>
+      </section>
+    {% elsif is_shangri_la_travel_guide %}
+      <section class="article-guide-brief">
+        <p class="article-guide-brief__eyebrow">SHANGRI-LA DESTINATION GUIDE</p>
+        <p>Shangri-La is Yunnan’s best-known highland destination, valued for Tibetan cultural atmosphere, wide plateau scenery, monasteries, grasslands, and access to landmark sites such as Pudacuo, Songzanlin, Napa Lake, and Baishuitai. Travelers go there because it offers a very different side of Yunnan from the old towns and lower-altitude cities farther south.</p>
+        <p>For most travelers, Shangri-La suits two to four days and works especially well as the northern extension in a first-time Yunnan itinerary after Lijiang. It can be visited as a standalone highland stop, but it is often strongest when travelers <a href="/products/shangri-la-pudacuo-national-park-songzanlin-monastery-1-day-private-tour">start with a focused Shangri-La day trip</a>, <a href="/products/lijiang-to-shangri-la-private-tour">compare the Lijiang to Shangri-La route</a>, or use it as the highland leg inside a wider Yunnan journey.</p>
+      </section>
+    {% elsif is_cangshan_mountain_guide %}
+      <section class="article-guide-brief">
+        <p class="article-guide-brief__eyebrow">DALI ATTRACTION GUIDE</p>
+        <p>Cangshan Mountain is one of Dali’s defining natural landmarks, valued for mountain trails, cable-car access, elevated views, and its dramatic position above Dali Old Town and the Erhai basin. Travelers visit because it adds altitude, scenery, and outdoor pace to a Dali stay, balancing the lakeside and old-town side of the destination.</p>
+        <p>For most travelers, Cangshan fits best as a half-day to full-day part of a broader Dali itinerary rather than as a standalone destination. It pairs especially well with <a href="/pages/dali">the Dali travel guide</a>, Erhai-facing route planning, <a href="/pages/dali-itinerary-2-days">shorter 2-day Dali stays</a>, <a href="/pages/dali-itinerary-3-days">more relaxed 3-day Dali itinerary ideas</a>, and onward western Yunnan travel.</p>
+      </section>
+    {% elsif is_erhai_lake_guide %}
+      <section class="article-guide-brief">
+        <p class="article-guide-brief__eyebrow">DALI ATTRACTION GUIDE</p>
+        <p>Erhai Lake is one of Dali's defining scenic anchors, valued for wide lake views, cycling and shoreline drives, village stops, and its role in shaping the slower, more open rhythm of a Dali stay. Travelers visit because it balances old-town walking and mountain scenery with a more relaxed lakeside side of the destination.</p>
+        <p>For most travelers, Erhai fits best as a half-day to full-day part of a broader Dali itinerary rather than as a standalone destination. It pairs especially well with <a href="/pages/dali">the Dali travel guide</a>, <a href="/blogs/travel-guides/cangshan-mountain-guide">the Cangshan Mountain guide</a>, <a href="/pages/dali-itinerary-2-days">shorter 2-day Dali stays</a>, <a href="/pages/dali-itinerary-3-days">more relaxed 3-day Dali itinerary ideas</a>, and onward western Yunnan travel.</p>
+      </section>
     {% endif %}
 
     <div class="article-content">
@@ -464,6 +585,134 @@
         <h2>How to Add Dianchi Lake to a Kunming Itinerary</h2>
         <p>Dianchi is usually easiest as a half-day stop or a relaxed full-day plan paired with Western Hills, Haigeng Dam, or another city highlight. If you want the most direct match, <a href="/products/kunming-highlights-1-day-tour-western-hills-dianchi-ethnic-village">see the Kunming private day trip that includes Dianchi and Western Hills</a>. Travelers comparing softer city routes can also <a href="/products/kunming-provincial-museum-dounan-flower-market-1-day-private-tour">add a museum and flower market Kunming private trip</a> or <a href="/products/kunming-stone-forest-old-street-night-market-1-day-private-tour">explore Kunming day trip ideas that combine Stone Forest and the old city</a>.</p>
         <p>If Dianchi is only one stop inside a longer province-wide route, you can also <a href="/collections/yunnan-private-day-trips">see Yunnan private day trips</a> and <a href="/collections/yunnan-private-tours">continue planning your Yunnan route</a> while keeping the wider trip practical.</p>
+      </section>
+    {% elsif is_lijiang_travel_guide %}
+      <section class="article-planning-note">
+        <p class="article-planning-note__eyebrow">ROUTE PLANNING</p>
+        <h2>How to Use Lijiang as a Yunnan Planning Hub</h2>
+        <p>Lijiang is one of the easiest places to shape a wider Yunnan route because it works as both a destination and a transit point. Travelers deciding whether to stay local or move outward can <a href="/collections/lijiang-private-tours">browse Lijiang private tours</a>, <a href="/products/jade-dragon-snow-mountain-private-tour">explore the Jade Dragon Snow Mountain private tour</a>, or <a href="/pages/tiger-leaping-gorge-from-lijiang">continue to the Tiger Leaping Gorge route guide</a> before deciding how much time to keep around the city itself.</p>
+        <p>If you want to continue north, <a href="/products/lijiang-to-shangri-la-private-tour">see the Lijiang to Shangri-La private tour</a>. If Lijiang is one stop inside a broader trip, <a href="/collections/yunnan-private-tours">browse Yunnan private tours</a>, <a href="/pages/lijiang-itinerary-3-days">compare 3-day Lijiang itinerary ideas</a>, or <a href="/products/kunming-dali-lijiang-shangri-la-8-day-private-tour">explore the 8-day Yunnan private tour</a> to place the city inside a fuller route.</p>
+      </section>
+
+      <section class="article-guide-faq">
+        <p class="article-guide-faq__eyebrow">FAQ</p>
+        <h2>Quick Lijiang Planning Questions</h2>
+        <details>
+          <summary>How many days should I spend in Lijiang?</summary>
+          <p>Most travelers spend two to three days in Lijiang, which is usually enough for the old town, one major mountain or village day, and an onward route decision.</p>
+        </details>
+        <details>
+          <summary>Is Lijiang better as a standalone stop or part of a wider Yunnan route?</summary>
+          <p>It works as both, but for many first-time travelers Lijiang is strongest as part of a wider Yunnan route because it connects naturally with Dali, Tiger Leaping Gorge, and Shangri-La.</p>
+        </details>
+        <details>
+          <summary>What are the top day trips from Lijiang?</summary>
+          <p>Jade Dragon Snow Mountain, Baisha, and Tiger Leaping Gorge are among the most useful and popular day-trip directions from Lijiang.</p>
+        </details>
+        <details>
+          <summary>Can Lijiang be combined with Shangri-La?</summary>
+          <p>Yes. Lijiang and Shangri-La are one of the strongest northbound pairings in Yunnan, especially for travelers continuing into mountain and Tibetan plateau scenery.</p>
+        </details>
+        <details>
+          <summary>What is the best season to visit Lijiang?</summary>
+          <p>Spring and autumn are usually the easiest seasons for comfortable weather and clearer mountain views, though Lijiang can work year-round depending on your route and interests.</p>
+        </details>
+      </section>
+    {% elsif is_shangri_la_travel_guide %}
+      <section class="article-planning-note">
+        <p class="article-planning-note__eyebrow">ROUTE PLANNING</p>
+        <h2>How to Use Shangri-La as a Northern Yunnan Planning Hub</h2>
+        <p>Shangri-La is one of the clearest route-shaping destinations in Yunnan because it changes the tone of a trip from old towns and lakes into highland scenery, monasteries, and plateau travel. Travelers deciding how deeply to build Shangri-La into their route can <a href="/collections/shangri-la-private-tours">browse Shangri-La private tours</a>, <a href="/products/shangri-la-pudacuo-national-park-songzanlin-monastery-1-day-private-tour">see the Pudacuo and Songzanlin 1-day private tour</a>, or <a href="/products/lijiang-to-shangri-la-private-tour">explore the Lijiang to Shangri-La private tour</a> before deciding whether to keep the stop compact or extend it.</p>
+        <p>If you want a deeper plateau route, <a href="/products/shangri-la-meili-napa-lake-5-day-luxury-tour">compare with a longer Shangri-La luxury route</a>. If Shangri-La is one part of a broader province-wide trip, <a href="/pages/lijiang">explore the Lijiang travel guide</a>, <a href="/collections/yunnan-private-tours">browse Yunnan private tours</a>, or <a href="/products/yunnan-private-car-charter-tour">plan a flexible Yunnan private car charter</a> to connect the destination more smoothly with the rest of your route.</p>
+      </section>
+
+      <section class="article-guide-faq">
+        <p class="article-guide-faq__eyebrow">FAQ</p>
+        <h2>Quick Shangri-La Planning Questions</h2>
+        <details>
+          <summary>How many days should I spend in Shangri-La?</summary>
+          <p>Most travelers spend two to four days in Shangri-La, depending on whether they want only the core highlights or a slower highland route with wider coverage.</p>
+        </details>
+        <details>
+          <summary>Is Shangri-La better as a standalone stop or part of a wider Yunnan route?</summary>
+          <p>It works as both, but for many first-time travelers Shangri-La is strongest as the northern extension of a wider Yunnan route after Lijiang.</p>
+        </details>
+        <details>
+          <summary>What are the top day trips or extensions from Shangri-La?</summary>
+          <p>Pudacuo, Songzanlin, Napa Lake, and deeper northwestern Yunnan extensions such as Meili Snow Mountain are among the most useful next directions.</p>
+        </details>
+        <details>
+          <summary>Can Shangri-La be combined with Lijiang?</summary>
+          <p>Yes. Lijiang and Shangri-La are one of the strongest paired route shapes in Yunnan, especially for travelers moving from old-town culture into Tibetan plateau scenery.</p>
+        </details>
+        <details>
+          <summary>What is the best season to visit Shangri-La?</summary>
+          <p>Spring and autumn are usually the easiest seasons for weather, road comfort, and clearer plateau views, though seasonal preferences depend on altitude, flowers, and snow-mountain interests.</p>
+        </details>
+      </section>
+    {% elsif is_cangshan_mountain_guide %}
+      <section class="article-planning-note">
+        <p class="article-planning-note__eyebrow">ROUTE PLANNING</p>
+        <h2>How to Add Cangshan Mountain to a Dali Itinerary</h2>
+        <p>Cangshan is usually easiest as a half-day or full-day mountain component inside a broader Dali stay. Travelers deciding how to balance mountain time with the rest of the destination can <a href="/pages/dali">continue to the Dali travel guide</a>, <a href="/collections/dali-private-tours">browse Dali private tours</a>, or <a href="/blogs/day-trips/dali-old-town-day-trip-guide">see Dali Old Town day trip ideas</a> before deciding how much time to hold for the mountain itself.</p>
+        <p>If you are comparing different stay lengths, <a href="/pages/dali-itinerary-2-days">compare 2-day Dali itinerary ideas</a> and <a href="/pages/dali-itinerary-3-days">compare 3-day Dali itinerary ideas</a>. If Cangshan is only one stop inside a broader route, you can also <a href="/pages/dali-to-lijiang-private-tour">explore the Dali to Lijiang private tour</a> and <a href="/collections/yunnan-private-tours">browse Yunnan private tours</a> to place the attraction inside a wider Yunnan journey.</p>
+      </section>
+
+      <section class="article-guide-faq">
+        <p class="article-guide-faq__eyebrow">FAQ</p>
+        <h2>Quick Cangshan Planning Questions</h2>
+        <details>
+          <summary>How much time should I spend at Cangshan Mountain?</summary>
+          <p>Most travelers allow a half day to a full day, depending on whether they want only the main scenic access points or a slower outdoor visit.</p>
+        </details>
+        <details>
+          <summary>Is Cangshan better as part of a Dali itinerary or a standalone half-day trip?</summary>
+          <p>It is usually strongest as part of a wider Dali itinerary, though it can work well as a standalone half-day mountain outing if your time is limited.</p>
+        </details>
+        <details>
+          <summary>What other Dali attractions pair well with Cangshan?</summary>
+          <p>Dali Old Town, Erhai Lake, Xizhou, and other west-side Dali stops pair especially well with Cangshan because they create a more balanced city, lake, and mountain itinerary.</p>
+        </details>
+        <details>
+          <summary>Is Cangshan suitable for first-time Dali visitors?</summary>
+          <p>Yes. It is one of the clearest first-time Dali attractions if you want mountain scenery to balance the old town and lakeside side of the destination.</p>
+        </details>
+        <details>
+          <summary>What is the best season to visit Cangshan?</summary>
+          <p>Spring and autumn are usually the easiest seasons for weather, visibility, and outdoor pacing, though Cangshan can work across much of the year depending on conditions.</p>
+        </details>
+      </section>
+    {% elsif is_erhai_lake_guide %}
+      <section class="article-planning-note">
+        <p class="article-planning-note__eyebrow">ROUTE PLANNING</p>
+        <h2>How to Add Erhai Lake to a Dali Itinerary</h2>
+        <p>Erhai is usually easiest as a half-day or full-day lakeside component inside a broader Dali stay. Travelers deciding how to balance lake time with the rest of the destination can <a href="/pages/dali">continue to the Dali travel guide</a>, <a href="/collections/dali-private-tours">browse Dali private tours</a>, <a href="/blogs/travel-guides/cangshan-mountain-guide">explore the Cangshan Mountain guide</a>, or <a href="/blogs/day-trips/dali-old-town-day-trip-guide">see Dali Old Town day trip ideas</a> before deciding how much time to hold around Erhai itself.</p>
+        <p>If you are comparing different stay lengths, <a href="/pages/dali-itinerary-2-days">compare 2-day Dali itinerary ideas</a> and <a href="/pages/dali-itinerary-3-days">compare 3-day Dali itinerary ideas</a>. If Erhai is only one stop inside a broader route, you can also <a href="/pages/dali-to-lijiang-private-tour">explore the Dali to Lijiang private tour</a> and <a href="/collections/yunnan-private-tours">browse Yunnan private tours</a> to place the lake inside a wider Yunnan journey.</p>
+      </section>
+
+      <section class="article-guide-faq">
+        <p class="article-guide-faq__eyebrow">FAQ</p>
+        <h2>Quick Erhai Planning Questions</h2>
+        <details>
+          <summary>How much time should I spend at Erhai Lake?</summary>
+          <p>Most travelers allow a half day to a full day, depending on whether they want only a scenic lakeside stop or a slower circuit with villages and viewpoints.</p>
+        </details>
+        <details>
+          <summary>Is Erhai better as a half-day stop or part of a full Dali itinerary?</summary>
+          <p>It can work as either, but Erhai is usually strongest as part of a fuller Dali itinerary where the lake is balanced with old-town, village, or mountain time.</p>
+        </details>
+        <details>
+          <summary>What other Dali attractions pair well with Erhai?</summary>
+          <p>Cangshan Mountain, Dali Old Town, Xizhou, and other west-side Dali stops pair especially well with Erhai because they create a more complete lake, town, and mountain itinerary.</p>
+        </details>
+        <details>
+          <summary>Is Erhai suitable for first-time Dali visitors?</summary>
+          <p>Yes. It is one of the clearest first-time Dali attractions if you want to understand the destination's scenery, pacing, and village atmosphere beyond the old town.</p>
+        </details>
+        <details>
+          <summary>What is the best season to visit Erhai Lake?</summary>
+          <p>Spring and autumn are usually the easiest seasons for visibility, outdoor pacing, and comfortable weather, though Erhai can work across much of the year depending on conditions.</p>
+        </details>
       </section>
     {% endif %}
 

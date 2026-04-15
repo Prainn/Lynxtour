@@ -3,8 +3,20 @@
 {% assign dynamic_content = product.metafields.custom.custom_flipbook_content | metafield_tag %}
 {% assign dynamic_images = product.metafields.custom.custom_flipbook_images.value %}
 {% assign is_flagship_yunnan_route = false %}
+{% assign is_core_yunnan_route_6_day = false %}
+{% assign is_extended_yunnan_route_10_day = false %}
+{% assign is_shangri_la_day_tour = false %}
+{% assign is_meili_luxury_retreat = false %}
 {% if product.handle == 'kunming-dali-lijiang-shangri-la-8-day-private-tour' %}
   {% assign is_flagship_yunnan_route = true %}
+{% elsif product.handle == 'kunming-dali-lijiang-6-day-private-tour' %}
+  {% assign is_core_yunnan_route_6_day = true %}
+{% elsif product.handle == 'kunming-dali-lugu-lake-lijiang-shangri-la-10-day-private-tour' %}
+  {% assign is_extended_yunnan_route_10_day = true %}
+{% elsif product.handle == 'shangri-la-pudacuo-national-park-songzanlin-monastery-1-day-private-tour' %}
+  {% assign is_shangri_la_day_tour = true %}
+{% elsif product.handle == 'meili-snow-mountain-3-day-luxury-retreat' %}
+  {% assign is_meili_luxury_retreat = true %}
 {% endif %}
 
 <!-- 如果没有动态数据，则回退使用主题编辑器里的默认设置 -->
@@ -81,6 +93,198 @@
                     <a href="/pages/shangri-la">Continue to the Shangri-La travel guide</a>
                     <a href="/pages/dali-itinerary-3-days">Compare 3-day itinerary ideas in Dali</a>
                     <a href="/pages/lijiang-itinerary-3-days">Compare 3-day itinerary ideas in Lijiang</a>
+                  </div>
+                </section>
+              </div>
+            {% elsif is_core_yunnan_route_6_day %}
+              <div class="mag-supporting-notes" aria-label="Supporting trip information">
+                <section class="mag-supporting-note">
+                  <h3>Who This 6-Day Yunnan Route Is Best For</h3>
+                  <p>This 6-day route is best for travelers who want a focused first trip through Kunming, Dali, and Lijiang without extending farther north. It suits couples, families, and small private groups who want Yunnan’s classic core cities in a compact format with private transfers and a clear route structure.</p>
+                </section>
+                <section class="mag-supporting-note">
+                  <h3>When 6 Days Is Enough and When to Choose Longer</h3>
+                  <p>Six days is usually enough if your priority is the core Kunming, Dali, and Lijiang sequence and you are comfortable with a more efficient pace. Choose the <a href="/products/kunming-dali-lijiang-shangri-la-8-day-private-tour">8-day Yunnan private tour</a> if you want to add Shangri-La and create more breathing room. Choose the <a href="/products/kunming-dali-lugu-lake-lijiang-shangri-la-10-day-private-tour">10-day Yunnan private tour</a> if you want a slower, broader journey with extra depth beyond the core route.</p>
+                </section>
+                <section class="mag-supporting-note">
+                  <h3>Can This Route Be Customized or Extended?</h3>
+                  <p>Yes. This tour can be adjusted around your dates, hotel style, pacing, and route priorities. If you want more time in Dali, a slower stay in Lijiang, or an extension north to Shangri-La, the route can be reshaped into a longer Yunnan journey.</p>
+                </section>
+                <section class="mag-supporting-note mag-supporting-faq">
+                  <h3>FAQ</h3>
+                  <details>
+                    <summary>Is 6 days enough for Kunming, Dali, and Lijiang?</summary>
+                    <p>Yes, if you want a compact version of the core Yunnan route and are comfortable keeping the trip focused on these three cities.</p>
+                  </details>
+                  <details>
+                    <summary>Who is this route best for?</summary>
+                    <p>It is best for first-time visitors, couples, families, and private travelers who want Yunnan’s classic highlights without committing to a longer circuit.</p>
+                  </details>
+                  <details>
+                    <summary>Can this route be extended to Shangri-La?</summary>
+                    <p>Yes. If you want to continue north, the route can be extended, and the 8-day option is the most natural next comparison.</p>
+                  </details>
+                  <details>
+                    <summary>Can this tour be customized?</summary>
+                    <p>Yes. We can adjust the pace, hotel style, and city balance, or reshape it into a longer Yunnan route if needed.</p>
+                  </details>
+                </section>
+                <section class="mag-supporting-note mag-route-planning-links" aria-label="Related route planning">
+                  <h3>Continue Planning the Core Yunnan Route</h3>
+                  <p>Use these route and guide pages to compare this 6-day core trip with longer Yunnan options and destination-level planning across the cluster.</p>
+                  <div class="mag-route-link-grid">
+                    <a href="/collections/yunnan-private-tours">Browse Yunnan private tours</a>
+                    <a href="/pages/kunming">Continue to the Kunming travel guide</a>
+                    <a href="/pages/dali">Explore the Dali travel guide</a>
+                    <a href="/pages/lijiang">Explore the Lijiang travel guide</a>
+                    <a href="/pages/dali-itinerary-3-days">Compare 3-day itinerary ideas in Dali</a>
+                    <a href="/pages/lijiang-itinerary-3-days">Compare 3-day itinerary ideas in Lijiang</a>
+                    <a href="/products/kunming-dali-lijiang-shangri-la-8-day-private-tour">See the 8-day Yunnan private tour</a>
+                    <a href="/products/kunming-dali-lugu-lake-lijiang-shangri-la-10-day-private-tour">Compare with the 10-day Yunnan private tour</a>
+                  </div>
+                </section>
+              </div>
+            {% elsif is_extended_yunnan_route_10_day %}
+              <div class="mag-supporting-notes" aria-label="Supporting trip information">
+                <section class="mag-supporting-note">
+                  <h3>Who This 10-Day Yunnan Route Is Best For</h3>
+                  <p>This 10-day route is best for travelers who want a broader and slower Yunnan journey across Kunming, Dali, Lugu Lake, Lijiang, and Shangri-La. It suits couples, families, and private travelers who want more scenic variety, less rushed movement between stops, and enough time for the route to feel like a real journey rather than a compressed circuit.</p>
+                </section>
+                <section class="mag-supporting-note">
+                  <h3>Why Choose 10 Days Instead of 6 or 8</h3>
+                  <p>Choose 10 days if you want slower pacing and wider route coverage, especially with Lugu Lake added into the core Yunnan structure. Choose the <a href="/products/kunming-dali-lijiang-6-day-private-tour">6-day Yunnan private tour</a> if you want a compact first trip centered on Kunming, Dali, and Lijiang. Choose the <a href="/products/kunming-dali-lijiang-shangri-la-8-day-private-tour">8-day Yunnan private tour</a> if you want the classic Shangri-La extension but do not need the broader, slower 10-day version.</p>
+                </section>
+                <section class="mag-supporting-note">
+                  <h3>What Makes This Route More Relaxed</h3>
+                  <p>This route allows more breathing room than the shorter options because it spreads the journey across more days while covering more of northwest Yunnan. That makes it a stronger fit for travelers who value private pacing, longer scenic transitions, and a more immersive route through Yunnan’s lakes, old towns, mountain landscapes, and Tibetan plateau edge.</p>
+                </section>
+                <section class="mag-supporting-note mag-supporting-faq">
+                  <h3>FAQ</h3>
+                  <details>
+                    <summary>Is 10 days a better fit for a slower Yunnan journey?</summary>
+                    <p>Yes. Ten days is usually the better fit if you want the route to feel more spacious and less compressed while still covering several of Yunnan’s signature destinations.</p>
+                  </details>
+                  <details>
+                    <summary>Who is this route best for?</summary>
+                    <p>It is best for travelers who want both broader route coverage and a more relaxed pace, especially couples, families, and private travelers choosing comfort over speed.</p>
+                  </details>
+                  <details>
+                    <summary>Does this route include more relaxed pacing than the 6-day or 8-day options?</summary>
+                    <p>Yes. It adds both more time and broader coverage, which makes the overall journey feel less rushed than the shorter versions.</p>
+                  </details>
+                  <details>
+                    <summary>Can this tour be customized?</summary>
+                    <p>Yes. We can adjust the route, pace, hotel style, and destination mix based on your travel dates and preferences.</p>
+                  </details>
+                </section>
+                <section class="mag-supporting-note mag-route-planning-links" aria-label="Related route planning">
+                  <h3>Continue Planning the Core Yunnan Route</h3>
+                  <p>Use these route and guide pages to compare this longer Yunnan journey with the 6-day and 8-day versions and to connect the route with the wider destination cluster.</p>
+                  <div class="mag-route-link-grid">
+                    <a href="/collections/yunnan-private-tours">Browse Yunnan private tours</a>
+                    <a href="/pages/kunming">Continue to the Kunming travel guide</a>
+                    <a href="/pages/dali">Explore the Dali travel guide</a>
+                    <a href="/pages/lijiang">Explore the Lijiang travel guide</a>
+                    <a href="/pages/shangri-la">Continue to the Shangri-La travel guide</a>
+                    <a href="/products/kunming-dali-lijiang-6-day-private-tour">Compare with the 6-day Yunnan private tour</a>
+                    <a href="/products/kunming-dali-lijiang-shangri-la-8-day-private-tour">See the 8-day Yunnan private tour</a>
+                    <a href="/pages/lijiang-itinerary-3-days">Compare 3-day itinerary ideas in Lijiang</a>
+                  </div>
+                </section>
+              </div>
+            {% elsif is_shangri_la_day_tour %}
+              <div class="mag-supporting-notes" aria-label="Supporting trip information">
+                <section class="mag-supporting-note">
+                  <h3>Who This Shangri-La Day Trip Is Best For</h3>
+                  <p>This private day trip is best for travelers who want Shangri-La’s two signature highlights, Pudacuo National Park and Songzanlin Monastery, in a single focused day. It suits travelers already staying in Shangri-La, those arriving from nearby hubs such as Lijiang, and anyone who wants a private introduction to the area without committing to a longer multi-day route.</p>
+                </section>
+                <section class="mag-supporting-note">
+                  <h3>When One Day Makes Sense and When to Choose Longer</h3>
+                  <p>One day is a strong fit if you are already based in Shangri-La and want a practical highlights route with private transport and guide support. Choose a longer multi-day Shangri-La route if you want slower pacing, more plateau scenery, or deeper coverage beyond the core city-and-nature pairing, especially if you plan to connect Shangri-La with Meili Snow Mountain or a wider Yunnan journey.</p>
+                </section>
+                <section class="mag-supporting-note">
+                  <h3>How This Day Tour Fits a Wider Yunnan Plan</h3>
+                  <p>This route works well as a standalone Shangri-La day experience, as an add-on for travelers already staying in town, or as part of a wider Yunnan trip that continues from Lijiang into northwestern Yunnan. It is a practical option when you want to see Shangri-La’s best-known cultural and natural landmarks without redesigning the whole trip around a longer stay.</p>
+                </section>
+                <section class="mag-supporting-note mag-supporting-faq">
+                  <h3>FAQ</h3>
+                  <details>
+                    <summary>Is one day enough for Pudacuo and Songzanlin?</summary>
+                    <p>Yes. One day is usually enough for a focused private highlights route covering both sites if your goal is a well-paced Shangri-La introduction.</p>
+                  </details>
+                  <details>
+                    <summary>Who is this route best for?</summary>
+                    <p>It is best for travelers staying in Shangri-La, travelers arriving from nearby hubs, and visitors who want a compact private day trip rather than a multi-day plateau itinerary.</p>
+                  </details>
+                  <details>
+                    <summary>Is this suitable for travelers already based in Shangri-La?</summary>
+                    <p>Yes. That is one of the strongest use cases, because it lets you cover the area’s signature highlights efficiently from a Shangri-La base.</p>
+                  </details>
+                  <details>
+                    <summary>Can this day trip be combined with a longer Shangri-La or Yunnan route?</summary>
+                    <p>Yes. It can be combined with a wider Shangri-La stay or used as part of a longer Yunnan route that includes Lijiang or deeper northwestern Yunnan travel.</p>
+                  </details>
+                  <details>
+                    <summary>Can the route be customized?</summary>
+                    <p>Yes. Timing, pacing, and the overall route flow can be adjusted around your stay, interests, and wider travel plan.</p>
+                  </details>
+                </section>
+                <section class="mag-supporting-note mag-route-planning-links" aria-label="Related route planning">
+                  <h3>Continue Planning Around Shangri-La</h3>
+                  <p>Use these guide and route pages to place this day trip inside a wider Shangri-La or Yunnan journey without distracting from the booking section above.</p>
+                  <div class="mag-route-link-grid">
+                    <a href="/collections/shangri-la-private-tours">Browse Shangri-La private tours</a>
+                    <a href="/pages/shangri-la">Continue to the Shangri-La travel guide</a>
+                    <a href="/products/lijiang-to-shangri-la-private-tour">See the Lijiang to Shangri-La private tour</a>
+                    <a href="/collections/yunnan-private-tours">Browse Yunnan private tours</a>
+                    <a href="/pages/lijiang">Explore the Lijiang travel guide</a>
+                    <a href="/products/shangri-la-meili-napa-lake-5-day-luxury-tour">Compare with a longer Shangri-La luxury route</a>
+                  </div>
+                </section>
+              </div>
+            {% elsif is_meili_luxury_retreat %}
+              <div class="mag-supporting-notes" aria-label="Supporting trip information">
+                <section class="mag-supporting-note">
+                  <h3>Who This 3-Day Meili Luxury Retreat Is Best For</h3>
+                  <p>This retreat is best for travelers who want a focused premium journey around Meili Snow Mountain rather than a broader multi-stop Yunnan circuit. It suits couples, milestone travelers, photographers, and luxury-minded guests who value privacy, scenic atmosphere, and a shorter highland format with strong comfort standards.</p>
+                </section>
+                <section class="mag-supporting-note">
+                  <h3>Why 3 Days Works Well for Meili</h3>
+                  <p>Three days is usually enough for a concentrated Meili Snow Mountain experience because it gives you time for the key scenic rhythm without turning the trip into a wider route-heavy circuit. It is a strong fit when your priority is a refined mountain retreat with clear focus rather than covering many Yunnan destinations in one trip.</p>
+                </section>
+                <section class="mag-supporting-note">
+                  <h3>When to Choose This Retreat Instead of a Broader Route</h3>
+                  <p>Choose this retreat if you want a short-format luxury highland experience built around Meili itself. Choose a broader Yunnan or Shangri-La route if you want more destination variety, longer route coverage, or a trip shaped around multiple cities instead of a single scenic retreat base.</p>
+                </section>
+                <section class="mag-supporting-note mag-supporting-faq">
+                  <h3>FAQ</h3>
+                  <details>
+                    <summary>Who is this 3-day Meili luxury retreat best for?</summary>
+                    <p>It is best for luxury travelers who want a focused mountain retreat with privacy, premium pacing, and stronger scenic immersion rather than a long multi-stop route.</p>
+                  </details>
+                  <details>
+                    <summary>Is 3 days enough for a focused Meili Snow Mountain experience?</summary>
+                    <p>Yes. Three days is usually enough for a concentrated Meili experience if your goal is a short premium retreat rather than a broader Yunnan circuit.</p>
+                  </details>
+                  <details>
+                    <summary>How is this different from a longer Shangri-La luxury route?</summary>
+                    <p>This retreat is tighter and more focused on Meili itself, while a longer Shangri-La luxury route gives you broader regional coverage and more route variety.</p>
+                  </details>
+                  <details>
+                    <summary>Can this retreat be customized or extended?</summary>
+                    <p>Yes. The retreat can be adjusted or extended if you want to connect it with Shangri-La, Lijiang, or a wider luxury route through Yunnan.</p>
+                  </details>
+                </section>
+                <section class="mag-supporting-note mag-route-planning-links" aria-label="Related route planning">
+                  <h3>Continue Planning Around Meili and Shangri-La</h3>
+                  <p>Use these luxury and route pages to place this focused Meili retreat inside the wider Shangri-La and Yunnan planning cluster without distracting from the booking layer above.</p>
+                  <div class="mag-route-link-grid">
+                    <a href="/collections/yunnan-luxury-private-tours">Browse Yunnan luxury private tours</a>
+                    <a href="/products/shangri-la-meili-napa-lake-5-day-luxury-tour">Compare with a longer Shangri-La luxury route</a>
+                    <a href="/pages/shangri-la">Continue to the Shangri-La travel guide</a>
+                    <a href="/collections/shangri-la-private-tours">Browse Shangri-La private tours</a>
+                    <a href="/collections/yunnan-private-tours">Browse Yunnan private tours</a>
+                    <a href="/products/lijiang-to-shangri-la-private-tour">See the Lijiang to Shangri-La private tour</a>
                   </div>
                 </section>
               </div>

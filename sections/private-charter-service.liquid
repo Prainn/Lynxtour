@@ -1,3 +1,4 @@
+{% assign is_yunnan_private_car_charter = product.handle == 'yunnan-private-car-charter-tour' %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css">
 
 <style>
@@ -259,6 +260,142 @@
     color:#666;
     font-size:12px;
     line-height: 1.6;
+  }
+
+  .ota-lower-content{
+    max-width: 1200px;
+    margin: 34px auto 0;
+    padding: 0 0 56px;
+  }
+
+  .ota-lower-grid{
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.95fr);
+    gap: 24px;
+  }
+
+  .ota-content-card{
+    background: var(--dark-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.22);
+  }
+
+  .ota-content-card h2{
+    margin: 0 0 14px;
+    font-size: 28px;
+    line-height: 1.25;
+    color: #fff;
+  }
+
+  .ota-content-card h3{
+    margin: 24px 0 10px;
+    font-size: 19px;
+    line-height: 1.35;
+    color: #fff;
+  }
+
+  .ota-content-card p{
+    margin: 0 0 14px;
+    color: #cbcbcb;
+    font-size: 15px;
+    line-height: 1.85;
+  }
+
+  .ota-content-card p:last-child{
+    margin-bottom: 0;
+  }
+
+  .ota-service-points{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 20px;
+  }
+
+  .ota-service-point{
+    padding: 16px 18px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .ota-service-point strong{
+    display: block;
+    margin-bottom: 6px;
+    color: #fff;
+    font-size: 15px;
+  }
+
+  .ota-service-point span{
+    color: #bcbcbc;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .ota-faq-list{
+    display: grid;
+    gap: 12px;
+    margin-top: 18px;
+  }
+
+  .ota-faq-item{
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    background: rgba(255,255,255,0.02);
+    padding: 16px 18px;
+  }
+
+  .ota-faq-item summary{
+    cursor: pointer;
+    list-style: none;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.6;
+  }
+
+  .ota-faq-item summary::-webkit-details-marker{
+    display: none;
+  }
+
+  .ota-faq-item p{
+    margin: 10px 0 0;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .ota-link-card{
+    align-self: start;
+  }
+
+  .ota-link-card h2{
+    font-size: 22px;
+  }
+
+  .ota-link-list{
+    display: grid;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .ota-link-list a{
+    display: block;
+    padding: 12px 14px;
+    border-radius: 12px;
+    color: #f4d35e;
+    text-decoration: none;
+    background: rgba(212,177,6,0.06);
+    border: 1px solid rgba(212,177,6,0.18);
+    line-height: 1.55;
+    transition: background .2s, border-color .2s, transform .2s;
+  }
+
+  .ota-link-list a:hover{
+    background: rgba(212,177,6,0.11);
+    border-color: rgba(212,177,6,0.34);
+    transform: translateY(-1px);
   }
 
   .ota-btns-area{
@@ -1010,6 +1147,20 @@
       width: 100%;
       justify-content: space-between;
     }
+
+    .ota-lower-content{
+      margin-top: 24px;
+      padding: 0 15px 42px;
+    }
+
+    .ota-lower-grid,
+    .ota-service-points{
+      grid-template-columns: 1fr;
+    }
+
+    .ota-content-card{
+      padding: 24px;
+    }
   }
 </style>
 
@@ -1427,6 +1578,81 @@
 
   </div>
 </div>
+
+{% if is_yunnan_private_car_charter %}
+  <section class="ota-lower-content" aria-label="Yunnan private car charter planning guide">
+    <div class="ota-lower-grid">
+      <div class="ota-content-card">
+        <h2>What this Yunnan private car charter service is for</h2>
+        <p>A Yunnan private car charter is a flexible transport-first travel service for travelers who want a private vehicle, local driver support, and freedom to move between cities without joining a fixed group tour. Instead of following a rigid sightseeing schedule, you can use the charter for one-day moves, multi-day intercity travel, airport pickup combined with onward stops, or a custom route shaped around your own pace.</p>
+        <p>This service is especially useful for families, couples, small private groups, and photographers who want more comfort between destinations and less friction than piecing together trains, separate transfers, and local taxis. It also suits travelers who already know the cities they want to visit but need reliable route execution across Yunnan.</p>
+
+        <h3>When a private charter is better than joining a standard tour</h3>
+        <p>A charter works better when your priority is route freedom rather than a fixed sightseeing package. It gives you more control over pickup timing, stop duration, luggage handling, and the order of cities, which is often important for airport arrival days, family travel, scenic stopovers, and slower-paced trips between Kunming, Dali, Lijiang, and Shangri-La.</p>
+
+        <div class="ota-service-points" aria-label="Typical charter use cases">
+          <div class="ota-service-point">
+            <strong>Airport transfer plus multi-city route</strong>
+            <span>Start with airport pickup in Kunming or Lijiang, then continue directly into a wider Yunnan route without changing transport plans.</span>
+          </div>
+          <div class="ota-service-point">
+            <strong>Family or small-group intercity travel</strong>
+            <span>Travel together with luggage in one vehicle, with easier pacing for children, older travelers, or groups that want comfort between hotels.</span>
+          </div>
+          <div class="ota-service-point">
+            <strong>Custom pacing across core Yunnan cities</strong>
+            <span>Move between Kunming, Dali, Lijiang, and Shangri-La at your own speed instead of matching a standard group itinerary.</span>
+          </div>
+          <div class="ota-service-point">
+            <strong>Flexible scenic and photography stopovers</strong>
+            <span>Build in practical stop points for views, meals, and photo breaks on the way rather than treating each transfer day as dead travel time.</span>
+          </div>
+        </div>
+
+        <h3>Routes and city coverage</h3>
+        <p>This Yunnan car charter can be used for one-day point-to-point service or multi-day private travel, depending on your route, service days, and pickup plan. Common charter patterns include Kunming to Dali, Dali to Lijiang, Lijiang to Shangri-La, and longer custom combinations that connect the major cities in one trip. Pickup city can usually be matched to your arrival plan, and the charter can be combined with a broader custom Yunnan itinerary when needed.</p>
+
+        <h3>Quick FAQ</h3>
+        <div class="ota-faq-list">
+          <details class="ota-faq-item">
+            <summary>Is this a one-day service or a multi-day private charter?</summary>
+            <p>It can work as either. You can book a single service day for a transfer-focused route or use multiple service days for a longer private charter across Yunnan.</p>
+          </details>
+          <details class="ota-faq-item">
+            <summary>Can the pickup city be customized?</summary>
+            <p>Yes. Pickup can usually be arranged around your route and arrival plan, such as Kunming, Dali, Lijiang, or another practical starting point.</p>
+          </details>
+          <details class="ota-faq-item">
+            <summary>Can this be used between Kunming, Dali, Lijiang, and Shangri-La?</summary>
+            <p>Yes. Those cities are among the most common charter combinations, whether you need a direct transfer or a multi-city Yunnan route.</p>
+          </details>
+          <details class="ota-faq-item">
+            <summary>Is it suitable for families or small groups?</summary>
+            <p>Yes. This is one of the main use cases, especially when comfort, luggage space, and flexible stop timing matter more than a fixed group-tour schedule.</p>
+          </details>
+          <details class="ota-faq-item">
+            <summary>Can the charter be combined with a custom Yunnan itinerary?</summary>
+            <p>Yes. If you need more than transport, the charter can support a wider custom Yunnan route built around your dates, cities, and travel style.</p>
+          </details>
+        </div>
+      </div>
+
+      <aside class="ota-content-card ota-link-card" aria-label="Related Yunnan planning links">
+        <h2>Continue planning your route</h2>
+        <p>Use these pages to compare destination sequencing, route ideas, and broader private travel options across Yunnan without distracting from the booking section above.</p>
+        <div class="ota-link-list">
+          <a href="/collections/yunnan-private-tours">Browse Yunnan private tours</a>
+          <a href="/pages/kunming">Continue to the Kunming travel guide</a>
+          <a href="/pages/dali">Explore the Dali travel guide</a>
+          <a href="/pages/lijiang">Explore the Lijiang travel guide</a>
+          <a href="/pages/shangri-la">Continue to the Shangri-La travel guide</a>
+          <a href="/collections/yunnan-private-day-trips">Browse Yunnan private day trips</a>
+          <a href="/pages/bespoke-custom-travel">Plan a custom Yunnan route</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+{% endif %}
 
 {% render 'seo-product-jsonld', product: product, current_collection: collection %}
 
