@@ -461,9 +461,10 @@
   assign is_shangri_la_travel_guide = false
   assign is_cangshan_mountain_guide = false
   assign is_erhai_lake_guide = false
+  assign article_slug = article.handle | split: '/' | last
   assign dianchi_route_handles = 'kunming-highlights-1-day-tour-western-hills-dianchi-ethnic-village|kunming-provincial-museum-dounan-flower-market-1-day-private-tour|kunming-stone-forest-old-street-night-market-1-day-private-tour' | split: '|'
 
-  if article.handle == 'dianchi-lake-guide'
+  if article_slug == 'dianchi-lake-guide'
     assign is_dianchi_guide = true
     assign end_cta_eyebrow = 'Kunming Route Planning'
     assign end_cta_heading = 'Move from the Dianchi guide into the right Kunming route'
@@ -473,7 +474,7 @@
     assign end_cta_secondary_text = 'Browse Yunnan private tours'
     assign end_cta_secondary_link = '/collections/yunnan-private-tours'
     assign tour_list = blank
-  elsif article.handle == 'lijiang-travel-guide'
+  elsif article_slug == 'lijiang-travel-guide'
     assign is_lijiang_travel_guide = true
     assign end_cta_eyebrow = 'Lijiang Route Planning'
     assign end_cta_heading = 'Move from the Lijiang guide into the right route'
@@ -482,7 +483,7 @@
     assign end_cta_primary_link = '/collections/lijiang-private-tours'
     assign end_cta_secondary_text = 'Browse Yunnan private tours'
     assign end_cta_secondary_link = '/collections/yunnan-private-tours'
-  elsif article.handle == 'shangri-la-travel-guide'
+  elsif article_slug == 'shangri-la-travel-guide'
     assign is_shangri_la_travel_guide = true
     assign end_cta_eyebrow = 'Shangri-La Route Planning'
     assign end_cta_heading = 'Move from the Shangri-La guide into the right route'
@@ -491,7 +492,7 @@
     assign end_cta_primary_link = '/collections/shangri-la-private-tours'
     assign end_cta_secondary_text = 'Browse Yunnan private tours'
     assign end_cta_secondary_link = '/collections/yunnan-private-tours'
-  elsif article.handle == 'cangshan-mountain-guide'
+  elsif article_slug == 'cangshan-mountain-guide'
     assign is_cangshan_mountain_guide = true
     assign end_cta_eyebrow = 'Dali Attraction Planning'
     assign end_cta_heading = 'Move from the Cangshan guide into the right Dali route'
@@ -500,7 +501,7 @@
     assign end_cta_primary_link = '/collections/dali-private-tours'
     assign end_cta_secondary_text = 'Continue to the Dali travel guide'
     assign end_cta_secondary_link = '/pages/dali'
-  elsif article.handle == 'erhai-lake-guide'
+  elsif article_slug == 'erhai-lake-guide'
     assign is_erhai_lake_guide = true
     assign end_cta_eyebrow = 'Dali Attraction Planning'
     assign end_cta_heading = 'Move from the Erhai guide into the right Dali route'
