@@ -50,35 +50,12 @@
           </div>
         {% endif %}
 
-        {% if is_dali_private_tours %}
-          <div class="coll-hero-actions">
-            <a href="#CollectionGrid-{{ section.id }}" class="coll-hero-btn primary">Compare Dali Routes</a>
-            <a href="/pages/bespoke-custom-travel" class="coll-hero-btn secondary">Plan a Custom Dali Trip</a>
-          </div>
-        {% endif %}
       </div>
     </div>
   </header>
 
   <!-- 2) LIST -->
   <div class="coll-container">
-    <div class="coll-meta-bar">
-      <div class="meta-left">
-        <span class="meta-number">{{ collection.products_count }}</span>
-        <span class="meta-label">Selected Experiences</span>
-      </div>
-      <div class="meta-divider"></div>
-      <div class="meta-right">
-        <span class="meta-location">
-          {% if is_dali_private_tours %}
-            DALI / YUNNAN
-          {% else %}
-            {{ section.settings.location_text }}
-          {% endif %}
-        </span>
-      </div>
-    </div>
-
     {% paginate collection.products by section.settings.page_size %}
 
       {% if is_dali_private_tours and paginate.current_page == 1 %}
@@ -92,6 +69,23 @@
           </div>
         </section>
       {% endif %}
+
+      <div class="coll-meta-bar">
+        <div class="meta-left">
+          <span class="meta-number">{{ collection.products_count }}</span>
+          <span class="meta-label">Selected Experiences</span>
+        </div>
+        <div class="meta-divider"></div>
+        <div class="meta-right">
+          <span class="meta-location">
+            {% if is_dali_private_tours %}
+              DALI / YUNNAN
+            {% else %}
+              {{ section.settings.location_text }}
+            {% endif %}
+          </span>
+        </div>
+      </div>
 
       <div class="compact-grid" data-cols="{{ section.settings.desktop_cols }}" id="CollectionGrid-{{ section.id }}">
         {% for product in collection.products %}

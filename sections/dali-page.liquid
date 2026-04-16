@@ -638,30 +638,6 @@
         </div>
       {% endif %}
 
-      {% assign has_header_actions = false %}
-      {% if section.settings.quick_primary_label != blank and section.settings.quick_primary_url != blank %}
-        {% assign has_header_actions = true %}
-      {% endif %}
-      {% if section.settings.quick_secondary_label != blank and section.settings.quick_secondary_url != blank %}
-        {% assign has_header_actions = true %}
-      {% endif %}
-      {% if section.settings.whatsapp_label != blank and section.settings.whatsapp_url != blank %}
-        {% assign has_header_actions = true %}
-      {% endif %}
-
-      {% if has_header_actions %}
-        <div class="dali-header-actions">
-          {% if section.settings.quick_primary_label != blank and section.settings.quick_primary_url != blank %}
-            <a href="{{ section.settings.quick_primary_url }}" class="dali-quick-btn primary">{{ section.settings.quick_primary_label }}</a>
-          {% endif %}
-          {% if section.settings.whatsapp_label != blank and section.settings.whatsapp_url != blank %}
-            <a href="{{ section.settings.whatsapp_url }}" class="dali-quick-btn secondary" target="_blank" rel="noopener">{{ section.settings.whatsapp_label }}</a>
-          {% endif %}
-          {% if section.settings.quick_secondary_label != blank and section.settings.quick_secondary_url != blank %}
-            <a href="{{ section.settings.quick_secondary_url }}" class="dali-quick-btn tertiary">{{ section.settings.quick_secondary_label }}</a>
-          {% endif %}
-        </div>
-      {% endif %}
     </header>
 
     {% if info_blocks.size > 0 %}

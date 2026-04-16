@@ -621,17 +621,6 @@
         </div>
       {% endif %}
 
-      <div class="sr-header-actions">
-        {% if section.settings.cta_primary_label != blank and section.settings.cta_primary_url != blank %}
-          <a href="{{ section.settings.cta_primary_url }}" class="sr-top-btn primary">{{ section.settings.cta_primary_label }}</a>
-        {% endif %}
-        {% if section.settings.whatsapp_label != blank and whatsapp_url != blank %}
-          <a href="{{ whatsapp_url }}" class="sr-top-btn whatsapp" target="_blank" rel="noopener">{{ section.settings.whatsapp_label }}</a>
-        {% endif %}
-        {% if section.settings.cta_secondary_label != blank and section.settings.cta_secondary_url != blank %}
-          <a href="{{ section.settings.cta_secondary_url }}" class="sr-top-btn secondary">{{ section.settings.cta_secondary_label }}</a>
-        {% endif %}
-      </div>
     </header>
 
     {% if info_blocks.size > 0 %}

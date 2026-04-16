@@ -51,23 +51,6 @@
   </header>
 
   <div class="coll-container">
-    <div class="coll-meta-bar">
-      <div class="meta-left">
-        <span class="meta-number">{{ collection.products_count }}</span>
-        <span class="meta-label">Selected Experiences</span>
-      </div>
-      <div class="meta-divider"></div>
-      <div class="meta-right">
-        <span class="meta-location">
-          {% if is_shangrila_private_tours %}
-            SHANGRI-LA / YUNNAN
-          {% else %}
-            YUNNAN / CHINA
-          {% endif %}
-        </span>
-      </div>
-    </div>
-
     {% paginate collection.products by 12 %}
 
       {% if is_shangrila_private_tours and paginate.current_page == 1 %}
@@ -84,6 +67,23 @@
           </div>
         </section>
       {% endif %}
+
+      <div class="coll-meta-bar">
+        <div class="meta-left">
+          <span class="meta-number">{{ collection.products_count }}</span>
+          <span class="meta-label">Selected Experiences</span>
+        </div>
+        <div class="meta-divider"></div>
+        <div class="meta-right">
+          <span class="meta-location">
+            {% if is_shangrila_private_tours %}
+              SHANGRI-LA / YUNNAN
+            {% else %}
+              YUNNAN / CHINA
+            {% endif %}
+          </span>
+        </div>
+      </div>
 
       <div class="compact-grid" data-cols="3">
         {% for product in collection.products %}

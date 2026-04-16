@@ -832,34 +832,11 @@
           </div>
         {% endif %}
 
-        {% if is_lijiang_private_tours %}
-          <div class="coll-hero-actions">
-            <a href="#CollectionGrid" class="coll-hero-btn primary">Compare Lijiang Routes</a>
-            <a href="/pages/bespoke-custom-travel" class="coll-hero-btn secondary">Plan a Custom Lijiang Trip</a>
-          </div>
-        {% endif %}
       </div>
     </div>
   </header>
 
   <div class="coll-container">
-    <div class="coll-meta-bar">
-      <div class="meta-left">
-        <span class="meta-number">{{ collection.products_count }}</span>
-        <span class="meta-label">Selected Experiences</span>
-      </div>
-      <div class="meta-divider"></div>
-      <div class="meta-right">
-        <span class="meta-location">
-          {% if is_lijiang_private_tours %}
-            Lijiang, Yunnan
-          {% else %}
-            Yunnan, China
-          {% endif %}
-        </span>
-      </div>
-    </div>
-
     {% paginate collection.products by 12 %}
 
       {% if is_lijiang_private_tours and paginate.current_page == 1 %}
@@ -873,6 +850,23 @@
           </div>
         </section>
       {% endif %}
+
+      <div class="coll-meta-bar">
+        <div class="meta-left">
+          <span class="meta-number">{{ collection.products_count }}</span>
+          <span class="meta-label">Selected Experiences</span>
+        </div>
+        <div class="meta-divider"></div>
+        <div class="meta-right">
+          <span class="meta-location">
+            {% if is_lijiang_private_tours %}
+              Lijiang, Yunnan
+            {% else %}
+              Yunnan, China
+            {% endif %}
+          </span>
+        </div>
+      </div>
 
       <div class="compact-grid" id="CollectionGrid">
         {% for product in collection.products %}
