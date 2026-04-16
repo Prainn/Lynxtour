@@ -234,7 +234,8 @@
                   <input type="hidden" name="contact[Budget]" id="hidden-budget">
                   <input type="hidden" name="contact[Destinations]" id="hidden-destinations">
                   <input type="hidden" name="contact[Style_Interests]" id="hidden-interests">
-                  <textarea style="display:none;" name="contact[AI_Generated_Plan]" id="hidden-ai-result"></textarea>
+                  <input type="hidden" name="contact[AI_Preview_Status]" id="hidden-ai-status">
+                  <textarea style="display:none;" name="contact[AI_Preview_Content]" id="hidden-ai-result"></textarea>
 
                   <button
                     type="submit"
@@ -402,28 +403,29 @@
 
   @media (max-width: 767px) {
     .itinerary-ai-section {
-  position: relative;
-  background-color: #0a0a0a;
-  padding: 120px 0;
-  overflow: hidden;
-  scroll-margin-top: calc(var(--slogan-h, 0px) + var(--nav-h, 90px));
-}
-
-@media (max-width: 767px) {
-  .itinerary-ai-section {
-    padding: calc(env(safe-area-inset-top, 0px) + var(--slogan-h, 0px) + var(--nav-h, 90px) + 32px) 0 84px;
-    scroll-margin-top: calc(env(safe-area-inset-top, 0px) + var(--slogan-h, 0px) + var(--nav-h, 90px) + 16px);
+      position: relative;
+      background-color: #0a0a0a;
+      padding: 120px 0;
+      overflow: hidden;
+      scroll-margin-top: calc(var(--slogan-h, 0px) + var(--nav-h, 90px));
+    }
   }
 
-  .section-header {
-    margin-bottom: 48px;
-  }
+  @media (max-width: 767px) {
+    .itinerary-ai-section {
+      padding: calc(env(safe-area-inset-top, 0px) + var(--slogan-h, 0px) + var(--nav-h, 90px) + 32px) 0 84px;
+      scroll-margin-top: calc(env(safe-area-inset-top, 0px) + var(--slogan-h, 0px) + var(--nav-h, 90px) + 16px);
+    }
 
-  .section-main-title {
-    letter-spacing: 0.22em;
-    line-height: 1.4;
+    .section-header {
+      margin-bottom: 48px;
+    }
+
+    .section-main-title {
+      letter-spacing: 0.22em;
+      line-height: 1.4;
+    }
   }
-}
 </style>
 
 <script>
@@ -448,9 +450,11 @@ document.addEventListener('DOMContentLoaded', function () {
   const hiddenBudget = document.getElementById('hidden-budget');
   const hiddenDestinations = document.getElementById('hidden-destinations');
   const hiddenInterests = document.getElementById('hidden-interests');
+  const hiddenAiStatus = document.getElementById('hidden-ai-status');
   const hiddenAiResult = document.getElementById('hidden-ai-result');
 
   let latestAiPlainText = '';
+  let aiPreviewStatus = 'Not generated';
 
   if (window.flatpickr && dateInput) {
     flatpickr(dateInput, {
@@ -538,7 +542,13 @@ document.addEventListener('DOMContentLoaded', function () {
     if (hiddenBudget) hiddenBudget.value = fd.get('budget') || '';
     if (hiddenDestinations) hiddenDestinations.value = fd.get('destinations') || 'Not specified';
     if (hiddenInterests) hiddenInterests.value = activeTags || 'None';
-    if (hiddenAiResult) hiddenAiResult.value = latestAiPlainText || 'No AI preview generated.';
+    if (hiddenAiStatus) hiddenAiStatus.value = aiPreviewStatus;
+
+    if (hiddenAiResult) {
+      hiddenAiResult.value = aiPreviewStatus === 'Generated'
+        ? latestAiPlainText
+        : '';
+    }
   }
 
   function showDisplay() {
@@ -661,7 +671,8 @@ document.addEventListener('DOMContentLoaded', function () {
       '- We return a tailored suggestion and quotation'
     ].join('\n');
 
-    latestAiPlainText = fallbackText;
+    latestAiPlainText = '';
+    aiPreviewStatus = 'Unavailable';
 
     if (resultEl) {
       resultEl.innerHTML = markdownToSafeHtml(fallbackText);
@@ -672,13 +683,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function renderResult(text) {
     latestAiPlainText = text;
+    aiPreviewStatus = 'Generated';
 
     if (resultEl) {
       resultEl.innerHTML = markdownToSafeHtml(text);
-    }
-
-    if (hiddenAiResult) {
-      hiddenAiResult.value = latestAiPlainText;
     }
 
     syncHiddenFields();
@@ -737,20 +745,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (skipAiBtn) {
     skipAiBtn.addEventListener('click', function () {
-      const fd = new FormData(form);
-      const activeTags = getActiveTags();
-
-      latestAiPlainText = [
-        'User chose to skip AI preview and request a specialist directly.',
-        '',
-        'Trip Summary:',
-        '- Duration: ' + (fd.get('duration') || '7') + ' days',
-        '- Arrival Date: ' + (fd.get('travel_date') || 'Not set'),
-        '- Travelers: ' + (fd.get('travelers') || 'Couple'),
-        '- Budget: ' + (fd.get('budget') || 'Not Sure Yet'),
-        '- Destinations: ' + (fd.get('destinations') || 'Not specified'),
-        '- Interests: ' + (activeTags || 'None')
-      ].join('\n');
+      latestAiPlainText = '';
+      aiPreviewStatus = 'Skipped by traveler';
 
       syncHiddenFields();
       scrollToContact();
