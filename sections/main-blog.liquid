@@ -321,75 +321,91 @@
       <div class="blog-grid" style="--desktop-cols: {{ section.settings.columns_desktop }};">
         
         {% for article in blog.articles %}
-          {% capture article_search_text %}
-            {{ article.title }}
-            {{ article.excerpt_or_content | strip_html }}
-            {% for tag in article.tags %} {{ tag }} {% endfor %}
-          {% endcapture %}
+          {% liquid
+            assign article_slug = article.handle | split: '/' | last
+            assign suppress_article_card = false
 
-          <div
-            class="blog-card"
-            data-blog-card
-            data-search="{{ article_search_text | strip | escape }}"
-            data-title="{{ article.title | escape }}"
-            data-url="{{ article.url }}"
-          >
-            {% if article.image %}
-              <a href="{{ article.url }}" class="blog-img-wrapper">
-                <img src="{{ article.image | img_url: '800x' }}" alt="{{ article.image.alt | escape }}">
-              </a>
-            {% endif %}
-            
-            <div class="blog-content">
-              {% for block in section.blocks %}
-                {% case block.type %}
-                  
-                  {% when 'date' %}
-                    <div class="blog-date" {{ block.shopify_attributes }}>
-                      {{ article.published_at | date: "%B %d, %Y" }}
-                    </div>
+            case article_slug
+              when 'jade-dragon-snow-mountain-travel-guide'
+                assign suppress_article_card = true
+              when 'lijiang-old-town-travel-guide'
+                assign suppress_article_card = true
+              when 'dali-old-town-travel-guide'
+                assign suppress_article_card = true
+            endcase
+          %}
 
-                  {% when 'title' %}
-                    <h2 class="blog-title" {{ block.shopify_attributes }}>
-                      <a href="{{ article.url }}">{{ article.title }}</a>
-                    </h2>
-                  
-                  {% when 'summary' %}
-                    <div class="blog-excerpt" {{ block.shopify_attributes }}>
-                      {{ article.excerpt_or_content | strip_html | truncatewords: 20 }}
-                    </div>
-                  
-                  {% when 'button' %}
-                    {% liquid
-                      assign card_cta_text = block.settings.btn_text
+          {% unless suppress_article_card %}
+            {% capture article_search_text %}
+              {{ article.title }}
+              {{ article.excerpt_or_content | strip_html }}
+              {% for tag in article.tags %} {{ tag }} {% endfor %}
+            {% endcapture %}
 
-                      if section.settings.card_cta_mode == 'custom'
-                        if section.settings.card_cta_custom_text != blank
-                          assign card_cta_text = section.settings.card_cta_custom_text
+            <div
+              class="blog-card"
+              data-blog-card
+              data-search="{{ article_search_text | strip | escape }}"
+              data-title="{{ article.title | escape }}"
+              data-url="{{ article.url }}"
+            >
+              {% if article.image %}
+                <a href="{{ article.url }}" class="blog-img-wrapper">
+                  <img src="{{ article.image | img_url: '800x' }}" alt="{{ article.image.alt | escape }}">
+                </a>
+              {% endif %}
+              
+              <div class="blog-content">
+                {% for block in section.blocks %}
+                  {% case block.type %}
+                    
+                    {% when 'date' %}
+                      <div class="blog-date" {{ block.shopify_attributes }}>
+                        {{ article.published_at | date: "%B %d, %Y" }}
+                      </div>
+
+                    {% when 'title' %}
+                      <h2 class="blog-title" {{ block.shopify_attributes }}>
+                        <a href="{{ article.url }}">{{ article.title }}</a>
+                      </h2>
+                    
+                    {% when 'summary' %}
+                      <div class="blog-excerpt" {{ block.shopify_attributes }}>
+                        {{ article.excerpt_or_content | strip_html | truncatewords: 20 }}
+                      </div>
+                    
+                    {% when 'button' %}
+                      {% liquid
+                        assign card_cta_text = block.settings.btn_text
+
+                        if section.settings.card_cta_mode == 'custom'
+                          if section.settings.card_cta_custom_text != blank
+                            assign card_cta_text = section.settings.card_cta_custom_text
+                          endif
+                        elsif section.settings.card_cta_mode == 'dynamic'
+                          assign clean_title = article.title
+                          assign clean_title = clean_title | remove: 'Travel Guide' | remove: 'travel guide' | remove: 'Guide' | remove: 'guide' | strip
+                          assign card_cta_text = section.settings.card_cta_prefix | append: ' ' | append: clean_title
+
+                          if section.settings.card_cta_suffix != blank
+                            assign card_cta_text = card_cta_text | append: ' ' | append: section.settings.card_cta_suffix
+                          endif
                         endif
-                      elsif section.settings.card_cta_mode == 'dynamic'
-                        assign clean_title = article.title
-                        assign clean_title = clean_title | remove: 'Travel Guide' | remove: 'travel guide' | remove: 'Guide' | remove: 'guide' | strip
-                        assign card_cta_text = section.settings.card_cta_prefix | append: ' ' | append: clean_title
 
-                        if section.settings.card_cta_suffix != blank
-                          assign card_cta_text = card_cta_text | append: ' ' | append: section.settings.card_cta_suffix
+                        if card_cta_text == blank
+                          assign card_cta_text = 'Read More'
                         endif
-                      endif
-
-                      if card_cta_text == blank
-                        assign card_cta_text = 'Read More'
-                      endif
-                    %}
-                    <div class="btn-container" {{ block.shopify_attributes }}>
-                      <a href="{{ article.url }}" class="btn-read-more" aria-label="{{ card_cta_text | escape }}">
-                        {{ card_cta_text }}
-                      </a>
-                    </div>
-                {% endcase %}
-              {% endfor %}
+                      %}
+                      <div class="btn-container" {{ block.shopify_attributes }}>
+                        <a href="{{ article.url }}" class="btn-read-more" aria-label="{{ card_cta_text | escape }}">
+                          {{ card_cta_text }}
+                        </a>
+                      </div>
+                  {% endcase %}
+                {% endfor %}
+              </div>
             </div>
-          </div>
+          {% endunless %}
         {% endfor %}
       </div>
 
