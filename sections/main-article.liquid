@@ -457,12 +457,25 @@
   assign end_cta_secondary_link = article.metafields.custom.end_cta_secondary_link.value | default: section.settings.end_cta_secondary_link
   assign tour_list = article.metafields.custom.recommended_tour.value
   assign is_dianchi_guide = false
+  assign is_kunming_day_trip_guide = false
+  assign is_kunming_city_walk_guide = false
+  assign is_dali_old_town_day_trip_guide = false
   assign is_lijiang_travel_guide = false
   assign is_shangri_la_travel_guide = false
   assign is_cangshan_mountain_guide = false
   assign is_erhai_lake_guide = false
   assign article_slug = article.handle | split: '/' | last
+  assign article_structured_canonical_url = canonical_url
   assign dianchi_route_handles = 'kunming-highlights-1-day-tour-western-hills-dianchi-ethnic-village|kunming-provincial-museum-dounan-flower-market-1-day-private-tour|kunming-stone-forest-old-street-night-market-1-day-private-tour' | split: '|'
+
+  case article_slug
+    when 'jade-dragon-snow-mountain-travel-guide'
+      assign article_structured_canonical_url = shop.secure_url | append: '/blogs/travel-guides/jade-dragon-snow-mountain-guide'
+    when 'lijiang-old-town-travel-guide'
+      assign article_structured_canonical_url = shop.secure_url | append: '/blogs/travel-guides/lijiang-old-town-guide'
+    when 'dali-old-town-travel-guide'
+      assign article_structured_canonical_url = shop.secure_url | append: '/blogs/day-trips/dali-old-town-day-trip-guide'
+  endcase
 
   if article_slug == 'dianchi-lake-guide'
     assign is_dianchi_guide = true
@@ -473,6 +486,36 @@
     assign end_cta_primary_link = '/collections/yunnan-private-day-trips'
     assign end_cta_secondary_text = 'Browse Yunnan private tours'
     assign end_cta_secondary_link = '/collections/yunnan-private-tours'
+    assign tour_list = blank
+  elsif article_slug == 'kunming-day-trip-guide'
+    assign is_kunming_day_trip_guide = true
+    assign end_cta_eyebrow = 'Kunming Day Planning'
+    assign end_cta_heading = 'Move from the Kunming day-trip guide into the right next route'
+    assign end_cta_text = "This route is strongest when you want one well-paced Kunming day that balances Dianchi, old-city atmosphere, and the city's most useful first-visit landmarks. Start with the clearest Kunming day-trip options first, then widen into longer Yunnan planning only if Kunming is one stop inside a broader journey."
+    assign end_cta_primary_text = 'Explore a Kunming highlights private day trip'
+    assign end_cta_primary_link = '/products/kunming-highlights-1-day-tour-western-hills-dianchi-ethnic-village'
+    assign end_cta_secondary_text = 'Continue to the Kunming travel guide'
+    assign end_cta_secondary_link = '/pages/kunming'
+    assign tour_list = blank
+  elsif article_slug == 'kunming-city-walk-guide'
+    assign is_kunming_city_walk_guide = true
+    assign end_cta_eyebrow = 'Kunming City Planning'
+    assign end_cta_heading = 'Move from the Kunming city walk guide into the right city route'
+    assign end_cta_text = 'This guide is strongest when you want Kunming at street level through old streets, markets, food stops, and a slower urban rhythm. Start with the city walk if you want a more local first impression, then compare fuller Kunming day planning only if you need a broader city route or transport support.'
+    assign end_cta_primary_text = 'Explore a Kunming old street day route'
+    assign end_cta_primary_link = '/products/kunming-stone-forest-old-street-night-market-1-day-private-tour'
+    assign end_cta_secondary_text = 'Continue to the Kunming travel guide'
+    assign end_cta_secondary_link = '/pages/kunming'
+    assign tour_list = blank
+  elsif article_slug == 'dali-old-town-day-trip-guide'
+    assign is_dali_old_town_day_trip_guide = true
+    assign end_cta_eyebrow = 'Dali Day Planning'
+    assign end_cta_heading = 'Move from the Dali Old Town day-trip guide into the right Dali route'
+    assign end_cta_text = 'This guide is strongest when you want Dali Old Town as a slower scenic day with local food, Bai craft, and old-town atmosphere at the center. Use it as the old-town side of a 2-day or 3-day Dali stay, then compare how it fits with lake, mountain, and onward Yunnan route planning.'
+    assign end_cta_primary_text = 'Continue to the Dali travel guide'
+    assign end_cta_primary_link = '/pages/dali'
+    assign end_cta_secondary_text = 'Browse Dali private tours'
+    assign end_cta_secondary_link = '/collections/dali-private-tours'
     assign tour_list = blank
   elsif article_slug == 'lijiang-travel-guide'
     assign is_lijiang_travel_guide = true
@@ -552,6 +595,24 @@
         <p>Dianchi Lake is Kunming's best-known lakeside escape, valued for wide water views, easy shoreline walks, and the seasonal arrival of black-headed gulls. It is worth visiting because it shows the softer, more open side of Kunming and works well for scenic pacing, photography, and a gentler city day.</p>
         <p>For most travelers, the best season is late autumn through early spring, especially from November to March when the gulls are most associated with the lakefront experience. Dianchi is usually not a standalone destination, so travelers often <a href="/products/kunming-highlights-1-day-tour-western-hills-dianchi-ethnic-village">add Dianchi Lake to a Kunming private trip</a>, <a href="/collections/yunnan-private-day-trips">see Yunnan private day trips</a>, or <a href="/collections/yunnan-private-tours">browse Yunnan private tours</a> before continuing deeper into Yunnan.</p>
       </section>
+    {% elsif is_kunming_day_trip_guide %}
+      <section class="article-guide-brief">
+        <p class="article-guide-brief__eyebrow">KUNMING FULL-DAY GUIDE</p>
+        <p>This Kunming day-trip guide is built as a full first-visit city day rather than a slower neighborhood walk. It suits travelers who want one efficient route that connects Dianchi, Yunnan Nationalities Village, Green Lake, and Old Street without losing the overall shape of the city.</p>
+        <p>For most first-time visitors, it works well because it combines Kunming's lakeside side, cultural stop value, and old-city atmosphere in one practical plan. Travelers comparing route styles can <a href="/pages/kunming">continue to the Kunming travel guide</a>, <a href="/blogs/travel-guides/dianchi-lake-guide">explore the Dianchi Lake guide</a>, or <a href="/blogs/travel-guides/kunming-city-walk-guide">compare with a Kunming city walk route</a> before deciding whether to keep the day broad or make it slower.</p>
+      </section>
+    {% elsif is_kunming_city_walk_guide %}
+      <section class="article-guide-brief">
+        <p class="article-guide-brief__eyebrow">KUNMING CITY WALK GUIDE</p>
+        <p>This Kunming city walk guide is for travelers who want to understand the city through its older streets, markets, food rhythm, and everyday urban atmosphere rather than through a broader cross-city sightseeing day. It suits travelers who prefer to experience Kunming on foot, with more time for neighborhood texture and local pacing.</p>
+        <p>For first-time visitors, it works especially well as a softer way to enter Kunming before deciding whether to keep the stay city-focused or widen into a fuller day route. Travelers comparing route styles can <a href="/pages/kunming">continue to the Kunming travel guide</a>, <a href="/blogs/day-trips/kunming-day-trip-guide">compare a fuller Kunming day-trip route</a>, or use the city walk as the slower half of a wider Kunming plan.</p>
+      </section>
+    {% elsif is_dali_old_town_day_trip_guide %}
+      <section class="article-guide-brief">
+        <p class="article-guide-brief__eyebrow">DALI OLD TOWN DAY GUIDE</p>
+        <p>This Dali Old Town day-trip guide is built for travelers who want a slower scenic day shaped around old-town atmosphere, local food, Bai craft, and easy walking rather than a rushed checklist route. It suits visitors who want to let Dali unfold at a gentler pace while still keeping the day purposeful.</p>
+        <p>For most travelers, it works best as a half-day to full-day old-town focus inside a 2-day or 3-day Dali stay. It is especially useful as the slower cultural side of Dali before travelers <a href="/pages/dali">continue to the Dali travel guide</a>, <a href="/pages/dali-itinerary-2-days">compare 2-day and 3-day Dali itinerary ideas</a>, or widen the stay toward mountain, lake, and onward route planning.</p>
+      </section>
     {% elsif is_lijiang_travel_guide %}
       <section class="article-guide-brief">
         <p class="article-guide-brief__eyebrow">LIJIANG DESTINATION GUIDE</p>
@@ -612,6 +673,90 @@
         <details>
           <summary>Is a private charter useful for visiting Dianchi and nearby attractions?</summary>
           <p>Yes. A private charter can be useful if you want flexible timing, multiple Kunming stops in one day, or a smooth connection from Dianchi into a wider Yunnan journey.</p>
+        </details>
+      </section>
+    {% elsif is_kunming_day_trip_guide %}
+      <section class="article-planning-note">
+        <p class="article-planning-note__eyebrow">ROUTE PLANNING</p>
+        <h2>How to Use This Kunming Day Trip as a First-Visit Anchor Route</h2>
+        <p>This guide is strongest when you want one full Kunming day that covers the city's clearest first-visit priorities without turning the route into a slow single-area walk. If you want the broader city context first, <a href="/pages/kunming">continue to the Kunming travel guide</a>. If the lakeside portion is your main priority, <a href="/blogs/travel-guides/dianchi-lake-guide">explore the Dianchi Lake guide</a>. If you prefer a more local and walkable rhythm, <a href="/blogs/travel-guides/kunming-city-walk-guide">compare with a Kunming city walk route</a>.</p>
+        <p>If you want transport support and a smoother full-day structure, <a href="/products/kunming-highlights-1-day-tour-western-hills-dianchi-ethnic-village">explore a Kunming highlights private day trip</a>, <a href="/collections/yunnan-private-day-trips">see Yunnan private day trips</a>, <a href="/products/yunnan-private-car-charter-tour">plan a flexible Yunnan private car charter</a>, or <a href="/collections/yunnan-private-tours">browse Yunnan private tours</a> if Kunming is only the opening stop inside a wider route.</p>
+      </section>
+
+      <section class="article-guide-faq">
+        <p class="article-guide-faq__eyebrow">FAQ</p>
+        <h2>Quick Kunming Day-Trip Planning Questions</h2>
+        <details>
+          <summary>Is one day enough for Kunming?</summary>
+          <p>Yes, if you keep the route focused. One day is enough for a practical first introduction to Kunming, especially when you balance Dianchi, a cultural stop, and old-city atmosphere instead of trying to see every district.</p>
+        </details>
+        <details>
+          <summary>Is this better than a city walk for first-time visitors?</summary>
+          <p>Usually yes if you want a broader first impression of Kunming. A city walk is stronger for a slower urban feel, while this route is stronger for travelers who want lakeside, cultural, and old-street elements in one day.</p>
+        </details>
+        <details>
+          <summary>Can this route be combined with Dianchi and Old Street?</summary>
+          <p>Yes. That is one of the main reasons this guide works so well for first-time visitors: it gives Dianchi and Old Street a more coherent place inside a full Kunming day.</p>
+        </details>
+        <details>
+          <summary>Is a private charter useful for a full Kunming day?</summary>
+          <p>Yes. A private charter is useful if you want more control over timing, less friction between city stops, and an easier way to connect Kunming with the next leg of a wider Yunnan route.</p>
+        </details>
+      </section>
+    {% elsif is_kunming_city_walk_guide %}
+      <section class="article-planning-note">
+        <p class="article-planning-note__eyebrow">ROUTE PLANNING</p>
+        <h2>How to Use This Kunming City Walk Inside a Wider Kunming Stay</h2>
+        <p>This guide is strongest when you want Kunming through walkable streets, market texture, and food-led city atmosphere rather than through a broader sightseeing circuit. If you want the wider destination context first, <a href="/pages/kunming">continue to the Kunming travel guide</a>. If you need a bigger first-visit route with more city coverage, <a href="/blogs/day-trips/kunming-day-trip-guide">compare a fuller Kunming day-trip route</a>.</p>
+        <p>If you want the city walk to sit inside a larger Kunming or Yunnan plan, <a href="/products/kunming-stone-forest-old-street-night-market-1-day-private-tour">explore a Kunming old street day route</a>, <a href="/collections/yunnan-private-day-trips">see Yunnan private day trips</a>, <a href="/products/yunnan-private-car-charter-tour">plan a flexible Yunnan private car charter</a>, or <a href="/collections/yunnan-private-tours">browse Yunnan private tours</a> when Kunming is only one stop inside a wider route.</p>
+      </section>
+
+      <section class="article-guide-faq">
+        <p class="article-guide-faq__eyebrow">FAQ</p>
+        <h2>Quick Kunming City Walk Planning Questions</h2>
+        <details>
+          <summary>How many hours do I need for a Kunming city walk?</summary>
+          <p>Most travelers need at least a half day for the core walk, and longer if they want time for food stops, slower market browsing, and a more relaxed old-street pace.</p>
+        </details>
+        <details>
+          <summary>Is this route better as a half-day walk or a full city day?</summary>
+          <p>It can work as either, but it is strongest as the slower half of a Kunming day or as a dedicated urban day if you want the city itself, rather than wider landmark coverage, to be the main focus.</p>
+        </details>
+        <details>
+          <summary>Can this citywalk be combined with Dianchi or Green Lake?</summary>
+          <p>Yes. It combines especially well with Green Lake and can also be folded into a wider Kunming day that includes Dianchi if you are comfortable with a fuller schedule and more transitions.</p>
+        </details>
+        <details>
+          <summary>Is this route good for first-time Kunming visitors?</summary>
+          <p>Yes. It is a strong first-time option for travelers who want Kunming's street life, food rhythm, and older-city feel, though some travelers may prefer to compare it with a fuller city day first.</p>
+        </details>
+      </section>
+    {% elsif is_dali_old_town_day_trip_guide %}
+      <section class="article-planning-note">
+        <p class="article-planning-note__eyebrow">ROUTE PLANNING</p>
+        <h2>How to Use Dali Old Town Inside a Wider Dali Stay</h2>
+        <p>This guide is strongest when you want Dali Old Town as the slower cultural and atmospheric part of the destination rather than as a rushed stop squeezed between larger scenic landmarks. If you want the broader destination context first, <a href="/pages/dali">continue to the Dali travel guide</a>. If you are deciding how much time to hold around the town, <a href="/pages/dali-itinerary-2-days">compare 2-day and 3-day Dali itinerary ideas</a> before choosing the pace that fits your stay.</p>
+        <p>Dali Old Town pairs especially well with <a href="/blogs/travel-guides/cangshan-mountain-guide">the Cangshan Mountain guide</a> and <a href="/blogs/travel-guides/erhai-lake-guide">the Erhai Lake guide</a>. If the old town is one stop inside a broader route, you can also <a href="/collections/dali-private-tours">browse Dali private tours</a>, <a href="/pages/dali-to-lijiang-private-tour">explore the Dali to Lijiang private tour</a>, or <a href="/collections/yunnan-private-tours">browse Yunnan private tours</a> to place the day more clearly inside a wider Yunnan journey.</p>
+      </section>
+
+      <section class="article-guide-faq">
+        <p class="article-guide-faq__eyebrow">FAQ</p>
+        <h2>Quick Dali Old Town Planning Questions</h2>
+        <details>
+          <summary>Is Dali Old Town best as a half-day or full-day stop?</summary>
+          <p>It can work as either, but for many travelers Dali Old Town is strongest as a slower half day or an easy full day when food stops, walking, and local craft browsing matter as much as sightseeing itself.</p>
+        </details>
+        <details>
+          <summary>What pairs best with Dali Old Town?</summary>
+          <p>Cangshan Mountain, Erhai Lake, easy village stops, and a slower Dali evening rhythm pair especially well with Dali Old Town because they create a more balanced city, lake, and mountain stay.</p>
+        </details>
+        <details>
+          <summary>Is this route good for first-time Dali visitors?</summary>
+          <p>Yes. It is a strong first-time Dali route for travelers who want to understand the destination's atmosphere, food rhythm, and everyday pace before widening into bigger scenic coverage.</p>
+        </details>
+        <details>
+          <summary>Can Dali Old Town fit inside a wider Yunnan route?</summary>
+          <p>Yes. Dali Old Town often works as the cultural and slower-paced part of a broader Yunnan route, especially for travelers continuing toward Lijiang or shaping a wider western Yunnan journey.</p>
         </details>
       </section>
     {% elsif is_lijiang_travel_guide %}
@@ -776,7 +921,7 @@
       </section>
     {% endif %}
 
-    {% if is_dianchi_guide %}
+    {% if is_dianchi_guide or is_kunming_day_trip_guide %}
   <h3 style="color: #D4AF37; margin-top: 60px; margin-bottom: 0; font-size: 1.5em; text-transform: uppercase; letter-spacing: 2px;">
     Recommended Kunming Routes
   </h3>
@@ -1013,7 +1158,7 @@
   "articleBody": {{ article.content | strip_html | json }},
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": {{ canonical_url | json }}
+    "@id": {{ article_structured_canonical_url | json }}
   },
   "headline": {{ article.title | json }}{% if article.excerpt != blank %},
   "description": {{ article.excerpt | strip_html | json }}{% endif %}{% if article.image %},
