@@ -100,19 +100,21 @@
        <span class="logo-cn">{{ section.settings.logo_text_cn }}</span>
        <button id="drawer-close" class="close-btn">&times;</button>
     </div>
-    <div class="drawer-menu">
-      {%- for link in linklists[section.settings.main_menu].links -%}
-        <div class="drawer-item">
-          <a href="{{ link.url }}" class="drawer-link">{{ link.title }}</a>
-          {%- if link.links != blank -%}
-            <div class="drawer-sub">
-              {%- for childlink in link.links -%}
-                <a href="{{ childlink.url }}" class="drawer-sub-link">{{ childlink.title }}</a>
-              {%- endfor -%}
-            </div>
-          {%- endif -%}
-        </div>
-      {%- endfor -%}
+    <div class="drawer-menu" id="drawer-menu">
+      <template id="drawer-menu-template">
+        {%- for link in linklists[section.settings.main_menu].links -%}
+          <div class="drawer-item">
+            <a href="{{ link.url }}" class="drawer-link">{{ link.title }}</a>
+            {%- if link.links != blank -%}
+              <div class="drawer-sub">
+                {%- for childlink in link.links -%}
+                  <a href="{{ childlink.url }}" class="drawer-sub-link">{{ childlink.title }}</a>
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </template>
 
       <!-- 移动端语言选择器 (在菜单底部) -->
       {%- if localization.available_languages.size > 1 -%}
@@ -362,8 +364,28 @@ document.addEventListener('DOMContentLoaded', function() {
   const close = document.getElementById('drawer-close');
   const overlay = document.getElementById('drawer-overlay');
   const nav = document.getElementById('nav-node');
+  const drawerMenu = document.getElementById('drawer-menu');
+  const drawerMenuTemplate = document.getElementById('drawer-menu-template');
 
-  if(toggle) toggle.addEventListener('click', () => drawer.classList.add('is-active'));
+  const populateDrawerMenu = () => {
+    if (!drawerMenu || !drawerMenuTemplate || drawerMenu.dataset.populated === 'true') return;
+
+    const menuContent = drawerMenuTemplate.content.cloneNode(true);
+    const firstSupplementalBlock = drawerMenu.querySelector('.mobile-lang-switch, .mobile-account-switch');
+
+    if (firstSupplementalBlock) {
+      drawerMenu.insertBefore(menuContent, firstSupplementalBlock);
+    } else {
+      drawerMenu.appendChild(menuContent);
+    }
+
+    drawerMenu.dataset.populated = 'true';
+  };
+
+  if(toggle) toggle.addEventListener('click', () => {
+    populateDrawerMenu();
+    drawer.classList.add('is-active');
+  });
   if(close) close.addEventListener('click', () => drawer.classList.remove('is-active'));
   if(overlay) overlay.addEventListener('click', () => drawer.classList.remove('is-active'));
 
