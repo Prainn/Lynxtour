@@ -100,21 +100,15 @@
        <span class="logo-cn">{{ section.settings.logo_text_cn }}</span>
        <button id="drawer-close" class="close-btn">&times;</button>
     </div>
-    <div class="drawer-menu" id="drawer-menu">
-      <template id="drawer-menu-template">
-        {%- for link in linklists[section.settings.main_menu].links -%}
-          <div class="drawer-item">
-            <a href="{{ link.url }}" class="drawer-link">{{ link.title }}</a>
-            {%- if link.links != blank -%}
-              <div class="drawer-sub">
-                {%- for childlink in link.links -%}
-                  <a href="{{ childlink.url }}" class="drawer-sub-link">{{ childlink.title }}</a>
-                {%- endfor -%}
-              </div>
-            {%- endif -%}
-          </div>
-        {%- endfor -%}
-      </template>
+    <div class="drawer-menu">
+      {%- for link in linklists[section.settings.main_menu].links -%}
+        <div class="drawer-item" data-mobile-nav-index="{{ forloop.index0 }}">
+          <a href="{{ link.url }}" class="drawer-link">{{ link.title }}</a>
+          {%- if link.links != blank -%}
+            <div class="drawer-sub" data-drawer-submenu hidden></div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
 
       <!-- 移动端语言选择器 (在菜单底部) -->
       {%- if localization.available_languages.size > 1 -%}
@@ -357,6 +351,24 @@
 }
 </style>
 
+{%- assign mobile_nav_menu = linklists[section.settings.main_menu] -%}
+<script type="application/json" id="mobile-nav-children-data">
+{
+  {%- assign mobile_nav_json_started = false -%}
+  {%- for link in mobile_nav_menu.links -%}
+    {%- if link.links != blank -%}
+      {%- if mobile_nav_json_started -%},{%- endif -%}
+      "{{ forloop.index0 }}":[
+        {%- for childlink in link.links -%}
+          {"title":{{ childlink.title | json }},"url":{{ childlink.url | json }}}{%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      ]
+      {%- assign mobile_nav_json_started = true -%}
+    {%- endif -%}
+  {%- endfor -%}
+}
+</script>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const toggle = document.getElementById('menu-toggle');
@@ -364,26 +376,42 @@ document.addEventListener('DOMContentLoaded', function() {
   const close = document.getElementById('drawer-close');
   const overlay = document.getElementById('drawer-overlay');
   const nav = document.getElementById('nav-node');
-  const drawerMenu = document.getElementById('drawer-menu');
-  const drawerMenuTemplate = document.getElementById('drawer-menu-template');
+  const mobileNavDataNode = document.getElementById('mobile-nav-children-data');
 
-  const populateDrawerMenu = () => {
-    if (!drawerMenu || !drawerMenuTemplate || drawerMenu.dataset.populated === 'true') return;
-
-    const menuContent = drawerMenuTemplate.content.cloneNode(true);
-    const firstSupplementalBlock = drawerMenu.querySelector('.mobile-lang-switch, .mobile-account-switch');
-
-    if (firstSupplementalBlock) {
-      drawerMenu.insertBefore(menuContent, firstSupplementalBlock);
-    } else {
-      drawerMenu.appendChild(menuContent);
+  let mobileNavChildren = {};
+  if (mobileNavDataNode && mobileNavDataNode.textContent.trim() !== '') {
+    try {
+      mobileNavChildren = JSON.parse(mobileNavDataNode.textContent);
+    } catch (error) {
+      mobileNavChildren = {};
     }
+  }
 
-    drawerMenu.dataset.populated = 'true';
+  const populateMobileDrawerSubmenus = () => {
+    const drawerItems = document.querySelectorAll('.drawer-item[data-mobile-nav-index]');
+
+    drawerItems.forEach((item) => {
+      const submenu = item.querySelector('[data-drawer-submenu]');
+      const submenuIndex = item.getAttribute('data-mobile-nav-index');
+      const childLinks = mobileNavChildren[submenuIndex];
+
+      if (!submenu || !Array.isArray(childLinks) || submenu.dataset.populated === 'true') return;
+
+      childLinks.forEach((childLink) => {
+        const childAnchor = document.createElement('a');
+        childAnchor.className = 'drawer-sub-link';
+        childAnchor.href = childLink.url;
+        childAnchor.textContent = childLink.title;
+        submenu.appendChild(childAnchor);
+      });
+
+      submenu.hidden = false;
+      submenu.dataset.populated = 'true';
+    });
   };
 
   if(toggle) toggle.addEventListener('click', () => {
-    populateDrawerMenu();
+    populateMobileDrawerSubmenus();
     drawer.classList.add('is-active');
   });
   if(close) close.addEventListener('click', () => drawer.classList.remove('is-active'));
