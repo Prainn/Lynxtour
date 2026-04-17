@@ -952,8 +952,8 @@
   /* --- Responsive --- */
   @media (max-width: 990px) {
     #CollectionProductGrid-{{ section.id }} .coll-hero-compact {
-      height: auto;
-      min-height: 420px;
+      height: calc({{ section.settings.hero_height_vh }}vh + var(--header-safe));
+      min-height: calc(420px + var(--header-safe));
       padding-top: var(--header-safe);
     }
 
@@ -1009,20 +1009,12 @@
     }
 
     #CollectionProductGrid-{{ section.id }} .seo-copy-top p{
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 3;
-      overflow: hidden;
       line-height: 1.75;
     }
 
     #CollectionProductGrid-{{ section.id }} .seo-copy-top .seo-links{
       gap: 8px 12px;
       margin-top: 8px;
-    }
-
-    #CollectionProductGrid-{{ section.id }} .seo-copy-top .seo-links a:nth-child(n+3){
-      display: none;
     }
 
     #CollectionProductGrid-{{ section.id }} .seo-copy-bottom{
