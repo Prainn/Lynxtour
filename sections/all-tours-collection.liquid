@@ -462,7 +462,7 @@
     background-color: #050505;
     color: #fff;
     overflow: hidden;
-    --header-safe: var(--page-first-copy-offset, 114px);
+    --header-safe: var(--page-first-copy-offset, calc(84px + env(safe-area-inset-top)));
   }
 
   /* --- HERO SECTION --- */
@@ -987,6 +987,42 @@
 
     #CollectionProductGrid-{{ section.id }} .seo-copy{
       margin-bottom: 36px;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .seo-copy-top{
+      margin-bottom: 24px;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .seo-copy-top .seo-copy-inner{
+      max-width: 680px;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .seo-copy-top .seo-eyebrow{
+      margin-bottom: 8px;
+      font-size: 9px;
+      letter-spacing: 0.26em;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .seo-copy-top h2{
+      font-size: clamp(1.45rem, 6vw, 2rem);
+      margin-bottom: 10px;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .seo-copy-top p{
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
+      line-height: 1.75;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .seo-copy-top .seo-links{
+      gap: 8px 12px;
+      margin-top: 8px;
+    }
+
+    #CollectionProductGrid-{{ section.id }} .seo-copy-top .seo-links a:nth-child(n+3){
+      display: none;
     }
 
     #CollectionProductGrid-{{ section.id }} .seo-copy-bottom{

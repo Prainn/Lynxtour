@@ -3,6 +3,8 @@
     --brand-color: {{ section.settings.btn_color }};
     --brand-light: #fef3c7;
     --slogan-h: {% if section.settings.show_slogan %}36px{% else %}0px{% endif %};
+    --nav-h: 86px;
+    --header-safe: calc(var(--slogan-h) + var(--nav-h));
   }
 
   /* --- 导航基础 --- */
@@ -1061,6 +1063,40 @@
   }
 
   @media (max-width: 990px) {
+    :root {
+      --nav-h: 72px;
+      --header-safe: calc(var(--slogan-h) + var(--nav-h) + env(safe-area-inset-top));
+    }
+
+    #site-header {
+      min-height: var(--header-safe);
+    }
+
+    .slogan-bar-wrapper {
+      height: calc(var(--slogan-h) + env(safe-area-inset-top));
+      padding-top: env(safe-area-inset-top);
+      box-sizing: border-box;
+    }
+
+    .main-nav-bar {
+      top: calc(var(--slogan-h) + env(safe-area-inset-top));
+    }
+
+    .header-container {
+      min-height: var(--nav-h);
+    }
+
+    .flex-layout {
+      height: var(--nav-h);
+    }
+
+    .hero-section {
+      margin-top: 0;
+      min-height: calc(100svh - var(--header-safe));
+      height: auto;
+      padding: 36px 0 24px;
+    }
+
     .hero-btn {
       width: 100%;
       min-width: 0;

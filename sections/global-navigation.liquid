@@ -285,6 +285,8 @@
     --slogan-h: 0px;
     --nav-h: 72px;
     --page-first-copy-gap: 12px;
+    --header-safe: calc(var(--nav-h) + env(safe-area-inset-top));
+    --page-first-copy-offset: calc(var(--header-safe) + var(--page-first-copy-gap));
   }
 
   /* 移动端先隐藏 slogan，避免顶部高度叠加混乱 */
@@ -296,7 +298,9 @@
   #site-header {
     position: relative;
     z-index: 1000;
+    height: var(--header-safe);
     min-height: calc(var(--nav-h) + env(safe-area-inset-top));
+    box-sizing: border-box;
   }
 
   /* 移动端 header 从一开始就是固定的，不再 absolute 压首屏 */
@@ -311,37 +315,72 @@
     -webkit-backdrop-filter: blur(15px);
     border-bottom: 1px solid rgba(255,255,255,0.08);
     z-index: 1000;
+    height: var(--header-safe);
+    box-sizing: border-box;
   }
 
   .header-container {
     padding: 0 20px;
+    height: 100%;
   }
 
   .flex-layout {
-    height: calc(var(--nav-h) + env(safe-area-inset-top));
+    height: var(--header-safe);
     padding-top: env(safe-area-inset-top);
     box-sizing: border-box;
   }
 
+  .header-left {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .header-right {
+    flex: 0 0 auto;
+    min-width: auto;
+    gap: 10px;
+  }
+
   .logo-wrapper {
-    max-width: calc(100% - 56px);
+    max-width: 100%;
+    min-width: 0;
+    gap: 10px;
   }
 
   .header-logo-image {
     max-height: 34px;
     width: auto;
+    flex: 0 0 auto;
+  }
+
+  .logo-text-group {
+    min-width: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.05;
   }
 
   .logo-cn {
-    font-size: 18px;
+    font-size: 16px;
+    letter-spacing: 1.2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .logo-en {
-    font-size: 8px;
+    font-size: 7px;
+    letter-spacing: 0.8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .mobile-toggle {
     display: flex;
+    flex: 0 0 44px;
     align-items: center;
     justify-content: center;
     width: 44px;
