@@ -1,461 +1,3 @@
-<section class="luxury-collection-wrapper" id="CollectionProductGrid-{{ section.id }}">
-  <!-- 1) HERO -->
-  <header class="coll-hero-compact">
-    <div class="hero-bg">
-      {% if collection.image %}
-        <img src="{{ collection.image | image_url: width: 2400 }}" alt="{{ collection.title | escape }} - Lynxtour" class="hero-img">
-      {% else %}
-        <div class="hero-placeholder"></div>
-      {% endif %}
-      <div class="hero-overlay"></div>
-    </div>
-
-    <div class="hero-text-container">
-      <div class="hero-content">
-        <div class="subtitle-wrap">
-          <span class="coll-subtitle">
-            {% if collection.handle == 'yunnan-private-tours' %}
-              PRIVATE JOURNEYS ACROSS YUNNAN
-            {% else %}
-              {{ section.settings.subtitle_text }}
-            {% endif %}
-          </span>
-          <div class="subtitle-line"></div>
-        </div>
-
-        <h1 class="coll-title">
-          {% if collection.handle == 'yunnan-private-tours' %}
-            Yunnan Private Tours
-          {% else %}
-            {{ collection.title }}
-          {% endif %}
-        </h1>
-
-        {% if collection.description != blank %}
-          <div class="coll-desc-wrap">
-            <div class="coll-desc">
-              {% if collection.handle == 'yunnan-private-tours' %}
-                Compare the best private tours in Yunnan, from classic first-time routes to slower multi-city journeys.
-                <br>
-                Choose a 6, 8, or 10-day itinerary, or ask us to tailor one around your dates, pace, and travel style.
-              {% else %}
-                {{ collection.description | strip_html }}
-              {% endif %}
-            </div>
-          </div>
-        {% elsif collection.handle == 'yunnan-private-tours' %}
-          <div class="coll-desc-wrap">
-            <div class="coll-desc">
-              Compare the best private tours in Yunnan, from classic first-time routes to slower multi-city journeys.
-              <br>
-              Choose a 6, 8, or 10-day itinerary, or ask us to tailor one around your dates, pace, and travel style.
-            </div>
-          </div>
-        {% endif %}
-
-      </div>
-    </div>
-  </header>
-
-  <!-- 2) LIST -->
-  <div class="coll-container">
-    {% comment %}<div class="coll-meta-bar">
-      <div class="meta-left">
-        <span class="meta-number">{{ collection.products_count }}</span>
-        <span class="meta-label">Selected Experiences</span>
-      </div>
-      <div class="meta-divider"></div>
-      <div class="meta-right">
-        <span class="meta-location">
-          {% if collection.handle == 'yunnan-private-tours' %}
-            KUNMING · DALI · LIJIANG · SHANGRI-LA
-          {% else %}
-            {{ section.settings.location_text }}
-          {% endif %}
-        </span>
-      </div>
-    </div>{% endcomment %}
-
-    {% paginate collection.products by section.settings.page_size %}
-
-      {% if collection.handle == 'yunnan-private-tours' and paginate.current_page == 1 %}
-        <section class="seo-copy seo-copy-top">
-          <div class="seo-copy-inner">
-            <p class="seo-eyebrow">PRIVATE YUNNAN ITINERARIES</p>
-              <h2>Best First-Time Yunnan Itinerary</h2>
-              <p>
-                For most first-time visitors, the strongest starting route is Kunming, Dali, Lijiang, and Shangri-La. It combines city arrival ease, lakeside scenery, old-town atmosphere, snow mountain views, and Tibetan highland culture in one trip.
-              </p>
-              <div class="seo-links">
-                <a href="/collections/dali-private-tours">Browse Dali private tours</a>
-                <a href="/collections/lijiang-private-tours">Compare Lijiang private tours</a>
-                <a href="/pages/shangri-la">Continue to the Shangri-La travel guide</a>
-                <a href="/products/kunming-dali-lijiang-shangri-la-8-day-private-tour">Explore the 8-day Yunnan private tour</a>
-              </div>
-          </div>
-        </section>
-
-        {% comment %}<section class="seo-copy seo-copy-cta">
-          <div class="seo-copy-inner">
-            <div class="seo-block seo-cta-block">
-              <h2>Which Yunnan Route Fits Your Travel Style?</h2>
-              <p>
-                Choose a classic route if you want Yunnan’s best-known highlights in one smooth journey. Choose a slower or longer route if you care more about photography, local culture, luxury stays, or extra nature time between destinations.
-              </p>
-              <div class="seo-links seo-links-cta">
-                <a href="/pages/contact-us">Plan a Custom Yunnan Trip</a>
-                <a href="https://api.whatsapp.com/send/?phone=8613211685553&text&type=phone_number&app_absent=0" target="_blank" rel="noopener">Chat on WhatsApp</a>
-              </div>
-            </div>
-          </div>
-        </section>{% endcomment %}
-      {% endif %}
-
-      <div class="coll-meta-bar">
-        <div class="meta-left">
-          <span class="meta-number">{{ collection.products_count }}</span>
-          <span class="meta-label">Selected Experiences</span>
-        </div>
-        <div class="meta-divider"></div>
-        <div class="meta-right">
-          <span class="meta-location">
-            {% if collection.handle == 'yunnan-private-tours' %}
-              {{ 'KUNMING / DALI / LIJIANG / SHANGRI-LA' }}
-            {% else %}
-              {{ section.settings.location_text }}
-            {% endif %}
-          </span>
-        </div>
-      </div>
-
-      <div class="compact-grid" data-cols="{{ section.settings.desktop_cols }}" id="CollectionGrid-{{ section.id }}">
-        {% for product in collection.products %}
-          {% liquid
-  assign excluded_keywords = 'single room supplement|room supplement|single supplement|supplement|add-on|addon|upgrade|custom|extra bed|surcharge' | split: '|'
-  assign child_keywords = 'child|children|kid|kids|infant|baby|toddler|儿童|小童|婴儿' | split: '|'
-
-  assign collection_display_price = blank
-  assign valid_main_variant_count = 0
-
-  assign fallback_display_price = blank
-  assign fallback_valid_variant_count = 0
-
-  for variant in product.variants
-    assign variant_title = variant.title | downcase | strip
-    assign is_excluded = false
-    assign is_child_variant = false
-
-    for keyword in excluded_keywords
-      if variant_title contains keyword
-        assign is_excluded = true
-        break
-      endif
-    endfor
-
-    unless is_excluded
-      assign fallback_valid_variant_count = fallback_valid_variant_count | plus: 1
-
-      if fallback_display_price == blank or variant.price < fallback_display_price
-        assign fallback_display_price = variant.price
-      endif
-
-      for child_keyword in child_keywords
-        if variant_title contains child_keyword
-          assign is_child_variant = true
-          break
-        endif
-      endfor
-
-      unless is_child_variant
-        assign valid_main_variant_count = valid_main_variant_count | plus: 1
-
-        if collection_display_price == blank or variant.price < collection_display_price
-          assign collection_display_price = variant.price
-        endif
-      endunless
-    endunless
-  endfor
-
-  if collection_display_price == blank
-    assign collection_display_price = fallback_display_price
-    assign valid_main_variant_count = fallback_valid_variant_count
-  endif
-
-  if collection_display_price == blank
-    assign collection_display_price = product.price
-  endif
-
-  assign show_from_prefix = false
-  if valid_main_variant_count > 1
-    assign show_from_prefix = true
-  endif
-%}
-
-          <div class="grid-item reveal-item">
-            <a href="{{ product.url }}" class="card-link">
-              <div class="card-visual">
-                {% if product.featured_image %}
-                  <img
-                    src="{{ product.featured_image | image_url: width: 1200 }}"
-                    alt="{{ product.title | escape }}"
-                    loading="lazy"
-                  >
-                {% else %}
-                  <div class="card-img-placeholder"></div>
-                {% endif %}
-
-                <div class="card-overlay">
-                  <div class="card-btn">SEE TOUR DETAILS</div>
-                </div>
-
-                {% if product.tags contains section.settings.badge_tag %}
-                  <div class="route-indicator"><span class="dot-pulse"></span>{{ section.settings.badge_text }}</div>
-                {% endif %}
-              </div>
-
-              <div class="card-content">
-                <div class="card-header">
-                  <h3 class="product-title">{{ product.title }}</h3>
-                  <div class="product-price">
-                    {% if show_from_prefix %}
-                      <span class="price-prefix">From </span>
-                    {% endif %}
-                    {{ collection_display_price | money_with_currency }}
-                  </div>
-                </div>
-                <div class="product-info-row">
-                  <span class="product-type">{{ product.type | default: 'Experience' }}</span>
-                  {% if product.metafields.custom.duration != blank %}
-                    <span class="sep">·</span>
-                    <span class="product-duration">{{ product.metafields.custom.duration.value }}</span>
-                  {% endif %}
-                  {% if product.metafields.custom.start_city != blank %}
-                    <span class="sep">·</span>
-                    <span class="product-start">{{ product.metafields.custom.start_city.value }}</span>
-                  {% endif %}
-                </div>
-              </div>
-            </a>
-          </div>
-        {% endfor %}
-      </div>
-
-      {% if paginate.pages > 1 %}
-        <div class="luxury-pagination">
-          {{ paginate | default_pagination }}
-        </div>
-      {% endif %}
-
-      {% if collection.handle == 'yunnan-private-tours' and paginate.current_page == 1 %}
-        <section class="seo-copy seo-copy-bottom">
-          <div class="seo-copy-inner">
-            <div class="seo-block">
-              <h2>How Many Days Do You Need for a Yunnan Private Tour?</h2>
-              <p>
-                A 6-day route works for first-time visitors who want the essential highlights. An 8-day itinerary offers the best balance of comfort and coverage, while 10 days or more gives you room for slower pacing or extra stops such as Lugu Lake, Tengchong, or Xishuangbanna.
-              </p>
-            </div>
-
-            <div class="seo-block">
-              <h2>Where to Start Your Yunnan Route</h2>
-              <p>
-                Many travelers begin in Kunming because of its stronger transport access and easy arrival pace, but some private routes can also start from Dali or Lijiang depending on your flights and overall plan. Choosing the right starting point helps reduce backtracking and makes your Yunnan itinerary more comfortable, especially for shorter trips or multi-city journeys.
-              </p>
-            </div>
-
-            <div class="seo-block">
-              <h2>Private Tour vs Group Tour in Yunnan</h2>
-              <p>
-                A private Yunnan trip is usually a better fit if you want flexible pacing, custom routing, more control over hotel style, and smoother travel between cities such as Kunming, Dali, Lijiang, and Shangri-La. It also works better for couples, families, and small groups who want comfort, easier logistics, and a route shaped around their own schedule instead of a fixed group itinerary.
-              </p>
-            </div>
-
-            <div class="seo-block seo-cta-block">
-              <h2>Need Help Comparing Yunnan Routes?</h2>
-              <p>
-                Tell us your dates, pace, and travel style and we can recommend the route length and city sequence that fits best.
-              </p>
-              <div class="seo-links seo-links-cta">
-                <a href="/pages/bespoke-custom-travel">Plan a custom Yunnan itinerary</a>
-                <a href="https://api.whatsapp.com/send/?phone=8613211685553&text&type=phone_number&app_absent=0" target="_blank" rel="noopener">Chat on WhatsApp</a>
-              </div>
-            </div>
-
-            <div class="seo-block">
-              <h2>Explore Related Routes and Travel Planning</h2>
-              <div class="seo-links">
-                <a href="/pages/dali">See the Dali travel guide</a>
-                <a href="/pages/lijiang">See the Lijiang travel guide</a>
-                <a href="/collections/dali-private-tours">See Dali private tours</a>
-                <a href="/collections/lijiang-private-tours">Browse Lijiang private tours</a>
-                <a href="/pages/shangri-la">Continue to the Shangri-La travel guide</a>
-                <a href="/collections/yunnan-private-day-trips">See Yunnan private day trips</a>
-                <a href="/products/kunming-dali-lijiang-shangri-la-8-day-private-tour">Explore the 8-day Yunnan private tour</a>
-                <a href="/pages/bespoke-custom-travel">Plan a custom Yunnan itinerary</a>
-              </div>
-            </div>
-
-            <div class="seo-block faq-block">
-              <h2>Frequently Asked Questions</h2>
-
-              <details class="faq-item">
-                <summary>Are your Yunnan private tours customizable?</summary>
-                <div class="faq-answer">
-                  Yes. Our Yunnan private tours can be adjusted based on your travel dates, preferred pace, hotel style, destinations, and trip length.
-                </div>
-              </details>
-
-              <details class="faq-item">
-                <summary>Which destinations are usually included in a Yunnan private tour?</summary>
-                <div class="faq-answer">
-                  The most popular route usually includes Kunming, Dali, Lijiang, and Shangri-La. Some itineraries may also include Tiger Leaping Gorge, Yuanyang, Tengchong, or Xishuangbanna.
-                </div>
-              </details>
-
-              <details class="faq-item">
-                <summary>How many days do I need for a Yunnan tour?</summary>
-                <div class="faq-answer">
-                  A shorter Yunnan private tour can work in 4 to 6 days, while a more comfortable multi-city journey usually takes 7 to 10 days or longer.
-                </div>
-              </details>
-
-              <details class="faq-item">
-                <summary>Is Yunnan suitable for family or senior travel?</summary>
-                <div class="faq-answer">
-                  Yes. A private tour is often the most comfortable choice for families and senior travelers because the pace, transport, and daily schedule can be planned more flexibly.
-                </div>
-              </details>
-
-              <details class="faq-item">
-                <summary>Can I start my Yunnan tour from Kunming, Dali, or Lijiang?</summary>
-                <div class="faq-answer">
-                  Yes. Depending on flight access and your route plan, your private tour can begin in Kunming, Dali, Lijiang, or another suitable gateway city.
-                </div>
-              </details>
-
-              <details class="faq-item">
-                <summary>Do private tours in Yunnan include airport pickup?</summary>
-                <div class="faq-answer">
-                  Most custom itineraries can include airport or railway station pickup as part of the travel arrangement, depending on your route and service plan.
-                </div>
-              </details>
-
-              <details class="faq-item">
-                <summary>Can you help me choose the best Yunnan itinerary for my dates?</summary>
-                <div class="faq-answer">
-                  Yes. If you tell us your travel dates, starting city, and interests, we can recommend a more suitable Yunnan route and pacing plan for your trip.
-                </div>
-              </details>
-
-              <details class="faq-item">
-                <summary>Can I contact you before booking to discuss route ideas?</summary>
-                <div class="faq-answer">
-                  Absolutely. You can contact us before booking to discuss route ideas, trip length, hotel style, or private transfer preferences through our contact page or WhatsApp.
-                </div>
-              </details>
-            </div>
-          </div>
-        </section>
-
-        <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Are your Yunnan private tours customizable?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. Our Yunnan private tours can be adjusted based on your travel dates, preferred pace, hotel style, destinations, and trip length."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Which destinations are usually included in a Yunnan private tour?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "The most popular route usually includes Kunming, Dali, Lijiang, and Shangri-La. Some itineraries may also include Tiger Leaping Gorge, Yuanyang, Tengchong, or Xishuangbanna."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How many days do I need for a Yunnan tour?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "A shorter Yunnan private tour can work in 4 to 6 days, while a more comfortable multi-city journey usually takes 7 to 10 days or longer."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Is Yunnan suitable for family or senior travel?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. A private tour is often the most comfortable choice for families and senior travelers because the pace, transport, and daily schedule can be planned more flexibly."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Can I start my Yunnan tour from Kunming, Dali, or Lijiang?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. Depending on flight access and your route plan, your private tour can begin in Kunming, Dali, Lijiang, or another suitable gateway city."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Do private tours in Yunnan include airport pickup?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Most custom itineraries can include airport or railway station pickup as part of the travel arrangement, depending on your route and service plan."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Can you help me choose the best Yunnan itinerary for my dates?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. If you tell us your travel dates, starting city, and interests, we can recommend a more suitable Yunnan route and pacing plan for your trip."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Can I contact you before booking to discuss route ideas?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Absolutely. You can contact us before booking to discuss route ideas, trip length, hotel style, or private transfer preferences through our contact page or WhatsApp."
-              }
-            }
-          ]
-        }
-        </script>
-
-      {% endif %}
-
-    {% endpaginate %}
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": {{ request.origin | append: '/' | json }}
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": {{ collection.title | json }},
-          "item": {{ canonical_url | json }}
-        }
-      ]
-    }
-    </script>
-  </div>
-</section>
-
 <style>
   /* ===== Scope to this section only ===== */
   #CollectionProductGrid-{{ section.id }}{
@@ -1191,6 +733,467 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 });
 </script>
+
+
+<section class="luxury-collection-wrapper" id="CollectionProductGrid-{{ section.id }}">
+  <!-- 1) HERO -->
+  <header class="coll-hero-compact">
+    <div class="hero-bg">
+      {% if collection.image %}
+        <img src="{{ collection.image | image_url: width: 2400 }}" alt="{{ collection.title | escape }} - Lynxtour" class="hero-img">
+      {% else %}
+        <div class="hero-placeholder"></div>
+      {% endif %}
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="hero-text-container">
+      <div class="hero-content">
+        <div class="subtitle-wrap">
+          <span class="coll-subtitle">
+            {% if collection.handle == 'yunnan-private-tours' %}
+              PRIVATE JOURNEYS ACROSS YUNNAN
+            {% else %}
+              {{ section.settings.subtitle_text }}
+            {% endif %}
+          </span>
+          <div class="subtitle-line"></div>
+        </div>
+
+        <h1 class="coll-title">
+          {% if collection.handle == 'yunnan-private-tours' %}
+            Yunnan Private Tours
+          {% else %}
+            {{ collection.title }}
+          {% endif %}
+        </h1>
+
+        {% if collection.description != blank %}
+          <div class="coll-desc-wrap">
+            <div class="coll-desc">
+              {% if collection.handle == 'yunnan-private-tours' %}
+                Compare the best private tours in Yunnan, from classic first-time routes to slower multi-city journeys.
+                <br>
+                Choose a 6, 8, or 10-day itinerary, or ask us to tailor one around your dates, pace, and travel style.
+              {% else %}
+                {{ collection.description | strip_html }}
+              {% endif %}
+            </div>
+          </div>
+        {% elsif collection.handle == 'yunnan-private-tours' %}
+          <div class="coll-desc-wrap">
+            <div class="coll-desc">
+              Compare the best private tours in Yunnan, from classic first-time routes to slower multi-city journeys.
+              <br>
+              Choose a 6, 8, or 10-day itinerary, or ask us to tailor one around your dates, pace, and travel style.
+            </div>
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </header>
+
+  <!-- 2) LIST -->
+  <div class="coll-container">
+    {% comment %}<div class="coll-meta-bar">
+      <div class="meta-left">
+        <span class="meta-number">{{ collection.products_count }}</span>
+        <span class="meta-label">Selected Experiences</span>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-right">
+        <span class="meta-location">
+          {% if collection.handle == 'yunnan-private-tours' %}
+            KUNMING · DALI · LIJIANG · SHANGRI-LA
+          {% else %}
+            {{ section.settings.location_text }}
+          {% endif %}
+        </span>
+      </div>
+    </div>{% endcomment %}
+
+    {% paginate collection.products by section.settings.page_size %}
+
+      {% if collection.handle == 'yunnan-private-tours' and paginate.current_page == 1 %}
+        <section class="seo-copy seo-copy-top">
+          <div class="seo-copy-inner">
+            <p class="seo-eyebrow">PRIVATE YUNNAN ITINERARIES</p>
+              <h2>Best First-Time Yunnan Itinerary</h2>
+              <p>
+                For most first-time visitors, the strongest starting route is Kunming, Dali, Lijiang, and Shangri-La. It combines city arrival ease, lakeside scenery, old-town atmosphere, snow mountain views, and Tibetan highland culture in one trip.
+              </p>
+              <div class="seo-links">
+                <a href="/collections/dali-private-tours">Browse Dali private tours</a>
+                <a href="/collections/lijiang-private-tours">Compare Lijiang private tours</a>
+                <a href="/pages/shangri-la">Continue to the Shangri-La travel guide</a>
+                <a href="/products/kunming-dali-lijiang-shangri-la-8-day-private-tour">Explore the 8-day Yunnan private tour</a>
+              </div>
+          </div>
+        </section>
+
+        {% comment %}<section class="seo-copy seo-copy-cta">
+          <div class="seo-copy-inner">
+            <div class="seo-block seo-cta-block">
+              <h2>Which Yunnan Route Fits Your Travel Style?</h2>
+              <p>
+                Choose a classic route if you want Yunnan’s best-known highlights in one smooth journey. Choose a slower or longer route if you care more about photography, local culture, luxury stays, or extra nature time between destinations.
+              </p>
+              <div class="seo-links seo-links-cta">
+                <a href="/pages/contact-us">Plan a Custom Yunnan Trip</a>
+                <a href="https://api.whatsapp.com/send/?phone=8613211685553&text&type=phone_number&app_absent=0" target="_blank" rel="noopener">Chat on WhatsApp</a>
+              </div>
+            </div>
+          </div>
+        </section>{% endcomment %}
+      {% endif %}
+
+      <div class="coll-meta-bar">
+        <div class="meta-left">
+          <span class="meta-number">{{ collection.products_count }}</span>
+          <span class="meta-label">Selected Experiences</span>
+        </div>
+        <div class="meta-divider"></div>
+        <div class="meta-right">
+          <span class="meta-location">
+            {% if collection.handle == 'yunnan-private-tours' %}
+              {{ 'KUNMING / DALI / LIJIANG / SHANGRI-LA' }}
+            {% else %}
+              {{ section.settings.location_text }}
+            {% endif %}
+          </span>
+        </div>
+      </div>
+
+      <div class="compact-grid" data-cols="{{ section.settings.desktop_cols }}" id="CollectionGrid-{{ section.id }}">
+        {% for product in collection.products %}
+          {% liquid
+  assign excluded_keywords = 'single room supplement|room supplement|single supplement|supplement|add-on|addon|upgrade|custom|extra bed|surcharge' | split: '|'
+  assign child_keywords = 'child|children|kid|kids|infant|baby|toddler|儿童|小童|婴儿' | split: '|'
+
+  assign collection_display_price = blank
+  assign valid_main_variant_count = 0
+
+  assign fallback_display_price = blank
+  assign fallback_valid_variant_count = 0
+
+  for variant in product.variants
+    assign variant_title = variant.title | downcase | strip
+    assign is_excluded = false
+    assign is_child_variant = false
+
+    for keyword in excluded_keywords
+      if variant_title contains keyword
+        assign is_excluded = true
+        break
+      endif
+    endfor
+
+    unless is_excluded
+      assign fallback_valid_variant_count = fallback_valid_variant_count | plus: 1
+
+      if fallback_display_price == blank or variant.price < fallback_display_price
+        assign fallback_display_price = variant.price
+      endif
+
+      for child_keyword in child_keywords
+        if variant_title contains child_keyword
+          assign is_child_variant = true
+          break
+        endif
+      endfor
+
+      unless is_child_variant
+        assign valid_main_variant_count = valid_main_variant_count | plus: 1
+
+        if collection_display_price == blank or variant.price < collection_display_price
+          assign collection_display_price = variant.price
+        endif
+      endunless
+    endunless
+  endfor
+
+  if collection_display_price == blank
+    assign collection_display_price = fallback_display_price
+    assign valid_main_variant_count = fallback_valid_variant_count
+  endif
+
+  if collection_display_price == blank
+    assign collection_display_price = product.price
+  endif
+
+  assign show_from_prefix = false
+  if valid_main_variant_count > 1
+    assign show_from_prefix = true
+  endif
+%}
+
+          <div class="grid-item reveal-item">
+            <a href="{{ product.url }}" class="card-link">
+              <div class="card-visual">
+                {% if product.featured_image %}
+                  <img
+                    src="{{ product.featured_image | image_url: width: 1200 }}"
+                    alt="{{ product.title | escape }}"
+                    loading="lazy"
+                  >
+                {% else %}
+                  <div class="card-img-placeholder"></div>
+                {% endif %}
+
+                <div class="card-overlay">
+                  <div class="card-btn">SEE TOUR DETAILS</div>
+                </div>
+
+                {% if product.tags contains section.settings.badge_tag %}
+                  <div class="route-indicator"><span class="dot-pulse"></span>{{ section.settings.badge_text }}</div>
+                {% endif %}
+              </div>
+
+              <div class="card-content">
+                <div class="card-header">
+                  <h3 class="product-title">{{ product.title }}</h3>
+                  <div class="product-price">
+                    {% if show_from_prefix %}
+                      <span class="price-prefix">From </span>
+                    {% endif %}
+                    {{ collection_display_price | money_with_currency }}
+                  </div>
+                </div>
+                <div class="product-info-row">
+                  <span class="product-type">{{ product.type | default: 'Experience' }}</span>
+                  {% if product.metafields.custom.duration != blank %}
+                    <span class="sep">·</span>
+                    <span class="product-duration">{{ product.metafields.custom.duration.value }}</span>
+                  {% endif %}
+                  {% if product.metafields.custom.start_city != blank %}
+                    <span class="sep">·</span>
+                    <span class="product-start">{{ product.metafields.custom.start_city.value }}</span>
+                  {% endif %}
+                </div>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+
+      {% if paginate.pages > 1 %}
+        <div class="luxury-pagination">
+          {{ paginate | default_pagination }}
+        </div>
+      {% endif %}
+
+      {% if collection.handle == 'yunnan-private-tours' and paginate.current_page == 1 %}
+        <section class="seo-copy seo-copy-bottom">
+          <div class="seo-copy-inner">
+            <div class="seo-block">
+              <h2>How Many Days Do You Need for a Yunnan Private Tour?</h2>
+              <p>
+                A 6-day route works for first-time visitors who want the essential highlights. An 8-day itinerary offers the best balance of comfort and coverage, while 10 days or more gives you room for slower pacing or extra stops such as Lugu Lake, Tengchong, or Xishuangbanna.
+              </p>
+            </div>
+
+            <div class="seo-block">
+              <h2>Where to Start Your Yunnan Route</h2>
+              <p>
+                Many travelers begin in Kunming because of its stronger transport access and easy arrival pace, but some private routes can also start from Dali or Lijiang depending on your flights and overall plan. Choosing the right starting point helps reduce backtracking and makes your Yunnan itinerary more comfortable, especially for shorter trips or multi-city journeys.
+              </p>
+            </div>
+
+            <div class="seo-block">
+              <h2>Private Tour vs Group Tour in Yunnan</h2>
+              <p>
+                A private Yunnan trip is usually a better fit if you want flexible pacing, custom routing, more control over hotel style, and smoother travel between cities such as Kunming, Dali, Lijiang, and Shangri-La. It also works better for couples, families, and small groups who want comfort, easier logistics, and a route shaped around their own schedule instead of a fixed group itinerary.
+              </p>
+            </div>
+
+            <div class="seo-block seo-cta-block">
+              <h2>Need Help Comparing Yunnan Routes?</h2>
+              <p>
+                Tell us your dates, pace, and travel style and we can recommend the route length and city sequence that fits best.
+              </p>
+              <div class="seo-links seo-links-cta">
+                <a href="/pages/bespoke-custom-travel">Plan a custom Yunnan itinerary</a>
+                <a href="https://api.whatsapp.com/send/?phone=8613211685553&text&type=phone_number&app_absent=0" target="_blank" rel="noopener">Chat on WhatsApp</a>
+              </div>
+            </div>
+
+            <div class="seo-block">
+              <h2>Explore Related Routes and Travel Planning</h2>
+              <div class="seo-links">
+                <a href="/pages/dali">See the Dali travel guide</a>
+                <a href="/pages/lijiang">See the Lijiang travel guide</a>
+                <a href="/collections/dali-private-tours">See Dali private tours</a>
+                <a href="/collections/lijiang-private-tours">Browse Lijiang private tours</a>
+                <a href="/pages/shangri-la">Continue to the Shangri-La travel guide</a>
+                <a href="/collections/yunnan-private-day-trips">See Yunnan private day trips</a>
+                <a href="/products/kunming-dali-lijiang-shangri-la-8-day-private-tour">Explore the 8-day Yunnan private tour</a>
+                <a href="/pages/bespoke-custom-travel">Plan a custom Yunnan itinerary</a>
+              </div>
+            </div>
+
+            <div class="seo-block faq-block">
+              <h2>Frequently Asked Questions</h2>
+
+              <details class="faq-item">
+                <summary>Are your Yunnan private tours customizable?</summary>
+                <div class="faq-answer">
+                  Yes. Our Yunnan private tours can be adjusted based on your travel dates, preferred pace, hotel style, destinations, and trip length.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Which destinations are usually included in a Yunnan private tour?</summary>
+                <div class="faq-answer">
+                  The most popular route usually includes Kunming, Dali, Lijiang, and Shangri-La. Some itineraries may also include Tiger Leaping Gorge, Yuanyang, Tengchong, or Xishuangbanna.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>How many days do I need for a Yunnan tour?</summary>
+                <div class="faq-answer">
+                  A shorter Yunnan private tour can work in 4 to 6 days, while a more comfortable multi-city journey usually takes 7 to 10 days or longer.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Is Yunnan suitable for family or senior travel?</summary>
+                <div class="faq-answer">
+                  Yes. A private tour is often the most comfortable choice for families and senior travelers because the pace, transport, and daily schedule can be planned more flexibly.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Can I start my Yunnan tour from Kunming, Dali, or Lijiang?</summary>
+                <div class="faq-answer">
+                  Yes. Depending on flight access and your route plan, your private tour can begin in Kunming, Dali, Lijiang, or another suitable gateway city.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Do private tours in Yunnan include airport pickup?</summary>
+                <div class="faq-answer">
+                  Most custom itineraries can include airport or railway station pickup as part of the travel arrangement, depending on your route and service plan.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Can you help me choose the best Yunnan itinerary for my dates?</summary>
+                <div class="faq-answer">
+                  Yes. If you tell us your travel dates, starting city, and interests, we can recommend a more suitable Yunnan route and pacing plan for your trip.
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Can I contact you before booking to discuss route ideas?</summary>
+                <div class="faq-answer">
+                  Absolutely. You can contact us before booking to discuss route ideas, trip length, hotel style, or private transfer preferences through our contact page or WhatsApp.
+                </div>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Are your Yunnan private tours customizable?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Our Yunnan private tours can be adjusted based on your travel dates, preferred pace, hotel style, destinations, and trip length."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Which destinations are usually included in a Yunnan private tour?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The most popular route usually includes Kunming, Dali, Lijiang, and Shangri-La. Some itineraries may also include Tiger Leaping Gorge, Yuanyang, Tengchong, or Xishuangbanna."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How many days do I need for a Yunnan tour?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A shorter Yunnan private tour can work in 4 to 6 days, while a more comfortable multi-city journey usually takes 7 to 10 days or longer."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is Yunnan suitable for family or senior travel?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. A private tour is often the most comfortable choice for families and senior travelers because the pace, transport, and daily schedule can be planned more flexibly."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I start my Yunnan tour from Kunming, Dali, or Lijiang?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Depending on flight access and your route plan, your private tour can begin in Kunming, Dali, Lijiang, or another suitable gateway city."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do private tours in Yunnan include airport pickup?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Most custom itineraries can include airport or railway station pickup as part of the travel arrangement, depending on your route and service plan."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can you help me choose the best Yunnan itinerary for my dates?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. If you tell us your travel dates, starting city, and interests, we can recommend a more suitable Yunnan route and pacing plan for your trip."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I contact you before booking to discuss route ideas?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Absolutely. You can contact us before booking to discuss route ideas, trip length, hotel style, or private transfer preferences through our contact page or WhatsApp."
+              }
+            }
+          ]
+        }
+        </script>
+
+      {% endif %}
+
+    {% endpaginate %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": {{ request.origin | append: '/' | json }}
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ collection.title | json }},
+          "item": {{ canonical_url | json }}
+        }
+      ]
+    }
+    </script>
+  </div>
+</section>
+
+
 
 {% schema %}
 {
