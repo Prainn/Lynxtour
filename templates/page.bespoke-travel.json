@@ -37,11 +37,16 @@
         "ai_title": "LYNX GUIDE PRO",
         "cta_title": "CONFIRM PLAN"
       }
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {}
     }
   },
   "order": [
     "global_navigation_XitC4r",
     "main",
-    "bespoke_travel_aiHQaY"
+    "bespoke_travel_aiHQaY",
+    "footer"
   ]
 }

@@ -35,11 +35,16 @@
         "content": "",
         "caption": ""
       }
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {}
     }
   },
   "order": [
     "global_navigation_nxyRTP",
     "main",
-    "lijiang_product_text_images_yXQPeq"
+    "lijiang_product_text_images_yXQPeq",
+    "footer"
   ]
 }

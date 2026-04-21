@@ -44,10 +44,15 @@
         "x_link": "",
         "youtube_link": "https://www.youtube.com/@lynxtour_official"
       }
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {}
     }
   },
   "order": [
     "global_navigation_4Y36RP",
-    "main"
+    "main",
+    "footer"
   ]
 }

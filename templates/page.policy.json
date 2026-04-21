@@ -12,9 +12,14 @@
     "main": {
       "type": "main-policy",
       "settings": {}
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {}
     }
   },
   "order": [
-    "main"
+    "main",
+    "footer"
   ]
 }

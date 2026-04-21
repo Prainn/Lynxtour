@@ -35,11 +35,16 @@
         "content": "",
         "caption": ""
       }
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {}
     }
   },
   "order": [
     "global_navigation_VAJVec",
     "main",
-    "lijiang_product_text_images_L3J73y"
+    "lijiang_product_text_images_L3J73y",
+    "footer"
   ]
 }

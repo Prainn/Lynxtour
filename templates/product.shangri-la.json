@@ -35,11 +35,16 @@
         "content": "",
         "caption": ""
       }
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {}
     }
   },
   "order": [
     "global_navigation_GxhEV4",
     "main",
-    "lijiang_product_text_images_96ehaG"
+    "lijiang_product_text_images_96ehaG",
+    "footer"
   ]
 }

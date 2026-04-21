@@ -26,10 +26,15 @@
     "main": {
       "type": "private-charter-service",
       "settings": {}
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {}
     }
   },
   "order": [
     "global_navigation_HhGdqm",
-    "main"
+    "main",
+    "footer"
   ]
 }
