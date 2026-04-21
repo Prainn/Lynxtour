@@ -1,1 +1,25 @@
-{"sections":{"global_navigation_JyBjDq":{"type":"global-navigation","name":"Global Brand Header","settings":{"logo_image":"shopify:\/\/shop_images\/LOGO2.svg","logo_height":40,"logo_text_cn":"","logo_text_en":"","show_slogan":true,"slogan_text":"","main_menu":"main-menu-1","btn_color":"#fbbf24"}},"main":{"type":"main-blog","blocks":{"title_FqGWkP":{"type":"title","settings":{}},"date_4Y4d3t":{"type":"date","settings":{}},"summary_pHbyxP":{"type":"summary","settings":{}},"button_fCEHRR":{"type":"button","settings":{"btn_text":"Discover More"}}},"block_order":["title_FqGWkP","date_4Y4d3t","summary_pHbyxP","button_fCEHRR"],"settings":{"padding_top":160,"padding_bottom":80,"custom_heading":"Yunnan Travel Guides","custom_subheading":"Explore Yunnan travel guides for Kunming, Dali, Lijiang, and Shangri-La, with destination tips, landmark guides, itineraries, and local travel inspiration.","columns_desktop":3,"articles_per_page":36,"show_blog_search":true,"blog_search_placeholder":"Search articles by destination, landmark, or keyword","blog_search_clear_text":"Clear","blog_search_helper_text":"Search articles by title, summary, or keyword.","blog_search_empty_text":"No matching articles found."}},"footer":{"type":"footer","settings":{}}},"order":["global_navigation_JyBjDq","main","footer"]}
+{"sections":{"global_navigation_JyBjDq":{"type":"global-navigation","name":"Global Brand Header","settings":{"logo_image":"shopify:\/\/shop_images\/LOGO2.svg","logo_height":40,"logo_text_cn":"","logo_text_en":"","show_slogan":true,"slogan_text":"","main_menu":"main-menu-1","btn_color":"#fbbf24"}},"main":{"type":"main-blog","blocks":{"title_FqGWkP":{"type":"title","settings":{}},"date_4Y4d3t":{"type":"date","settings":{}},"summary_pHbyxP":{"type":"summary","settings":{}},"button_fCEHRR":{"type":"button","settings":{"btn_text":"Discover More"}}},"block_order":["title_FqGWkP","date_4Y4d3t","summary_pHbyxP","button_fCEHRR"],"settings":{"padding_top":160,"padding_bottom":80,"custom_heading":"Yunnan Travel Guides","custom_subheading":"Explore Yunnan travel guides for Kunming, Dali, Lijiang, and Shangri-La, with destination tips, landmark guides, itineraries, and local travel inspiration.","columns_desktop":3,"articles_per_page":36,"show_blog_search":true,"blog_search_placeholder":"Search articles by destination, landmark, or keyword","blog_search_clear_text":"Clear","blog_search_helper_text":"Search articles by title, summary, or keyword.","blog_search_empty_text":"No matching articles found."}},"footer":{"type":"footer","settings":{
+        "logo_text": "Lynxtour",
+        "brand_desc": "Lynxtour is a Yunnan private tours brand offering bespoke journeys, luxury day trips, and private charter services across Kunming, Dali, Lijiang, Shangri-La, and beyond.",
+        "social_title": "FOLLOW US",
+        "instagram_link": "https://www.instagram.com/lynxtourofficial/",
+        "facebook_link": "https://www.instagram.com/",
+        "x_link": "",
+        "youtube_link": "https://www.youtube.com/@lynxtour_official",
+        "tiktok_link": "https://www.tiktok.com/@lynxtour_official",
+        "menu_1_title": "Quick Navigation",
+        "menu_1": "link-list",
+        "menu_2_title": "Destination Inspiration",
+        "menu_2": "link-list-1",
+        "contact_title": "Contact & Support",
+        "contact_tel": "0871-63218099",
+        "contact_email": "biz@lynxtour.cn",
+        "contact_addr": "Room 3011, Building 4, Xindu Longcheng, Panlong District, Kunming City, Yunnan Province, China, Postcode: 650051.",
+        "badge_text": "YUNNAN PRIVATE TOURS",
+        "show_payment_icons": true,
+        "copyright_text": "ALL RIGHTS RESERVED.",
+        "privacy_label": "Privacy Policy",
+        "privacy_link": "shopify://pages/privacy-policy",
+        "terms_label": "Terms of Service",
+        "terms_link": "shopify://pages/terms-of-service"
+      }}},"order":["global_navigation_JyBjDq","main","footer"]}
