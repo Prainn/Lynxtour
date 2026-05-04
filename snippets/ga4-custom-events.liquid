@@ -1,0 +1,210 @@
+<script>
+  (function () {
+    'use strict';
+
+    var SOURCE = 'lynxtour_theme';
+    var FORM_DEDUPE_MS = 5000;
+    var CLICK_DEDUPE_MS = 1000;
+    var clickMemory = {};
+
+    function hasGtag() {
+      return typeof window.gtag === 'function';
+    }
+
+    function trimText(value, max) {
+      return (value || '').replace(/\s+/g, ' ').trim().slice(0, max || 120);
+    }
+
+    function lower(value) {
+      return (value || '').toLowerCase();
+    }
+
+    function addIf(params, key, value, max) {
+      var text = trimText(value, max);
+      if (text) params[key] = text;
+    }
+
+    function baseParams() {
+      return {
+        page_location: window.location.href,
+        page_path: window.location.pathname,
+        event_source: SOURCE
+      };
+    }
+
+    function sendEvent(name, params) {
+      if (!hasGtag()) return;
+      try {
+        window.gtag('event', name, params || {});
+      } catch (e) {}
+    }
+
+    function linkParams(target, link, ctaType) {
+      var params = baseParams();
+      params.cta_type = ctaType;
+      addIf(params, 'link_url', link && link.href, 300);
+      addIf(params, 'link_text', target && target.innerText, 120);
+      return params;
+    }
+
+    function clickDedupeKey(eventName, target, link) {
+      return [
+        eventName,
+        link && link.href,
+        trimText(target && target.innerText, 80)
+      ].join('|');
+    }
+
+    function canTrackClick(eventName, target, link) {
+      var key = clickDedupeKey(eventName, target, link);
+      var now = Date.now();
+      if (clickMemory[key] && now - clickMemory[key] < CLICK_DEDUPE_MS) return false;
+      clickMemory[key] = now;
+      return true;
+    }
+
+    function pathFromHref(href) {
+      try {
+        var path = new URL(href, window.location.origin).pathname.toLowerCase();
+        return path.length > 1 ? path.replace(/\/$/, '') : path;
+      } catch (e) {
+        return lower(href);
+      }
+    }
+
+    function textMatches(text, terms) {
+      text = lower(text);
+      return terms.some(function (term) {
+        return text.indexOf(term) !== -1;
+      });
+    }
+
+    function trackClick(event) {
+      if (!hasGtag()) return;
+      if (!event.target || typeof event.target.closest !== 'function') return;
+      var target = event.target.closest('a, button, [role="button"]');
+      if (!target) return;
+
+      var link = target.closest('a');
+      var href = link ? lower(link.getAttribute('href') || link.href || '') : '';
+      var absoluteHref = link ? lower(link.href || href) : '';
+      var path = link ? pathFromHref(link.getAttribute('href') || link.href || '') : '';
+      var text = trimText(target.innerText || target.getAttribute('aria-label') || '', 120);
+      var events = [];
+
+      if (absoluteHref.indexOf('wa.me') !== -1 || absoluteHref.indexOf('api.whatsapp.com') !== -1 || absoluteHref.indexOf('whatsapp.com/send') !== -1) {
+        events.push(['whatsapp_click', 'whatsapp']);
+      }
+
+      if (href.indexOf('mailto:') === 0) {
+        events.push(['email_click', 'email']);
+      }
+
+      if (href.indexOf('tel:') === 0) {
+        events.push(['phone_click', 'phone']);
+      }
+
+      if (
+        path === '/pages/contact' ||
+        path === '/pages/contact-us' ||
+        path === '/pages/contact-information' ||
+        path === '/pages/bespoke-custom-travel' ||
+        textMatches(text, ['contact us', 'contact', 'enquire', 'inquiry', 'customize', 'custom trip'])
+      ) {
+        events.push(['contact_click', 'contact']);
+      }
+
+      if (
+        absoluteHref.indexOf('/cart') !== -1 ||
+        absoluteHref.indexOf('/checkout') !== -1 ||
+        textMatches(text, ['book now', 'booking', 'add to booking list', 'reserve', 'start planning', 'plan my trip'])
+      ) {
+        events.push(['book_now_click', 'book_now']);
+      }
+
+      events.forEach(function (item) {
+        if (canTrackClick(item[0], target, link)) {
+          sendEvent(item[0], linkParams(target, link, item[1]));
+        }
+      });
+    }
+
+    function formText(form) {
+      return lower([
+        form.id,
+        form.name,
+        form.className,
+        form.getAttribute('aria-label')
+      ].join(' '));
+    }
+
+    function fieldLooksLikeLead(field) {
+      var value = lower([
+        field.name,
+        field.id,
+        field.getAttribute('aria-label'),
+        field.placeholder
+      ].join(' '));
+      return textMatches(value, ['contact', 'inquiry', 'message', 'email', 'phone']);
+    }
+
+    function isLeadForm(form) {
+      var action = lower(form.getAttribute('action') || '');
+      var path = lower(window.location.pathname);
+      var fields = Array.prototype.slice.call(form.elements || []);
+
+      return (
+        path.indexOf('/pages/bespoke-custom-travel') !== -1 ||
+        action.indexOf('/contact') !== -1 ||
+        textMatches(formText(form), ['contact', 'custom', 'bespoke', 'inquiry', 'enquire']) ||
+        fields.some(fieldLooksLikeLead)
+      );
+    }
+
+    function formDedupeKey(form) {
+      return 'lynxtour_ga4_form_' + [
+        window.location.pathname,
+        form.id,
+        form.name,
+        form.getAttribute('action')
+      ].join('|');
+    }
+
+    function canTrackForm(form) {
+      var key = formDedupeKey(form);
+      var now = Date.now();
+      try {
+        var last = Number(window.sessionStorage.getItem(key) || 0);
+        if (last && now - last < FORM_DEDUPE_MS) return false;
+        window.sessionStorage.setItem(key, String(now));
+      } catch (e) {}
+      return true;
+    }
+
+    function formParams(form) {
+      var params = baseParams();
+      params.cta_type = 'form_submit';
+      addIf(params, 'form_id', form.id, 100);
+      addIf(params, 'form_action', form.getAttribute('action'), 300);
+      addIf(params, 'form_name', form.name, 100);
+      return params;
+    }
+
+    function trackSubmit(event) {
+      if (!hasGtag()) return;
+      var form = event.target;
+      if (!form || form.tagName !== 'FORM' || !isLeadForm(form) || !canTrackForm(form)) return;
+
+      sendEvent('custom_trip_form_submit', formParams(form));
+
+      var leadParams = formParams(form);
+      leadParams.currency = 'CNY';
+      leadParams.value = 0;
+      leadParams.lead_type = 'custom_trip_or_contact_form';
+      sendEvent('generate_lead', leadParams);
+    }
+
+    document.addEventListener('click', trackClick, true);
+    document.addEventListener('submit', trackSubmit, true);
+  })();
+</script>
