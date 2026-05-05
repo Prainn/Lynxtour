@@ -182,8 +182,15 @@
         "faq_item_UEWhpc": {
           "type": "faq_item",
           "settings": {
-            "question": "Is altitude something I should plan for in Shangri-La?",
-            "answer": "Yes. Because Shangri-La is higher than many other Yunnan destinations, a slower pace and a thoughtful route can make the trip more comfortable, especially for first-time visitors."
+            "question": "Is Shangri-La altitude difficult for first-time visitors?",
+            "answer": "Shangri-La's altitude can feel noticeable for first-time visitors, so it is best to keep the first day slower, avoid overpacking the schedule, and build the route thoughtfully from lower-altitude stops such as Lijiang or Dali."
+          }
+        },
+        "faq_item_after_lijiang": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Should I visit Shangri-La before or after Lijiang?",
+            "answer": "Most travelers visit Shangri-La after Lijiang because the route gives a more gradual step into higher altitude and can include Tiger Leaping Gorge on the way. The reverse can also work depending on flights and the wider Yunnan itinerary."
           }
         }
       },
@@ -205,12 +212,13 @@
         "faq_item_EDLAwe",
         "faq_item_AVPcHy",
         "faq_item_bBYdxK",
-        "faq_item_UEWhpc"
+        "faq_item_UEWhpc",
+        "faq_item_after_lijiang"
       ],
       "settings": {
         "main_title": "Shangri-La Travel Guide",
         "sub_title": "THE LOST HORIZON",
-        "intro_text": "Plan your Shangri-La trip with practical travel tips, route ideas, and key sights to help you decide what to see, how many days to stay, and when to go.\n\nExplore Songzanlin Monastery, Pudacuo, Dukezong, Napa Lake, and Meili Snow Mountain through a guide built around altitude comfort, scenic pacing, and first-trip planning.",
+        "intro_text": "Shangri-La is northwest Yunnan's highland gateway, known for Tibetan culture, Songzanlin Monastery, Pudacuo National Park, Dukezong Ancient Town, Napa Lake, and routes toward Meili Snow Mountain. It is one of the best places in Yunnan for travelers who want mountain scenery, monastery culture, and a slower plateau pace.\n\nMost first-time visitors spend 2 to 4 days here. This guide helps you decide what to see, when to visit, how to plan around altitude, and how to connect Shangri-La with Lijiang, Tiger Leaping Gorge, or a wider private Yunnan itinerary.",
         "info_section_eyebrow": "PLAN YOUR STAY",
         "info_section_title": "Know Shangri-La at a Glance",
         "info_section_intro": "A quick guide to why Shangri-La matters, what to see, when to go, and how to plan your time on the plateau.",

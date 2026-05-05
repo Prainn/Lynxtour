@@ -175,13 +175,14 @@
   elsif request.page_type == 'page'
     case page.handle
       when 'dali'
-        assign seo_title = 'Dali Travel Guide: Best Time, Itinerary & Things to Do | Lynxtour'
-        assign seo_description = 'Plan a trip to Dali with tips on the best time to visit, how many days to stay, top attractions, and how to combine Dali with Lijiang or Shangri-La.'
+        assign seo_title = 'Dali Yunnan Guide: Things to Do, Erhai & Itinerary'
+        assign seo_description = 'Plan your Dali Yunnan trip with Erhai Lake, Dali Old Town, Xizhou, Cangshan, best seasons, itinerary ideas, and private tour options.'
       when 'lijiang'
         assign seo_title = 'Lijiang Travel Guide: Best Time, Itinerary & Top Things to Do | Lynxtour'
         assign seo_description = 'Plan your Lijiang trip with advice on the best time to visit, how many days to stay, top attractions, and how to combine Lijiang with Shangri-La or Dali.'
       when 'shangri-la'
-        assign seo_title = 'Shangri-La Travel Guide: Best Time, Itinerary Ideas & Top Things to Do | Lynxtour'
+        assign seo_title = 'Shangri-La Yunnan Travel Guide: Things to Do & Itinerary'
+        assign seo_description = 'Plan a Shangri-La Yunnan trip with top things to do, best seasons, altitude tips, itinerary ideas, and private route options from Lijiang.'
       when 'xishuangbanna'
         assign seo_title = 'Xishuangbanna Travel Guide: Best Time, Itinerary Ideas & Top Things to Do | Lynxtour'
       when 'dali-itinerary-3-days'
@@ -202,6 +203,13 @@
       when 'dali-to-lijiang-private-tour'
         assign seo_title = 'Dali to Lijiang Private Tour: Custom Yunnan Route | Lynxtour'
         assign seo_description = 'Plan a Dali to Lijiang private tour with flexible pacing, comfortable route planning, and a clear look at why this Yunnan pairing works so well together.'
+    endcase
+  elsif request.page_type == 'article'
+    assign article_slug = article.handle | split: '/' | last
+    case article_slug
+      when 'dianchi-lake-guide'
+        assign seo_title = 'Dianchi Lake Kunming Guide: Seagulls, Haigeng Dam & Tips'
+        assign seo_description = 'Plan a Dianchi Lake visit in Kunming with best seasons, Haigeng Dam tips, seagull timing, transport advice, and private Yunnan trip ideas.'
     endcase
   elsif request.page_type == 'product'
     case product.handle
