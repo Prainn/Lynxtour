@@ -35,7 +35,7 @@
           "settings": {
             "tag": "WHY THIS DAY WORKS",
             "heading": "A clean Lijiang mountain day with private handling from start to finish",
-            "copy": "Jade Dragon Snow Mountain is often the biggest sightseeing day in a Lijiang stay, so private transport helps the day feel more organized from hotel pickup through the return drive."
+            "copy": "This private Jade Dragon Snow Mountain tour is built for travelers staying in Lijiang who want a smoother mountain day with hotel pickup, private vehicle support, flexible pacing, and help with timing."
           }
         },
         "feature_2": {
@@ -43,7 +43,7 @@
           "settings": {
             "tag": "WHAT IT COVERS",
             "heading": "Built for travelers who want scenery, route logic, and less friction",
-            "copy": "This route is designed for travelers who want a clear mountain day from Lijiang, with scenic highlights, practical pacing, and less friction from pickup to return."
+            "copy": "The day can include Jade Dragon Snow Mountain, Blue Moon Valley, and related scenic stops depending on confirmed ticketing, seasonal conditions, and the route that makes the most sense for your travel date."
           }
         },
         "feature_3": {
@@ -51,7 +51,7 @@
           "settings": {
             "tag": "WHO IT SUITS",
             "heading": "A strong fit for couples, families, and first-time Lijiang visitors",
-            "copy": "This route suits travelers who want more control over timing, a steadier pace at altitude, and a more comfortable mountain day than a fixed-group outing."
+            "copy": "This route suits travelers who want more control than a fixed group tour, especially when fitting the mountain day into a 2-day or 3-day Lijiang stay."
           }
         },
         "feature_4": {
@@ -97,8 +97,8 @@
           "settings": {
             "tag": "CUSTOM PLANNING",
             "heading": "Shape the mountain day around the rest of your Yunnan trip",
-            "copy": "If you want help deciding how this day fits into a longer route, custom planning is the cleanest next step.",
-            "link_label": "Plan a custom Yunnan itinerary",
+            "copy": "If you want help deciding how this Jade Dragon Snow Mountain day fits into a longer route, custom planning is the cleanest next step.",
+            "link_label": "Plan a custom Lijiang day trip",
             "link_url": "/pages/bespoke-custom-travel"
           }
         },
@@ -108,29 +108,29 @@
             "tag": "LIJIANG ROUTE LOGIC",
             "heading": "Use the 3-day Lijiang itinerary to place this mountain day inside a fuller stay",
             "copy": "Travelers comparing a standalone day trip with a fuller first stay in Lijiang can use the itinerary page as the clearest planning reference.",
-            "link_label": "See the Lijiang itinerary for 3 days",
+            "link_label": "Fit this into a 3-day Lijiang itinerary",
             "link_url": "/pages/lijiang-itinerary-3-days"
           }
         },
         "faq_1": {
           "type": "faq_item",
           "settings": {
-            "question": "Is Jade Dragon Snow Mountain best done as a private day trip from Lijiang?",
-            "answer": "For many travelers, yes. A private day trip from Lijiang is the easiest way to keep the route smooth, manage the timing better, and enjoy the mountain highlights without rushing between stops."
+            "question": "Is Jade Dragon Snow Mountain best done as a private day tour from Lijiang?",
+            "answer": "For many travelers, yes. A private day tour from Lijiang is the easiest way to keep hotel pickup, mountain timing, Blue Moon Valley, and the return drive organized without following a fixed group pace."
           }
         },
         "faq_2": {
           "type": "faq_item",
           "settings": {
-            "question": "Why book a private Jade Dragon Snow Mountain day instead of a fixed group?",
-            "answer": "Private handling gives you more control over timing, pickup, route comfort, and how the day fits around the rest of your Lijiang stay."
+            "question": "Does this tour include Blue Moon Valley?",
+            "answer": "Blue Moon Valley can usually be included as part of the Jade Dragon Snow Mountain day, depending on confirmed ticketing, weather, seasonal conditions, and the final route timing."
           }
         },
         "faq_3": {
           "type": "faq_item",
           "settings": {
-            "question": "Can this day trip be paired with a wider Lijiang or northwest Yunnan route?",
-            "answer": "Yes. Jade Dragon Snow Mountain often works as the main scenic day inside a Lijiang stay and can also be folded into a longer Yunnan itinerary."
+            "question": "Can this day trip fit into a 3-day Lijiang itinerary?",
+            "answer": "Yes. Jade Dragon Snow Mountain often works best as the main scenic day inside a 3-day Lijiang itinerary, with old-town time on one side and Baisha, Shuhe, or another cultural stop on the other."
           }
         }
       },
@@ -151,7 +151,7 @@
       "settings": {
         "eyebrow": "DAY-TRIP PLANNING NOTES",
         "title": "Helpful planning context for this private mountain day",
-        "intro": "These planning notes help travelers understand how a Jade Dragon Snow Mountain day fits into a Lijiang stay, and why a private route can make the day smoother.",
+        "intro": "This private Jade Dragon Snow Mountain day tour is for travelers staying in Lijiang who want hotel pickup, private vehicle support, flexible timing, Blue Moon Valley possibilities, and a smoother mountain day than a fixed group outing.",
         "features_eyebrow": "PRIVATE DAY SUPPORT",
         "features_title": "What travelers usually want clarified before booking",
         "features_intro": "",
