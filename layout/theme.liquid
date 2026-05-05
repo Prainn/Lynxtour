@@ -157,6 +157,13 @@
           assign seo_title = 'Yunnan Private Tours: Custom Itineraries & Packages'
         endif
         assign seo_description = 'Compare private Yunnan tours from 6 to 10 days, including Kunming, Dali, Lijiang and Shangri-La routes, custom itineraries and day trips.'
+      when 'yunnan-luxury-private-tours'
+        if current_page > 1
+          assign seo_title = 'Yunnan Luxury Tours | Custom High-End Itineraries | Page ' | append: current_page
+        else
+          assign seo_title = 'Yunnan Luxury Tours | Custom High-End Itineraries'
+        endif
+        assign seo_description = 'Explore luxury private Yunnan tours with custom routes, premium hotels, private vehicles, flexible pacing and tailored planning across Yunnan.'
       when 'dali-private-tours'
         if current_page > 1
           assign seo_title = 'Dali Private Tours | Custom Dali Itineraries | Page ' | append: current_page | append: ' | Lynxtour'
@@ -174,6 +181,9 @@
     endcase
   elsif request.page_type == 'page'
     case page.handle
+      when 'kunming'
+        assign seo_title = 'Kunming Yunnan Travel Guide: Things to Do & Itinerary'
+        assign seo_description = 'Plan your Kunming Yunnan trip with Stone Forest, Dianchi Lake, Green Lake, flower markets, city walks, day trips and private tour options.'
       when 'dali'
         assign seo_title = 'Dali Yunnan Guide: Things to Do, Erhai & Itinerary'
         assign seo_description = 'Plan your Dali Yunnan trip with Erhai Lake, Dali Old Town, Xizhou, Cangshan, best seasons, itinerary ideas, and private tour options.'
@@ -213,6 +223,15 @@
       when 'dianchi-lake-guide'
         assign seo_title = 'Dianchi Lake Kunming Guide: Seagulls, Haigeng Dam & Tips'
         assign seo_description = 'Plan a Dianchi Lake visit in Kunming with best seasons, Haigeng Dam tips, seagull timing, transport advice, and private Yunnan trip ideas.'
+      when 'jade-dragon-snow-mountain-travel-guide'
+        assign seo_title = 'Jade Dragon Snow Mountain Guide: Tickets & Lijiang Tips'
+        assign seo_description = 'Plan a Jade Dragon Snow Mountain visit from Lijiang with ticket tips, Blue Moon Valley, altitude notes, timing advice and private tour options.'
+      when 'stone-forest-shilin-guide'
+        assign seo_title = 'Stone Forest Kunming Guide: Shilin Travel Tips & Day Trip'
+        assign seo_description = 'Plan a Stone Forest day trip from Kunming with Shilin travel tips, transport advice, timing, route ideas and private Yunnan tour options.'
+      when 'lijiang-old-town-travel-guide'
+        assign seo_title = 'Lijiang Old Town Guide: What to See, Tips & Itinerary'
+        assign seo_description = 'Explore Lijiang Old Town with walking tips, best areas, Naxi culture, nearby sights, itinerary ideas and private Lijiang tour options.'
     endcase
   elsif request.page_type == 'product'
     case product.handle
