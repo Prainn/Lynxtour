@@ -464,6 +464,9 @@
   assign is_shangri_la_travel_guide = false
   assign is_cangshan_mountain_guide = false
   assign is_erhai_lake_guide = false
+  assign is_jade_dragon_snow_mountain_guide = false
+  assign is_stone_forest_guide = false
+  assign is_lijiang_old_town_guide = false
   assign article_slug = article.handle | split: '/' | last
   assign article_structured_canonical_url = canonical_url
   assign dianchi_route_handles = 'kunming-highlights-1-day-tour-western-hills-dianchi-ethnic-village|kunming-provincial-museum-dounan-flower-market-1-day-private-tour|kunming-stone-forest-old-street-night-market-1-day-private-tour' | split: '|'
@@ -553,6 +556,33 @@
     assign end_cta_primary_link = '/collections/dali-private-tours'
     assign end_cta_secondary_text = 'Continue to the Dali travel guide'
     assign end_cta_secondary_link = '/pages/dali'
+  elsif article_slug == 'jade-dragon-snow-mountain-travel-guide'
+    assign is_jade_dragon_snow_mountain_guide = true
+    assign end_cta_eyebrow = 'Lijiang Mountain Planning'
+    assign end_cta_heading = 'Move from the Jade Dragon guide into the right Lijiang route'
+    assign end_cta_text = 'Jade Dragon Snow Mountain is easiest when the day is planned around timing, altitude, ticket conditions, and the rest of your Lijiang stay. Use this guide to compare a focused private mountain day with a broader Lijiang itinerary or custom Yunnan route.'
+    assign end_cta_primary_text = 'Explore the Jade Dragon private tour'
+    assign end_cta_primary_link = '/products/jade-dragon-snow-mountain-private-tour'
+    assign end_cta_secondary_text = 'Compare Lijiang private tours'
+    assign end_cta_secondary_link = '/collections/lijiang-private-tours'
+  elsif article_slug == 'stone-forest-shilin-guide'
+    assign is_stone_forest_guide = true
+    assign end_cta_eyebrow = 'Kunming Day Trip Planning'
+    assign end_cta_heading = 'Move from the Stone Forest guide into the right Kunming route'
+    assign end_cta_text = 'Stone Forest is usually strongest as a focused Kunming day trip or one major stop inside a wider private Yunnan route. Use this guide to compare timing, transport, and the right amount of Kunming city context around Shilin.'
+    assign end_cta_primary_text = 'Explore a Stone Forest private route'
+    assign end_cta_primary_link = '/products/kunming-stone-forest-old-street-night-market-1-day-private-tour'
+    assign end_cta_secondary_text = 'See Yunnan private day trips'
+    assign end_cta_secondary_link = '/collections/yunnan-private-day-trips'
+  elsif article_slug == 'lijiang-old-town-travel-guide'
+    assign is_lijiang_old_town_guide = true
+    assign end_cta_eyebrow = 'Lijiang Route Planning'
+    assign end_cta_heading = 'Move from the Lijiang Old Town guide into the right Lijiang route'
+    assign end_cta_text = 'Lijiang Old Town is usually the base layer of a Lijiang stay, then Baisha, Shuhe, Jade Dragon Snow Mountain, or Shangri-La shape the route around it. Use this guide to place the old town inside a practical 2-day or 3-day Lijiang plan.'
+    assign end_cta_primary_text = 'Compare Lijiang private tours'
+    assign end_cta_primary_link = '/collections/lijiang-private-tours'
+    assign end_cta_secondary_text = 'See the 3-day Lijiang itinerary'
+    assign end_cta_secondary_link = '/pages/lijiang-itinerary-3-days'
   endif
 %}
 
@@ -636,6 +666,24 @@
         <p class="article-guide-brief__eyebrow">DALI ATTRACTION GUIDE</p>
         <p>Erhai Lake is one of Dali's defining scenic anchors, valued for wide lake views, cycling and shoreline drives, village stops, and its role in shaping the slower, more open rhythm of a Dali stay. Travelers visit because it balances old-town walking and mountain scenery with a more relaxed lakeside side of the destination.</p>
         <p>For most travelers, Erhai fits best as a half-day to full-day part of a broader Dali itinerary rather than as a standalone destination. It pairs especially well with <a href="/pages/dali">the Dali travel guide</a>, <a href="/blogs/travel-guides/cangshan-mountain-guide">the Cangshan Mountain guide</a>, <a href="/pages/dali-itinerary-2-days">shorter 2-day Dali stays</a>, <a href="/pages/dali-itinerary-3-days">more relaxed 3-day Dali itinerary ideas</a>, and onward western Yunnan travel.</p>
+      </section>
+    {% elsif is_jade_dragon_snow_mountain_guide %}
+      <section class="article-guide-brief">
+        <p class="article-guide-brief__eyebrow">LIJIANG MOUNTAIN GUIDE</p>
+        <p>Jade Dragon Snow Mountain is the main high-mountain day trip from Lijiang, often planned with Blue Moon Valley, ticket and timing decisions, and altitude awareness. This guide helps first-time visitors understand what to expect, how to pace the day, and when a <a href="/products/jade-dragon-snow-mountain-private-tour">private day tour from Lijiang</a> can make the route smoother.</p>
+        <p>Ticketing, cable car choices, weather, and seasonal conditions can affect the exact plan, so it is best treated as a planned mountain day rather than a casual add-on. If you are building a Lijiang itinerary, compare this guide with the <a href="/pages/lijiang-itinerary-3-days">3-day Lijiang itinerary</a>, the <a href="/pages/lijiang">Lijiang travel guide</a>, and <a href="/collections/lijiang-private-tours">private Lijiang tour options</a>.</p>
+      </section>
+    {% elsif is_stone_forest_guide %}
+      <section class="article-guide-brief">
+        <p class="article-guide-brief__eyebrow">KUNMING DAY TRIP GUIDE</p>
+        <p>Stone Forest, also known as Shilin, is Kunming's best-known geological day trip and one of the clearest ways to add natural scenery to a Kunming stay. This guide helps travelers compare timing, transport, route pacing, and whether to visit Stone Forest as a focused day trip or as part of a wider Kunming private route.</p>
+        <p>For first-time visitors, Stone Forest usually works best with an early start and enough room for the return to Kunming. Travelers comparing route styles can <a href="/pages/kunming">continue to the Kunming travel guide</a>, <a href="/collections/yunnan-private-day-trips">see Yunnan private day trips</a>, or use a <a href="/products/yunnan-private-car-charter-tour">private Yunnan car charter</a> for more flexible timing.</p>
+      </section>
+    {% elsif is_lijiang_old_town_guide %}
+      <section class="article-guide-brief">
+        <p class="article-guide-brief__eyebrow">LIJIANG OLD TOWN GUIDE</p>
+        <p>Lijiang Old Town is the cultural heart of a Lijiang stay, known for canals, lanes, viewpoints, Naxi culture, food streets, and easy links to Baisha, Shuhe, and Jade Dragon Snow Mountain. This guide helps first-time visitors decide what to see, how to walk the old town, and how to place it inside a 2 or 3 day Lijiang itinerary.</p>
+        <p>It is strongest when treated as the base layer of a Lijiang stay rather than a single photo stop. Travelers planning around it can <a href="/pages/lijiang">continue to the Lijiang travel guide</a>, compare the <a href="/pages/lijiang-itinerary-3-days">3-day Lijiang itinerary</a>, or browse <a href="/collections/lijiang-private-tours">private Lijiang tour options</a> for a smoother old town, village, mountain, or Shangri-La route.</p>
       </section>
     {% endif %}
 
@@ -877,6 +925,78 @@
         <details>
           <summary>What is the best season to visit Erhai Lake?</summary>
           <p>Spring and autumn are usually the easiest seasons for visibility, outdoor pacing, and comfortable weather, though Erhai can work across much of the year depending on conditions.</p>
+        </details>
+      </section>
+    {% elsif is_jade_dragon_snow_mountain_guide %}
+      <section class="article-planning-note">
+        <p class="article-planning-note__eyebrow">ROUTE PLANNING</p>
+        <h2>How to Plan Jade Dragon Snow Mountain from Lijiang</h2>
+        <p>Jade Dragon Snow Mountain is usually easiest as a dedicated Lijiang day, with timing shaped by confirmed ticketing, weather, altitude, and how much time you want at Blue Moon Valley. Travelers comparing options can <a href="/products/jade-dragon-snow-mountain-private-tour">explore the Jade Dragon Snow Mountain private tour</a>, <a href="/pages/lijiang-itinerary-3-days">see how it fits into 3 days in Lijiang</a>, or <a href="/pages/lijiang">continue to the Lijiang travel guide</a>.</p>
+        <p>If the mountain is one part of a wider route, <a href="/collections/lijiang-private-tours">compare Lijiang private tours</a> or <a href="/pages/bespoke-custom-travel">request custom Yunnan trip planning</a> so the day fits your hotel location, onward travel, and preferred pace.</p>
+      </section>
+
+      <section class="article-guide-faq">
+        <p class="article-guide-faq__eyebrow">FAQ</p>
+        <h2>Quick Jade Dragon Snow Mountain Planning Questions</h2>
+        <details>
+          <summary>Do I need to plan tickets in advance?</summary>
+          <p>Yes, it is better to plan ticketing and timing in advance because cable car choices, weather, and seasonal demand can affect the exact mountain route.</p>
+        </details>
+        <details>
+          <summary>Can Blue Moon Valley be included in the same day?</summary>
+          <p>Yes. Blue Moon Valley is commonly planned with Jade Dragon Snow Mountain, but the final pacing should follow confirmed tickets, weather, and how long you want to spend at altitude.</p>
+        </details>
+        <details>
+          <summary>Is altitude a concern at Jade Dragon Snow Mountain?</summary>
+          <p>Altitude can affect some visitors, so it is sensible to pace the day carefully, avoid overloading the schedule, and keep the mountain as the main focus of the day.</p>
+        </details>
+      </section>
+    {% elsif is_stone_forest_guide %}
+      <section class="article-planning-note">
+        <p class="article-planning-note__eyebrow">ROUTE PLANNING</p>
+        <h2>How to Plan Stone Forest as a Kunming Day Trip</h2>
+        <p>Stone Forest works best as a focused Shilin day trip from Kunming or as the major natural stop inside a fuller Kunming route. Travelers comparing options can <a href="/products/kunming-stone-forest-old-street-night-market-1-day-private-tour">explore a Stone Forest and old-city private route</a>, <a href="/pages/kunming">continue to the Kunming travel guide</a>, or <a href="/collections/yunnan-private-day-trips">compare Yunnan private day trips</a>.</p>
+        <p>If you want more control over pickup city, luggage, or onward timing, <a href="/products/yunnan-private-car-charter-tour">plan a private Yunnan car charter</a>. If Stone Forest is one stop in a wider province route, <a href="/pages/bespoke-custom-travel">request custom Yunnan trip planning</a> to keep the route practical.</p>
+      </section>
+
+      <section class="article-guide-faq">
+        <p class="article-guide-faq__eyebrow">FAQ</p>
+        <h2>Quick Stone Forest Planning Questions</h2>
+        <details>
+          <summary>Is Stone Forest worth a day trip from Kunming?</summary>
+          <p>Yes. Stone Forest is one of Kunming's clearest day-trip choices if you want distinctive natural scenery and a strong contrast with the city.</p>
+        </details>
+        <details>
+          <summary>How should I get to Stone Forest from Kunming?</summary>
+          <p>Travelers can use public transport or a private route. A private day trip is usually smoother if you want hotel pickup, easier timing, and a better fit with other Kunming stops.</p>
+        </details>
+        <details>
+          <summary>Can Stone Forest be combined with other Kunming sights?</summary>
+          <p>Yes, but it is a fuller day because Stone Forest sits outside the city. It pairs best with one or two Kunming stops rather than a long list of city attractions.</p>
+        </details>
+      </section>
+    {% elsif is_lijiang_old_town_guide %}
+      <section class="article-planning-note">
+        <p class="article-planning-note__eyebrow">ROUTE PLANNING</p>
+        <h2>How to Use Lijiang Old Town Inside a Lijiang Itinerary</h2>
+        <p>Lijiang Old Town works best as the base of a Lijiang stay, then nearby villages, mountain days, or northbound routes can be planned around it. Travelers comparing route shapes can <a href="/pages/lijiang">continue to the Lijiang travel guide</a>, <a href="/pages/lijiang-itinerary-3-days">compare a 3-day Lijiang itinerary</a>, or <a href="/collections/lijiang-private-tours">browse Lijiang private tours</a>.</p>
+        <p>For nearby route planning, <a href="/products/jade-dragon-snow-mountain-private-tour">explore the Jade Dragon Snow Mountain private tour</a> or <a href="/products/lijiang-to-shangri-la-private-tour">compare the Lijiang to Shangri-La private route</a>. If you want the old town, Baisha, Shuhe, and onward travel shaped together, <a href="/pages/bespoke-custom-travel">request custom Yunnan trip planning</a>.</p>
+      </section>
+
+      <section class="article-guide-faq">
+        <p class="article-guide-faq__eyebrow">FAQ</p>
+        <h2>Quick Lijiang Old Town Planning Questions</h2>
+        <details>
+          <summary>How long do I need in Lijiang Old Town?</summary>
+          <p>Most travelers need at least a half day for the main lanes, viewpoints, food stops, and evening atmosphere, with more time if they want a slower cultural stay.</p>
+        </details>
+        <details>
+          <summary>What should I see around Lijiang Old Town?</summary>
+          <p>Baisha, Shuhe, Black Dragon Pool, Jade Dragon Snow Mountain, and nearby Naxi village areas all pair naturally with a Lijiang Old Town stay.</p>
+        </details>
+        <details>
+          <summary>Can Lijiang Old Town fit into a 3-day itinerary?</summary>
+          <p>Yes. Lijiang Old Town usually works as the arrival and evening base, while Jade Dragon Snow Mountain, Baisha, Shuhe, or an onward Shangri-La route shape the remaining days.</p>
         </details>
       </section>
     {% endif %}
