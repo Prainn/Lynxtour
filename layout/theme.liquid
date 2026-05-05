@@ -152,11 +152,11 @@
     case collection.handle
       when 'yunnan-private-tours'
         if current_page > 1
-          assign seo_title = 'Yunnan Private Tours & Custom Itineraries | Page ' | append: current_page | append: ' | Lynxtour'
+          assign seo_title = 'Yunnan Private Tours: Custom Itineraries & Packages | Page ' | append: current_page
         else
-          assign seo_title = 'Yunnan Private Tours & Custom Itineraries | Lynxtour'
+          assign seo_title = 'Yunnan Private Tours: Custom Itineraries & Packages'
         endif
-        assign seo_description = 'Compare Yunnan private tours from 6 to 10 days and beyond. Visit Kunming, Dali, Lijiang and Shangri-La with flexible private itineraries and local support.'
+        assign seo_description = 'Compare private Yunnan tours from 6 to 10 days, including Kunming, Dali, Lijiang and Shangri-La routes, custom itineraries and day trips.'
       when 'dali-private-tours'
         if current_page > 1
           assign seo_title = 'Dali Private Tours | Custom Dali Itineraries | Page ' | append: current_page | append: ' | Lynxtour'
@@ -203,6 +203,9 @@
       when 'dali-to-lijiang-private-tour'
         assign seo_title = 'Dali to Lijiang Private Tour: Custom Yunnan Route | Lynxtour'
         assign seo_description = 'Plan a Dali to Lijiang private tour with flexible pacing, comfortable route planning, and a clear look at why this Yunnan pairing works so well together.'
+      when 'bespoke-custom-travel'
+        assign seo_title = 'Custom Yunnan Trip Planning | Private Itineraries'
+        assign seo_description = 'Request a custom Yunnan itinerary shaped around your dates, pace, destinations, hotel style and travel interests, reviewed by a local specialist.'
     endcase
   elsif request.page_type == 'article'
     assign article_slug = article.handle | split: '/' | last
@@ -222,6 +225,9 @@
       when 'lijiang-to-shangri-la-private-tour'
         assign seo_title = 'Lijiang to Shangri-La Private Tour | Northwest Yunnan Route'
         assign seo_description = 'Plan a private Lijiang to Shangri-La route with Tiger Leaping Gorge, highland scenery, flexible pacing, hotel options and custom northwest Yunnan planning.'
+      when 'yunnan-private-car-charter-tour'
+        assign seo_title = 'Yunnan Private Car Charter | Driver-Guide Service'
+        assign seo_description = 'Book a private Yunnan car charter with driver-guide service, flexible pickup cities, multi-day routes, vehicle options and custom travel planning.'
     endcase
   endif
 
