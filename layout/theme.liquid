@@ -381,6 +381,139 @@
         scroll-behavior: smooth;
       }
 
+      /* Lynx shared CTA layer. Section-specific button visuals remain unchanged. */
+      .lynx-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 14px 24px;
+        border: 1px solid transparent;
+        border-radius: var(--lynx-radius-button);
+        font: inherit;
+        font-size: 0.9rem;
+        font-weight: 600;
+        line-height: 1.2;
+        letter-spacing: 0.18em;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .lynx-btn--primary {
+        background: var(--lynx-color-primary);
+        border-color: var(--lynx-color-primary);
+        color: #1c1917;
+      }
+
+      .lynx-btn--primary:hover {
+        background: var(--lynx-color-primary-hover);
+        border-color: var(--lynx-color-primary-hover);
+        color: #1c1917;
+        box-shadow: var(--lynx-shadow-soft);
+        transform: translateY(-2px);
+      }
+
+      .lynx-btn--secondary {
+        background: transparent;
+        border-color: rgba(255, 255, 255, 0.18);
+        color: var(--lynx-color-text);
+      }
+
+      .lynx-btn--secondary:hover {
+        border-color: var(--lynx-color-primary);
+        color: var(--lynx-color-primary);
+        background: var(--lynx-color-primary-soft);
+      }
+
+      .lynx-text-cta {
+        color: var(--lynx-color-text);
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        transition: color 0.25s ease;
+      }
+
+      .lynx-text-cta:hover {
+        color: var(--lynx-color-primary);
+      }
+
+      .lynx-btn:focus-visible,
+      .lynx-text-cta:focus-visible,
+      .hero-btn:focus-visible,
+      .coll-hero-btn:focus-visible,
+      .card-btn:focus-visible,
+      .brand-link-chip:focus-visible,
+      .dest-action:focus-visible,
+      .dali-quick-btn:focus-visible,
+      .dali-cta-btn:focus-visible,
+      .dali-inline-link:focus-visible,
+      .dali-related-link:focus-visible,
+      .lj-top-btn:focus-visible,
+      .lj-cta-btn:focus-visible,
+      .lj-inline-link:focus-visible,
+      .lj-related-link:focus-visible,
+      .xb-top-btn:focus-visible,
+      .xb-cta-btn:focus-visible,
+      .xb-inline-link:focus-visible,
+      .xb-related-link:focus-visible,
+      .km-cta-btn:focus-visible,
+      .km-inline-link:focus-visible,
+      .km-related-link:focus-visible,
+      .cta-submit-btn:focus-visible,
+      .submit-btn-minimal:focus-visible,
+      .copy-email-btn:focus-visible,
+      .ai-submit-btn:focus-visible,
+      .secondary-submit-btn:focus-visible,
+      .btn-contact-custom:focus-visible,
+      .ota-btn-cart:focus-visible,
+      .ota-btn-buy:focus-visible,
+      .ota-info-btn:focus-visible {
+        outline: 2px solid var(--lynx-color-primary);
+        outline-offset: 3px;
+      }
+
+      .lynx-btn:disabled,
+      .lynx-btn[aria-disabled="true"],
+      .cta-submit-btn:disabled,
+      .submit-btn-minimal:disabled,
+      .copy-email-btn:disabled,
+      .ai-submit-btn:disabled,
+      .secondary-submit-btn:disabled,
+      .ota-btn-cart:disabled,
+      .ota-btn-buy:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+
+      @media (max-width: 767px) {
+        .lynx-btn,
+        .hero-btn,
+        .coll-hero-btn,
+        .dali-quick-btn,
+        .dali-cta-btn,
+        .lj-top-btn,
+        .lj-cta-btn,
+        .xb-top-btn,
+        .xb-cta-btn,
+        .km-cta-btn,
+        .cta-submit-btn,
+        .submit-btn-minimal,
+        .copy-email-btn,
+        .ai-submit-btn,
+        .secondary-submit-btn,
+        .btn-contact-custom,
+        .ota-btn-cart,
+        .ota-btn-buy,
+        .ota-info-btn {
+          min-height: 44px;
+        }
+      }
+
       /* 防止跳转后标题紧贴屏幕顶端，留出一点呼吸空间 */
       #dest-section {
         scroll-margin-top: 50px;
