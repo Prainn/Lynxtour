@@ -577,6 +577,101 @@
         text-transform: uppercase;
       }
 
+      /* Lynx shared section and typography layer. Opt-in utilities based on the homepage rhythm. */
+      .lynx-section {
+        padding-top: var(--lynx-section-padding-y);
+        padding-bottom: var(--lynx-section-padding-y);
+      }
+
+      .lynx-container {
+        max-width: var(--lynx-container-max);
+        margin-right: auto;
+        margin-left: auto;
+        padding-right: 20px;
+        padding-left: 20px;
+      }
+
+      .lynx-readable {
+        max-width: var(--lynx-readable-max);
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .lynx-section-header {
+        max-width: var(--lynx-readable-max);
+        margin: 0 auto 58px;
+        text-align: center;
+      }
+
+      .lynx-eyebrow {
+        color: var(--lynx-color-luxury);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .lynx-section-title {
+        color: var(--lynx-color-text);
+        margin: 0;
+        font-weight: 300;
+        line-height: 1.15;
+      }
+
+      .lynx-section-text {
+        color: var(--lynx-color-muted);
+        margin: 0;
+        line-height: 1.85;
+      }
+
+      .lynx-rich-text {
+        color: var(--lynx-color-muted);
+        max-width: var(--lynx-readable-max);
+        line-height: 1.85;
+      }
+
+      .lynx-rich-text p,
+      .lynx-rich-text ul,
+      .lynx-rich-text ol {
+        margin-top: 0;
+        margin-bottom: 1.15rem;
+      }
+
+      .lynx-rich-text p:last-child,
+      .lynx-rich-text ul:last-child,
+      .lynx-rich-text ol:last-child {
+        margin-bottom: 0;
+      }
+
+      .lynx-rich-text li {
+        margin-bottom: 0.65rem;
+      }
+
+      .lynx-rich-text li:last-child {
+        margin-bottom: 0;
+      }
+
+      @media (max-width: 767px) {
+        .lynx-section {
+          padding-top: var(--lynx-section-padding-y-mobile);
+          padding-bottom: var(--lynx-section-padding-y-mobile);
+        }
+
+        .lynx-container {
+          padding-right: 16px;
+          padding-left: 16px;
+        }
+
+        .lynx-section-header {
+          margin-bottom: 28px;
+        }
+
+        .lynx-section-text,
+        .lynx-rich-text {
+          line-height: 1.75;
+        }
+      }
+
       /* 防止跳转后标题紧贴屏幕顶端，留出一点呼吸空间 */
       #dest-section {
         scroll-margin-top: 50px;
