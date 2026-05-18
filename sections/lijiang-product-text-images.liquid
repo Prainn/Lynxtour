@@ -33,6 +33,23 @@
 {% if final_content == blank %}
   {% assign final_content = section.settings.content %}
 {% endif %}
+{% if final_content != blank %}
+  {% assign final_content = final_content
+    | replace: 'Hreakfast', 'Breakfast'
+    | replace: 'head to lijiang', 'Head to Lijiang'
+    | replace: 'head to Chuxiong', 'Head to Chuxiong'
+    | replace: 'Check in Hotel (Chuxiong)', 'Check into the hotel (Chuxiong)'
+    | replace: '第一页', ''
+    | replace: '第二页', ''
+  %}
+  {% assign artifact_page_numbers = '27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1' | split: ',' %}
+  {% for page_number in artifact_page_numbers %}
+    {% assign image_page_artifact = 'Image: Page ' | append: page_number %}
+    {% assign final_content = final_content | replace: image_page_artifact, '' %}
+    {% assign page_artifact = 'PAGE ' | append: page_number %}
+    {% assign final_content = final_content | replace: page_artifact, '' %}
+  {% endfor %}
+{% endif %}
 
 <!-- 引入 3D 翻书引擎 -->
 <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
@@ -49,7 +66,7 @@
         <div class="mag-rich-content-wrap">
           <div class="mag-rich-content{% if use_external_support_pattern %} mag-rich-content--external-support{% endif %}" id="mag-rich-{{ section.id }}">
             {{ final_content }}
-            {% if is_flagship_yunnan_route %}
+            {% if is_flagship_yunnan_route and use_external_support_pattern != true %}
               <div class="mag-supporting-notes" aria-label="Supporting trip information">
                 <section class="mag-supporting-note">
                   <h3>Who This 8-Day Yunnan Tour Is Best For</h3>
@@ -625,7 +642,7 @@
                       src="{{ img | image_url: width: 1000 }}"
                       class="mag-page-img"
                       loading="lazy"
-                      alt="Page {{ forloop.index }}"
+                      alt="{{ product.title | escape }} image {{ forloop.index }}"
                     >
                   </div>
                 </div>
@@ -640,20 +657,20 @@
                         src="{{ img | image_url: width: 1000 }}"
                         class="mag-page-img"
                         loading="lazy"
-                        alt="Page {{ forloop.index }}"
+                        alt="{{ product.title | escape }} image {{ forloop.index }}"
                       >
                     {% else %}
-                      <div class="mag-placeholder-box">UPLOAD IMAGE</div>
+                      <div class="mag-placeholder-box">Travel image coming soon</div>
                     {% endif %}
                   </div>
                 </div>
               {% endfor %}
             {% else %}
               <div class="mag-page">
-                <div class="mag-placeholder-box">第一页</div>
+                <div class="mag-placeholder-box">Travel image coming soon</div>
               </div>
               <div class="mag-page">
-                <div class="mag-placeholder-box">第二页</div>
+                <div class="mag-placeholder-box">Travel image coming soon</div>
               </div>
             {% endif %}
           </div>
@@ -667,7 +684,7 @@
 
         <div class="mag-book-footer">
           <div class="mag-page-indicator">
-            PAGE <span id="mag-current-{{ section.id }}">1</span>
+            Slide <span id="mag-current-{{ section.id }}">1</span>
           </div>
           {% assign cap = section.settings.caption | strip %}
           {% if cap != blank and cap != '—' %}

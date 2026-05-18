@@ -1,0 +1,38 @@
+{%- liquid
+  assign price_context = ''
+  assign price_context = price_context | append: variant.title | append: ' '
+  assign price_context = price_context | append: variant.option1 | append: ' '
+  assign price_context = price_context | append: variant.option2 | append: ' '
+  assign price_context = price_context | append: variant.option3 | append: ' '
+  assign price_context = price_context | append: package_type | append: ' '
+  assign price_context = price_context | append: option_label | append: ' '
+  assign price_context = price_context | append: row_label
+  assign price_context = price_context | downcase
+
+  assign is_quote_price = false
+  if variant.price == 0
+    if price_context contains 'custom' or price_context contains 'bespoke' or price_context contains 'request' or price_context contains 'quote' or price_context contains 'charter'
+      assign is_quote_price = true
+    endif
+  endif
+
+  assign resolved_quote_label = quote_label | default: 'Price confirmed after route review'
+  if price_context contains 'charter'
+    assign resolved_quote_label = 'Request a custom charter quote'
+  elsif price_context contains 'request' or price_context contains 'quote'
+    assign resolved_quote_label = 'Request a quote'
+  endif
+-%}
+
+{%- if is_quote_price -%}
+  <span class="ota-item-price ota-item-price--quote" data-cents="{{ variant.price }}" data-quote-label="{{ resolved_quote_label | escape }}">{{ resolved_quote_label }}</span>
+{%- else -%}
+  {%- if paid_format == 'money' -%}
+    <span class="ota-item-price money" data-cents="{{ variant.price }}">{{ variant.price | money }}</span>
+  {%- else -%}
+    <span class="ota-item-price money" data-cents="{{ variant.price }}">
+      <span class="currency-code">CNY</span>
+      <span class="currency-amount">{{ variant.price | money_without_trailing_zeros }}</span>
+    </span>
+  {%- endif -%}
+{%- endif -%}

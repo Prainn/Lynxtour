@@ -1482,10 +1482,12 @@
                 </div>
 
                 <div class="ota-item-action">
-                  <span class="ota-item-price money">
-                    <span class="currency-code">CNY</span>
-                    <span class="currency-amount">{{ variant.price | money_without_trailing_zeros }}</span>
-                  </span>
+                  {% render 'display-variant-price',
+                    variant: variant,
+                    package_type: pkg_type,
+                    option_label: variant.option2,
+                    row_label: desc_text
+                  %}
                   <div class="ota-stepper">
                     <button type="button" class="js-qty" data-delta="-1" aria-label="减少" disabled>-</button>
                     <input type="number" value="0" min="0" readonly inputmode="numeric">
@@ -1680,6 +1682,18 @@
                       <div class="day-timeline">
                         {% assign items = d.items.value %}
                         {% for it in items %}
+                          {% assign clean_it_title = it.title
+                            | replace: 'Hreakfast', 'Breakfast'
+                            | replace: 'head to lijiang', 'Head to Lijiang'
+                            | replace: 'head to Chuxiong', 'Head to Chuxiong'
+                            | replace: 'Check in Hotel (Chuxiong)', 'Check into the hotel (Chuxiong)'
+                          %}
+                          {% assign clean_it_desc = it.desc
+                            | replace: 'Hreakfast', 'Breakfast'
+                            | replace: 'head to lijiang', 'Head to Lijiang'
+                            | replace: 'head to Chuxiong', 'Head to Chuxiong'
+                            | replace: 'Check in Hotel (Chuxiong)', 'Check into the hotel (Chuxiong)'
+                          %}
                           <div class="tl-item" data-type="{{ it.type }}">
                             <div class="tl-dot" aria-hidden="true">
                               {% assign t = it.type | downcase %}
@@ -1750,7 +1764,7 @@
 
                             <div>
                               <div class="tl-head">
-                                <div class="tl-title">{{ it.title }}</div>
+                                <div class="tl-title">{{ clean_it_title }}</div>
                                 {% if it.time != blank %}<div class="tl-time">{{ it.time }}</div>{% endif %}
                               </div>
 
@@ -1762,7 +1776,7 @@
                               {% endif %}
 
                               {% if it.desc != blank %}
-                                <div class="tl-desc">{{ it.desc | newline_to_br }}</div>
+                                <div class="tl-desc">{{ clean_it_desc | newline_to_br }}</div>
                               {% endif %}
 
                               {% assign imgs = it.images.value %}
@@ -1782,7 +1796,7 @@
                                         <img
                                           class="day-img"
                                           loading="lazy"
-                                          alt="{{ it.title | escape }}"
+                                          alt="{{ clean_it_title | escape }}"
                                           src="{{ img.preview_image | image_url: width: 1000 }}"
                                         >
                                       {% else %}
