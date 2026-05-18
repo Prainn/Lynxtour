@@ -27,15 +27,6 @@
       "type": "one-day-trip-product",
       "settings": {}
     },
-    "lijiang_product_text_images_HjHNH4": {
-      "type": "lijiang-product-text-images",
-      "name": "Luxury 3D单页巨幕画册",
-      "settings": {
-        "title": "",
-        "content": "",
-        "caption": ""
-      }
-    },
     "footer_aiV8Ar": {
       "type": "footer",
       "name": "Custom Footer",
@@ -69,7 +60,6 @@
   "order": [
     "global_navigation_9tf9hB",
     "main",
-    "lijiang_product_text_images_HjHNH4",
     "footer_aiV8Ar"
   ]
 }
