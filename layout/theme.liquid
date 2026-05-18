@@ -514,6 +514,69 @@
         }
       }
 
+      /* Lynx shared card layer. Use for new card work; existing card visuals stay section-owned. */
+      .lynx-card {
+        background: var(--lynx-color-surface);
+        border: 1px solid var(--lynx-color-border);
+        border-radius: var(--lynx-radius-card);
+        box-shadow: var(--lynx-shadow-card);
+        color: var(--lynx-color-text);
+        overflow: hidden;
+      }
+
+      .lynx-card--soft {
+        background: var(--lynx-color-surface-soft);
+        box-shadow: var(--lynx-shadow-soft);
+      }
+
+      .lynx-card--image {
+        position: relative;
+        min-height: 100%;
+      }
+
+      .lynx-card__media {
+        position: relative;
+        overflow: hidden;
+        background: var(--lynx-color-surface);
+      }
+
+      .lynx-card__media img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .lynx-card__content {
+        padding: 24px;
+      }
+
+      .lynx-card__title {
+        color: var(--lynx-color-text);
+        margin: 0;
+      }
+
+      .lynx-card__text {
+        color: var(--lynx-color-muted);
+        margin: 0;
+        line-height: 1.8;
+      }
+
+      .lynx-card__meta {
+        color: var(--lynx-color-muted);
+        font-size: 0.75rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .lynx-card__tag {
+        color: var(--lynx-color-luxury);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
       /* 防止跳转后标题紧贴屏幕顶端，留出一点呼吸空间 */
       #dest-section {
         scroll-margin-top: 50px;
