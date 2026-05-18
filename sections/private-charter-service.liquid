@@ -1247,7 +1247,13 @@
                 </div>
 
                 <div class="ota-item-action">
-                  <span class="ota-item-price money">{{ variant.price | money }}</span>
+                  {% render 'display-variant-price',
+                    variant: variant,
+                    package_type: pkg_type,
+                    option_label: row_title,
+                    row_label: vehicle_label,
+                    paid_format: 'money'
+                  %}
 
                   <div class="ota-stepper">
                     <button type="button" class="js-qty" data-delta="-1" aria-label="Decrease" disabled>-</button>

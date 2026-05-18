@@ -1216,10 +1216,12 @@
                 </div>
 
                 <div class="ota-item-action">
-                  <span class="ota-item-price money" data-cents="{{ variant.price }}">
-  <span class="currency-code">CNY</span>
-  <span class="currency-amount">{{ variant.price | money_without_trailing_zeros }}</span>
-</span>
+                  {% render 'display-variant-price',
+                    variant: variant,
+                    package_type: pkg_type,
+                    option_label: variant.title,
+                    row_label: desc_text
+                  %}
 
                   <div class="ota-stepper">
                     <button type="button" class="js-qty" data-delta="-1" aria-label="Decrease" disabled>-</button>
@@ -1574,6 +1576,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const renderMoneyNode = (el, cents) => {
     if (!el) return;
+    if (Number(cents || 0) === 0 && el.dataset.quoteLabel) {
+      el.classList.remove('money');
+      el.classList.add('ota-item-price--quote');
+      el.textContent = el.dataset.quoteLabel;
+      return;
+    }
+    el.classList.remove('ota-item-price--quote');
+    el.classList.add('money');
     el.innerHTML = `
       <span class="currency-code">${currencyLabel}</span>
       <span class="currency-amount">${formatAmountOnly(cents)}</span>
