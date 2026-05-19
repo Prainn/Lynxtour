@@ -1,15 +1,15 @@
-<div id="dest-section" class="dest-section-wrapper">
+<div id="dest-section" class="dest-section-wrapper lynx-section">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <div class="header-container dest-shell">
+  <div class="header-container dest-shell lynx-container">
     {% if section.settings.main_title != blank %}
-      <div class="section-header">
-        <h2 class="section-main-title">{{ section.settings.main_title }}</h2>
+      <div class="section-header lynx-section-header">
+        <h2 class="section-main-title lynx-section-title">{{ section.settings.main_title }}</h2>
 
         {% if section.settings.main_subtitle != blank %}
-          <p class="section-main-subtitle">{{ section.settings.main_subtitle }}</p>
+          <p class="section-main-subtitle lynx-section-text lynx-readable">{{ section.settings.main_subtitle }}</p>
         {% endif %}
 
         <div class="title-underline"></div>
@@ -102,13 +102,13 @@
     background:
       radial-gradient(circle at top right, rgba(216,179,95,0.08), transparent 24%),
       linear-gradient(180deg, #090807 0%, #0b0908 48%, #0a0807 100%);
-    padding: 108px 0 112px;
+    padding: var(--lynx-section-padding-y, 108px) 0 112px;
     font-family: 'Montserrat', sans-serif;
     overflow: hidden;
   }
 
   .dest-shell {
-    max-width: 1220px;
+    max-width: var(--lynx-container-max, 1220px);
     margin: 0 auto;
     padding: 0 20px;
   }
@@ -131,7 +131,7 @@
   }
 
   .section-main-subtitle {
-    max-width: 760px;
+    max-width: var(--lynx-readable-max, 760px);
     margin: 0 auto 18px;
     color: rgba(232, 225, 214, 0.72);
     font-size: 14px;
@@ -140,7 +140,7 @@
     font-weight: 300;
   }
 
-  .title-underline {
+  .dest-section-wrapper .title-underline {
     width: 52px;
     height: 1px;
     background: linear-gradient(90deg, rgba(216,179,95,0.15) 0%, #d8b35f 50%, rgba(216,179,95,0.15) 100%);
@@ -318,7 +318,7 @@
 
   @media (max-width: 767px) {
     .dest-section-wrapper {
-      padding: 40px 0 64px;
+      padding: 48px 0 var(--lynx-section-padding-y-mobile, 64px);
       background:
         linear-gradient(180deg, #090807 0%, #0b0908 50%, #0a0807 100%);
     }
@@ -345,7 +345,7 @@
       margin-bottom: 14px;
     }
 
-    .title-underline {
+    .dest-section-wrapper .title-underline {
       width: 54px;
       opacity: 0.72;
     }

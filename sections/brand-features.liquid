@@ -1,9 +1,9 @@
-<div class="brand-features-section">
-  <div class="header-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+<div class="brand-features-section lynx-section">
+  <div class="header-container lynx-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
     
     {% if section.settings.main_title != blank %}
-      <div class="brand-header">
-        <h2 class="brand-main-title">{{ section.settings.main_title }}</h2>
+      <div class="brand-header lynx-section-header">
+        <h2 class="brand-main-title lynx-section-title">{{ section.settings.main_title }}</h2>
         <div class="title-underline"></div>
       </div>
     {% endif %}
@@ -21,13 +21,13 @@
         {% if section.settings.intro_heading_1 != blank and section.settings.intro_body_1 != blank %}
           <article class="brand-intro-module">
             <h3 class="brand-intro-title">{{ section.settings.intro_heading_1 }}</h3>
-            <p class="brand-intro-body">{{ section.settings.intro_body_1 }}</p>
+            <p class="brand-intro-body lynx-section-text">{{ section.settings.intro_body_1 }}</p>
           </article>
         {% endif %}
         {% if section.settings.intro_heading_2 != blank and section.settings.intro_body_2 != blank %}
           <article class="brand-intro-module">
             <h3 class="brand-intro-title">{{ section.settings.intro_heading_2 }}</h3>
-            <p class="brand-intro-body">{{ section.settings.intro_body_2 }}</p>
+            <p class="brand-intro-body lynx-section-text">{{ section.settings.intro_body_2 }}</p>
           </article>
         {% endif %}
       </div>
@@ -57,7 +57,7 @@
             {% endif %}
           </div>
           <h3 class="brand-item-title">{{ block.settings.item_title }}</h3>
-          <p class="brand-item-desc">{{ block.settings.item_desc }}</p>
+          <p class="brand-item-desc lynx-section-text">{{ block.settings.item_desc }}</p>
         </div>
       {% endfor %}
     </div>
@@ -71,7 +71,7 @@
     position: relative;
     /* 确保与你的其他 Section 颜色严格一致，通常是 #0a0a0a 或 #000000 */
     background-color: #0a0a0a; 
-    padding: 120px 0 160px 0; /* 增加底部内边距，留给渐变空间 */
+    padding: 112px 0 144px 0; /* 增加底部内边距，留给渐变空间 */
     overflow: hidden;
   }
 
@@ -88,7 +88,7 @@
 
   .brand-header {
     text-align: center;
-    margin-bottom: 90px;
+    margin-bottom: 64px;
     position: relative;
     z-index: 2;
   }
@@ -103,7 +103,7 @@
     opacity: 0.9;
   }
 
-  .title-underline {
+  .brand-features-section .title-underline {
     width: 30px;
     height: 1px;
     background: #fbbf24;
@@ -114,7 +114,7 @@
   .brand-grid {
     display: grid;
     grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
-    gap: 60px;
+    gap: 48px;
     position: relative;
     z-index: 2;
   }
@@ -124,7 +124,7 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 22px;
     margin: 0 auto 32px;
-    max-width: 1100px;
+    max-width: 1040px;
     position: relative;
     z-index: 2;
   }
@@ -132,7 +132,7 @@
   .brand-intro-module {
     border: 1px solid rgba(255,255,255,0.08);
     background: rgba(255,255,255,0.02);
-    padding: 28px 26px;
+    padding: 26px 24px;
   }
 
   .brand-intro-title {
@@ -146,9 +146,10 @@
 
   .brand-intro-body {
     color: #cfcfcf;
-    font-size: 15px;
-    line-height: 1.85;
+    font-size: 14px;
+    line-height: 1.8;
     margin: 0;
+    max-width: 54ch;
   }
 
   .brand-link-list {
@@ -157,7 +158,7 @@
     gap: 12px 14px;
     justify-content: center;
     margin: 0 auto 48px;
-    max-width: 1100px;
+    max-width: 1040px;
     position: relative;
     z-index: 2;
   }
@@ -232,7 +233,8 @@
   }
 
   @media (max-width: 767px) {
-    .brand-features-section { padding: 80px 0 100px 0; }
+    .brand-features-section { padding: 64px 0 92px 0; }
+    .brand-header { margin-bottom: 36px; }
     .brand-intro-modules { grid-template-columns: 1fr; margin-bottom: 24px; }
     .brand-intro-module { padding: 22px 20px; }
     .brand-link-list { justify-content: flex-start; margin-bottom: 36px; }

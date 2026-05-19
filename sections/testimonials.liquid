@@ -1,8 +1,8 @@
-<div class="testimonials-section">
-  <div class="header-container">
+<div class="testimonials-section lynx-section">
+  <div class="header-container lynx-container">
     {% if section.settings.main_title != blank %}
-      <div class="test-header">
-        <h2 class="test-main-title">{{ section.settings.main_title }}</h2>
+      <div class="test-header lynx-section-header">
+        <h2 class="test-main-title lynx-section-title">{{ section.settings.main_title }}</h2>
         <div class="title-underline"></div>
       </div>
     {% endif %}
@@ -22,7 +22,7 @@
             </div>
 
             <div class="test-content">
-              <p class="test-text" id="text-{{ block.id }}">{{ block.settings.text }}</p>
+              <p class="test-text lynx-section-text" id="text-{{ block.id }}">{{ block.settings.text }}</p>
               <button class="see-more-btn" onclick="toggleText('{{ block.id }}')">See More</button>
             </div>
 
@@ -78,11 +78,11 @@ function toggleText(id) {
 </script>
 
 <style>
-  .testimonials-section { background-color: #0a0a0a; padding: 80px 0; overflow: hidden; }
-  .header-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+  .testimonials-section { background-color: #0a0a0a; padding: 72px 0 88px; overflow: hidden; }
+  .testimonials-section .header-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
   .test-header { text-align: center; margin-bottom: 50px; }
   .test-main-title { color: #fff; font-size: 24px; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 300; }
-  .title-underline { width: 40px; height: 1px; background: #fbbf24; margin: 15px auto; opacity: 0.6; }
+  .testimonials-section .title-underline { width: 40px; height: 1px; background: #fbbf24; margin: 15px auto; opacity: 0.6; }
 
   /* 婊戝姩瀹瑰櫒鍖呰鍣?*/
   .test-slider-relative { position: relative; display: flex; align-items: center; }
@@ -104,7 +104,7 @@ function toggleText(id) {
     flex: 0 0 380px;
     scroll-snap-align: start;
     background: #111;
-    padding: 40px;
+    padding: 34px;
     border: 1px solid #1a1a1a;
     position: relative;
     box-sizing: border-box;
@@ -134,7 +134,7 @@ function toggleText(id) {
 
   .test-rating { color: #fbbf24; margin-bottom: 15px; font-size: 12px; }
   .test-text {
-    color: #a8a29e; font-size: 14px; line-height: 1.8; font-style: italic;
+    color: #a8a29e; font-size: 14px; line-height: 1.75; font-style: italic;
     display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
   }
   .test-text.expanded { -webkit-line-clamp: initial; display: block; }
@@ -150,7 +150,7 @@ function toggleText(id) {
   .author-meta { color: #57534e; font-size: 10px; margin: 0; }
 
   @media (max-width: 767px) {
-    .testimonials-section { padding: 56px 0; }
+    .testimonials-section { padding: 56px 0 64px; }
     .test-header { margin-bottom: 28px; }
     .test-main-title { font-size: 20px; letter-spacing: 0.18em; }
     .test-grid-scroll { gap: 14px; padding: 12px 0 4px; scroll-padding-inline: 20px; }
@@ -160,12 +160,12 @@ function toggleText(id) {
     .test-trip-meta { gap: 10px; flex-wrap: wrap; }
     .test-author { margin-top: 16px; }
     .slider-nav { display: none; }
-    .header-container { padding: 0 20px; }
+    .testimonials-section .header-container { padding: 0 20px; }
   }
 
   @media (max-width: 430px) {
     .test-card { flex-basis: calc(100vw - 24px); padding: 22px 16px; }
-    .header-container { padding: 0 12px; }
+    .testimonials-section .header-container { padding: 0 12px; }
     .test-grid-scroll { scroll-padding-inline: 12px; }
   }
 </style>
