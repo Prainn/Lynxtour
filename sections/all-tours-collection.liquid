@@ -491,6 +491,137 @@
     opacity: .85;
   }
 
+  /* --- Yunnan Private Tours polish: scoped to /collections/yunnan-private-tours only --- */
+  #CollectionProductGrid-{{ section.id }}.yunnan-private-collection{
+    background:
+      radial-gradient(circle at top right, rgba(216,179,95,0.06), transparent 28%),
+      var(--lynx-color-bg, #050505);
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .coll-hero-compact{
+    min-height: calc(460px + var(--header-safe));
+  }
+
+  #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .hero-overlay{
+    background:
+      radial-gradient(900px 360px at 50% 42%, rgba(0,0,0,0.16), rgba(0,0,0,0) 62%),
+      linear-gradient(to bottom, rgba(5,5,5,0.10) 0%, rgba(5,5,5,0.68) 74%, rgba(5,5,5,1) 100%);
+  }
+
+  #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .hero-content{
+    max-width: var(--lynx-readable-max, 760px);
+  }
+
+  #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .coll-title{
+    margin: 14px 0 16px;
+    line-height: 1.08;
+  }
+
+  #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .coll-desc{
+    max-width: var(--lynx-readable-max, 760px);
+    color: rgba(255,255,255,0.84);
+    font-size: 14px;
+    line-height: 1.85;
+  }
+
+  #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .coll-container{
+    max-width: var(--lynx-container-max, 1220px);
+    padding-top: 56px;
+  }
+
+  #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .seo-copy-top{
+    margin-bottom: 34px;
+  }
+
+  #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .seo-copy-inner{
+    max-width: var(--lynx-readable-max, 760px);
+  }
+
+  #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .seo-copy-top .seo-copy-inner{
+    text-align: center;
+  }
+
+  #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .seo-copy p,
+  #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .faq-answer{
+    color: var(--lynx-color-muted, rgba(232,225,214,0.72));
+    line-height: 1.85;
+  }
+
+  #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .seo-links{
+    justify-content: center;
+  }
+
+  #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .coll-meta-bar{
+    max-width: 760px;
+    margin: 0 auto 48px;
+    background: rgba(255,255,255,0.018);
+  }
+
+  #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .compact-grid{
+    gap: 44px 30px;
+  }
+
+  #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .card-visual{
+    border-color: var(--lynx-color-border, rgba(216,179,95,0.10));
+    border-radius: 22px;
+    box-shadow: var(--lynx-shadow-card, 0 16px 44px rgba(0,0,0,0.22));
+  }
+
+  #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .card-btn{
+    min-height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-color: rgba(255,255,255,0.72);
+  }
+
+  #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .card-content{
+    margin-top: 18px;
+  }
+
+  #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .product-title{
+    margin: 0;
+    line-height: 1.28;
+  }
+
+  #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .product-price{
+    color: rgba(232,225,214,0.72);
+  }
+
+  #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .product-info-row{
+    color: rgba(232,225,214,0.42);
+    margin-top: 8px;
+  }
+
+  #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .seo-copy-bottom{
+    max-width: 980px;
+    margin-top: 78px;
+    padding: 42px 44px;
+    border: 1px solid rgba(216,179,95,0.10);
+    background: rgba(255,255,255,0.018);
+  }
+
+  #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .seo-copy-bottom .seo-copy-inner{
+    max-width: 100%;
+  }
+
+  #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .seo-block{
+    max-width: var(--lynx-readable-max, 760px);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .seo-cta-block{
+    border-color: rgba(216,179,95,0.14);
+    border-radius: 22px;
+  }
+
+  #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .faq-block{
+    margin-top: 36px;
+  }
+
   /* --- Responsive --- */
   @media (max-width: 990px) {
     #CollectionProductGrid-{{ section.id }} .coll-hero-compact {
@@ -650,6 +781,19 @@
       font-size: 9px;
       letter-spacing: 0.32em;
     }
+
+    #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .coll-container {
+      padding-top: 40px;
+    }
+
+    #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .compact-grid {
+      gap: 30px 18px;
+    }
+
+    #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .seo-copy-bottom {
+      margin-top: 58px;
+      padding: 32px 24px;
+    }
   }
 
   @media (max-width: 768px) {
@@ -677,6 +821,35 @@
     #CollectionProductGrid-{{ section.id }} .coll-hero-btn{
       width:100%;
     }
+
+    #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .coll-hero-compact {
+      min-height: calc(430px + var(--header-safe));
+    }
+
+    #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .hero-text-container {
+      padding-bottom: 42px;
+    }
+
+    #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .coll-desc {
+      line-height: 1.75;
+    }
+
+    #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .coll-meta-bar {
+      margin-bottom: 36px;
+      background: transparent;
+    }
+
+    #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .seo-copy-top .seo-copy-inner {
+      text-align: left;
+    }
+
+    #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .seo-links {
+      justify-content: flex-start;
+    }
+
+    #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .seo-copy-bottom {
+      padding: 28px 18px;
+    }
   }
 
   @media (max-width: 430px) {
@@ -703,6 +876,18 @@
     #CollectionProductGrid-{{ section.id }} .faq-answer{
       font-size: 13px;
       line-height: 1.85;
+    }
+
+    #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .compact-grid {
+      gap: 28px 14px;
+    }
+
+    #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .card-visual {
+      border-radius: 18px;
+    }
+
+    #CollectionProductGrid-{{ section.id }}.yunnan-private-collection .card-content {
+      margin-top: 14px;
     }
   }
 </style>
@@ -735,7 +920,7 @@ document.addEventListener('DOMContentLoaded', function(){
 </script>
 
 
-<section class="luxury-collection-wrapper" id="CollectionProductGrid-{{ section.id }}">
+<section class="luxury-collection-wrapper{% if collection.handle == 'yunnan-private-tours' %} yunnan-private-collection lynx-section{% endif %}" id="CollectionProductGrid-{{ section.id }}">
   <!-- 1) HERO -->
   <header class="coll-hero-compact">
     <div class="hero-bg">
@@ -748,7 +933,7 @@ document.addEventListener('DOMContentLoaded', function(){
     </div>
 
     <div class="hero-text-container">
-      <div class="hero-content">
+      <div class="hero-content{% if collection.handle == 'yunnan-private-tours' %} lynx-container lynx-section-header{% endif %}">
         <div class="subtitle-wrap">
           <span class="coll-subtitle">
             {% if collection.handle == 'yunnan-private-tours' %}
@@ -760,7 +945,7 @@ document.addEventListener('DOMContentLoaded', function(){
           <div class="subtitle-line"></div>
         </div>
 
-        <h1 class="coll-title">
+        <h1 class="coll-title{% if collection.handle == 'yunnan-private-tours' %} lynx-section-title{% endif %}">
           {% if collection.handle == 'yunnan-private-tours' %}
             Yunnan Private Tours
           {% else %}
@@ -770,7 +955,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
         {% if collection.description != blank %}
           <div class="coll-desc-wrap">
-            <div class="coll-desc">
+            <div class="coll-desc{% if collection.handle == 'yunnan-private-tours' %} lynx-section-text lynx-readable{% endif %}">
               {% if collection.handle == 'yunnan-private-tours' %}
                 Compare private Yunnan tours for first-time and returning travelers, from 6-day highlights to 8-day classic routes and slower 10-day custom journeys.
                 <br>
@@ -782,7 +967,7 @@ document.addEventListener('DOMContentLoaded', function(){
           </div>
         {% elsif collection.handle == 'yunnan-private-tours' %}
           <div class="coll-desc-wrap">
-            <div class="coll-desc">
+            <div class="coll-desc{% if collection.handle == 'yunnan-private-tours' %} lynx-section-text lynx-readable{% endif %}">
               Compare private Yunnan tours for first-time and returning travelers, from 6-day highlights to 8-day classic routes and slower 10-day custom journeys.
               <br>
               Choose private pacing, flexible hotels, smoother transfers, and local itinerary support around your dates and travel style.
@@ -795,7 +980,7 @@ document.addEventListener('DOMContentLoaded', function(){
   </header>
 
   <!-- 2) LIST -->
-  <div class="coll-container">
+  <div class="coll-container{% if collection.handle == 'yunnan-private-tours' %} lynx-container{% endif %}">
     {% comment %}<div class="coll-meta-bar">
       <div class="meta-left">
         <span class="meta-number">{{ collection.products_count }}</span>
@@ -816,10 +1001,10 @@ document.addEventListener('DOMContentLoaded', function(){
     {% paginate collection.products by section.settings.page_size %}
 
       {% if collection.handle == 'yunnan-private-tours' and paginate.current_page == 1 %}
-        <section class="seo-copy seo-copy-top">
-          <div class="seo-copy-inner">
+        <section class="seo-copy seo-copy-top lynx-section-header">
+          <div class="seo-copy-inner lynx-readable">
             <p class="seo-eyebrow">PRIVATE YUNNAN ITINERARIES</p>
-              <h2>Compare Yunnan Private Tours and Route Lengths</h2>
+              <h2 class="lynx-section-title">Compare Yunnan Private Tours and Route Lengths</h2>
               <p>
                 Compare private Yunnan tours for first-time and returning travelers, from shorter 6-day highlights to balanced 8-day Kunming-Dali-Lijiang-Shangri-La routes and slower 10-day or custom journeys. These routes are designed for travelers who want private pacing, flexible hotels, smoother transfers, and itinerary support from a local Yunnan team.
               </p>
@@ -984,7 +1169,7 @@ document.addEventListener('DOMContentLoaded', function(){
       {% endif %}
 
       {% if collection.handle == 'yunnan-private-tours' and paginate.current_page == 1 %}
-        <section class="seo-copy seo-copy-bottom">
+        <section class="seo-copy seo-copy-bottom lynx-card lynx-card--soft">
           <div class="seo-copy-inner">
             <div class="seo-block">
               <h2>How Many Days Do You Need for a Yunnan Private Tour?</h2>
@@ -1007,7 +1192,7 @@ document.addEventListener('DOMContentLoaded', function(){
               </p>
             </div>
 
-            <div class="seo-block seo-cta-block">
+            <div class="seo-block seo-cta-block lynx-card lynx-card--soft">
               <h2>Need Help Comparing Yunnan Routes?</h2>
               <p>
                 Tell us your dates, pace, hotel style, and travel interests and we can recommend the route length and city sequence that fits best.
