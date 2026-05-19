@@ -1,4 +1,4 @@
-<div class="luxury-collection-wrapper" id="CollectionProductGrid">
+<div class="luxury-collection-wrapper luxury-private-collection lynx-section" id="CollectionProductGrid">
 
   {%- comment -%} 1. Bright & Full Hero Section (Shangri-La Optimized) {%- endcomment -%}
   <header class="coll-hero-compact">
@@ -14,16 +14,16 @@
     </div>
 
     <div class="hero-text-container">
-      <div class="hero-content">
+      <div class="hero-content lynx-container lynx-section-header">
         <div class="subtitle-wrap">
           <span class="coll-subtitle">CURATED LUXURY ACROSS YUNNAN</span>
           <div class="subtitle-line"></div>
         </div>
 
-        <h1 class="coll-title">{{ collection.title | default: 'SHANGRI-LA' }}</h1>
+        <h1 class="coll-title lynx-section-title">{{ collection.title | default: 'SHANGRI-LA' }}</h1>
 
         <div class="coll-desc-wrap">
-          <div class="coll-desc">
+          <div class="coll-desc lynx-section-text lynx-readable">
             {% if collection.description != blank %}
               {{ collection.description | strip_html }}
             {% else %}
@@ -36,7 +36,7 @@
   </header>
 
   {%- comment -%} 2. Content Section {%- endcomment -%}
-  <div class="coll-container">
+  <div class="coll-container lynx-container">
     <div class="coll-meta-bar">
       <div class="meta-left">
         <span class="meta-number">{{ collection.products_count }}</span>
@@ -144,10 +144,10 @@
       {% endif %}
 
       {% if collection.handle == 'yunnan-luxury-private-tours' %}
-        <section class="collection-copy-block luxury-support-block" aria-label="Yunnan luxury private tour planning guide">
+        <section class="collection-copy-block luxury-support-block lynx-card lynx-card--soft" aria-label="Yunnan luxury private tour planning guide">
           <div class="luxury-support-grid">
             <div class="luxury-support-main">
-              <h2 class="copy-heading">Why this Yunnan luxury private tours collection stands apart</h2>
+              <h2 class="copy-heading lynx-section-title">Why this Yunnan luxury private tours collection stands apart</h2>
               <div class="copy-richtext">
                 <p>On Lynxtour, Yunnan luxury private tours are premium, fully private journeys designed around custom high-end Yunnan itinerary planning, stronger hotel standards, private vehicle comfort, and more refined route design than a standard private tour. This collection is for travelers who want Yunnan's scenery and culture with better logistics, slower pacing, and tailored planning support.</p>
                 <p>It suits couples, milestone trips, families wanting privacy and comfort, and travelers who prefer boutique stays, mountain-view retreats, hot spring downtime, or a more seamless driver-guide journey across Yunnan’s longer distances. Compared with standard private tours, the emphasis here is less on covering the most stops and more on how the route feels: quieter pacing, better recovery time, more atmospheric hotels, and stronger destination fit for a premium travel style.</p>
@@ -615,7 +615,115 @@
     box-shadow: 0 0 6px rgba(196,181,166,0.9);
   }
 
-  /* ===== Responsive ===== */
+  /* Luxury collection polish: premium but aligned with the Lynx homepage system. */
+  #CollectionProductGrid.luxury-private-collection{
+    background:
+      radial-gradient(circle at top right, rgba(216,179,95,0.055), transparent 30%),
+      var(--lynx-color-bg, #050505);
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  #CollectionProductGrid.luxury-private-collection .coll-hero-compact{
+    min-height: 540px;
+  }
+
+  #CollectionProductGrid.luxury-private-collection .hero-overlay{
+    background:
+      radial-gradient(1000px 380px at 50% 42%, rgba(0,0,0,0.14), rgba(0,0,0,0) 62%),
+      linear-gradient(to bottom, rgba(5,5,5,0.12) 0%, rgba(5,5,5,0.70) 76%, rgba(5,5,5,1) 100%);
+  }
+
+  #CollectionProductGrid.luxury-private-collection .hero-content{
+    max-width: var(--lynx-readable-max, 760px);
+    margin-bottom: 0;
+  }
+
+  #CollectionProductGrid.luxury-private-collection .coll-title{
+    margin: 18px 0 16px;
+    line-height: 1.08;
+  }
+
+  #CollectionProductGrid.luxury-private-collection .coll-desc{
+    max-width: var(--lynx-readable-max, 760px);
+    color: rgba(255,255,255,0.84);
+    line-height: 1.85;
+  }
+
+  #CollectionProductGrid.luxury-private-collection .coll-container{
+    max-width: var(--lynx-container-max, 1220px);
+    padding-top: 54px;
+  }
+
+  #CollectionProductGrid.luxury-private-collection .coll-meta-bar{
+    max-width: 760px;
+    margin: 0 auto 58px;
+    background: rgba(255,255,255,0.018);
+  }
+
+  #CollectionProductGrid.luxury-private-collection .compact-grid{
+    gap: 46px 32px;
+  }
+
+  #CollectionProductGrid.luxury-private-collection .card-visual{
+    border-color: var(--lynx-color-border, rgba(216,179,95,0.10));
+    border-radius: 24px;
+    box-shadow: var(--lynx-shadow-card, 0 16px 44px rgba(0,0,0,0.22));
+  }
+
+  #CollectionProductGrid.luxury-private-collection .card-content{
+    margin-top: 18px;
+  }
+
+  #CollectionProductGrid.luxury-private-collection .product-title{
+    line-height: 1.28;
+  }
+
+  #CollectionProductGrid.luxury-private-collection .product-price{
+    color: rgba(232,225,214,0.72);
+  }
+
+  #CollectionProductGrid.luxury-private-collection .product-info-row{
+    color: rgba(232,225,214,0.42);
+    margin-top: 8px;
+  }
+
+  #CollectionProductGrid.luxury-private-collection .card-btn{
+    min-height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-color: rgba(255,255,255,0.72);
+  }
+
+  #CollectionProductGrid.luxury-private-collection .collection-copy-block{
+    max-width: 1060px;
+    margin: 82px auto 0;
+    padding: 42px 44px;
+    border-color: rgba(216,179,95,0.10);
+    background: rgba(255,255,255,0.018);
+  }
+
+  #CollectionProductGrid.luxury-private-collection .copy-richtext{
+    max-width: var(--lynx-readable-max, 760px);
+  }
+
+  #CollectionProductGrid.luxury-private-collection .copy-richtext p,
+  #CollectionProductGrid.luxury-private-collection .luxury-support-side p,
+  #CollectionProductGrid.luxury-private-collection .luxury-faq-item p{
+    color: var(--lynx-color-muted, rgba(232,225,214,0.72));
+    line-height: 1.85;
+  }
+
+  #CollectionProductGrid.luxury-private-collection .luxury-support-side{
+    border-color: rgba(216,179,95,0.12);
+    border-radius: 22px;
+  }
+
+  #CollectionProductGrid.luxury-private-collection .luxury-faq-list{
+    margin-top: 20px;
+  }
+
   /* ===== Responsive ===== */
 @media (max-width: 990px) {
   /* Hero */
@@ -653,7 +761,7 @@
   /* Grid */
   #CollectionProductGrid .compact-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 26px 14px;
+    gap: 30px 18px;
     align-items: start;
   }
 
@@ -754,6 +862,15 @@
   #CollectionProductGrid .collection-faq-block .faq-acc-item:hover {
     transform: none;
   }
+
+  #CollectionProductGrid.luxury-private-collection .coll-container {
+    padding-top: 40px;
+  }
+
+  #CollectionProductGrid.luxury-private-collection .collection-copy-block {
+    margin-top: 60px;
+    padding: 32px 24px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -786,11 +903,32 @@
   #CollectionProductGrid .faq-acc-answer {
     padding-bottom: 20px;
   }
+
+  #CollectionProductGrid.luxury-private-collection .coll-hero-compact {
+    min-height: 430px;
+  }
+
+  #CollectionProductGrid.luxury-private-collection .hero-text-container {
+    padding-bottom: 42px;
+  }
+
+  #CollectionProductGrid.luxury-private-collection .coll-desc {
+    line-height: 1.75;
+  }
+
+  #CollectionProductGrid.luxury-private-collection .coll-meta-bar {
+    margin-bottom: 38px;
+    background: transparent;
+  }
+
+  #CollectionProductGrid.luxury-private-collection .collection-copy-block {
+    padding: 28px 18px;
+  }
 }
 
 @media (max-width: 430px) {
   #CollectionProductGrid .compact-grid {
-    gap: 24px 12px;
+    gap: 28px 14px;
   }
 
   #CollectionProductGrid .product-title {
@@ -805,6 +943,14 @@
   #CollectionProductGrid .product-info-row {
     font-size: 8px;
     letter-spacing: 0.12em;
+  }
+
+  #CollectionProductGrid.luxury-private-collection .card-visual {
+    border-radius: 18px;
+  }
+
+  #CollectionProductGrid.luxury-private-collection .card-content {
+    margin-top: 14px;
   }
 }
  

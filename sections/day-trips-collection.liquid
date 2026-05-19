@@ -1,4 +1,4 @@
-﻿<div class="luxury-collection-wrapper" id="CollectionProductGrid">
+﻿<div class="luxury-collection-wrapper day-trips-collection lynx-section" id="CollectionProductGrid">
 
   <header class="coll-hero-compact">
     <div class="hero-bg">
@@ -11,7 +11,7 @@
     </div>
 
     <div class="hero-text-container">
-      <div class="hero-content">
+      <div class="hero-content lynx-container lynx-section-header">
         <div class="subtitle-wrap">
           <span class="coll-subtitle">
             {% if collection.handle == 'yunnan-private-day-trips' %}
@@ -23,7 +23,7 @@
           <div class="subtitle-line"></div>
         </div>
 
-        <h1 class="coll-title">
+        <h1 class="coll-title lynx-section-title">
           {% if collection.handle == 'yunnan-private-day-trips' %}
             Yunnan Private Day Trips
           {% else %}
@@ -33,11 +33,11 @@
 
         {% if collection.description != blank %}
           <div class="coll-desc-wrap">
-            <div class="coll-desc">{{ collection.description | strip_html }}</div>
+            <div class="coll-desc lynx-section-text lynx-readable">{{ collection.description | strip_html }}</div>
           </div>
         {% elsif collection.handle == 'yunnan-private-day-trips' %}
           <div class="coll-desc-wrap">
-            <div class="coll-desc">
+            <div class="coll-desc lynx-section-text lynx-readable">
               Private day trips across Yunnan with flexible pacing and local-led experiences, suitable for travelers based in Kunming, Dali, Lijiang, or Shangri-La.
             </div>
           </div>
@@ -46,7 +46,7 @@
     </div>
   </header>
 
-  <div class="coll-container">
+  <div class="coll-container lynx-container">
     <div class="coll-meta-bar">
       <div class="meta-left">
         <span class="meta-number">{{ collection.products_count }}</span>
@@ -67,10 +67,10 @@
     {% paginate collection.products by 12 %}
 
       {% if collection.handle == 'yunnan-private-day-trips' and paginate.current_page == 1 %}
-        <section class="seo-copy seo-copy-top">
-          <div class="seo-copy-inner">
+        <section class="seo-copy seo-copy-top lynx-section-header">
+          <div class="seo-copy-inner lynx-readable">
             <p class="seo-eyebrow">YUNNAN PRIVATE DAY TRIPS</p>
-            <h2>Curated Private Day Tours Across Yunnan</h2>
+            <h2 class="lynx-section-title">Curated Private Day Tours Across Yunnan</h2>
             <p>
               This collection brings together private day tours in Yunnan designed for flexible pacing, local-led experiences, and smooth logistics. Some day trips start from Kunming, while others start from Dali, Lijiang, or Shangri-La depending on the route, making it easier to choose experiences that match where you are based.
             </p>
@@ -188,7 +188,7 @@
       {% endif %}
 
       {% if collection.handle == 'yunnan-private-day-trips' and paginate.current_page == 1 %}
-        <section class="seo-copy seo-copy-bottom">
+        <section class="seo-copy seo-copy-bottom lynx-card lynx-card--soft">
           <div class="seo-copy-inner">
             <div class="seo-block">
               <h2>Why Choose a Private Day Trip in Yunnan?</h2>
@@ -775,6 +775,130 @@
     opacity: .85;
   }
 
+  /* Day Trips polish: fast route comparison, scoped to this collection section. */
+  #CollectionProductGrid.day-trips-collection {
+    background:
+      radial-gradient(circle at top right, rgba(216,179,95,0.05), transparent 28%),
+      var(--lynx-color-bg, #050505);
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  #CollectionProductGrid.day-trips-collection .coll-hero-compact {
+    min-height: 460px;
+  }
+
+  #CollectionProductGrid.day-trips-collection .hero-overlay {
+    background:
+      radial-gradient(900px 320px at 50% 42%, rgba(0,0,0,0.12), rgba(0,0,0,0) 62%),
+      linear-gradient(to bottom, rgba(5,5,5,0.10) 0%, rgba(5,5,5,0.72) 76%, rgba(5,5,5,1) 100%);
+  }
+
+  #CollectionProductGrid.day-trips-collection .hero-content {
+    max-width: var(--lynx-readable-max, 760px);
+    margin-bottom: 0;
+  }
+
+  #CollectionProductGrid.day-trips-collection .coll-title {
+    margin: 14px 0 14px;
+    line-height: 1.08;
+  }
+
+  #CollectionProductGrid.day-trips-collection .coll-desc {
+    max-width: var(--lynx-readable-max, 760px);
+    color: rgba(255,255,255,0.82);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  #CollectionProductGrid.day-trips-collection .coll-container {
+    max-width: var(--lynx-container-max, 1220px);
+    padding-top: 48px;
+  }
+
+  #CollectionProductGrid.day-trips-collection .coll-meta-bar {
+    max-width: 760px;
+    margin: 0 auto 42px;
+    background: rgba(255,255,255,0.018);
+  }
+
+  #CollectionProductGrid.day-trips-collection .seo-copy-top {
+    margin-bottom: 30px;
+  }
+
+  #CollectionProductGrid.day-trips-collection .seo-copy-inner {
+    max-width: var(--lynx-readable-max, 760px);
+  }
+
+  #CollectionProductGrid.day-trips-collection .seo-copy-top .seo-copy-inner {
+    text-align: center;
+  }
+
+  #CollectionProductGrid.day-trips-collection .seo-copy p,
+  #CollectionProductGrid.day-trips-collection .faq-answer {
+    color: var(--lynx-color-muted, rgba(232,225,214,0.72));
+    line-height: 1.85;
+  }
+
+  #CollectionProductGrid.day-trips-collection .compact-grid {
+    gap: 38px 26px;
+  }
+
+  #CollectionProductGrid.day-trips-collection .card-visual {
+    border-color: var(--lynx-color-border, rgba(216,179,95,0.10));
+    border-radius: 18px;
+    box-shadow: var(--lynx-shadow-soft, 0 10px 30px rgba(0,0,0,0.28));
+  }
+
+  #CollectionProductGrid.day-trips-collection .card-content {
+    margin-top: 16px;
+  }
+
+  #CollectionProductGrid.day-trips-collection .product-title {
+    line-height: 1.28;
+  }
+
+  #CollectionProductGrid.day-trips-collection .product-price {
+    color: rgba(232,225,214,0.72);
+  }
+
+  #CollectionProductGrid.day-trips-collection .product-info-row {
+    color: rgba(232,225,214,0.42);
+    margin-top: 8px;
+  }
+
+  #CollectionProductGrid.day-trips-collection .card-btn {
+    min-height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #CollectionProductGrid.day-trips-collection .seo-copy-bottom {
+    max-width: 980px;
+    margin-top: 64px;
+    padding: 38px 42px;
+    border: 1px solid rgba(216,179,95,0.10);
+    background: rgba(255,255,255,0.018);
+  }
+
+  #CollectionProductGrid.day-trips-collection .seo-copy-bottom .seo-copy-inner {
+    max-width: 100%;
+  }
+
+  #CollectionProductGrid.day-trips-collection .seo-block {
+    max-width: var(--lynx-readable-max, 760px);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  #CollectionProductGrid.day-trips-collection .faq-block {
+    margin-top: 34px;
+    padding: 24px 26px;
+    border-color: rgba(216,179,95,0.10);
+    border-radius: 18px;
+  }
+
   @media (max-width: 990px) {
     #CollectionProductGrid .coll-hero-compact {
       height: auto;
@@ -911,6 +1035,19 @@
       letter-spacing: 0.24em;
       padding: 7px 13px;
     }
+
+    #CollectionProductGrid.day-trips-collection .coll-container {
+      padding-top: 38px;
+    }
+
+    #CollectionProductGrid.day-trips-collection .compact-grid {
+      gap: 28px 18px;
+    }
+
+    #CollectionProductGrid.day-trips-collection .seo-copy-bottom {
+      margin-top: 52px;
+      padding: 30px 24px;
+    }
   }
 
   @media (max-width: 768px) {
@@ -928,6 +1065,27 @@
 
     #CollectionProductGrid .seo-copy h2 {
       font-size: clamp(1.5rem, 7vw, 2rem);
+    }
+
+    #CollectionProductGrid.day-trips-collection .hero-text-container {
+      padding-bottom: 42px;
+    }
+
+    #CollectionProductGrid.day-trips-collection .coll-meta-bar {
+      margin-bottom: 34px;
+      background: transparent;
+    }
+
+    #CollectionProductGrid.day-trips-collection .seo-copy-top .seo-copy-inner {
+      text-align: left;
+    }
+
+    #CollectionProductGrid.day-trips-collection .seo-copy-bottom {
+      padding: 26px 18px;
+    }
+
+    #CollectionProductGrid.day-trips-collection .faq-block {
+      padding: 20px 18px;
     }
   }
 
@@ -973,6 +1131,14 @@
     #CollectionProductGrid .faq-answer {
       font-size: 13px;
       line-height: 1.85;
+    }
+
+    #CollectionProductGrid.day-trips-collection .compact-grid {
+      gap: 26px 14px;
+    }
+
+    #CollectionProductGrid.day-trips-collection .card-visual {
+      border-radius: 16px;
     }
   }
 </style>
