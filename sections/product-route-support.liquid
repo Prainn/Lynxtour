@@ -1,6 +1,14 @@
 {% assign feature_blocks = section.blocks | where: 'type', 'feature' %}
 {% assign link_blocks = section.blocks | where: 'type', 'link_card' %}
 {% assign faq_blocks = section.blocks | where: 'type', 'faq_item' %}
+{% assign is_jade_route_support = false %}
+{% assign is_shangrila_route_support = false %}
+
+{% if product.handle == 'jade-dragon-snow-mountain-private-tour' %}
+  {% assign is_jade_route_support = true %}
+{% elsif product.handle == 'lijiang-to-shangri-la-private-tour' %}
+  {% assign is_shangrila_route_support = true %}
+{% endif %}
 
 <style>
   .product-route-support {
@@ -160,6 +168,152 @@
     padding: 0 0 18px;
   }
 
+  .product-route-support.jade-route-support,
+  .product-route-support.shangrila-route-support {
+    background: #141414;
+    padding: 64px 0 78px;
+  }
+
+  .product-route-support.jade-route-support .product-route-support__container,
+  .product-route-support.shangrila-route-support .product-route-support__container {
+    max-width: 1180px;
+  }
+
+  .product-route-support.jade-route-support .product-route-support__inner,
+  .product-route-support.shangrila-route-support .product-route-support__inner {
+    border-color: rgba(212, 177, 106, 0.16);
+    border-radius: 10px;
+    background: #101010;
+    padding: 46px;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+  }
+
+  .product-route-support.jade-route-support .product-route-support__header,
+  .product-route-support.shangrila-route-support .product-route-support__header {
+    max-width: 720px;
+    margin-bottom: 42px;
+  }
+
+  .product-route-support.jade-route-support .product-route-support__title,
+  .product-route-support.shangrila-route-support .product-route-support__title {
+    max-width: 700px;
+    font-size: clamp(30px, 3vw, 40px);
+    line-height: 1.16;
+    font-weight: 600;
+  }
+
+  .product-route-support.jade-route-support .product-route-support__intro,
+  .product-route-support.shangrila-route-support .product-route-support__intro,
+  .product-route-support.jade-route-support .product-route-support__section-intro,
+  .product-route-support.shangrila-route-support .product-route-support__section-intro {
+    max-width: 72ch;
+    color: rgba(245, 242, 235, 0.74);
+    line-height: 1.82;
+  }
+
+  .product-route-support.jade-route-support .product-route-support__section + .product-route-support__section,
+  .product-route-support.shangrila-route-support .product-route-support__section + .product-route-support__section {
+    margin-top: 48px;
+    padding-top: 38px;
+    border-top: 1px solid rgba(212, 177, 106, 0.14);
+  }
+
+  .product-route-support.jade-route-support .product-route-support__section-title,
+  .product-route-support.shangrila-route-support .product-route-support__section-title {
+    max-width: 720px;
+    font-size: clamp(24px, 2.2vw, 32px);
+    line-height: 1.22;
+    font-weight: 600;
+  }
+
+  .product-route-support.jade-route-support .product-route-support__grid,
+  .product-route-support.shangrila-route-support .product-route-support__grid {
+    gap: 14px;
+  }
+
+  .product-route-support.jade-route-support .product-route-support__grid--features,
+  .product-route-support.shangrila-route-support .product-route-support__grid--features {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .product-route-support.jade-route-support .product-route-support__grid--links,
+  .product-route-support.shangrila-route-support .product-route-support__grid--links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .product-route-support.jade-route-support .product-route-support__card,
+  .product-route-support.shangrila-route-support .product-route-support__card {
+    border-color: rgba(212, 177, 106, 0.13);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.035);
+    padding: 22px;
+  }
+
+  .product-route-support.jade-route-support .product-route-support__card-title,
+  .product-route-support.shangrila-route-support .product-route-support__card-title {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .product-route-support.jade-route-support .product-route-support__card-copy,
+  .product-route-support.shangrila-route-support .product-route-support__card-copy {
+    color: rgba(245, 242, 235, 0.7);
+    line-height: 1.76;
+  }
+
+  .product-route-support.jade-route-support .product-route-support__link,
+  .product-route-support.shangrila-route-support .product-route-support__link {
+    color: #f2dfb7;
+    border-bottom: 1px solid rgba(212, 177, 106, 0.3);
+  }
+
+  .product-route-support.jade-route-support .product-route-support__link:hover,
+  .product-route-support.shangrila-route-support .product-route-support__link:hover {
+    color: #d4b16a;
+    border-color: rgba(212, 177, 106, 0.6);
+    text-decoration: none;
+  }
+
+  .product-route-support.jade-route-support .product-route-support__faq-list,
+  .product-route-support.shangrila-route-support .product-route-support__faq-list {
+    border-top-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .product-route-support.jade-route-support .product-route-support__faq-item,
+  .product-route-support.shangrila-route-support .product-route-support__faq-item {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .product-route-support.jade-route-support .product-route-support__faq-question,
+  .product-route-support.shangrila-route-support .product-route-support__faq-question {
+    padding: 20px 0;
+    font-weight: 600;
+  }
+
+  .product-route-support.jade-route-support .product-route-support__faq-answer,
+  .product-route-support.shangrila-route-support .product-route-support__faq-answer {
+    max-width: 78ch;
+    color: rgba(245, 242, 235, 0.72);
+  }
+
+  .product-route-support.jade-route-support .product-route-support__grid--features {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .product-route-support.jade-route-support .product-route-support__grid--links .product-route-support__card,
+  .product-route-support.shangrila-route-support .product-route-support__grid--links .product-route-support__card {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+  }
+
+  .product-route-support.jade-route-support .product-route-support__grid--links .product-route-support__link,
+  .product-route-support.shangrila-route-support .product-route-support__grid--links .product-route-support__link {
+    align-self: flex-start;
+    margin-top: auto;
+    padding-top: 18px;
+  }
+
   @media (max-width: 989px) {
     .product-route-support {
       padding: 40px 0 56px;
@@ -178,10 +332,54 @@
     .product-route-support__grid--links {
       grid-template-columns: 1fr;
     }
+
+    .product-route-support.jade-route-support,
+    .product-route-support.shangrila-route-support {
+      padding: 44px 0 60px;
+    }
+
+    .product-route-support.jade-route-support .product-route-support__container,
+    .product-route-support.shangrila-route-support .product-route-support__container {
+      padding: 0 16px;
+    }
+
+    .product-route-support.jade-route-support .product-route-support__inner,
+    .product-route-support.shangrila-route-support .product-route-support__inner {
+      border-radius: 8px;
+      padding: 28px 18px;
+    }
+
+    .product-route-support.jade-route-support .product-route-support__header,
+    .product-route-support.shangrila-route-support .product-route-support__header {
+      margin-bottom: 32px;
+    }
+
+    .product-route-support.jade-route-support .product-route-support__section + .product-route-support__section,
+    .product-route-support.shangrila-route-support .product-route-support__section + .product-route-support__section {
+      margin-top: 34px;
+      padding-top: 30px;
+    }
+
+    .product-route-support.jade-route-support .product-route-support__grid--features,
+    .product-route-support.shangrila-route-support .product-route-support__grid--features,
+    .product-route-support.jade-route-support .product-route-support__grid--links,
+    .product-route-support.shangrila-route-support .product-route-support__grid--links {
+      grid-template-columns: 1fr;
+    }
+
+    .product-route-support.jade-route-support .product-route-support__card,
+    .product-route-support.shangrila-route-support .product-route-support__card {
+      padding: 18px;
+    }
+
+    .product-route-support.jade-route-support .product-route-support__faq-question,
+    .product-route-support.shangrila-route-support .product-route-support__faq-question {
+      padding: 18px 0;
+    }
   }
 </style>
 
-<section class="product-route-support" id="section-{{ section.id }}">
+<section class="product-route-support{% if is_jade_route_support %} jade-route-support{% endif %}{% if is_shangrila_route_support %} shangrila-route-support{% endif %}" id="section-{{ section.id }}">
   <div class="product-route-support__container">
     <div class="product-route-support__inner">
       <header class="product-route-support__header">
