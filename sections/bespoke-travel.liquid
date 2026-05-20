@@ -89,7 +89,7 @@
                 class="custom-input w-full bg-transparent border-b border-stone-800 text-amber-100 py-2 outline-none focus:border-amber-500/50 transition-all font-mono"
               >
             </div>
-            
+
             <div class="input-group relative">
               <label class="block text-stone-500 text-[9px] uppercase mb-3 tracking-[0.2em]">Est. Arrival Date</label>
               <input
@@ -412,26 +412,35 @@
   .bespoke-service-intro,
   .bespoke-faq-block,
   .bespoke-routing-support {
-    margin-bottom: 56px;
+    margin-bottom: 64px;
   }
   .bespoke-service-intro__grid {
     display: grid;
-    grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.85fr);
-    gap: 24px;
-    align-items: start;
-    margin-bottom: 24px;
+    grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.9fr);
+    gap: 20px;
+    align-items: stretch;
+    margin-bottom: 20px;
   }
   .bespoke-service-intro__main,
   .bespoke-service-note,
   .bespoke-use-case,
   .bespoke-faq-list,
   .bespoke-routing-support {
-    background: rgba(255,255,255,0.02);
-    border: 1px solid rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.024);
+    border: 1px solid rgba(255,255,255,0.07);
   }
   .bespoke-service-intro__main,
   .bespoke-service-note {
-    padding: 28px 26px;
+    padding: 30px 28px;
+  }
+  .bespoke-service-intro__main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .bespoke-service-intro__side,
+  .bespoke-service-note {
+    min-height: 100%;
   }
   .bespoke-service-intro__eyebrow,
   .bespoke-use-case__eyebrow,
@@ -458,8 +467,15 @@
   .bespoke-routing-support__text {
     color: #b8b1aa;
     font-size: 13px;
-    line-height: 1.9;
+    line-height: 1.82;
     font-weight: 300;
+  }
+  .bespoke-service-intro__text {
+    max-width: 72ch;
+    margin: 0 0 14px;
+  }
+  .bespoke-service-intro__text:last-of-type {
+    margin-bottom: 0;
   }
   .bespoke-mobile-jump {
     display: none;
@@ -487,79 +503,114 @@
     font-weight: 400;
   }
   .bespoke-checklist {
+    display: grid;
+    gap: 10px;
     margin: 0;
-    padding-left: 18px;
+    padding-left: 0;
     color: #b8b1aa;
+    list-style: none;
   }
   .bespoke-checklist li {
-    margin-bottom: 10px;
-    line-height: 1.75;
+    position: relative;
+    margin-bottom: 0;
+    padding-left: 18px;
+    line-height: 1.65;
     font-size: 13px;
+  }
+  .bespoke-checklist li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.72em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(251, 191, 36, 0.72);
   }
   .bespoke-use-cases {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
+    gap: 14px;
   }
   .bespoke-use-case {
-    padding: 22px 20px;
+    min-height: 100%;
+    padding: 24px 22px;
   }
   .bespoke-faq-block__header,
   .bespoke-routing-support__header {
-    max-width: 860px;
-    margin: 0 auto 20px;
+    max-width: 760px;
+    margin: 0 auto 24px;
     text-align: center;
   }
   .bespoke-faq-list {
-    padding: 10px 24px;
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 12px;
+    background: rgba(255,255,255,0.018);
   }
   .bespoke-faq-item {
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    padding: 16px 0;
+    margin: 0 0 10px;
+    padding: 0;
+    border: 1px solid rgba(255,255,255,0.07);
+    background: rgba(10,10,10,0.2);
   }
   .bespoke-faq-item:last-child {
-    border-bottom: 0;
+    margin-bottom: 0;
   }
   .bespoke-faq-item summary {
     cursor: pointer;
     list-style: none;
     color: #fff;
-    font-size: 13px;
-    line-height: 1.8;
+    padding: 16px 18px;
+    font-size: 14px;
+    line-height: 1.55;
     letter-spacing: 0.03em;
   }
   .bespoke-faq-item summary::-webkit-details-marker {
     display: none;
   }
   .bespoke-faq-item p {
-    margin: 10px 0 0;
+    margin: 0;
+    padding: 0 18px 18px;
   }
   .bespoke-routing-support {
-    padding: 28px 26px;
+    padding: 34px 30px;
   }
   .bespoke-routing-support__grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
-    margin-top: 22px;
+    gap: 12px;
+    margin-top: 24px;
   }
   .bespoke-routing-link {
-    display: block;
-    padding: 15px 16px;
-    border: 1px solid rgba(251, 191, 36, 0.16);
+    display: flex;
+    min-height: 64px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 16px 18px;
+    border: 1px solid rgba(251, 191, 36, 0.15);
     color: #f2ede8;
     text-decoration: none;
     font-size: 12px;
-    line-height: 1.7;
+    line-height: 1.45;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    background: rgba(255,255,255,0.01);
-    transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
+    background: rgba(251, 191, 36, 0.035);
+    transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+  }
+  .bespoke-routing-link::after {
+    content: '→';
+    flex: 0 0 auto;
+    color: rgba(251, 191, 36, 0.62);
+    font-size: 16px;
+    line-height: 1;
   }
   .bespoke-routing-link:hover {
     border-color: rgba(251, 191, 36, 0.45);
     color: #fbbf24;
-    background: rgba(251, 191, 36, 0.04);
+    background: rgba(251, 191, 36, 0.07);
+    transform: translateY(-1px);
   }
   .section-bottom-gradient {
     position: absolute;
@@ -672,7 +723,7 @@
     .bespoke-service-intro,
     .bespoke-faq-block,
     .bespoke-routing-support {
-      margin-bottom: 40px;
+      margin-bottom: 42px;
     }
     .bespoke-service-intro__grid {
       gap: 16px;
@@ -698,6 +749,26 @@
     .bespoke-routing-support {
       padding-top: 18px;
       padding-bottom: 18px;
+    }
+    .bespoke-faq-list {
+      padding: 10px;
+    }
+    .bespoke-faq-item summary {
+      padding: 15px 14px;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .bespoke-faq-item p {
+      padding: 0 14px 16px;
+    }
+    .bespoke-routing-support__grid {
+      gap: 10px;
+    }
+    .bespoke-routing-link {
+      min-height: 58px;
+      padding: 14px;
+      font-size: 11px;
+      letter-spacing: 0.06em;
     }
     .bespoke-service-intro__text,
     .bespoke-use-case__text,
