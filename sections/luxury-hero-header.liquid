@@ -503,53 +503,59 @@
   }
 
   .hero-title {
-    font-size: clamp(2.6rem, 8vw, 5.5rem);
+    font-size: clamp(3rem, 6.4vw, 5rem);
     font-weight: 800;
-    margin: 0 auto 18px;
-    text-transform: uppercase;
-    line-height: 1.1;
+    max-width: 980px;
+    margin: 0 auto 22px;
+    text-transform: none;
+    line-height: 1.02;
+    letter-spacing: 0;
   }
 
   .hero-subtitle {
     color: var(--brand-color);
-    font-size: clamp(0.9rem, 2.5vw, 1.2rem);
-    letter-spacing: 0.32em;
-    text-transform: uppercase;
-    margin: 0 auto 24px;
-    display: inline-block;
+    max-width: 760px;
+    font-size: clamp(1.15rem, 2vw, 1.45rem);
+    line-height: 1.42;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    margin: 0 auto 22px;
+    display: block;
   }
 
   .hero-brand-intro {
-    max-width: var(--lynx-readable-max, 760px);
+    max-width: min(720px, var(--lynx-readable-max, 760px));
     margin: 0 auto;
     color: rgba(255,255,255,0.84);
     font-size: clamp(0.98rem, 1.8vw, 1.12rem);
-    line-height: 1.9;
+    line-height: 1.7;
     letter-spacing: 0.01em;
   }
 
   .hero-button-wrapper {
     display: flex;
-    gap: 30px;
+    gap: 24px;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin-top: 34px;
+    margin-top: 38px;
   }
 
   .hero-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 18px 50px;
+    min-height: 56px;
+    padding: 16px 40px;
     text-decoration: none;
     font-size: 0.95rem;
     font-weight: 600;
-    letter-spacing: 0.2em;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
     border-radius: 60px;
     position: relative;
     transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-    min-width: 200px;
+    min-width: 214px;
     overflow: hidden;
     white-space: nowrap;
   }
@@ -1108,12 +1114,24 @@
       min-width: 0;
       white-space: normal;
       padding: 16px 24px;
-      line-height: 1.45;
-      letter-spacing: 0.16em;
+      line-height: 1.25;
+      letter-spacing: 0.01em;
     }
 
     .hero-content {
       padding: 0 20px;
+    }
+
+    .hero-title {
+      max-width: 92vw;
+      font-size: clamp(2.65rem, 13vw, 4rem);
+      line-height: 1.04;
+    }
+
+    .hero-subtitle {
+      max-width: 92%;
+      font-size: clamp(1rem, 4.7vw, 1.2rem);
+      line-height: 1.45;
     }
 
     .hero-eyebrow {
@@ -1124,7 +1142,7 @@
     .hero-brand-intro {
       max-width: 92%;
       font-size: 14px;
-      line-height: 1.8;
+      line-height: 1.65;
     }
 
     .logo-cn {
@@ -1154,13 +1172,13 @@
   @media (max-width: 430px) {
     .hero-button-wrapper {
       gap: 14px;
-      margin-top: 28px;
+      margin-top: 30px;
     }
 
     .hero-btn {
       padding: 15px 18px;
       font-size: 0.88rem;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.01em;
       border-radius: 24px;
     }
   }
