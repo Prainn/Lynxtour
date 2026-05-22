@@ -115,6 +115,7 @@
     display: grid;
     grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
     gap: 48px;
+    padding-top: 16px;
     position: relative;
     z-index: 2;
   }
@@ -122,17 +123,43 @@
   .brand-intro-modules {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 22px;
-    margin: 0 auto 32px;
+    gap: 24px;
+    margin: 0 auto 40px;
     max-width: 1040px;
     position: relative;
     z-index: 2;
   }
 
   .brand-intro-module {
-    border: 1px solid rgba(255,255,255,0.08);
-    background: rgba(255,255,255,0.02);
-    padding: 26px 24px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(216,179,95,0.12);
+    border-radius: 16px;
+    background: rgba(255,255,255,0.025);
+    padding: 34px 32px;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .brand-intro-module::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 32px;
+    right: 32px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(251,191,36,0.24), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .brand-intro-module:hover {
+    border-color: rgba(251,191,36,0.24);
+    background: rgba(255,255,255,0.045);
+    transform: translateY(-4px);
+  }
+
+  .brand-intro-module:hover::before {
+    opacity: 1;
   }
 
   .brand-intro-title {
@@ -141,13 +168,19 @@
     font-size: clamp(1.8rem, 3vw, 2.4rem);
     font-style: italic;
     font-weight: 400;
-    margin: 0 0 14px;
+    line-height: 1.2;
+    margin: 0 0 18px;
+    transition: color 0.3s ease;
+  }
+
+  .brand-intro-module:hover .brand-intro-title {
+    color: #fbbf24;
   }
 
   .brand-intro-body {
     color: #cfcfcf;
     font-size: 14px;
-    line-height: 1.8;
+    line-height: 1.85;
     margin: 0;
     max-width: 54ch;
   }
@@ -155,26 +188,46 @@
   .brand-link-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px 14px;
+    gap: 12px;
     justify-content: center;
-    margin: 0 auto 48px;
+    margin: 0 auto 56px;
     max-width: 1040px;
     position: relative;
     z-index: 2;
   }
 
   .brand-link-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
     color: #e7d6bf;
     text-decoration: none;
-    border: 1px solid rgba(231,214,191,0.24);
-    padding: 10px 14px;
-    transition: 0.2s ease;
+    border: 1px solid rgba(231,214,191,0.18);
+    border-radius: 9999px;
+    background: rgba(255,255,255,0.02);
+    padding: 10px 18px;
+    font-size: 13px;
+    line-height: 1.2;
+    transition: background-color 0.28s ease, border-color 0.28s ease, color 0.28s ease;
+  }
+
+  .brand-link-chip::after {
+    content: "→";
+    opacity: 0.45;
+    transform: translateX(0);
+    transition: transform 0.28s ease, opacity 0.28s ease;
   }
 
   .brand-link-chip:hover {
-    color: #fff;
-    border-color: rgba(255,255,255,0.4);
-    background: rgba(255,255,255,0.03);
+    color: #fbbf24;
+    border-color: rgba(251,191,36,0.36);
+    background: rgba(251,191,36,0.06);
+  }
+
+  .brand-link-chip:hover::after {
+    opacity: 1;
+    transform: translateX(3px);
   }
 
   .brand-item {
@@ -235,13 +288,33 @@
   @media (max-width: 767px) {
     .brand-features-section { padding: 64px 0 92px 0; }
     .brand-header { margin-bottom: 36px; }
-    .brand-intro-modules { grid-template-columns: 1fr; margin-bottom: 24px; }
-    .brand-intro-module { padding: 22px 20px; }
-    .brand-link-list { justify-content: flex-start; margin-bottom: 36px; }
+    .brand-intro-modules { grid-template-columns: 1fr; gap: 20px; margin-bottom: 28px; }
+    .brand-intro-module { padding: 28px 24px; }
+    .brand-intro-module::before { left: 24px; right: 24px; }
+    .brand-link-list { justify-content: center; margin-bottom: 44px; }
+    .brand-link-chip { padding: 10px 16px; }
     .brand-grid { grid-template-columns: 1fr; }
     .brand-main-title { letter-spacing: 0.25em; font-size: 1.5rem; }
     .brand-item { margin-bottom: 30px; }
     .section-bottom-gradient { height: 80px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brand-intro-module,
+    .brand-intro-module::before,
+    .brand-intro-title,
+    .brand-link-chip,
+    .brand-link-chip::after,
+    .brand-item,
+    .brand-icon {
+      transition: none;
+    }
+
+    .brand-intro-module:hover,
+    .brand-link-chip:hover::after,
+    .brand-item:hover {
+      transform: none;
+    }
   }
 </style>
 
