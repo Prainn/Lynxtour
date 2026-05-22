@@ -26,8 +26,8 @@
     <div id="bespoke-planner" class="flex flex-col lg:flex-row gap-8 items-stretch bespoke-planner-shell">
       
       <!-- 左侧：AI 灵感预览区 -->
-      <div class="w-full lg:w-[65%] bg-white/[0.015] p-8 md:p-10 border border-white/[0.05] shadow-2xl flex flex-col relative">
-        <div class="mb-8 flex justify-between items-end border-b border-white/[0.05] pb-6">
+      <div class="bespoke-planner-main-panel w-full lg:w-[65%] bg-white/[0.015] p-8 md:p-10 border border-white/[0.05] shadow-2xl flex flex-col relative">
+        <div class="bespoke-planner-header mb-8 flex justify-between items-end border-b border-white/[0.05] pb-6">
           <div>
             <span class="text-amber-500/70 text-[10px] tracking-[0.4em] uppercase font-light">{{ section.settings.ai_pretitle }}</span>
             <h3 class="text-xl text-white font-light mt-2 tracking-[0.2em] uppercase">{{ section.settings.ai_title }}</h3>
@@ -35,7 +35,7 @@
           <div class="text-stone-600 text-[9px] tracking-widest uppercase font-mono opacity-40">Preview Mode</div>
         </div>
 
-        <div class="mb-8 p-4 border border-white/[0.06] bg-white/[0.02]">
+        <div class="bespoke-planner-helper mb-8 p-4 border border-white/[0.06] bg-white/[0.02]">
           <p class="text-stone-300 text-[11px] leading-6 font-light">
             Get an instant travel idea in a few seconds. The AI preview is not a final itinerary or confirmed price; our local specialist reviews your request before sending a tailored recommendation and quotation.
           </p>
@@ -155,9 +155,9 @@
       </div>
 
       <!-- 右侧：人工定制转化区 -->
-      <div class="w-full lg:w-[35%] flex flex-col gap-6">
+      <div class="bespoke-planner-side w-full lg:w-[35%] flex flex-col gap-6">
         
-        <div class="bg-white/[0.02] border border-white/[0.05] p-6 shadow-xl">
+        <div class="bespoke-human-review-card bg-white/[0.02] border border-white/[0.05] p-6 shadow-xl">
           <div class="flex items-center gap-4 mb-3">
             <div class="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center border border-amber-500/30">
               <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -171,7 +171,7 @@
               </p>
             </div>
           </div>
-          <div class="flex gap-4 mt-4 pt-4 border-t border-white/[0.05] flex-wrap">
+          <div class="bespoke-trust-row flex gap-4 mt-4 pt-4 border-t border-white/[0.05] flex-wrap">
             <span class="text-stone-500 text-[9px] uppercase tracking-widest flex items-center gap-1">
               <svg class="w-3 h-3 text-green-500/70" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
@@ -193,7 +193,7 @@
           </div>
         </div>
 
-        <div id="expert-review-panel" class="flex-grow bg-white/[0.01] border border-white/[0.05] p-10 flex flex-col justify-center relative overflow-hidden shadow-xl">
+        <div id="expert-review-panel" class="bespoke-confirm-plan-card flex-grow bg-white/[0.01] border border-white/[0.05] p-10 flex flex-col justify-center relative overflow-hidden shadow-xl">
           <div class="relative z-10">
             <span class="text-amber-500/60 text-[10px] tracking-[0.3em] uppercase font-light mb-4 block">Final Step</span>
             <h3 class="text-2xl font-light text-white mb-4 tracking-widest uppercase">{{ section.settings.cta_title }}</h3>
@@ -798,6 +798,202 @@
     pointer-events: none;
   }
 
+  #bespoke-planner {
+    gap: 24px;
+  }
+  .bespoke-planner-main-panel,
+  .bespoke-human-review-card,
+  .bespoke-confirm-plan-card {
+    background: #0c0c0c;
+    border-color: #1a1a1a;
+    border-radius: 12px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+  }
+  .bespoke-planner-main-panel {
+    padding: 40px;
+    gap: 40px;
+  }
+  .bespoke-planner-header {
+    margin-bottom: 0;
+    border-bottom-color: #1f1f1f;
+    padding-bottom: 24px;
+  }
+  .bespoke-planner-header span,
+  .bespoke-confirm-plan-card span:first-child {
+    color: #b89047;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+  }
+  .bespoke-planner-header h3,
+  .bespoke-confirm-plan-card h3 {
+    color: #fff;
+    letter-spacing: 0.15em;
+    font-weight: 300;
+  }
+  .bespoke-planner-helper {
+    margin-bottom: 0;
+    padding: 20px;
+    border-color: #1a1a1a;
+    border-radius: 8px;
+    background: #0f0f0f;
+  }
+  .bespoke-planner-helper p,
+  .bespoke-confirm-plan-card p {
+    color: #888;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  #itinerary-form {
+    gap: 40px;
+  }
+  #itinerary-form > .grid {
+    column-gap: 32px;
+    row-gap: 40px;
+  }
+  #bespoke-planner .input-group label {
+    margin-bottom: 12px;
+    color: #666;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+  }
+  #bespoke-planner .custom-input,
+  #DualContactForm input {
+    padding-bottom: 12px;
+    border-color: #222;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.5;
+    transition: border-color 0.25s ease, color 0.25s ease;
+  }
+  #bespoke-planner .custom-input:hover,
+  #DualContactForm input:hover {
+    border-color: #444;
+  }
+  #bespoke-planner .custom-input:focus,
+  #DualContactForm input:focus {
+    border-color: #b89047;
+  }
+  #bespoke-planner select.custom-input {
+    color: #b89047;
+  }
+  #bespoke-planner .custom-input::placeholder {
+    color: #444;
+  }
+  #bespoke-planner .custom-input option {
+    background: #121212;
+    color: #fff;
+  }
+  #travel-date + svg {
+    color: #444;
+    transition: color 0.25s ease;
+  }
+  #travel-date:hover + svg,
+  #travel-date:focus + svg {
+    color: #666;
+  }
+  #bespoke-planner .tag-btn {
+    border-color: #222;
+    border-radius: 4px;
+    color: #888;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
+  }
+  #bespoke-planner .tag-btn:hover {
+    border-color: #444;
+    color: #bbb;
+  }
+  #bespoke-planner .tag-btn.active {
+    border-color: rgba(184, 144, 71, 0.4);
+    background: rgba(184, 144, 71, 0.05);
+    color: #b89047 !important;
+  }
+  #bespoke-planner .ai-submit-btn {
+    border-color: rgba(184, 144, 71, 0.8);
+    border-radius: 4px;
+    color: #b89047;
+    letter-spacing: 0.2em;
+    font-size: 11px;
+    font-weight: 500;
+    transition: border-color 0.5s ease, background 0.5s ease, color 0.5s ease;
+  }
+  #bespoke-planner .ai-submit-btn:hover {
+    border-color: #b89047;
+    background: #b89047;
+    color: #000;
+  }
+  #bespoke-planner .secondary-submit-btn {
+    border-color: #222;
+    border-radius: 4px;
+    color: #888;
+    letter-spacing: 0.2em;
+    font-size: 10px;
+    font-weight: 500;
+    transition: border-color 0.3s ease, color 0.3s ease;
+  }
+  #bespoke-planner .secondary-submit-btn:hover {
+    border-color: #444;
+    color: #fff;
+  }
+  .bespoke-planner-side {
+    gap: 24px;
+  }
+  .bespoke-human-review-card {
+    padding: 32px;
+  }
+  .bespoke-human-review-card h4 {
+    margin-bottom: 8px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+  }
+  .bespoke-human-review-card p {
+    color: #888;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .bespoke-trust-row {
+    border-top-color: #1f1f1f;
+    padding-top: 20px;
+  }
+  .bespoke-human-review-card span {
+    color: #666;
+    letter-spacing: 0.15em;
+  }
+  .bespoke-human-review-card svg {
+    color: #10b981;
+  }
+  .bespoke-confirm-plan-card {
+    justify-content: flex-start;
+    padding: 32px;
+  }
+  #DualContactForm .space-y-6 {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  #DualContactForm .space-y-6 > * + * {
+    margin-top: 0;
+  }
+  #final-submit-btn {
+    border-radius: 4px;
+    background: #fff;
+    color: #000;
+    letter-spacing: 0.2em;
+    font-size: 11px;
+    font-weight: 500;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  #final-submit-btn:hover {
+    background: #e5e7eb;
+    color: #000;
+  }
+
   .prose-custom {
     max-height: 420px;
     overflow-y: auto;
@@ -967,8 +1163,32 @@
       margin-bottom: 0;
     }
     .bespoke-planner-shell {
-      gap: 18px;
+      gap: 24px;
       scroll-margin-top: calc(env(safe-area-inset-top, 0px) + var(--slogan-h, 0px) + var(--nav-h, 90px) + 16px);
+    }
+    .bespoke-planner-main-panel,
+    .bespoke-human-review-card,
+    .bespoke-confirm-plan-card {
+      padding: 24px;
+    }
+    .bespoke-planner-main-panel {
+      gap: 32px;
+    }
+    #itinerary-form {
+      gap: 32px;
+    }
+    #itinerary-form > .grid {
+      row-gap: 32px;
+    }
+    #bespoke-planner .input-group label {
+      font-size: 9px;
+    }
+    #bespoke-planner .custom-input,
+    #DualContactForm input {
+      font-size: 14px;
+    }
+    #bespoke-planner .tag-btn {
+      font-size: 10px;
     }
   }
 </style>
