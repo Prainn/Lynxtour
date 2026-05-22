@@ -418,10 +418,13 @@
     margin-bottom: 28px;
   }
   .bespoke-service-support {
-    margin-top: 64px;
+    max-width: 1120px;
+    margin: 56px auto 64px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(251, 191, 36, 0.12);
   }
   .bespoke-service-support__note {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
   }
   .bespoke-service-intro__grid {
     display: grid;
@@ -547,6 +550,79 @@
   .bespoke-use-case {
     min-height: 100%;
     padding: 24px 22px;
+  }
+  .bespoke-service-support .bespoke-service-note,
+  .bespoke-service-support .bespoke-use-case {
+    border-color: rgba(255,255,255,0.055);
+    background: rgba(255,255,255,0.016);
+    box-shadow: none;
+  }
+  .bespoke-service-support .bespoke-service-note {
+    position: relative;
+    padding: 24px 24px 22px;
+    border-left-color: rgba(251, 191, 36, 0.32);
+  }
+  .bespoke-service-support .bespoke-service-note::before {
+    content: '';
+    position: absolute;
+    top: 24px;
+    left: 0;
+    width: 2px;
+    height: 34px;
+    background: rgba(251, 191, 36, 0.5);
+  }
+  .bespoke-service-support .bespoke-checklist {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 20px;
+  }
+  .bespoke-service-support .bespoke-checklist li {
+    color: #aca49c;
+    font-size: 12px;
+    line-height: 1.62;
+    padding-left: 16px;
+  }
+  .bespoke-service-support .bespoke-checklist li::before {
+    top: 0.68em;
+    width: 4px;
+    height: 4px;
+    background: rgba(251, 191, 36, 0.68);
+  }
+  .bespoke-service-support .bespoke-use-cases {
+    gap: 12px;
+  }
+  .bespoke-service-support .bespoke-use-case {
+    padding: 22px 20px;
+    transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+  }
+  .bespoke-service-support .bespoke-use-case:hover {
+    border-color: rgba(251, 191, 36, 0.18);
+    background: rgba(255,255,255,0.022);
+    transform: translateY(-1px);
+  }
+  .bespoke-service-support .bespoke-use-case__eyebrow {
+    margin-bottom: 8px;
+    color: rgba(251, 191, 36, 0.72);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+  }
+  .bespoke-service-support .bespoke-use-case__title {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    line-height: 1.42;
+    font-weight: 350;
+  }
+  .bespoke-service-support .bespoke-use-case__text {
+    color: #aca49c;
+    font-size: 12px;
+    line-height: 1.72;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bespoke-service-support .bespoke-use-case {
+      transition: none;
+    }
+    .bespoke-service-support .bespoke-use-case:hover {
+      transform: none;
+    }
   }
   .bespoke-faq-block__header,
   .bespoke-routing-support__header {
@@ -737,6 +813,16 @@
     .bespoke-routing-support {
       margin-bottom: 42px;
     }
+    .bespoke-service-support {
+      margin: 42px auto 42px;
+      padding-top: 22px;
+    }
+    .bespoke-service-support__note {
+      margin-bottom: 12px;
+    }
+    .bespoke-service-support .bespoke-service-note {
+      padding: 20px 18px 18px;
+    }
     .bespoke-service-intro__grid {
       gap: 16px;
       margin-bottom: 16px;
@@ -761,6 +847,19 @@
     .bespoke-routing-support {
       padding-top: 18px;
       padding-bottom: 18px;
+    }
+    .bespoke-service-support .bespoke-checklist {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .bespoke-service-support .bespoke-use-cases {
+      gap: 10px;
+    }
+    .bespoke-service-support .bespoke-use-case {
+      padding: 18px;
+    }
+    .bespoke-service-support .bespoke-use-case:hover {
+      transform: none;
     }
     .bespoke-faq-list {
       padding: 10px;
@@ -797,8 +896,14 @@
     .bespoke-service-note__title {
       margin-bottom: 10px;
     }
+    .bespoke-service-support .bespoke-use-case__title {
+      font-size: 0.98rem;
+    }
     .bespoke-checklist li {
       margin-bottom: 8px;
+    }
+    .bespoke-service-support .bespoke-checklist li {
+      margin-bottom: 0;
     }
     .bespoke-planner-shell {
       gap: 18px;
