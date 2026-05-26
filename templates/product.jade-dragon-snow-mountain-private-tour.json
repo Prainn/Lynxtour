@@ -65,11 +65,11 @@
         "link_1": {
           "type": "link_card",
           "settings": {
-            "tag": "LIJIANG OPTIONS",
-            "heading": "Compare this mountain day with other Lijiang-based private tours",
-            "copy": "If you are deciding whether to keep Lijiang as a day-trip base or expand into a longer route, the Lijiang collection is the best next commercial comparison.",
-            "link_label": "Browse Lijiang private tours",
-            "link_url": "/collections/lijiang-private-tours"
+            "tag": "MOUNTAIN GUIDE",
+            "heading": "Read the Jade Dragon Snow Mountain planning guide",
+            "copy": "Use the guide to understand mountain timing, Blue Moon Valley, ticket logic, and how this private day trip fits into a Lijiang stay.",
+            "link_label": "Read the Jade Dragon Snow Mountain guide",
+            "link_url": "/blogs/travel-guides/jade-dragon-snow-mountain-guide"
           }
         },
         "link_2": {
@@ -141,9 +141,7 @@
         "feature_4",
         "link_1",
         "link_2",
-        "link_3",
         "link_4",
-        "link_5",
         "faq_1",
         "faq_2",
         "faq_3"
