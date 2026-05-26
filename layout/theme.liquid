@@ -138,11 +138,11 @@
 
   if request.page_type == 'collection' and collection.handle == 'yunnan-private-day-trips'
     if current_page > 1
-      assign seo_title = 'Yunnan Private Day Trips | Page ' | append: current_page | append: ' | Lynxtour'
+      assign seo_title = 'Yunnan Private Day Trips | Flexible One-Day Tours | Page ' | append: current_page
     else
-      assign seo_title = 'Yunnan Private Day Trips | Lynxtour'
+      assign seo_title = 'Yunnan Private Day Trips | Flexible One-Day Tours'
     endif
-    assign seo_description = 'Discover Yunnan private day trips and day tours in Kunming, Dali, Lijiang, and Shangri-La with flexible pacing and local-led private experiences.'
+    assign seo_description = 'Book private day trips in Yunnan with flexible routes, local drivers, and guided options from Kunming, Dali, Lijiang, and other destinations.'
   endif
 
   if request.page_type == 'index'
@@ -152,18 +152,18 @@
     case collection.handle
       when 'yunnan-private-tours'
         if current_page > 1
-          assign seo_title = 'Yunnan Private Tours: Custom Itineraries & Packages | Page ' | append: current_page
+          assign seo_title = 'Yunnan Private Tours | Custom Yunnan Itineraries | Page ' | append: current_page
         else
-          assign seo_title = 'Yunnan Private Tours: Custom Itineraries & Packages'
+          assign seo_title = 'Yunnan Private Tours | Custom Yunnan Itineraries'
         endif
-        assign seo_description = 'Compare private Yunnan tours from 6 to 10 days, including Kunming, Dali, Lijiang and Shangri-La routes, custom itineraries and day trips.'
+        assign seo_description = 'Plan a private Yunnan tour with flexible routes across Kunming, Dali, Lijiang, Shangri-La, and more. Customize your itinerary with local travel support.'
       when 'yunnan-luxury-private-tours'
         if current_page > 1
-          assign seo_title = 'Yunnan Luxury Tours | Custom High-End Itineraries | Page ' | append: current_page
+          assign seo_title = 'Yunnan Luxury Private Tours | Boutique Custom Travel | Page ' | append: current_page
         else
-          assign seo_title = 'Yunnan Luxury Tours | Custom High-End Itineraries'
+          assign seo_title = 'Yunnan Luxury Private Tours | Boutique Custom Travel'
         endif
-        assign seo_description = 'Explore luxury private Yunnan tours with custom routes, premium hotels, private vehicles, flexible pacing and tailored planning across Yunnan.'
+        assign seo_description = 'Design a luxury private Yunnan trip with boutique hotels, private transfers, curated routes, and personalized travel planning across Yunnan.'
       when 'dali-private-tours'
         if current_page > 1
           assign seo_title = 'Dali Private Tours | Custom Dali Itineraries | Page ' | append: current_page | append: ' | Lynxtour'
@@ -214,8 +214,8 @@
         assign seo_title = 'Dali to Lijiang Private Tour: Custom Yunnan Route | Lynxtour'
         assign seo_description = 'Plan a Dali to Lijiang private tour with flexible pacing, comfortable route planning, and a clear look at why this Yunnan pairing works so well together.'
       when 'bespoke-custom-travel'
-        assign seo_title = 'Custom Yunnan Trip Planning | Private Itineraries'
-        assign seo_description = 'Request a custom Yunnan itinerary shaped around your dates, pace, destinations, hotel style and travel interests, reviewed by a local specialist.'
+        assign seo_title = 'Custom Yunnan Itinerary | Bespoke Private Travel Planning'
+        assign seo_description = 'Request a custom Yunnan itinerary built around your dates, travel style, hotels, and route preferences. Get private planning support from Lynx Tour.'
     endcase
   elsif request.page_type == 'article'
     assign article_slug = article.handle | split: '/' | last

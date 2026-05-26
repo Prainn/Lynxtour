@@ -32,10 +32,10 @@
       "type": "bespoke-travel",
       "name": "Bespoke Travel Form",
       "settings": {
-        "main_title": "Custom Yunnan Trips",
+        "main_title": "Custom Yunnan Itinerary",
         "ai_pretitle": "AI POWERED",
         "ai_title": "LYNX GUIDE PRO",
-        "cta_title": "CONFIRM PLAN"
+        "cta_title": "REQUEST CUSTOM ITINERARY"
       }
     },
     "footer": {
