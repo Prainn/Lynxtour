@@ -28,6 +28,7 @@
       return {
         page_location: window.location.href,
         page_path: window.location.pathname,
+        page_title: document.title,
         event_source: SOURCE
       };
     }
@@ -79,6 +80,103 @@
       });
     }
 
+    function sourcePath() {
+      var path = window.location.pathname || '/';
+      return path.length > 1 ? path.replace(/\/$/, '') : path;
+    }
+
+    function pathParts(path) {
+      return (path || '').split('/').filter(Boolean);
+    }
+
+    function sourcePageType(path) {
+      var cleanPath = lower(path || sourcePath());
+      if (cleanPath === '/') return 'homepage';
+      if (cleanPath.indexOf('/collections/') === 0) return 'collection';
+      if (cleanPath.indexOf('/products/') === 0) return 'product';
+      if (cleanPath.indexOf('/pages/bespoke-custom-travel') === 0) return 'bespoke';
+      if (
+        cleanPath.indexOf('/pages/kunming') === 0 ||
+        cleanPath.indexOf('/pages/dali') === 0 ||
+        cleanPath.indexOf('/pages/lijiang') === 0 ||
+        cleanPath.indexOf('/pages/shangri-la') === 0 ||
+        cleanPath.indexOf('/pages/xishuangbanna') === 0
+      ) return 'destination';
+      if (cleanPath.indexOf('/blogs/') === 0) return 'article';
+      if (cleanPath.indexOf('/pages/contact-us') === 0) return 'contact';
+      return 'other';
+    }
+
+    function handleFromPath(path, prefix) {
+      var cleanPath = lower(path || '');
+      if (cleanPath.indexOf(prefix) !== 0) return '';
+      return pathParts(cleanPath.replace(prefix, ''))[0] || '';
+    }
+
+    function linkUrlValue(link, href, absoluteHref, ctaType) {
+      if (!link) return '';
+      if (ctaType === 'email') return 'mailto';
+      if (ctaType === 'phone') return 'tel';
+      if (ctaType === 'whatsapp') return 'whatsapp';
+      return absoluteHref || href || '';
+    }
+
+    function sectionContext(target) {
+      if (!target || typeof target.closest !== 'function') return '';
+      var section = target.closest('[data-section-id], section[id], [id]');
+      if (!section) return '';
+      return section.getAttribute('data-section-id') || section.id || '';
+    }
+
+    function leadClickParams(target, link, href, absoluteHref, text, ctaType, leadIntent) {
+      var path = sourcePath();
+      var params = baseParams();
+      params.source_path = path;
+      params.source_page_type = sourcePageType(path);
+      params.cta_type = ctaType;
+      params.lead_intent = leadIntent;
+      addIf(params, 'source_handle', pathParts(path)[1], 100);
+      addIf(params, 'link_url', linkUrlValue(link, href, absoluteHref, ctaType), 300);
+      addIf(params, 'link_text', text, 120);
+      addIf(params, 'section_context', sectionContext(target), 120);
+
+      if (params.source_page_type === 'product') {
+        addIf(params, 'product_handle', handleFromPath(path, '/products/'), 100);
+      }
+      if (params.source_page_type === 'collection') {
+        addIf(params, 'collection_handle', handleFromPath(path, '/collections/'), 100);
+      }
+      if (params.source_page_type === 'destination') {
+        addIf(params, 'destination_handle', handleFromPath(path, '/pages/'), 100);
+      }
+      if (lower(path).indexOf('/blogs/') === 0) {
+        addIf(params, 'article_handle', pathParts(path)[2], 100);
+      }
+
+      return params;
+    }
+
+    function leadClickEvent(link, href, absoluteHref, path, text) {
+      var cleanSourcePath = lower(sourcePath());
+      var isProductSource = cleanSourcePath.indexOf('/products/') === 0;
+      var isWhatsApp = absoluteHref.indexOf('wa.me') !== -1 || absoluteHref.indexOf('api.whatsapp.com') !== -1 || absoluteHref.indexOf('whatsapp') !== -1;
+      var isEmail = href.indexOf('mailto:') === 0;
+      var isPhone = href.indexOf('tel:') === 0;
+      var isContact = path.indexOf('/pages/contact-us') !== -1;
+      var isBespoke = path.indexOf('/pages/bespoke-custom-travel') !== -1 || textMatches(text, ['bespoke', 'custom', 'itinerary', 'plan a custom']);
+      var isQuote = textMatches(text, ['quote', 'request', 'inquiry', 'contact us', 'request a quote']);
+      var isProductInquiry = isProductSource && textMatches(text, ['book', 'booking', 'inquire', 'inquiry', 'quote', 'contact', 'whatsapp', 'request']);
+
+      if (isProductInquiry) return ['product_inquiry_click', 'product_inquiry', 'product_inquiry'];
+      if (isWhatsApp) return ['lead_whatsapp_click', 'whatsapp', 'whatsapp'];
+      if (isEmail) return ['lead_email_click', 'email', 'email'];
+      if (isPhone) return ['lead_phone_click', 'phone', 'phone'];
+      if (isQuote) return ['lead_quote_click', 'quote', 'quote'];
+      if (isBespoke) return ['lead_bespoke_request_click', 'bespoke_request', 'bespoke_request'];
+      if (isContact) return ['lead_contact_click', 'contact', 'contact'];
+      return null;
+    }
+
     function trackClick(event) {
       if (!hasGtag()) return;
       if (!event.target || typeof event.target.closest !== 'function') return;
@@ -91,6 +189,12 @@
       var path = link ? pathFromHref(link.getAttribute('href') || link.href || '') : '';
       var text = trimText(target.innerText || target.getAttribute('aria-label') || '', 120);
       var events = [];
+      var leadEvent = leadClickEvent(link, href, absoluteHref, path, text);
+
+      // Normal GA4 click event tracking only; key-event configuration remains in GA4 Admin.
+      if (leadEvent && canTrackClick(leadEvent[0], target, link)) {
+        sendEvent(leadEvent[0], leadClickParams(target, link, href, absoluteHref, text, leadEvent[1], leadEvent[2]));
+      }
 
       if (absoluteHref.indexOf('wa.me') !== -1 || absoluteHref.indexOf('api.whatsapp.com') !== -1 || absoluteHref.indexOf('whatsapp.com/send') !== -1) {
         events.push(['whatsapp_click', 'whatsapp']);
