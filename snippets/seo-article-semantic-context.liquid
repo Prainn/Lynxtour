@@ -1,0 +1,111 @@
+{% liquid
+  assign article_slug = article.handle | split: '/' | last
+  assign article_section = ''
+  assign about_type = ''
+  assign about_name = ''
+  assign about_id = ''
+  assign mentions_data = ''
+  assign article_keywords = ''
+
+  case article_slug
+    when 'dianchi-lake-guide'
+      assign article_section = 'Kunming Travel Guide'
+      assign about_type = 'TouristAttraction'
+      assign about_name = 'Dianchi Lake'
+      assign mentions_data = 'TouristDestination||Kunming||https://lynxtour.cn/pages/kunming#touristdestination~TouristAttraction||Haigeng Dam||~TouristAttraction||Western Hills||~Thing||Black-headed gulls||~Thing||Winter travel||~Service||Yunnan private tour planning||https://lynxtour.cn/pages/bespoke-custom-travel#service'
+      assign article_keywords = 'Dianchi Lake, Haigeng Dam, Kunming winter travel, Kunming seagulls, Western Hills, Yunnan private tour'
+    when 'stone-forest-shilin-guide'
+      assign article_section = 'Kunming Travel Guide'
+      assign about_type = 'TouristAttraction'
+      assign about_name = 'Stone Forest'
+      assign mentions_data = 'TouristDestination||Kunming||https://lynxtour.cn/pages/kunming#touristdestination~Place||Shilin||~Thing||Karst landscape||~Thing||Sani culture||~Thing||UNESCO World Heritage||~Service||Yunnan private tour planning||https://lynxtour.cn/pages/bespoke-custom-travel#service'
+      assign article_keywords = 'Stone Forest, Shilin, Kunming day trip, karst landscape, Sani culture, Yunnan private tour'
+    when 'kunming-city-walk-guide'
+      assign article_section = 'Kunming Travel Guide'
+      assign about_type = 'TouristDestination'
+      assign about_name = 'Kunming'
+      assign about_id = 'https://lynxtour.cn/pages/kunming#touristdestination'
+      assign mentions_data = 'TouristAttraction||Jinma Biji||~TouristAttraction||Qianwang Old Street||~TouristAttraction||Nanqiang Night Market||~TouristAttraction||Green Lake||~TouristAttraction||Dianchi Lake||'
+      assign article_keywords = 'Kunming city walk, Kunming Old Street, Jinma Biji, Nanqiang Night Market, Green Lake, Kunming travel guide'
+    when 'cuihu-park-green-lake-guide'
+      assign article_section = 'Kunming Travel Guide'
+      assign about_type = 'TouristAttraction'
+      assign about_name = 'Green Lake Park'
+      assign mentions_data = 'TouristDestination||Kunming||https://lynxtour.cn/pages/kunming#touristdestination~Place||Cuihu Park||~Thing||Winter seagulls||~Thing||Kunming local life||~TouristAttraction||Yunnan Military Academy||'
+      assign article_keywords = 'Green Lake Park, Cuihu Park, Kunming seagulls, Kunming local life, Yunnan Military Academy, Kunming travel guide'
+    when 'dali-city-walk-guide'
+      assign article_section = 'Dali Travel Guide'
+      assign about_type = 'TouristDestination'
+      assign about_name = 'Dali'
+      assign about_id = 'https://lynxtour.cn/pages/dali#touristdestination'
+      assign mentions_data = 'TouristAttraction||Cangshan||~TouristAttraction||Erhai Lake||~TouristAttraction||Dali Old Town||~TouristAttraction||Xizhou||~Thing||Bai culture||~Thing||Erhai Ecological Corridor||'
+      assign article_keywords = 'Dali city walk, Erhai Lake, Cangshan, Dali Old Town, Xizhou, Bai culture'
+    when 'xizhou-ancient-town-guide'
+      assign article_section = 'Dali Travel Guide'
+      assign about_type = 'TouristAttraction'
+      assign about_name = 'Xizhou Ancient Town'
+      assign mentions_data = 'TouristDestination||Dali||https://lynxtour.cn/pages/dali#touristdestination~TouristAttraction||Erhai Lake||~TouristAttraction||Cangshan||~Thing||Bai architecture||~Thing||Bai culture||~Thing||rice paddies||~Thing||Ancient Tea Horse Road||'
+      assign article_keywords = 'Xizhou Ancient Town, Bai architecture, Dali culture, Erhai Lake, rice paddies, Dali travel guide'
+    when 'erhai-lake-guide'
+      assign article_section = 'Dali Travel Guide'
+      assign about_type = 'TouristAttraction'
+      assign about_name = 'Erhai Lake'
+      assign mentions_data = 'TouristDestination||Dali||https://lynxtour.cn/pages/dali#touristdestination~TouristAttraction||Cangshan||~TouristAttraction||Dali Old Town||~TouristAttraction||Xizhou||~Thing||cycling route||~Thing||lakeside villages||'
+      assign article_keywords = 'Erhai Lake, Dali lake route, Erhai cycling, Cangshan, Xizhou, Dali private tour'
+    when 'cangshan-mountain-guide'
+      assign article_section = 'Dali Travel Guide'
+      assign about_type = 'TouristAttraction'
+      assign about_name = 'Cangshan Mountain'
+      assign mentions_data = 'TouristDestination||Dali||https://lynxtour.cn/pages/dali#touristdestination~TouristAttraction||Erhai Lake||~Thing||cable car||~Thing||hiking||~Thing||mountain views||~Thing||family travel||'
+      assign article_keywords = 'Cangshan Mountain, Dali hiking, Cangshan cable car, Erhai views, Dali travel guide'
+    when 'lijiang-travel-guide'
+      assign article_section = 'Lijiang Travel Guide'
+      assign about_type = 'TouristDestination'
+      assign about_name = 'Lijiang'
+      assign about_id = 'https://lynxtour.cn/pages/lijiang#touristdestination'
+      assign mentions_data = 'TouristAttraction||Lijiang Old Town||~TouristAttraction||Jade Dragon Snow Mountain||~TouristAttraction||Black Dragon Pool||~TouristAttraction||Baisha||~TouristAttraction||Shuhe||~Thing||Naxi culture||'
+      assign article_keywords = 'Lijiang travel guide, Lijiang itinerary, Jade Dragon Snow Mountain, Lijiang Old Town, Naxi culture, Yunnan private tour'
+    when 'lijiang-old-town-guide'
+      assign article_section = 'Lijiang Travel Guide'
+      assign about_type = 'TouristAttraction'
+      assign about_name = 'Lijiang Old Town'
+      assign mentions_data = 'TouristDestination||Lijiang||https://lynxtour.cn/pages/lijiang#touristdestination~Thing||UNESCO World Heritage||~Thing||Naxi culture||~Place||Mufu Palace||~Place||Sifang Street||~Place||Lion Hill||'
+      assign article_keywords = 'Lijiang Old Town, Dayan Ancient Town, Naxi culture, Lijiang walking route, Lijiang travel guide'
+    when 'jade-dragon-snow-mountain-guide'
+      assign article_section = 'Lijiang Travel Guide'
+      assign about_type = 'TouristAttraction'
+      assign about_name = 'Jade Dragon Snow Mountain'
+      assign mentions_data = 'TouristDestination||Lijiang||https://lynxtour.cn/pages/lijiang#touristdestination~TouristAttraction||Blue Moon Valley||~Thing||Glacier Park||~Thing||Impression Lijiang||~Thing||altitude sickness||~Thing||cable car tickets||'
+      assign article_keywords = 'Jade Dragon Snow Mountain, Blue Moon Valley, Lijiang mountain tour, Glacier Park, cable car tickets, altitude sickness'
+  endcase
+
+  assign mentions = mentions_data | split: '~'
+%}
+
+{% if article_section != blank and about_type != blank and about_name != blank and article_keywords != blank %},
+  "articleSection": {{ article_section | json }},
+  "about": {
+    "@type": {{ about_type | json }}{% if about_id != blank %},
+    "@id": {{ about_id | json }}{% endif %},
+    "name": {{ about_name | json }}
+  },
+  "mentions": [
+    {% assign mention_count = 0 %}
+    {% for mention_row in mentions %}
+      {% assign mention_parts = mention_row | split: '||' %}
+      {% assign mention_type = mention_parts[0] | strip %}
+      {% assign mention_name = mention_parts[1] | strip %}
+      {% assign mention_id = mention_parts[2] | strip %}
+      {% if mention_type != blank and mention_name != blank %}
+        {% if mention_count > 0 %},{% endif %}
+        {
+          "@type": {{ mention_type | json }}{% if mention_id != blank %},
+          "@id": {{ mention_id | json }}{% endif %},
+          "name": {{ mention_name | json }}
+        }
+        {% assign mention_count = mention_count | plus: 1 %}
+      {% endif %}
+    {% endfor %}
+  ],
+  "keywords": {{ article_keywords | json }}
+{% endif %}
