@@ -208,6 +208,30 @@
   </div>
 </div>
 
+{% if collection %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": {{ 'https://lynxtour.cn' | append: collection.url | append: '#breadcrumb' | json }},
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lynxtour.cn/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": {{ collection.title | json }},
+        "item": {{ 'https://lynxtour.cn' | append: collection.url | json }}
+      }
+    ]
+  }
+  </script>
+{% endif %}
+
 <style>
   /* ===== Scoped: only affect this module ===== */
   #CollectionProductGrid{

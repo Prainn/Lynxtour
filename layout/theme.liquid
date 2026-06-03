@@ -319,28 +319,50 @@
   <meta name="twitter:description" content="{{ seo_description | escape }}">
 {% endif %}
 
-    {% if request.page_type == 'index' %}
-      <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Lynxtour",
-        "alternateName": ["Lynxtour Yunnan", "lynxtour.cn"],
-        "url": "{{ shop.secure_url }}/"
-      }
-      </script>
-
-      <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Lynxtour",
-        "url": "{{ shop.secure_url }}/"{% if settings.logo != blank %},
-        "logo": "{{ settings.logo | image_url: width: 512 | prepend: 'https:' }}"
-        {% endif %}
-      }
-      </script>
-    {% endif %}
+    {% liquid
+      assign lynx_schema_base_url = 'https://lynxtour.cn'
+      assign lynx_organization_id = lynx_schema_base_url | append: '/#organization'
+      assign lynx_website_id = lynx_schema_base_url | append: '/#website'
+    %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": ["Organization", "TravelAgency"],
+          "@id": {{ lynx_organization_id | json }},
+          "name": "Lynxtour",
+          "url": {{ lynx_schema_base_url | append: '/' | json }},
+          "description": "Lynxtour provides private and custom Yunnan tours for international travelers, with local planning across Kunming, Dali, Lijiang, Shangri-La, Xishuangbanna, and wider Yunnan routes.",
+          "areaServed": [
+            { "@type": "AdministrativeArea", "name": "Yunnan" },
+            { "@type": "City", "name": "Kunming" },
+            { "@type": "City", "name": "Dali" },
+            { "@type": "City", "name": "Lijiang" },
+            { "@type": "City", "name": "Shangri-La" },
+            { "@type": "City", "name": "Xishuangbanna" }
+          ],
+          "sameAs": [
+            "https://www.instagram.com/lynxtourofficial/",
+            "https://www.facebook.com/lynxtourofficial",
+            "https://www.youtube.com/@lynxtour_official",
+            "https://www.tiktok.com/@lynxtour_official"
+          ]{% if settings.logo != blank %},
+          "logo": {{ settings.logo | image_url: width: 512 | prepend: 'https:' | json }}{% endif %}
+        },
+        {
+          "@type": "WebSite",
+          "@id": {{ lynx_website_id | json }},
+          "name": "Lynxtour",
+          "alternateName": ["Lynxtour Yunnan", "lynxtour.cn"],
+          "url": {{ lynx_schema_base_url | append: '/' | json }},
+          "publisher": {
+            "@id": {{ lynx_organization_id | json }}
+          }
+        }
+      ]
+    }
+    </script>
 
     {{ content_for_header }}
 

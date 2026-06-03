@@ -193,12 +193,19 @@
   </div>
 
   {%- if product and review_count > 0 -%}
+    {%- liquid
+      assign review_schema_base_url = 'https://lynxtour.cn'
+      assign review_product_url = review_schema_base_url | append: product.url
+      assign review_product_id = review_product_url | append: '#product'
+      assign review_organization_id = review_schema_base_url | append: '/#organization'
+    -%}
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Product",
+      "@id": {{ review_product_id | json }},
       "name": {{ product.title | strip | json }},
-      "url": {{ shop.url | append: product.url | json }},
+      "url": {{ review_product_url | json }},
       {%- if product.featured_image -%}
         "image": [{{ product.featured_image | image_url: width: 1200 | prepend: "https:" | json }}],
       {%- endif -%}
@@ -233,8 +240,7 @@
                 "worstRating": 1
               },
               "publisher": {
-                "@type": "Organization",
-                "name": {{ shop.name | json }}
+                "@id": {{ review_organization_id | json }}
               }
             }
             {%- assign first_review = false -%}
