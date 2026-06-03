@@ -3,7 +3,7 @@
   assign service_url = service_url | strip
   assign service_id = service_id | strip
   assign service_type = service_type | strip
-  aassign service_description = service_description | strip_html | strip_newlines | strip
+  assign service_description = service_description | strip_html | strip_newlines | strip
   assign service_page_name = service_page_name | default: service_name | strip
   assign service_area_served = service_area_served | default: '' | split: '|'
   assign service_audience = service_audience | default: '' | split: '|'
