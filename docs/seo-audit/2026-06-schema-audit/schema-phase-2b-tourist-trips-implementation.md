@@ -83,16 +83,19 @@ The Product `@id` remains `https://lynxtour.cn/products/{handle}#product`. The T
 - `description`
 - `provider` referencing `https://lynxtour.cn/#organization`
 - `touristType`
-- `duration` where a safe duration is available
 - `itinerary` as a route-level `ItemList`
 - `mainEntityOfPage` using `https://lynxtour.cn/products/{handle}#webpage`
 
 Descriptions use the visible Shopify product description when available. If the product description is blank, the handle-scoped fallback description from the implementation brief is used.
 
+## Duration Validation Note
+
+`duration` was originally included for some multi-day TouristTrip entities. It was removed after Schema.org validation because `duration` is not a recognized property for `TouristTrip`. Trip length remains represented in visible product names/descriptions and route itinerary structure.
+
 ## Fields Omitted and Why
 
 - `offers` omitted to avoid duplicating or conflicting with the existing Product Offer schema.
-- `duration` omitted for `lijiang-to-shangri-la-private-tour` because no safe visible duration was found in the template content.
+- `duration` omitted because Schema.org validation does not recognize it as a valid `TouristTrip` property.
 - Product relationship via `subjectOf` or `isRelatedTo` omitted because a Product reference is not a conservative fit for those TouristTrip properties. The Product and TouristTrip nodes remain connected by stable same-page URLs and distinct `@id` patterns.
 - Attraction URLs and `@id` values omitted for Lugu Lake, Blue Moon Valley, Tiger Leaping Gorge, Songzanlin Monastery, Pudacuo National Park, and Jade Dragon Snow Mountain because no stable Lynxtour destination page IDs exist for them in the current schema graph.
 - `aggregateRating`, `review`, fake price, `priceRange`, geo coordinates, `openingHours`, Service schema, BlogPosting schema, TouristDestination changes, CollectionPage schema, and collection ItemList schema omitted as out of scope.

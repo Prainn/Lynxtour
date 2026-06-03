@@ -7,7 +7,6 @@
   assign seo_trip_webpage_id = seo_trip_url | append: '#webpage'
   assign seo_trip_organization_id = seo_schema_base_url | append: '/#organization'
   assign seo_trip_name = ''
-  assign seo_trip_duration = ''
   assign seo_trip_fallback_description = ''
   assign seo_trip_tourist_types = ''
   assign seo_is_target_tourist_trip = false
@@ -16,25 +15,21 @@
     when 'kunming-dali-lijiang-shangri-la-8-day-private-tour'
       assign seo_is_target_tourist_trip = true
       assign seo_trip_name = '8-Day Kunming, Dali, Lijiang & Shangri-La Private Tour'
-      assign seo_trip_duration = 'P8D'
       assign seo_trip_fallback_description = 'A private 8-day Yunnan route connecting Kunming, Dali, Lijiang, and Shangri-La for international travelers who want a balanced first trip across classic northwest Yunnan.'
       assign seo_trip_tourist_types = 'International travelers||First-time Yunnan visitors||Private tour travelers||Culture travelers||Scenic route travelers||Family travelers'
     when 'kunming-dali-lugu-lake-lijiang-shangri-la-10-day-private-tour'
       assign seo_is_target_tourist_trip = true
       assign seo_trip_name = '10-Day Kunming, Dali, Lugu Lake, Lijiang & Shangri-La Private Tour'
-      assign seo_trip_duration = 'P10D'
       assign seo_trip_fallback_description = 'A private 10-day Yunnan route for travelers who want a slower and deeper journey through Kunming, Dali, Lugu Lake, Lijiang, and Shangri-La.'
       assign seo_trip_tourist_types = 'International travelers||Private tour travelers||Scenic route travelers||Slow travelers||Culture travelers||Photography travelers'
     when 'kunming-dali-lijiang-6-day-private-tour'
       assign seo_is_target_tourist_trip = true
       assign seo_trip_name = '6-Day Kunming, Dali & Lijiang Private Tour'
-      assign seo_trip_duration = 'P6D'
       assign seo_trip_fallback_description = 'A compact private 6-day Yunnan route covering Kunming, Dali, and Lijiang for travelers with limited time.'
       assign seo_trip_tourist_types = 'International travelers||First-time Yunnan visitors||Private tour travelers||Short-stay travelers||Culture travelers'
     when 'jade-dragon-snow-mountain-private-tour'
       assign seo_is_target_tourist_trip = true
       assign seo_trip_name = 'Jade Dragon Snow Mountain Private Tour'
-      assign seo_trip_duration = 'P1D'
       assign seo_trip_fallback_description = 'A private Lijiang day tour focused on Jade Dragon Snow Mountain, Blue Moon Valley, and alpine scenery near Lijiang.'
       assign seo_trip_tourist_types = 'International travelers||Private day trip travelers||Mountain scenery travelers||Photography travelers||Family travelers'
     when 'lijiang-to-shangri-la-private-tour'
@@ -45,7 +40,6 @@
     when 'shangri-la-pudacuo-national-park-songzanlin-monastery-1-day-private-tour'
       assign seo_is_target_tourist_trip = true
       assign seo_trip_name = 'Shangri-La Pudacuo National Park & Songzanlin Monastery 1-Day Private Tour'
-      assign seo_trip_duration = 'P1D'
       assign seo_trip_fallback_description = 'A private Shangri-La day tour combining Songzanlin Monastery, Pudacuo National Park, and highland scenery.'
       assign seo_trip_tourist_types = 'International travelers||Private day trip travelers||Tibetan culture travelers||Monastery travelers||Nature travelers||Photography travelers'
   endcase
@@ -75,8 +69,7 @@
       {% for seo_trip_tourist_type in seo_trip_tourist_type_rows %}
         {{ seo_trip_tourist_type | json }}{% unless forloop.last %},{% endunless %}
       {% endfor %}
-    ]{% if seo_trip_duration != blank %},
-    "duration": {{ seo_trip_duration | json }}{% endif %},
+    ],
     "itinerary": {
       "@type": "ItemList",
       "itemListElement": [
