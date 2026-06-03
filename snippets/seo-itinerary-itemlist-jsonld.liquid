@@ -1,0 +1,74 @@
+{% liquid
+  assign itemlist_blocks = itemlist_blocks | default: nil
+  assign itemlist_kind = itemlist_kind | default: 'itinerary'
+  assign itemlist_count = itemlist_blocks.size
+  assign itemlist_name = blank
+  assign itemlist_fragment = blank
+
+  case page.handle
+    when 'dali-itinerary-3-days'
+      assign itemlist_name = 'Dali 3-Day Itinerary'
+      assign itemlist_fragment = 'itinerary'
+    when 'lijiang-itinerary-3-days'
+      assign itemlist_name = 'Lijiang 3-Day Itinerary'
+      assign itemlist_fragment = 'itinerary'
+    when 'dali-itinerary-2-days'
+      assign itemlist_name = 'Dali 2-Day Itinerary'
+      assign itemlist_fragment = 'itinerary'
+    when 'lijiang-itinerary-2-days'
+      assign itemlist_name = 'Lijiang 2-Day Itinerary'
+      assign itemlist_fragment = 'itinerary'
+    when 'dali-to-lijiang-private-tour'
+      if itemlist_kind == 'route'
+        assign itemlist_name = 'Dali to Lijiang Private Tour'
+        assign itemlist_fragment = 'route'
+      endif
+    when 'tiger-leaping-gorge-from-lijiang'
+      if itemlist_kind == 'route'
+        assign itemlist_name = 'Tiger Leaping Gorge From Lijiang'
+        assign itemlist_fragment = 'route'
+      endif
+  endcase
+%}
+
+{% if page and itemlist_count > 0 and itemlist_name != blank and itemlist_fragment != blank %}
+  {% assign page_url = 'https://lynxtour.cn' | append: page.url %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": {{ page_url | append: '#' | append: itemlist_fragment | json }},
+    "name": {{ itemlist_name | json }},
+    "url": {{ page_url | json }},
+    "itemListOrder": "https://schema.org/ItemListOrderAscending",
+    "numberOfItems": {{ itemlist_count }},
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": {{ page_url | append: '#webpage' | json }},
+      "url": {{ page_url | json }},
+      "name": {{ itemlist_name | json }}
+    },
+    "itemListElement": [
+      {% for block in itemlist_blocks %}
+        {% liquid
+          assign item_name = block.settings.heading | strip_html | strip
+          assign item_tag = block.settings.tag | strip_html | strip
+          assign item_description = block.settings.copy | strip_html | strip
+
+          if item_name == blank
+            assign item_name = item_tag
+          elsif item_tag != blank
+            assign item_name = item_tag | append: ': ' | append: item_name
+          endif
+        %}
+        {
+          "@type": "ListItem",
+          "position": {{ forloop.index }},
+          "name": {{ item_name | json }}{% if item_description != blank %},
+          "description": {{ item_description | json }}{% endif %}
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+  }
+  </script>
+{% endif %}

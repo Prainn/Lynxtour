@@ -1,4 +1,5 @@
 {% assign feature_blocks = section.blocks | where: 'type', 'feature' %}
+{% assign route_step_blocks = section.blocks | where: 'type', 'route_step' %}
 {% assign link_blocks = section.blocks | where: 'type', 'link_card' %}
 {% assign faq_blocks = section.blocks | where: 'type', 'faq_item' %}
 
@@ -367,6 +368,8 @@
     {% endif %}
   </div>
 </div>
+
+{% render 'seo-itinerary-itemlist-jsonld', itemlist_blocks: route_step_blocks, itemlist_kind: 'route' %}
 
 {% if faq_blocks.size > 0 %}
   <script type="application/ld+json">

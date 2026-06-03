@@ -483,6 +483,8 @@
   </div>
 </div>
 
+{% render 'seo-itinerary-itemlist-jsonld', itemlist_blocks: day_blocks, itemlist_kind: 'itinerary' %}
+
 {% if faq_blocks.size > 0 %}
   <script type="application/ld+json">
   {
