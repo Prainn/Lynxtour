@@ -777,6 +777,38 @@
   </div>
 </div>
 
+{% capture kunming_tourist_types %}
+International travelers
+First-time Yunnan visitors
+Families
+Slow travelers
+Photographers
+Private tour travelers
+{% endcapture %}
+
+{% capture kunming_attractions %}
+Stone Forest||A dramatic karst landscape and classic Kunming side trip, known for natural stone formations, geology, heritage, and Sani cultural memory.
+Green Lake||A gentle city oasis with willow-lined paths, historic pavilions, winter gulls, and nearby cultural streets.
+Dianchi Lake||A wide lakeside area known for open water, distant hills, winter black-headed gulls, and scenic family-friendly walks.
+Kunming Old Street||A historic urban area that shows Kunming's older streets, local food, heritage, and walkable city atmosphere.
+Nanqiang Night Market||A lively evening food and street-life area that adds local rhythm to a Kunming city walk.
+Jinma Biji||A historic city landmark connected with Kunming old-street walks and local heritage.
+Qianwang Old Street||An old street area with heritage architecture, local texture, and city-walk atmosphere.
+Dounan Flower Market||A flower-market experience connected with Kunming's Spring City identity and urban culture.
+Yunnan Provincial Museum||A cultural stop for travelers interested in Yunnan history and regional identity.
+Western Hills||A scenic Kunming highlight often paired with Dianchi views and easy private city routes.
+{% endcapture %}
+
+{% render 'seo-tourist-destination-jsonld',
+  destination_name: 'Kunming',
+  destination_url: 'https://lynxtour.cn/pages/kunming',
+  destination_id: 'https://lynxtour.cn/pages/kunming#touristdestination',
+  destination_description: 'Kunming is the main gateway to Yunnan and a practical first stop for travelers planning Stone Forest, Dianchi Lake, Green Lake, flower markets, city walks, and nearby day trips.',
+  destination_tourist_types: kunming_tourist_types,
+  destination_attractions: kunming_attractions,
+  destination_contained_in_place: 'Yunnan'
+%}
+
 {% if faq_blocks.size > 0 %}
   <script type="application/ld+json">
   {

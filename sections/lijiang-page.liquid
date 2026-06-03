@@ -877,6 +877,37 @@
   </div>
 </div>
 
+{% capture lijiang_tourist_types %}
+International travelers
+First-time Yunnan visitors
+Photographers
+Culture travelers
+Mountain scenery travelers
+Private tour travelers
+{% endcapture %}
+
+{% capture lijiang_attractions %}
+Jade Dragon Snow Mountain||Lijiang's most iconic natural landmark, known for glacier views, alpine meadows, Blue Moon Valley, and dramatic snow mountain scenery.
+Lijiang Old Town||A historic old town with cobbled lanes, flowing canals, wooden rooftops, viewpoints, and Naxi heritage.
+Black Dragon Pool||A classic Lijiang city highlight often paired with old-town walks and views toward Jade Dragon Snow Mountain.
+Blue Moon Valley||A scenic valley connected with Jade Dragon Snow Mountain, known for alpine water views and mountain-day scenery.
+Baisha||A slower cultural stop near Lijiang, often used for Naxi heritage, old-town texture, and quieter travel pacing.
+Shuhe||A quieter old-town area near Lijiang that supports slower cultural days and relaxed walking routes.
+Dongba Culture||A living Naxi heritage experience connected with pictographic writing, ritual tradition, music, belief, and local memory.
+Naxi Cultural Sites||Cultural places around Lijiang that help travelers understand Naxi identity, heritage, and everyday traditions.
+Tiger Leaping Gorge||A dramatic scenic route often used as a detour from Lijiang or as part of the road north toward Shangri-La.
+{% endcapture %}
+
+{% render 'seo-tourist-destination-jsonld',
+  destination_name: 'Lijiang',
+  destination_url: 'https://lynxtour.cn/pages/lijiang',
+  destination_id: 'https://lynxtour.cn/pages/lijiang#touristdestination',
+  destination_description: "Lijiang is one of Yunnan's most iconic destinations, bringing together snow mountain grandeur, old-town texture, and Naxi cultural heritage.",
+  destination_tourist_types: lijiang_tourist_types,
+  destination_attractions: lijiang_attractions,
+  destination_contained_in_place: 'Yunnan'
+%}
+
 {% if faq_blocks.size > 0 %}
   <script type="application/ld+json">
   {

@@ -862,6 +862,35 @@
   </div>
 </div>
 
+{% capture dali_tourist_types %}
+International travelers
+First-time Yunnan visitors
+Couples
+Slow travelers
+Photographers
+Private tour travelers
+Culture travelers
+{% endcapture %}
+
+{% capture dali_attractions %}
+Cangshan||Dali's mountain backbone, known for misty peaks, forest trails, hidden temples, and panoramic cable car views.
+Erhai Lake||A vast alpine lake framed by villages, sky, and the distant line of Cangshan, ideal for lakeside drives, cycling routes, sunrise piers, and scenic viewpoints.
+Xizhou||A culturally rich Bai town known for courtyard architecture, local flavor, village scenery, and living heritage.
+Dali Old Town||A classic old-town area with local streets, food, relaxed walks, and everyday Dali atmosphere.
+Bai Heritage Villages||Village areas around Dali that highlight Bai culture, architecture, rice-field scenery, and slower local life.
+Lakeside Villages||Villages around Erhai Lake that give Dali its calm lakeside rhythm, scenery, and everyday life.
+{% endcapture %}
+
+{% render 'seo-tourist-destination-jsonld',
+  destination_name: 'Dali',
+  destination_url: 'https://lynxtour.cn/pages/dali',
+  destination_id: 'https://lynxtour.cn/pages/dali#touristdestination',
+  destination_description: "Dali is one of western Yunnan's most relaxed and scenic destinations, known for Erhai Lake, Dali Old Town, Xizhou, Cangshan, Bai culture, and slow lakeside travel.",
+  destination_tourist_types: dali_tourist_types,
+  destination_attractions: dali_attractions,
+  destination_contained_in_place: 'Yunnan'
+%}
+
 {% if faq_blocks.size > 0 %}
   <script type="application/ld+json">
   {

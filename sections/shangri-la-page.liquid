@@ -925,6 +925,36 @@
   </div>
 </div>
 
+{% capture shangri_la_tourist_types %}
+International travelers
+Mountain landscape travelers
+Tibetan culture travelers
+Monastery travelers
+Photographers
+Slow travelers
+Private tour travelers
+{% endcapture %}
+
+{% capture shangri_la_attractions %}
+Songzanlin Monastery||The spiritual heart of Shangri-La, known for golden roofs, monastery courtyards, prayer wheels, Tibetan Buddhist culture, and mountain light.
+Pudacuo National Park||A high-altitude natural area with lakes, ancient forests, wooden boardwalks, open alpine meadows, and clean mountain air.
+Dukezong Ancient Town||An old-town area connected with Shangri-La's Tibetan cultural atmosphere and slower highland travel pace.
+Napa Lake||A highland lake and grassland area linked with alpine landscapes, photography, and slower Shangri-La stays.
+Meili Snow Mountain||A sacred mountain experience known for dramatic ridgelines, Feilai Temple viewpoints, and golden sunrise conditions.
+Lamuyangcuo Lake||A lake near Songzanlin Monastery where monastery architecture and mountain light are reflected in the landscape.
+Tiger Leaping Gorge||A scenic route between Lijiang and Shangri-La that acts as a natural bridge into the Tibetan highlands.
+{% endcapture %}
+
+{% render 'seo-tourist-destination-jsonld',
+  destination_name: 'Shangri-La',
+  destination_url: 'https://lynxtour.cn/pages/shangri-la',
+  destination_id: 'https://lynxtour.cn/pages/shangri-la#touristdestination',
+  destination_description: "Shangri-La is northwest Yunnan's highland gateway, known for Tibetan culture, Songzanlin Monastery, Pudacuo National Park, Dukezong Ancient Town, Napa Lake, and routes toward Meili Snow Mountain.",
+  destination_tourist_types: shangri_la_tourist_types,
+  destination_attractions: shangri_la_attractions,
+  destination_contained_in_place: 'Yunnan'
+%}
+
 {% if faq_blocks.size > 0 %}
   <script type="application/ld+json">
   {

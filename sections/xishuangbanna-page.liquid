@@ -845,6 +845,35 @@
   </div>
 </div>
 
+{% capture xishuangbanna_tourist_types %}
+International travelers
+Tropical scenery travelers
+Culture travelers
+Slow travelers
+Tea culture travelers
+Private tour travelers
+Warm-weather travelers
+{% endcapture %}
+
+{% capture xishuangbanna_attractions %}
+Wangtianshu||A rainforest area known for canopy walks, jungle rivers, towering rainforest trees, and immersive tropical scenery.
+Rainforest Landscapes||The tropical natural side of Xishuangbanna, with lush scenery, jungle atmosphere, and warm-weather travel appeal.
+Dai Villages and Temples||Cultural areas connected with Dai villages, golden temple roofs, water-splashing traditions, and tropical daily life.
+Nannuo Mountain||A tea-country area known for ancient tea forests, Hani villages, mountain clouds, and hands-on Pu'er culture.
+Tea Country Experiences||Southern Yunnan tea experiences linked with Pu'er culture, ancient tea forests, and slower mountain travel.
+Local Night Scenes||Lively evening areas that add food, local rhythm, and tropical atmosphere to a Xishuangbanna stay.
+{% endcapture %}
+
+{% render 'seo-tourist-destination-jsonld',
+  destination_name: 'Xishuangbanna',
+  destination_url: 'https://lynxtour.cn/pages/xishuangbanna',
+  destination_id: 'https://lynxtour.cn/pages/xishuangbanna#touristdestination',
+  destination_description: 'Xishuangbanna reveals a warmer, greener, and more tropical side of Yunnan, combining rainforest scenery, Dai culture, tea traditions, and a slower pace of travel.',
+  destination_tourist_types: xishuangbanna_tourist_types,
+  destination_attractions: xishuangbanna_attractions,
+  destination_contained_in_place: 'Yunnan'
+%}
+
 {% if faq_blocks.size > 0 %}
   <script type="application/ld+json">
   {

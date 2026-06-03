@@ -1,0 +1,74 @@
+{% liquid
+  assign seo_destination_name = destination_name | strip
+  assign seo_destination_url = destination_url | strip
+  assign seo_destination_id = destination_id | strip
+  assign seo_destination_description = destination_description | strip
+  assign seo_destination_tourist_types = destination_tourist_types | strip
+  assign seo_destination_attractions = destination_attractions | strip
+  assign seo_destination_contained_in_place = destination_contained_in_place | default: 'Yunnan' | strip
+  assign seo_destination_country = 'China'
+  assign seo_website_id = 'https://lynxtour.cn/#website'
+  assign seo_webpage_id = seo_destination_url | append: '#webpage'
+  assign seo_webpage_name = seo_destination_name | append: ' Travel Guide'
+%}
+
+{% if seo_destination_name != blank and seo_destination_url != blank and seo_destination_id != blank and seo_destination_description != blank and seo_destination_tourist_types != blank and seo_destination_attractions != blank %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TouristDestination",
+    "@id": {{ seo_destination_id | json }},
+    "name": {{ seo_destination_name | json }},
+    "url": {{ seo_destination_url | json }},
+    "description": {{ seo_destination_description | json }}{% if destination_image != blank %},
+    "image": {{ destination_image | image_url: width: 1600 | prepend: 'https:' | json }}{% endif %},
+    "containedInPlace": {
+      "@type": "AdministrativeArea",
+      "name": {{ seo_destination_contained_in_place | json }},
+      "containedInPlace": {
+        "@type": "Country",
+        "name": {{ seo_destination_country | json }}
+      }
+    },
+    "touristType": [
+      {% assign seo_first_tourist_type = true %}
+      {% assign seo_tourist_type_rows = seo_destination_tourist_types | newline_to_br | split: '<br />' %}
+      {% for tourist_type_row in seo_tourist_type_rows %}
+        {% assign seo_tourist_type = tourist_type_row | strip %}
+        {% if seo_tourist_type != blank %}
+          {% unless seo_first_tourist_type %},{% endunless %}
+          {{ seo_tourist_type | json }}
+          {% assign seo_first_tourist_type = false %}
+        {% endif %}
+      {% endfor %}
+    ],
+    "includesAttraction": [
+      {% assign seo_first_attraction = true %}
+      {% assign seo_attraction_rows = seo_destination_attractions | newline_to_br | split: '<br />' %}
+      {% for attraction_row in seo_attraction_rows %}
+        {% assign seo_attraction_parts = attraction_row | split: '||' %}
+        {% assign seo_attraction_name = seo_attraction_parts[0] | strip %}
+        {% assign seo_attraction_description = seo_attraction_parts[1] | strip %}
+        {% if seo_attraction_name != blank %}
+          {% unless seo_first_attraction %},{% endunless %}
+          {
+            "@type": "TouristAttraction",
+            "name": {{ seo_attraction_name | json }}{% if seo_attraction_description != blank %},
+            "description": {{ seo_attraction_description | json }}{% endif %}
+          }
+          {% assign seo_first_attraction = false %}
+        {% endif %}
+      {% endfor %}
+    ],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": {{ seo_webpage_id | json }},
+      "url": {{ seo_destination_url | json }},
+      "name": {{ seo_webpage_name | json }}
+    },
+    "subjectOf": {
+      "@id": {{ seo_website_id | json }}
+    }
+  }
+  </script>
+{% endif %}
