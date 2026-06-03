@@ -1,0 +1,284 @@
+{% liquid
+  assign seo_trip_product = product
+  assign seo_trip_handle = seo_trip_product.handle | strip
+  assign seo_schema_base_url = 'https://lynxtour.cn'
+  assign seo_trip_url = seo_schema_base_url | append: seo_trip_product.url
+  assign seo_trip_id = seo_trip_url | append: '#touristtrip'
+  assign seo_trip_webpage_id = seo_trip_url | append: '#webpage'
+  assign seo_trip_organization_id = seo_schema_base_url | append: '/#organization'
+  assign seo_trip_name = ''
+  assign seo_trip_duration = ''
+  assign seo_trip_fallback_description = ''
+  assign seo_trip_tourist_types = ''
+  assign seo_is_target_tourist_trip = false
+
+  case seo_trip_handle
+    when 'kunming-dali-lijiang-shangri-la-8-day-private-tour'
+      assign seo_is_target_tourist_trip = true
+      assign seo_trip_name = '8-Day Kunming, Dali, Lijiang & Shangri-La Private Tour'
+      assign seo_trip_duration = 'P8D'
+      assign seo_trip_fallback_description = 'A private 8-day Yunnan route connecting Kunming, Dali, Lijiang, and Shangri-La for international travelers who want a balanced first trip across classic northwest Yunnan.'
+      assign seo_trip_tourist_types = 'International travelers||First-time Yunnan visitors||Private tour travelers||Culture travelers||Scenic route travelers||Family travelers'
+    when 'kunming-dali-lugu-lake-lijiang-shangri-la-10-day-private-tour'
+      assign seo_is_target_tourist_trip = true
+      assign seo_trip_name = '10-Day Kunming, Dali, Lugu Lake, Lijiang & Shangri-La Private Tour'
+      assign seo_trip_duration = 'P10D'
+      assign seo_trip_fallback_description = 'A private 10-day Yunnan route for travelers who want a slower and deeper journey through Kunming, Dali, Lugu Lake, Lijiang, and Shangri-La.'
+      assign seo_trip_tourist_types = 'International travelers||Private tour travelers||Scenic route travelers||Slow travelers||Culture travelers||Photography travelers'
+    when 'kunming-dali-lijiang-6-day-private-tour'
+      assign seo_is_target_tourist_trip = true
+      assign seo_trip_name = '6-Day Kunming, Dali & Lijiang Private Tour'
+      assign seo_trip_duration = 'P6D'
+      assign seo_trip_fallback_description = 'A compact private 6-day Yunnan route covering Kunming, Dali, and Lijiang for travelers with limited time.'
+      assign seo_trip_tourist_types = 'International travelers||First-time Yunnan visitors||Private tour travelers||Short-stay travelers||Culture travelers'
+    when 'jade-dragon-snow-mountain-private-tour'
+      assign seo_is_target_tourist_trip = true
+      assign seo_trip_name = 'Jade Dragon Snow Mountain Private Tour'
+      assign seo_trip_duration = 'P1D'
+      assign seo_trip_fallback_description = 'A private Lijiang day tour focused on Jade Dragon Snow Mountain, Blue Moon Valley, and alpine scenery near Lijiang.'
+      assign seo_trip_tourist_types = 'International travelers||Private day trip travelers||Mountain scenery travelers||Photography travelers||Family travelers'
+    when 'lijiang-to-shangri-la-private-tour'
+      assign seo_is_target_tourist_trip = true
+      assign seo_trip_name = 'Lijiang to Shangri-La Private Tour'
+      assign seo_trip_fallback_description = 'A private route from Lijiang to Shangri-La, connecting northwest Yunnan scenery, Tiger Leaping Gorge, and Tibetan cultural landscapes.'
+      assign seo_trip_tourist_types = 'International travelers||Private tour travelers||Scenic route travelers||Mountain landscape travelers||Tibetan culture travelers'
+    when 'shangri-la-pudacuo-national-park-songzanlin-monastery-1-day-private-tour'
+      assign seo_is_target_tourist_trip = true
+      assign seo_trip_name = 'Shangri-La Pudacuo National Park & Songzanlin Monastery 1-Day Private Tour'
+      assign seo_trip_duration = 'P1D'
+      assign seo_trip_fallback_description = 'A private Shangri-La day tour combining Songzanlin Monastery, Pudacuo National Park, and highland scenery.'
+      assign seo_trip_tourist_types = 'International travelers||Private day trip travelers||Tibetan culture travelers||Monastery travelers||Nature travelers||Photography travelers'
+  endcase
+
+  assign seo_trip_description = seo_trip_product.description | strip_html | strip_newlines | replace: '  ', ' ' | strip
+  if seo_trip_description == blank
+    assign seo_trip_description = seo_trip_fallback_description
+  else
+    assign seo_trip_description = seo_trip_description | truncate: 500
+  endif
+%}
+
+{% if seo_is_target_tourist_trip %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TouristTrip",
+    "@id": {{ seo_trip_id | json }},
+    "name": {{ seo_trip_name | json }},
+    "url": {{ seo_trip_url | json }},
+    "description": {{ seo_trip_description | json }},
+    "provider": {
+      "@id": {{ seo_trip_organization_id | json }}
+    },
+    "touristType": [
+      {% assign seo_trip_tourist_type_rows = seo_trip_tourist_types | split: '||' %}
+      {% for seo_trip_tourist_type in seo_trip_tourist_type_rows %}
+        {{ seo_trip_tourist_type | json }}{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]{% if seo_trip_duration != blank %},
+    "duration": {{ seo_trip_duration | json }}{% endif %},
+    "itinerary": {
+      "@type": "ItemList",
+      "itemListElement": [
+        {% case seo_trip_handle %}
+          {% when 'kunming-dali-lijiang-shangri-la-8-day-private-tour' %}
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "item": {
+                "@type": "TouristDestination",
+                "name": "Kunming",
+                "@id": "https://lynxtour.cn/pages/kunming#touristdestination"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "item": {
+                "@type": "TouristDestination",
+                "name": "Dali",
+                "@id": "https://lynxtour.cn/pages/dali#touristdestination"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "item": {
+                "@type": "TouristDestination",
+                "name": "Lijiang",
+                "@id": "https://lynxtour.cn/pages/lijiang#touristdestination"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "item": {
+                "@type": "TouristDestination",
+                "name": "Shangri-La",
+                "@id": "https://lynxtour.cn/pages/shangri-la#touristdestination"
+              }
+            }
+          {% when 'kunming-dali-lugu-lake-lijiang-shangri-la-10-day-private-tour' %}
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "item": {
+                "@type": "TouristDestination",
+                "name": "Kunming",
+                "@id": "https://lynxtour.cn/pages/kunming#touristdestination"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "item": {
+                "@type": "TouristDestination",
+                "name": "Dali",
+                "@id": "https://lynxtour.cn/pages/dali#touristdestination"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "item": {
+                "@type": "Place",
+                "name": "Lugu Lake"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "item": {
+                "@type": "TouristDestination",
+                "name": "Lijiang",
+                "@id": "https://lynxtour.cn/pages/lijiang#touristdestination"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "item": {
+                "@type": "TouristDestination",
+                "name": "Shangri-La",
+                "@id": "https://lynxtour.cn/pages/shangri-la#touristdestination"
+              }
+            }
+          {% when 'kunming-dali-lijiang-6-day-private-tour' %}
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "item": {
+                "@type": "TouristDestination",
+                "name": "Kunming",
+                "@id": "https://lynxtour.cn/pages/kunming#touristdestination"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "item": {
+                "@type": "TouristDestination",
+                "name": "Dali",
+                "@id": "https://lynxtour.cn/pages/dali#touristdestination"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "item": {
+                "@type": "TouristDestination",
+                "name": "Lijiang",
+                "@id": "https://lynxtour.cn/pages/lijiang#touristdestination"
+              }
+            }
+          {% when 'jade-dragon-snow-mountain-private-tour' %}
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "item": {
+                "@type": "TouristDestination",
+                "name": "Lijiang",
+                "@id": "https://lynxtour.cn/pages/lijiang#touristdestination"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "item": {
+                "@type": "TouristAttraction",
+                "name": "Jade Dragon Snow Mountain"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "item": {
+                "@type": "TouristAttraction",
+                "name": "Blue Moon Valley"
+              }
+            }
+          {% when 'lijiang-to-shangri-la-private-tour' %}
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "item": {
+                "@type": "TouristDestination",
+                "name": "Lijiang",
+                "@id": "https://lynxtour.cn/pages/lijiang#touristdestination"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "item": {
+                "@type": "TouristAttraction",
+                "name": "Tiger Leaping Gorge"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "item": {
+                "@type": "TouristDestination",
+                "name": "Shangri-La",
+                "@id": "https://lynxtour.cn/pages/shangri-la#touristdestination"
+              }
+            }
+          {% when 'shangri-la-pudacuo-national-park-songzanlin-monastery-1-day-private-tour' %}
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "item": {
+                "@type": "TouristDestination",
+                "name": "Shangri-La",
+                "@id": "https://lynxtour.cn/pages/shangri-la#touristdestination"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "item": {
+                "@type": "TouristAttraction",
+                "name": "Songzanlin Monastery"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "item": {
+                "@type": "TouristAttraction",
+                "name": "Pudacuo National Park"
+              }
+            }
+        {% endcase %}
+      ]
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": {{ seo_trip_webpage_id | json }},
+      "url": {{ seo_trip_url | json }},
+      "name": {{ seo_trip_name | json }}
+    }
+  }
+  </script>
+{% endif %}
