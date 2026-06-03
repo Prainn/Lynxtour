@@ -347,8 +347,42 @@
             "https://www.facebook.com/lynxtourofficial",
             "https://www.youtube.com/@lynxtour_official",
             "https://www.tiktok.com/@lynxtour_official"
+          ],
+          "telephone": "+86-871-63218099",
+          "email": "biz@lynxtour.cn",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Room 3011, Building 4, Xindu Longcheng, Panlong District",
+            "addressLocality": "Kunming",
+            "addressRegion": "Yunnan Province",
+            "postalCode": "650051",
+            "addressCountry": "CN"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "telephone": "+86-871-63218099",
+            "email": "biz@lynxtour.cn",
+            "availableLanguage": ["English", "Chinese"],
+            "areaServed": ["Yunnan", "China"]
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday"
+              ],
+              "opens": "09:00",
+              "closes": "18:00"
+            }
           ]{% if settings.logo != blank %},
-          "logo": {{ settings.logo | image_url: width: 512 | prepend: 'https:' | json }}{% endif %}
+          "logo": {{ settings.logo | image_url: width: 512 | prepend: 'https:' | json }},
+          "image": {{ settings.logo | image_url: width: 512 | prepend: 'https:' | json }}{% endif %}
         },
         {
           "@type": "WebSite",

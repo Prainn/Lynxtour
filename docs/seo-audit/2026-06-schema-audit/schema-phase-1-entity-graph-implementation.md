@@ -34,7 +34,9 @@ Branch: `feat/schema-phase-1-entity-graph`
 - Kept the organization description focused on private and custom Yunnan tours for international travelers.
 - Added conservative `areaServed` entries for Yunnan, Kunming, Dali, Lijiang, Shangri-La, and Xishuangbanna.
 - Used existing footer social links for `sameAs`.
-- Did not add phone, physical address, rating, reviews, awards, or `SearchAction`.
+- Added public business fields to the global `TravelAgency`/`Organization` schema: telephone, email, address, customer-service contact point, opening hours, and `image` when `settings.logo` exists.
+- Did not add rating, reviews, awards, or `SearchAction`.
+- `priceRange` was intentionally not added because no explicit price range is visible on the audited public pages.
 
 ## Quote / Custom Zero-Price Variant Handling
 
@@ -106,6 +108,7 @@ No reviews, ratings, or aggregate ratings were invented or expanded.
 - No `ItemList` schema was added.
 - No `Service` schema was added for the bespoke/custom travel page.
 - No `CollectionPage` or product-grid `ItemList` schema was added.
+- No `priceRange` was added.
 - No `SearchAction` was added.
 - No visible layout, CSS, JavaScript behavior, URLs, handles, template names, section names, Shopify schema names, booking UI, variant logic, price display logic, cart behavior, or checkout behavior was changed.
 
