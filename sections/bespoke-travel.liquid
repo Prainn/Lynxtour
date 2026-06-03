@@ -1526,6 +1526,17 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
+{% render 'seo-service-jsonld',
+  service_name: 'Custom Yunnan Private Travel Planning',
+  service_url: 'https://lynxtour.cn/pages/bespoke-custom-travel',
+  service_id: 'https://lynxtour.cn/pages/bespoke-custom-travel#service',
+  service_type: 'Custom private travel planning',
+  service_description: 'Use the instant planner to share your travel dates, pace, destinations, budget style, hotel preferences, and interests, then let our local Yunnan specialist review the request before sending a tailored itinerary and quotation. If you already know what you want, you can skip the preview and request expert review directly. This works best for travelers planning a private Yunnan route across Kunming, Dali, Lijiang, Shangri-La, Xishuangbanna, or other custom combinations.',
+  service_area_served: 'Yunnan|Kunming|Dali|Lijiang|Shangri-La|Xishuangbanna|China',
+  service_audience: 'International travelers|Private tour travelers|Families|Couples|Small groups|Muslim-friendly travel seekers',
+  service_page_name: 'Custom Yunnan Private Travel Planning'
+%}
+
 {% if page %}
   <script type="application/ld+json">
   {

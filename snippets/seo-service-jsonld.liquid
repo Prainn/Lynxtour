@@ -1,0 +1,61 @@
+{% liquid
+  assign service_name = service_name | strip
+  assign service_url = service_url | strip
+  assign service_id = service_id | strip
+  assign service_type = service_type | strip
+  aassign service_description = service_description | strip_html | strip_newlines | strip
+  assign service_page_name = service_page_name | default: service_name | strip
+  assign service_area_served = service_area_served | default: '' | split: '|'
+  assign service_audience = service_audience | default: '' | split: '|'
+%}
+
+{% if service_name != blank and service_url != blank and service_id != blank and service_type != blank and service_description != blank %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": {{ service_id | json }},
+    "name": {{ service_name | json }},
+    "serviceType": {{ service_type | json }},
+    "url": {{ service_url | json }},
+    "description": {{ service_description | json }},
+    "provider": {
+      "@id": "https://lynxtour.cn/#organization"
+    },
+    "areaServed": [
+      {% assign area_count = 0 %}
+      {% for area in service_area_served %}
+        {% assign area_name = area | strip %}
+        {% if area_name != blank %}
+          {% if area_count > 0 %},{% endif %}
+          {
+            "@type": {% if area_name == 'Yunnan' %}"AdministrativeArea"{% elsif area_name == 'China' %}"Country"{% else %}"City"{% endif %},
+            "name": {{ area_name | json }}
+          }
+          {% assign area_count = area_count | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    ],
+    "audience": [
+      {% assign audience_count = 0 %}
+      {% for audience in service_audience %}
+        {% assign audience_type = audience | strip %}
+        {% if audience_type != blank %}
+          {% if audience_count > 0 %},{% endif %}
+          {
+            "@type": "Audience",
+            "audienceType": {{ audience_type | json }}
+          }
+          {% assign audience_count = audience_count | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    ],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": {{ service_url | append: '#webpage' | json }},
+      "url": {{ service_url | json }},
+      "name": {{ service_page_name | json }}
+    }
+  }
+  </script>
+{% endif %}

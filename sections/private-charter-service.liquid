@@ -1647,6 +1647,19 @@
   </section>
 {% endif %}
 
+{% if product.handle == 'yunnan-private-car-charter-tour' %}
+  {% render 'seo-service-jsonld',
+    service_name: 'Yunnan Private Car Charter Service',
+    service_url: 'https://lynxtour.cn/products/yunnan-private-car-charter-tour',
+    service_id: 'https://lynxtour.cn/products/yunnan-private-car-charter-tour#service',
+    service_type: 'Private car charter service',
+    service_description: 'This Yunnan private car charter is a transport-first private service for travelers who want a private vehicle, driver-guide support, flexible pickup city, and control over route timing. It can be used for one-day transfers, multi-day intercity routes, airport pickup with onward travel, or a custom Yunnan route shaped around your own pace.',
+    service_area_served: 'Yunnan|Kunming|Dali|Lijiang|Shangri-La|Xishuangbanna|China',
+    service_audience: 'International travelers|Private tour travelers|Families|Small groups|Flexible transfer travelers|Custom route travelers',
+    service_page_name: 'Yunnan Private Car Charter Service'
+  %}
+{% endif %}
+
 {% render 'seo-product-jsonld', product: product, current_collection: collection %}
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
