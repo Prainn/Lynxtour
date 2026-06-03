@@ -1,6 +1,13 @@
+{% comment %}
+  Quote-style zero-price variants are inquiry placeholders in the booking UI,
+  so they are excluded from priced Offer schema to avoid implying free tours.
+{% endcomment %}
 {% liquid
   assign seo_product = product
-  assign seo_product_url = shop.url | append: seo_product.url
+  assign seo_schema_base_url = 'https://lynxtour.cn'
+  assign seo_organization_id = seo_schema_base_url | append: '/#organization'
+  assign seo_product_url = seo_schema_base_url | append: seo_product.url
+  assign seo_product_id = seo_product_url | append: '#product'
   assign seo_description = seo_product.description | strip_html | strip_newlines | replace: '  ', ' ' | strip
 
   if seo_description != blank
@@ -20,6 +27,26 @@
   assign seo_variant_count = seo_product.variants.size
   assign seo_primary_variant = seo_product.selected_or_first_available_variant
   assign seo_currency = cart.currency.iso_code | default: shop.currency
+  assign seo_offer_count = 0
+
+  for variant in seo_product.variants
+    assign seo_offer_context = ''
+    assign seo_offer_context = seo_offer_context | append: variant.title | append: ' '
+    assign seo_offer_context = seo_offer_context | append: variant.option1 | append: ' '
+    assign seo_offer_context = seo_offer_context | append: variant.option2 | append: ' '
+    assign seo_offer_context = seo_offer_context | append: variant.option3 | downcase
+    assign seo_is_quote_offer = false
+
+    if variant.price == 0
+      if seo_offer_context contains 'custom' or seo_offer_context contains 'bespoke' or seo_offer_context contains 'request' or seo_offer_context contains 'quote' or seo_offer_context contains 'inquiry' or seo_offer_context contains 'charter'
+        assign seo_is_quote_offer = true
+      endif
+    endif
+
+    unless seo_is_quote_offer
+      assign seo_offer_count = seo_offer_count | plus: 1
+    endunless
+  endfor
 %}
 
 <script type="application/ld+json">
@@ -28,7 +55,7 @@
   "@graph": [
     {
       "@type": "Product",
-      "@id": {{ seo_product_url | append: '#product' | json }},
+      "@id": {{ seo_product_id | json }},
       "url": {{ seo_product_url | json }},
       "name": {{ seo_product.title | strip | json }}{% if seo_description != blank %},
       "description": {{ seo_description | json }}{% endif %}{% if seo_product.images.size > 0 %},
@@ -38,19 +65,21 @@
         "name": {{ seo_product.vendor | json }}
       }{% endif %}{% if seo_product.type != blank %},
       "category": {{ seo_product.type | json }}{% endif %}{% if seo_variant_count == 1 and seo_primary_variant and seo_primary_variant.sku != blank %},
-      "sku": {{ seo_primary_variant.sku | json }}{% endif %}{% if seo_variant_count > 0 and seo_currency != blank %},
-      "offers": {% if seo_variant_count == 1 %}{
-        "@type": "Offer",
-        "url": {{ seo_product_url | append: '?variant=' | append: seo_primary_variant.id | json }},
-        "priceCurrency": {{ seo_currency | json }},
-        "price": {{ seo_primary_variant.price | divided_by: 100.0 | round: 2 }},
-        "availability": {% if seo_primary_variant.available %}"https://schema.org/InStock"{% else %}"https://schema.org/OutOfStock"{% endif %}{% if seo_primary_variant.sku != blank %},
-        "sku": {{ seo_primary_variant.sku | json }}{% endif %},
-        "seller": {
-          "@type": "Organization",
-          "name": {{ shop.name | json }}
-        }
-      }{% else %}[{% for variant in seo_product.variants %}{
+      "sku": {{ seo_primary_variant.sku | json }}{% endif %}{% if seo_offer_count > 0 and seo_currency != blank %},
+      "offers": {% if seo_offer_count == 1 %}{% for variant in seo_product.variants %}{% liquid
+        assign seo_offer_context = ''
+        assign seo_offer_context = seo_offer_context | append: variant.title | append: ' '
+        assign seo_offer_context = seo_offer_context | append: variant.option1 | append: ' '
+        assign seo_offer_context = seo_offer_context | append: variant.option2 | append: ' '
+        assign seo_offer_context = seo_offer_context | append: variant.option3 | downcase
+        assign seo_is_quote_offer = false
+
+        if variant.price == 0
+          if seo_offer_context contains 'custom' or seo_offer_context contains 'bespoke' or seo_offer_context contains 'request' or seo_offer_context contains 'quote' or seo_offer_context contains 'inquiry' or seo_offer_context contains 'charter'
+            assign seo_is_quote_offer = true
+          endif
+        endif
+      %}{% unless seo_is_quote_offer %}{
         "@type": "Offer",
         "url": {{ seo_product_url | append: '?variant=' | append: variant.id | json }},
         "priceCurrency": {{ seo_currency | json }},
@@ -58,10 +87,32 @@
         "availability": {% if variant.available %}"https://schema.org/InStock"{% else %}"https://schema.org/OutOfStock"{% endif %}{% if variant.sku != blank %},
         "sku": {{ variant.sku | json }}{% endif %},
         "seller": {
-          "@type": "Organization",
-          "name": {{ shop.name | json }}
+          "@id": {{ seo_organization_id | json }}
         }
-      }{% unless forloop.last %}, {% endunless %}{% endfor %}]{% endif %}{% endif %}
+      }{% endunless %}{% endfor %}{% else %}[{% assign seo_first_offer = true %}{% for variant in seo_product.variants %}{% liquid
+        assign seo_offer_context = ''
+        assign seo_offer_context = seo_offer_context | append: variant.title | append: ' '
+        assign seo_offer_context = seo_offer_context | append: variant.option1 | append: ' '
+        assign seo_offer_context = seo_offer_context | append: variant.option2 | append: ' '
+        assign seo_offer_context = seo_offer_context | append: variant.option3 | downcase
+        assign seo_is_quote_offer = false
+
+        if variant.price == 0
+          if seo_offer_context contains 'custom' or seo_offer_context contains 'bespoke' or seo_offer_context contains 'request' or seo_offer_context contains 'quote' or seo_offer_context contains 'inquiry' or seo_offer_context contains 'charter'
+            assign seo_is_quote_offer = true
+          endif
+        endif
+      %}{% unless seo_is_quote_offer %}{% unless seo_first_offer %}, {% endunless %}{
+        "@type": "Offer",
+        "url": {{ seo_product_url | append: '?variant=' | append: variant.id | json }},
+        "priceCurrency": {{ seo_currency | json }},
+        "price": {{ variant.price | divided_by: 100.0 | round: 2 }},
+        "availability": {% if variant.available %}"https://schema.org/InStock"{% else %}"https://schema.org/OutOfStock"{% endif %}{% if variant.sku != blank %},
+        "sku": {{ variant.sku | json }}{% endif %},
+        "seller": {
+          "@id": {{ seo_organization_id | json }}
+        }
+      }{% assign seo_first_offer = false %}{% endunless %}{% endfor %}]{% endif %}{% endif %}
     },
     {
       "@type": "BreadcrumbList",
@@ -71,13 +122,13 @@
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": {{ shop.url | append: '/' | json }}
+          "item": {{ seo_schema_base_url | append: '/' | json }}
         }{% if seo_has_collection_crumb %},
         {
           "@type": "ListItem",
           "position": 2,
           "name": {{ seo_collection.title | json }},
-          "item": {{ shop.url | append: seo_collection.url | json }}
+          "item": {{ seo_schema_base_url | append: seo_collection.url | json }}
         },
         {
           "@type": "ListItem",

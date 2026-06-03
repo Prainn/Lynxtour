@@ -468,16 +468,19 @@
   assign is_stone_forest_guide = false
   assign is_lijiang_old_town_guide = false
   assign article_slug = article.handle | split: '/' | last
-  assign article_structured_canonical_url = canonical_url
+  assign article_schema_base_url = 'https://lynxtour.cn'
+  assign article_organization_id = article_schema_base_url | append: '/#organization'
+  assign article_structured_canonical_url = article_schema_base_url | append: article.url
+  assign article_blog_url = article_schema_base_url | append: article.blog.url
   assign dianchi_route_handles = 'kunming-highlights-1-day-tour-western-hills-dianchi-ethnic-village|kunming-provincial-museum-dounan-flower-market-1-day-private-tour|kunming-stone-forest-old-street-night-market-1-day-private-tour' | split: '|'
 
   case article_slug
     when 'jade-dragon-snow-mountain-travel-guide'
-      assign article_structured_canonical_url = shop.secure_url | append: '/blogs/travel-guides/jade-dragon-snow-mountain-guide'
+      assign article_structured_canonical_url = article_schema_base_url | append: '/blogs/travel-guides/jade-dragon-snow-mountain-guide'
     when 'lijiang-old-town-travel-guide'
-      assign article_structured_canonical_url = shop.secure_url | append: '/blogs/travel-guides/lijiang-old-town-guide'
+      assign article_structured_canonical_url = article_schema_base_url | append: '/blogs/travel-guides/lijiang-old-town-guide'
     when 'dali-old-town-travel-guide'
-      assign article_structured_canonical_url = shop.secure_url | append: '/blogs/day-trips/dali-old-town-day-trip-guide'
+      assign article_structured_canonical_url = article_schema_base_url | append: '/blogs/day-trips/dali-old-town-day-trip-guide'
   endcase
 
   if article_slug == 'dianchi-lake-guide'
@@ -1282,13 +1285,39 @@
   "author": {
     "@type": "Organization",
     "name": {% if article.author == 'lynx' %}"Lynxtour Editorial Team"{% else %}{{ article.author | json }}{% endif %},
-    "url": {{ shop.url | append: '/pages/about-us' | json }}
+    "url": {{ article_schema_base_url | append: '/pages/about-us' | json }}
   },
   "publisher": {
-    "@type": "Organization",
-    "name": {{ shop.name | json }},
-    "url": {{ shop.url | json }}
+    "@id": {{ article_organization_id | json }}
   }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": {{ article_structured_canonical_url | append: '#breadcrumb' | json }},
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": {{ article_schema_base_url | append: '/' | json }}
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ article.blog.title | default: 'Travel Guides' | json }},
+      "item": {{ article_blog_url | json }}
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": {{ article.title | json }},
+      "item": {{ article_structured_canonical_url | json }}
+    }
+  ]
 }
 </script>
 
