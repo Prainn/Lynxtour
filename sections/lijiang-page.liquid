@@ -213,6 +213,83 @@
     border-bottom-color: rgba(212, 175, 55, 0.7);
   }
 
+  .lj-p2-section {
+    padding: 0 0 120px;
+  }
+
+  .lj-p2-shell {
+    border: 1px solid rgba(196,181,166,0.12);
+    background: rgba(255,255,255,0.02);
+    padding: 30px 28px;
+  }
+
+  .lj-p2-table-wrap {
+    margin-top: 24px;
+    overflow-x: auto;
+    border: 1px solid rgba(196,181,166,0.10);
+    background: rgba(255,255,255,0.012);
+  }
+
+  .lj-p2-table {
+    width: 100%;
+    min-width: 720px;
+    border-collapse: collapse;
+  }
+
+  .lj-p2-table th,
+  .lj-p2-table td {
+    padding: 16px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    color: #b9b2ab;
+    font-size: 13px;
+    line-height: 1.8;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .lj-p2-table th {
+    color: #d4af37;
+    font-size: 10px;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .lj-p2-table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .lj-p2-note {
+    margin: 20px 0 0;
+    color: #cfcac4;
+    font-size: 14px;
+    line-height: 1.85;
+  }
+
+  .lj-p2-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+    margin-top: 18px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .lj-p2-table a,
+  .lj-p2-note a,
+  .lj-p2-links a {
+    color: #f1d995;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(241, 217, 149, 0.35);
+  }
+
+  .lj-p2-table a:hover,
+  .lj-p2-note a:hover,
+  .lj-p2-links a:hover {
+    color: #d4af37;
+    border-bottom-color: rgba(212, 175, 55, 0.7);
+  }
+
   .lj-route-link,
   .lj-inline-link,
   .lj-related-link {
@@ -615,6 +692,49 @@
         </div>
       </section>
     {% endif %}
+
+    <section class="lj-p2-section" aria-label="Lijiang Dali and Shangri-La route decision">
+      <div class="lj-p2-shell">
+        <span class="lj-section-eyebrow">ROUTE DECISION</span>
+        <h2 class="lj-section-title">Lijiang, Dali or Shangri-La?</h2>
+        <div class="lj-p2-table-wrap">
+          <table class="lj-p2-table">
+            <thead>
+              <tr>
+                <th>Destination</th>
+                <th>Best fit</th>
+                <th>Route note</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="/pages/dali">Dali</a></td>
+                <td>Lakeside calm, Bai villages, Xizhou, Erhai Lake, and a softer pace.</td>
+                <td>Best before Lijiang if you want the route to build gradually from relaxed scenery to mountain highlights.</td>
+              </tr>
+              <tr>
+                <td>Lijiang</td>
+                <td>Old-town atmosphere, Jade Dragon Snow Mountain, Naxi culture, and iconic first-trip scenery.</td>
+                <td>A strong base for 2 to 3 days, and the natural turning point before Shangri-La.</td>
+              </tr>
+              <tr>
+                <td><a href="/pages/shangri-la">Shangri-La</a></td>
+                <td>Tibetan highland culture, monasteries, alpine landscapes, and a more remote feeling.</td>
+                <td>Add it when you have enough time for altitude and slower pacing; skip it on very short routes.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="lj-p2-note">
+          For most first-time travelers, Dali plus Lijiang works well in a <a href="/products/kunming-dali-lijiang-6-day-private-tour">6-day route</a>. Add Shangri-La when you have about 8 days and want higher-altitude Tibetan landscapes.
+        </p>
+        <div class="lj-p2-links">
+          <a href="/products/kunming-dali-lijiang-shangri-la-8-day-private-tour">Compare the 8-day route</a>
+          <a href="/pages/tiger-leaping-gorge-from-lijiang">See Tiger Leaping Gorge from Lijiang</a>
+          <a href="/collections/yunnan-private-tours">Browse Yunnan private tours</a>
+        </div>
+      </div>
+    </section>
 
     {% comment %}<section class="lj-route-section">
       <span class="lj-section-eyebrow">ROUTE PLANNING</span>

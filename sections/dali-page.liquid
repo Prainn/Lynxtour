@@ -397,6 +397,83 @@
     border-bottom-color: rgba(212, 175, 55, 0.7);
   }
 
+  .dali-p2-section {
+    padding: 0 0 120px;
+  }
+
+  .dali-p2-shell {
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.02);
+    padding: 30px 28px;
+  }
+
+  .dali-p2-table-wrap {
+    margin-top: 24px;
+    overflow-x: auto;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.012);
+  }
+
+  .dali-p2-table {
+    width: 100%;
+    min-width: 640px;
+    border-collapse: collapse;
+  }
+
+  .dali-p2-table th,
+  .dali-p2-table td {
+    padding: 16px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    color: #b9b2ab;
+    font-size: 13px;
+    line-height: 1.8;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .dali-p2-table th {
+    color: #d4af37;
+    font-size: 10px;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .dali-p2-table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .dali-p2-note {
+    margin: 20px 0 0;
+    color: #cfcac4;
+    font-size: 14px;
+    line-height: 1.85;
+  }
+
+  .dali-p2-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+    margin-top: 18px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .dali-p2-table a,
+  .dali-p2-note a,
+  .dali-p2-links a {
+    color: #f1d995;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(241, 217, 149, 0.35);
+  }
+
+  .dali-p2-table a:hover,
+  .dali-p2-note a:hover,
+  .dali-p2-links a:hover {
+    color: #d4af37;
+    border-bottom-color: rgba(212, 175, 55, 0.7);
+  }
+
   .dali-route-link {
     color: #fff;
     text-decoration: none;
@@ -692,6 +769,46 @@
         </div>
       </section>
     {% endif %}
+
+    <section class="dali-p2-section" aria-label="Dali and Lijiang route comparison">
+      <div class="dali-p2-shell">
+        <span class="dali-section-eyebrow">ROUTE DECISION</span>
+        <h2 class="dali-section-title">Dali or Lijiang: Which Fits Your Trip?</h2>
+        <div class="dali-p2-table-wrap">
+          <table class="dali-p2-table">
+            <thead>
+              <tr>
+                <th>Choose Dali if...</th>
+                <th>Choose Lijiang if...</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>You want a gentler pace, Erhai Lake, Bai villages, Xizhou, and more open scenery.</td>
+                <td>You want old-town atmosphere, Jade Dragon Snow Mountain, Naxi culture, and a stronger mountain-focused route.</td>
+              </tr>
+              <tr>
+                <td>You prefer slow travel, cycling or lakeside drives, village culture, and softer first-trip pacing.</td>
+                <td>You prefer iconic landmarks, dramatic views, and easier extensions toward Shangri-La or Tiger Leaping Gorge.</td>
+              </tr>
+              <tr>
+                <td>You have 2 to 3 relaxed days and want the trip to feel calm rather than packed.</td>
+                <td>You have 2 to 3 days and want one of Yunnan's most recognizable destination bases.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="dali-p2-note">
+          Most first-time travelers do not need to choose only one. Dali and Lijiang pair naturally: start with Dali for lakeside calm and Bai culture, then continue to <a href="/pages/lijiang">Lijiang</a> for old-town texture, snow mountain scenery, and northwest Yunnan route options.
+        </p>
+        <div class="dali-p2-links">
+          <a href="/pages/dali-to-lijiang-private-tour">See the Dali to Lijiang route</a>
+          <a href="/products/kunming-dali-lijiang-6-day-private-tour">Compare the 6-day route</a>
+          <a href="/products/kunming-dali-lijiang-shangri-la-8-day-private-tour">Compare the 8-day route</a>
+          <a href="/collections/yunnan-private-tours">Browse Yunnan private tours</a>
+        </div>
+      </div>
+    </section>
 
     {% if story_blocks.size > 0 %}
       <div class="dali-stories">
