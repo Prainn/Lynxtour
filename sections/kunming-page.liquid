@@ -141,6 +141,17 @@
     letter-spacing: 0.02em;
   }
 
+  .km-info-desc a {
+    color: #f1d995;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(241, 217, 149, 0.35);
+  }
+
+  .km-info-desc a:hover {
+    color: #fbbf24;
+    border-bottom-color: rgba(251,191,36,0.7);
+  }
+
   .km-stories {
     display: flex;
     flex-direction: column;
@@ -580,6 +591,18 @@
         {% endif %}
 
         <div class="km-info-grid">
+          <article class="km-info-card">
+            <span class="km-info-tag">KUNMING AT A GLANCE</span>
+            <h3 class="km-info-heading">Kunming at a Glance</h3>
+            <div class="km-info-desc">
+              Kunming is the easiest starting point for a Yunnan private tour, especially if you want <a href="/blogs/travel-guides/stone-forest-shilin-guide">Stone Forest</a>, <a href="/blogs/travel-guides/dianchi-lake-guide">Dianchi Lake</a>, flower markets, or a smoother first day before continuing to <a href="/pages/dali">Dali</a> and Lijiang.<br><br>
+              <strong>Recommended stay:</strong> 1-2 days for most first-time travelers.<br>
+              <strong>Best for:</strong> arrival recovery, Stone Forest day trips, Dianchi Lake, city walks, and starting a private Yunnan route.<br>
+              <strong>Best combined with:</strong> Dali, Lijiang, and Shangri-La on a classic route.<br>
+              <strong>Not ideal for:</strong> travelers with very limited time who only want old towns and mountain scenery.<br>
+              <strong>Private planning note:</strong> Kunming works well as a soft landing before longer drives and higher-altitude destinations. Compare <a href="/collections/yunnan-private-day-trips">Yunnan private day trips</a> or broader <a href="/collections/yunnan-private-tours">Yunnan private tours</a> when shaping the route.
+            </div>
+          </article>
           {% for block in info_blocks %}
             <article class="km-info-card" {{ block.shopify_attributes }}>
               {% if block.settings.tag != blank %}

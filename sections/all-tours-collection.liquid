@@ -279,6 +279,55 @@
     background: rgba(255,255,255,0.04);
   }
 
+  #CollectionProductGrid-{{ section.id }} .route-comparison-table-wrap{
+    margin-top: 22px;
+    overflow-x: auto;
+    border: 1px solid rgba(216,179,95,0.12);
+    background: rgba(255,255,255,0.014);
+  }
+
+  #CollectionProductGrid-{{ section.id }} .route-comparison-table{
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 780px;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .route-comparison-table th,
+  #CollectionProductGrid-{{ section.id }} .route-comparison-table td{
+    padding: 16px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    vertical-align: top;
+    text-align: left;
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(232,225,214,0.74);
+  }
+
+  #CollectionProductGrid-{{ section.id }} .route-comparison-table th{
+    color: #d4c2ae;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .route-comparison-table tr:last-child td{
+    border-bottom: 0;
+  }
+
+  #CollectionProductGrid-{{ section.id }} .seo-block p a,
+  #CollectionProductGrid-{{ section.id }} .route-comparison-table a{
+    color:#d4c2ae;
+    text-decoration:none;
+    border-bottom:1px solid rgba(212,194,174,0.35);
+  }
+
+  #CollectionProductGrid-{{ section.id }} .seo-block p a:hover,
+  #CollectionProductGrid-{{ section.id }} .route-comparison-table a:hover{
+    color:#fff;
+    border-bottom-color: rgba(255,255,255,0.6);
+  }
+
   /* --- FAQ --- */
   #CollectionProductGrid-{{ section.id }} .faq-block{
     margin-top: 10px;
@@ -1171,10 +1220,53 @@ document.addEventListener('DOMContentLoaded', function(){
         <section class="seo-copy seo-copy-bottom lynx-card lynx-card--soft">
           <div class="seo-copy-inner">
             <div class="seo-block">
-              <h2>How Many Days Do You Need for a Yunnan Private Tour?</h2>
+              <h2>Yunnan Private Tour Route Comparison</h2>
               <p>
-                A 6-day route works for first-time visitors who want essential highlights. The 8-day classic Yunnan private tour is the best benchmark for Kunming, Dali, Lijiang, and Shangri-La, while 10 days or more gives you room for slower pacing, Lugu Lake, Tengchong, Xishuangbanna, or a more customized private itinerary.
+                If you are choosing a Yunnan private tour, start with your available days rather than a fixed package name. Most first-time travelers choose a <a href="/products/kunming-dali-lijiang-shangri-la-8-day-private-tour">Kunming-Dali-Lijiang-Shangri-La route</a>, while shorter trips usually remove Shangri-La and longer trips can add Lugu Lake, Meili Snow Mountain, family-friendly pacing, Muslim-friendly arrangements, cycling days, or overland extensions.
               </p>
+              <div class="route-comparison-table-wrap">
+                <table class="route-comparison-table">
+                  <thead>
+                    <tr>
+                      <th>Days</th>
+                      <th>Best route type</th>
+                      <th>Typical destination sequence</th>
+                      <th>Best for</th>
+                      <th>Planning note</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>5-6 days</td>
+                      <td>Classic short route</td>
+                      <td><a href="/pages/kunming">Kunming</a>, <a href="/pages/dali">Dali</a>, <a href="/pages/lijiang">Lijiang</a></td>
+                      <td>First-time travelers with limited time</td>
+                      <td>Keep the route focused and avoid long highland detours.</td>
+                    </tr>
+                    <tr>
+                      <td>8 days</td>
+                      <td>Classic Yunnan private tour</td>
+                      <td><a href="/pages/kunming">Kunming</a>, <a href="/pages/dali">Dali</a>, <a href="/pages/lijiang">Lijiang</a>, <a href="/pages/shangri-la">Shangri-La</a></td>
+                      <td>First-time travelers who want the main highlights</td>
+                      <td>This is the most balanced route for scenery, culture, and pace.</td>
+                    </tr>
+                    <tr>
+                      <td>10-12 days</td>
+                      <td>In-depth or family-paced route</td>
+                      <td>Kunming, Dali, Lijiang, Shangri-La, plus a slower stay or side trip</td>
+                      <td>Families, seniors, photographers, and travelers who dislike rushing</td>
+                      <td>Add buffer time for Old Town walks, lake scenery, and mountain weather.</td>
+                    </tr>
+                    <tr>
+                      <td>14+ days</td>
+                      <td>Long Yunnan or overland route</td>
+                      <td>Main Yunnan highlights plus Lugu Lake, Meili Snow Mountain, or cross-border-style overland extensions</td>
+                      <td>Travelers who want deeper minority culture, landscapes, and remote areas</td>
+                      <td>Use a <a href="/pages/bespoke-custom-travel">private route plan</a> to manage altitude, drive times, and overnight stops.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
 
             <div class="seo-block">

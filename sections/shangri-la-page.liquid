@@ -196,6 +196,17 @@
     letter-spacing: 0.02em;
   }
 
+  .sr-info-desc a {
+    color: #f1d995;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(241, 217, 149, 0.35);
+  }
+
+  .sr-info-desc a:hover {
+    color: #d4af37;
+    border-bottom-color: rgba(212, 175, 55, 0.7);
+  }
+
   .sr-route-desc a {
     color: #f1d995;
     text-decoration: none;
@@ -636,6 +647,18 @@
         {% endif %}
 
         <div class="sr-info-grid">
+          <article class="sr-info-card">
+            <span class="sr-info-tag">SHANGRI-LA AT A GLANCE</span>
+            <h3 class="sr-info-heading">Shangri-La at a Glance</h3>
+            <div class="sr-info-desc">
+              Shangri-La adds Tibetan culture, highland scenery, monasteries, grasslands, and a different feel from Kunming, Dali, and Lijiang. It is usually best after <a href="/pages/lijiang">Lijiang</a>, with enough time to manage altitude and road travel comfortably.<br><br>
+              <strong>Recommended stay:</strong> 2 days for the classic route; 3 or more days if adding Meili Snow Mountain or slower highland pacing.<br>
+              <strong>Best for:</strong> Tibetan culture, Songzanlin Monastery, highland landscapes, photography, and travelers who want a deeper Yunnan route.<br>
+              <strong>Best combined with:</strong> Lijiang, <a href="/pages/tiger-leaping-gorge-from-lijiang">Tiger Leaping Gorge</a>, and longer private Yunnan itineraries.<br>
+              <strong>Not ideal for:</strong> very rushed trips, travelers highly sensitive to altitude, or routes with no buffer for weather and road time.<br>
+              <strong>Private planning note:</strong> Plan arrival-day sightseeing gently and avoid packing the first highland day too tightly. Compare <a href="/collections/shangri-la-private-tours">Shangri-La private tours</a>, the <a href="/products/lijiang-to-shangri-la-private-tour">Lijiang to Shangri-La private route</a>, broader <a href="/collections/yunnan-private-tours">Yunnan private tours</a>, or <a href="/pages/bespoke-custom-travel">custom highland planning</a>.
+            </div>
+          </article>
           {% for block in info_blocks %}
             <article class="sr-info-card" {{ block.shopify_attributes }}>
               {% if block.settings.tag != blank %}

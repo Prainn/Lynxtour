@@ -191,6 +191,17 @@
     letter-spacing: 0.02em;
   }
 
+  .lj-info-desc a {
+    color: #f1d995;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(241, 217, 149, 0.35);
+  }
+
+  .lj-info-desc a:hover {
+    color: #d4af37;
+    border-bottom-color: rgba(212, 175, 55, 0.7);
+  }
+
   .lj-route-desc a {
     color: #f1d995;
     text-decoration: none;
@@ -576,6 +587,18 @@
         {% endif %}
 
         <div class="lj-info-grid">
+          <article class="lj-info-card">
+            <span class="lj-info-tag">LIJIANG AT A GLANCE</span>
+            <h3 class="lj-info-heading">Lijiang at a Glance</h3>
+            <div class="lj-info-desc">
+              Lijiang is one of the strongest bases for a Yunnan private tour, especially for <a href="/products/jade-dragon-snow-mountain-private-tour">Jade Dragon Snow Mountain</a>, old town scenery, Naxi culture, Tiger Leaping Gorge, and routes onward to <a href="/pages/shangri-la">Shangri-La</a>.<br><br>
+              <strong>Recommended stay:</strong> 2-3 days for most first-time travelers.<br>
+              <strong>Best for:</strong> Jade Dragon Snow Mountain, Lijiang Old Town, cultural walks, day trips, and starting the highland route to Shangri-La.<br>
+              <strong>Best combined with:</strong> <a href="/pages/dali">Dali</a> before Lijiang and Shangri-La after Lijiang.<br>
+              <strong>Not ideal for:</strong> travelers who want only quiet countryside and minimal crowds.<br>
+              <strong>Private planning note:</strong> A private route helps manage mountain tickets, early starts, family pacing, and the drive toward Shangri-La. Compare <a href="/collections/lijiang-private-tours">Lijiang private tours</a> or the <a href="/products/lijiang-to-shangri-la-private-tour">Lijiang to Shangri-La private route</a>.
+            </div>
+          </article>
           {% for block in info_blocks %}
             <article class="lj-info-card" {{ block.shopify_attributes }}>
               {% if block.settings.tag != blank %}
