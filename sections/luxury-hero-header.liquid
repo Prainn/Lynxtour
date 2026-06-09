@@ -1298,11 +1298,25 @@ document.addEventListener('DOMContentLoaded', function() {
           {%- assign header_logo = settings.logo | default: section.settings.logo_image -%}
 
           {%- if header_logo != blank -%}
+            {%- assign header_logo_src_raw = header_logo.src -%}
+            {%- assign header_logo_is_svg = false -%}
+            {%- if header_logo_src_raw contains '.svg' -%}
+              {%- assign header_logo_is_svg = true -%}
+            {%- endif -%}
+            {%- assign header_logo_width = header_logo.width | default: 160 -%}
+            {%- assign header_logo_height = header_logo.height | default: section.settings.logo_height -%}
+            {%- if header_logo_is_svg -%}
+              {%- assign header_logo_src = header_logo_src_raw -%}
+            {%- else -%}
+              {%- assign header_logo_src = header_logo | image_url: width: 320 -%}
+            {%- endif -%}
             <img
-              src="{{ header_logo | image_url: width: 400 }}"
+              src="{{ header_logo_src }}"
               alt="{{ shop.name }}"
               class="header-logo-image"
               style="height: {{ section.settings.logo_height }}px;"
+              width="{{ header_logo_width }}"
+              height="{{ header_logo_height }}"
               loading="eager"
               fetchpriority="high"
             >
@@ -1623,12 +1637,26 @@ document.addEventListener('DOMContentLoaded', function() {
       <a href="/" class="logo-wrapper" style="gap:10px;">
         {%- assign header_logo = settings.logo | default: section.settings.logo_image -%}
         {%- if header_logo != blank -%}
+          {%- assign header_logo_src_raw = header_logo.src -%}
+          {%- assign header_logo_is_svg = false -%}
+          {%- if header_logo_src_raw contains '.svg' -%}
+            {%- assign header_logo_is_svg = true -%}
+          {%- endif -%}
+          {%- assign header_logo_width = header_logo.width | default: 160 -%}
+          {%- assign header_logo_height = header_logo.height | default: section.settings.logo_height -%}
+          {%- if header_logo_is_svg -%}
+            {%- assign header_logo_src = header_logo_src_raw -%}
+          {%- else -%}
+            {%- assign header_logo_src = header_logo | image_url: width: 160 -%}
+          {%- endif -%}
           <img
-            src="{{ header_logo | image_url: width: 240 }}"
+            src="{{ header_logo_src }}"
             alt="{{ shop.name }}"
             class="header-logo-image"
             style="height: 32px;"
-            loading="eager"
+            width="{{ header_logo_width }}"
+            height="{{ header_logo_height }}"
+            loading="lazy"
           >
         {%- else -%}
           <span class="logo-cn" style="font-size: 18px;">{{ section.settings.logo_text_cn }}</span>
