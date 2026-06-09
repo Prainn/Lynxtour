@@ -18,7 +18,40 @@
   </nav>
 
   <div class="hero-bg-container">
-    <div class="hero-bg-image"></div>
+    {% if section.settings.hero_image != blank %}
+      <picture class="hero-bg-picture">
+        <source
+          media="(max-width: 990px)"
+          srcset="
+            {{ section.settings.hero_image | image_url: width: 480 }} 480w,
+            {{ section.settings.hero_image | image_url: width: 768 }} 768w
+          "
+          sizes="100vw">
+        <source
+          media="(min-width: 991px)"
+          srcset="
+            {{ section.settings.hero_image | image_url: width: 1200 }} 1200w,
+            {{ section.settings.hero_image | image_url: width: 1600 }} 1600w
+          "
+          sizes="100vw">
+        <img
+          src="{{ section.settings.hero_image | image_url: width: 1600 }}"
+          srcset="
+            {{ section.settings.hero_image | image_url: width: 480 }} 480w,
+            {{ section.settings.hero_image | image_url: width: 768 }} 768w,
+            {{ section.settings.hero_image | image_url: width: 1200 }} 1200w,
+            {{ section.settings.hero_image | image_url: width: 1600 }} 1600w
+          "
+          sizes="100vw"
+          width="{{ section.settings.hero_image.width }}"
+          height="{{ section.settings.hero_image.height }}"
+          alt=""
+          class="hero-bg-image"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async">
+      </picture>
+    {% endif %}
   </div>
   
   <div class="hero-overlay"></div>
@@ -123,7 +156,8 @@
   /* --- 基础布局保持不变 --- */
   .hero-section { position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; color: #ffffff; overflow: hidden; background: #1c1917; }
   .hero-bg-container { position: absolute; inset: 0; z-index: 0; }
-  .hero-bg-image { width: 100%; height: 100%; {% if section.settings.hero_image != blank %} background-image: url('{{ section.settings.hero_image | img_url: '2000x' }}'); {% endif %} background-size: cover; background-position: center {{ section.settings.bg_alignment }}; animation: kenBurns 20s infinite alternate; }
+  .hero-bg-picture { display: block; width: 100%; height: 100%; }
+  .hero-bg-image { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center {{ section.settings.bg_alignment }}; animation: kenBurns 20s infinite alternate; }
   @keyframes kenBurns { 0% { transform: scale(1); } 100% { transform: scale(1.15); } }
   .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6)); z-index: 1; }
   .hero-content { position: relative; z-index: 2; padding: 0 24px; max-width: 1200px; }
