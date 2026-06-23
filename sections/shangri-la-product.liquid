@@ -265,6 +265,13 @@
   gap: 8px;
 }
 
+.ota-total-price.is-empty-total {
+  color: #888;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
 .ota-item-price .currency-code,
 .ota-total-price .currency-code {
   font-size: 0.72em;
@@ -375,7 +382,19 @@
   filter: brightness(1.07);
 }
 
-.js-submit:disabled {
+.js-submit:disabled,
+.js-submit.is-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(0.25);
+}
+
+.js-submit:disabled:hover,
+.js-submit.is-disabled:hover {
+  filter: grayscale(0.25);
+}
+
+.js-submit.loading:disabled {
   opacity: 0.7;
   cursor: wait;
 }
@@ -1390,6 +1409,7 @@ span.flatpickr-weekday {
     grid-auto-rows: 105px;
   }
 }
+
 </style>
 
 
@@ -1495,9 +1515,9 @@ span.flatpickr-weekday {
     </span>
 
     <div class="ota-stepper">
-      <button type="button" class="js-qty" data-delta="-1" aria-label="减少" disabled>-</button>
+      <button type="button" class="js-qty" data-delta="-1" aria-label="Decrease quantity" disabled>-</button>
       <input type="number" value="0" min="0" readonly inputmode="numeric">
-      <button type="button" class="js-qty" data-delta="1" aria-label="增加">+</button>
+      <button type="button" class="js-qty" data-delta="1" aria-label="Increase quantity">+</button>
     </div>
   </div>
 </div>     
@@ -1520,11 +1540,8 @@ span.flatpickr-weekday {
 
       <div class="ota-footer">
         <div class="ota-total-box">
-          <div class="ota-total-price money" id="FinalGrandTotal">
-  <span class="currency-code">CNY</span>
-  <span class="currency-amount">{{ 0 | money_without_trailing_zeros }}</span>
-</div>
-          <p class="ota-hint">Luxury Experience Design</p>
+          <div class="ota-total-price money is-empty-total" id="FinalGrandTotal">No group size selected</div>
+          <p class="ota-hint" id="BookingHelperText">Select your group size to see the estimated total.</p>
         </div>
 
         <div class="ota-btns-area">
@@ -1538,8 +1555,8 @@ span.flatpickr-weekday {
           </div>
 
           <div class="ota-btns">
-            <button type="button" class="ota-btn-cart js-submit" data-type="cart">Add to booking list</button>
-            <button type="button" class="ota-btn-buy js-submit" data-type="buy">Book now</button>
+            <button type="button" class="ota-btn-cart js-submit" data-type="cart" disabled aria-disabled="true">Add to booking list</button>
+            <button type="button" class="ota-btn-buy js-submit" data-type="buy" disabled aria-disabled="true">Book now</button>
           </div>
 
           <div class="ota-popup" id="OtaInfoPopup" hidden>
@@ -1831,6 +1848,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const infoPopup = root.querySelector('#OtaInfoPopup');
   const infoPopupTitle = root.querySelector('#OtaInfoPopupTitle');
   const infoPopupBody = root.querySelector('#OtaInfoPopupBody');
+  const helperText = root.querySelector('#BookingHelperText');
+  const submitButtons = Array.from(root.querySelectorAll('.js-submit'));
 
   const MONEY_FORMAT = {{ shop.money_format | json }};
   const rawPrices = {{ product.metafields.custom.calendar_prices.value | json }};
@@ -1906,15 +1925,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const updateTotal = () => {
     let totalCents = 0;
+    let selectedQty = 0;
 
     rows.forEach((row) => {
       if (!isRowVisible(row)) return;
-      totalCents += getRowPriceCents(row) * getRowQty(row);
+      const rowQty = getRowQty(row);
+      selectedQty += rowQty;
+      totalCents += getRowPriceCents(row) * rowQty;
     });
 
-    if (totalEl) {
+    const hasSelection = selectedQty > 0;
+    const canCheckout = hasSelection && totalCents > 0;
+
+    if (totalEl && hasSelection) {
+      totalEl.classList.remove('is-empty-total');
       totalEl.innerHTML = formatMoneyWithCode(totalCents);
+    } else if (totalEl) {
+      totalEl.classList.add('is-empty-total');
+      totalEl.textContent = 'No group size selected';
     }
+
+    if (helperText) {
+      helperText.textContent = hasSelection
+        ? (canCheckout ? 'Estimated total based on selected traveler options.' : 'This traveler option needs a positive price before checkout.')
+        : 'Select your group size to see the estimated total.';
+    }
+
+    submitButtons.forEach((button) => {
+      button.disabled = !canCheckout;
+      button.setAttribute('aria-disabled', canCheckout ? 'false' : 'true');
+      button.classList.toggle('is-disabled', !canCheckout);
+    });
   };
 
   const switchPackage = (type) => {
@@ -2038,12 +2079,23 @@ document.addEventListener('DOMContentLoaded', () => {
         .filter((item) => item.quantity > 0);
 
       if (items.length === 0) {
-        alert('Please add at least one booking quantity.');
+        alert('Please select at least one traveler option before continuing.');
+        updateTotal();
+        return;
+      }
+
+      const selectedTotalCents = rows
+        .filter((row) => isRowVisible(row))
+        .reduce((sum, row) => sum + (getRowPriceCents(row) * getRowQty(row)), 0);
+
+      if (selectedTotalCents <= 0) {
+        alert('Please select a traveler option with a valid price before continuing.');
+        updateTotal();
         return;
       }
 
       if (dateInput && !dateInput.value) {
-        alert('请选择您的出发日期');
+        alert('Please select your departure date.');
         dateInput._flatpickr?.open();
         return;
       }
@@ -2067,7 +2119,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error(err);
         alert('Failed to add. Please try again.');
         submitBtn.classList.remove('loading');
-        submitBtn.disabled = false;
+        updateTotal();
       }
     }
   });
@@ -2151,6 +2203,8 @@ document.addEventListener('DOMContentLoaded', () => {
       closeInfoPopup();
     }
   });
+
+  updateTotal();
 
   function pickHeaderEl() {
     return (
