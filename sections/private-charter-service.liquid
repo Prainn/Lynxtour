@@ -254,6 +254,13 @@
     line-height: 1;
   }
 
+  .ota-total-price.is-empty-total{
+    color: #888;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
   .ota-hint{
     margin: 6px 0 0;
     color:#666;
@@ -1293,7 +1300,7 @@
 
       <div class="ota-footer">
         <div class="ota-total-box">
-          <div class="ota-total-price money" id="FinalGrandTotal">Select service days</div>
+          <div class="ota-total-price money is-empty-total" id="FinalGrandTotal">No service days selected</div>
           <p class="ota-hint" id="BookingHelperText">Select service days to estimate your charter price.</p>
         </div>
 
@@ -1735,11 +1742,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const canCheckout = hasSelection && totalCents > 0;
 
     if (totalEl && hasSelection && window.Shopify && typeof Shopify.formatMoney === 'function') {
+      totalEl.classList.remove('is-empty-total');
       totalEl.innerHTML = Shopify.formatMoney(totalCents, MONEY_FORMAT);
     } else if (totalEl && hasSelection) {
+      totalEl.classList.remove('is-empty-total');
       totalEl.innerHTML = CURRENCY_SYMBOL + (totalCents / 100).toLocaleString('en-US');
     } else if (totalEl) {
-      totalEl.textContent = 'Select service days';
+      totalEl.classList.add('is-empty-total');
+      totalEl.textContent = 'No service days selected';
     }
 
     if (helperText) {
