@@ -442,7 +442,19 @@
     filter: brightness(1.07);
   }
 
-  .js-submit:disabled{
+  .js-submit:disabled,
+  .js-submit.is-disabled{
+    opacity: .45;
+    cursor: not-allowed;
+    filter: grayscale(.2);
+  }
+
+  .js-submit:disabled:hover,
+  .js-submit.is-disabled:hover{
+    filter: grayscale(.2);
+  }
+
+  .js-submit.loading:disabled{
     opacity: .7;
     cursor: wait;
   }
@@ -1256,9 +1268,9 @@
                   %}
 
                   <div class="ota-stepper">
-                    <button type="button" class="js-qty" data-delta="-1" aria-label="Decrease" disabled>-</button>
+                    <button type="button" class="js-qty" data-delta="-1" aria-label="Decrease quantity" disabled>-</button>
                     <input type="number" value="0" min="0" readonly inputmode="numeric">
-                    <button type="button" class="js-qty" data-delta="1" aria-label="Increase">+</button>
+                    <button type="button" class="js-qty" data-delta="1" aria-label="Increase quantity">+</button>
                   </div>
                 </div>
               </div>
@@ -1281,10 +1293,8 @@
 
       <div class="ota-footer">
         <div class="ota-total-box">
-          <div class="ota-total-price money" id="FinalGrandTotal">
-            {{ 0 | money }}
-          </div>
-          <p class="ota-hint">Estimated total based on selected service days</p>
+          <div class="ota-total-price money" id="FinalGrandTotal">Select service days</div>
+          <p class="ota-hint" id="BookingHelperText">Select service days to estimate your charter price.</p>
         </div>
 
         <div class="ota-btns-area">
@@ -1294,8 +1304,8 @@
           </div>
 
           <div class="ota-btns">
-            <button type="button" class="ota-btn-cart js-submit" data-type="cart">Add to booking list</button>
-            <button type="button" class="ota-btn-buy js-submit" data-type="buy">Book now</button>
+            <button type="button" class="ota-btn-cart js-submit" data-type="cart" disabled aria-disabled="true">Add to booking list</button>
+            <button type="button" class="ota-btn-buy js-submit" data-type="buy" disabled aria-disabled="true">Book now</button>
           </div>
 
           <div class="ota-popup" id="OtaInfoPopup" hidden>
@@ -1678,6 +1688,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const infoPopup = root.querySelector('#OtaInfoPopup');
   const infoPopupTitle = root.querySelector('#OtaInfoPopupTitle');
   const infoPopupBody = root.querySelector('#OtaInfoPopupBody');
+  const helperText = root.querySelector('#BookingHelperText');
+  const submitButtons = Array.from(root.querySelectorAll('.js-submit'));
 
   const MONEY_FORMAT = {{ shop.money_format | json }};
   const rawPrices = {{ product.metafields.custom.calendar_prices.value | json }};
@@ -1710,19 +1722,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const updateTotal = () => {
     let totalCents = 0;
+    let selectedDays = 0;
 
     rows.forEach(r => {
       if (!isRowVisible(r)) return;
-      totalCents += getRowPriceCents(r) * getRowQty(r);
+      const rowQty = getRowQty(r);
+      selectedDays += rowQty;
+      totalCents += getRowPriceCents(r) * rowQty;
     });
 
-    if (!totalEl) return;
+    const hasSelection = selectedDays > 0;
+    const canCheckout = hasSelection && totalCents > 0;
 
-    if (window.Shopify && typeof Shopify.formatMoney === 'function') {
+    if (totalEl && hasSelection && window.Shopify && typeof Shopify.formatMoney === 'function') {
       totalEl.innerHTML = Shopify.formatMoney(totalCents, MONEY_FORMAT);
-    } else {
+    } else if (totalEl && hasSelection) {
       totalEl.innerHTML = CURRENCY_SYMBOL + (totalCents / 100).toLocaleString('en-US');
+    } else if (totalEl) {
+      totalEl.textContent = 'Select service days';
     }
+
+    if (helperText) {
+      helperText.textContent = hasSelection
+        ? (canCheckout ? 'Estimated total based on selected service days.' : 'This charter option needs a positive price before checkout.')
+        : 'Select service days to estimate your charter price.';
+    }
+
+    submitButtons.forEach((button) => {
+      button.disabled = !canCheckout;
+      button.setAttribute('aria-disabled', canCheckout ? 'false' : 'true');
+      button.classList.toggle('is-disabled', !canCheckout);
+    });
   };
 
   const openInfoPopup = (key) => {
@@ -1877,7 +1907,18 @@ document.addEventListener('DOMContentLoaded', () => {
         .filter(i => i.quantity > 0);
 
       if (items.length === 0) {
-        alert('Please select at least one service day.');
+        alert('Please select at least one service day before continuing.');
+        updateTotal();
+        return;
+      }
+
+      const selectedTotalCents = rows
+        .filter(r => isRowVisible(r))
+        .reduce((sum, r) => sum + (getRowPriceCents(r) * getRowQty(r)), 0);
+
+      if (selectedTotalCents <= 0) {
+        alert('Please select service days with a valid charter price before continuing.');
+        updateTotal();
         return;
       }
 
@@ -1906,7 +1947,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error(err);
         alert('Failed to add. Please try again.');
         submitBtn.classList.remove('loading');
-        submitBtn.disabled = false;
+        updateTotal();
       }
     }
   });
