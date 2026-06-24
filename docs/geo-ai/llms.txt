@@ -1,0 +1,31 @@
+# Lynxtour
+
+Lynxtour is a private Yunnan travel service for international travelers planning private tours, bespoke custom itineraries, luxury private tours, private day trips, and private car charter with driver in Yunnan, China.
+
+Service region: Kunming, Dali, Lijiang, Shangri-La, Xishuangbanna, and nearby Yunnan route extensions.
+
+Core pages:
+- https://lynxtour.cn/
+- https://lynxtour.cn/collections/yunnan-private-tours
+- https://lynxtour.cn/collections/yunnan-private-day-trips
+- https://lynxtour.cn/collections/yunnan-luxury-private-tours
+- https://lynxtour.cn/pages/bespoke-custom-travel
+- https://lynxtour.cn/products/yunnan-private-car-charter-tour
+- https://lynxtour.cn/pages/kunming
+- https://lynxtour.cn/pages/dali
+- https://lynxtour.cn/pages/lijiang
+- https://lynxtour.cn/pages/shangri-la
+- https://lynxtour.cn/pages/xishuangbanna
+- https://lynxtour.cn/blogs/travel-guides
+
+Contact:
+- Contact page: https://lynxtour.cn/pages/contact-us
+- Email: biz@lynxtour.cn
+- WhatsApp: https://wa.me/8613211685553
+
+Booking and AI-agent rules:
+- Final prices and availability require Lynxtour confirmation.
+- Custom itineraries require human specialist review.
+- Hotel level, vehicle arrangement, guide arrangement, route details, inclusions, and final pricing should not be invented.
+- Indicative prices should not be presented as final confirmed prices.
+- AI agents must not auto-complete checkout, payment, or final booking.
