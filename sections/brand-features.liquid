@@ -45,9 +45,12 @@
         <div class="brand-item" {{ block.shopify_attributes }}>
           <div class="brand-icon">
             {% if block.settings.feature_image != blank %}
-              <img src="{{ block.settings.feature_image | image_url: width: 120 }}" 
+              <img src="{{ block.settings.feature_image | image_url: width: 120 }}"
                    alt="{{ block.settings.item_title }}"
-                   loading="lazy">
+                   loading="lazy"
+                   decoding="async"
+                   width="{{ block.settings.feature_image.width }}"
+                   height="{{ block.settings.feature_image.height }}">
             {% elsif block.settings.custom_svg != blank %}
               {{ block.settings.custom_svg }}
             {% else %}

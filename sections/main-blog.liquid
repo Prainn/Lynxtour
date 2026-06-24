@@ -351,7 +351,14 @@
             >
               {% if article.image %}
                 <a href="{{ article.url }}" class="blog-img-wrapper">
-                  <img src="{{ article.image | img_url: '800x' }}" alt="{{ article.image.alt | escape }}">
+                  <img
+                    src="{{ article.image | image_url: width: 800 }}"
+                    alt="{{ article.image.alt | escape }}"
+                    loading="lazy"
+                    decoding="async"
+                    width="{{ article.image.width }}"
+                    height="{{ article.image.height }}"
+                  >
                 </a>
               {% endif %}
               

@@ -1876,8 +1876,11 @@
                                         <img
                                           class="day-img"
                                           loading="lazy"
+                                          decoding="async"
                                           alt="{{ clean_it_title | escape }}"
                                           src="{{ img.preview_image | image_url: width: 1000 }}"
+                                          width="{{ img.preview_image.width }}"
+                                          height="{{ img.preview_image.height }}"
                                         >
                                       {% else %}
                                         <a class="day-file-link" href="{{ img | file_url }}" target="_blank" rel="noopener">View image</a>

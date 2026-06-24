@@ -29,7 +29,15 @@
               <td style="padding: 25px 0; display: flex; gap: 25px; align-items: flex-start;">
                 {%- if item.image -%}
                   <a href="{{ item.url }}">
-                    <img src="{{ item.image | img_url: '300x' }}" alt="{{ item.title | escape }}" style="width: 120px; height: 80px; object-fit: cover; border-radius: 4px; filter: brightness(0.9);">
+                    <img
+                      src="{{ item.image | image_url: width: 300 }}"
+                      alt="{{ item.title | escape }}"
+                      style="width: 120px; height: 80px; object-fit: cover; border-radius: 4px; filter: brightness(0.9);"
+                      loading="lazy"
+                      decoding="async"
+                      width="120"
+                      height="80"
+                    >
                   </a>
                 {%- endif -%}
                 <div>

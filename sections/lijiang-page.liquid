@@ -801,7 +801,14 @@
             <div class="lj-story-image">
               <div class="img-reveal-wrapper">
                 {% if block.settings.image != blank %}
-                  <img src="{{ block.settings.image | image_url: width: 1200 }}" alt="{{ block.settings.heading | escape }}" loading="lazy">
+                  <img
+                    src="{{ block.settings.image | image_url: width: 1200 }}"
+                    alt="{{ block.settings.heading | escape }}"
+                    loading="lazy"
+                    decoding="async"
+                    width="{{ block.settings.image.width }}"
+                    height="{{ block.settings.image.height }}"
+                  >
                 {% else %}
                   {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
                 {% endif %}

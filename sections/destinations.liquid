@@ -61,6 +61,9 @@
                   src="{{ block.settings.image | image_url: width: 1600 }}"
                   alt="{{ block.settings.title | escape }}"
                   loading="lazy"
+                  decoding="async"
+                  width="{{ block.settings.image.width }}"
+                  height="{{ block.settings.image.height }}"
                   style="object-position: {{ object_position }};"
                 >
               {% else %}

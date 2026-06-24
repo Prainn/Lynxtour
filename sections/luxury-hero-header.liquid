@@ -1298,13 +1298,21 @@ document.addEventListener('DOMContentLoaded', function() {
           {%- assign header_logo = settings.logo | default: section.settings.logo_image -%}
 
           {%- if header_logo != blank -%}
+            {%- assign header_logo_display_height = section.settings.logo_height -%}
+            {%- if header_logo.aspect_ratio != blank -%}
+              {%- assign header_logo_display_width = header_logo.aspect_ratio | times: header_logo_display_height | round -%}
+            {%- else -%}
+              {%- assign header_logo_display_width = header_logo.width | default: 400 -%}
+            {%- endif -%}
             <img
               src="{{ header_logo | image_url: width: 400 }}"
               alt="{{ shop.name }}"
               class="header-logo-image"
-              style="height: {{ section.settings.logo_height }}px;"
+              style="height: {{ header_logo_display_height }}px; width: auto;"
+              width="{{ header_logo_display_width }}"
+              height="{{ header_logo_display_height }}"
               loading="eager"
-              fetchpriority="high"
+              decoding="async"
             >
           {%- endif -%}
 
@@ -1623,12 +1631,21 @@ document.addEventListener('DOMContentLoaded', function() {
       <a href="/" class="logo-wrapper" style="gap:10px;">
         {%- assign header_logo = settings.logo | default: section.settings.logo_image -%}
         {%- if header_logo != blank -%}
+          {%- assign drawer_logo_display_height = 32 -%}
+          {%- if header_logo.aspect_ratio != blank -%}
+            {%- assign drawer_logo_display_width = header_logo.aspect_ratio | times: drawer_logo_display_height | round -%}
+          {%- else -%}
+            {%- assign drawer_logo_display_width = header_logo.width | default: 240 -%}
+          {%- endif -%}
           <img
             src="{{ header_logo | image_url: width: 240 }}"
             alt="{{ shop.name }}"
             class="header-logo-image"
-            style="height: 32px;"
+            style="height: {{ drawer_logo_display_height }}px; width: auto;"
+            width="{{ drawer_logo_display_width }}"
+            height="{{ drawer_logo_display_height }}"
             loading="eager"
+            decoding="async"
           >
         {%- else -%}
           <span class="logo-cn" style="font-size: 18px;">{{ section.settings.logo_text_cn }}</span>
