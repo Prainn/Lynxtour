@@ -15,7 +15,22 @@
       <div class="header-left">
         <a href="/" class="logo-wrapper">
           {%- if section.settings.logo_image != blank -%}
-            <img src="{{ section.settings.logo_image | img_url: '400x' }}" alt="{{ shop.name }}" class="header-logo-image" style="height: {{ section.settings.logo_height }}px;">
+            {%- assign logo_display_height = section.settings.logo_height -%}
+            {%- if section.settings.logo_image.aspect_ratio != blank -%}
+              {%- assign logo_display_width = section.settings.logo_image.aspect_ratio | times: logo_display_height | round -%}
+            {%- else -%}
+              {%- assign logo_display_width = section.settings.logo_image.width | default: 400 -%}
+            {%- endif -%}
+            <img
+              src="{{ section.settings.logo_image | image_url: width: 400 }}"
+              alt="{{ shop.name }}"
+              class="header-logo-image"
+              style="height: {{ logo_display_height }}px; width: auto;"
+              width="{{ logo_display_width }}"
+              height="{{ logo_display_height }}"
+              loading="eager"
+              decoding="async"
+            >
           {%- endif -%}
           <div class="logo-text-group">
             <span class="logo-cn">{{ section.settings.logo_text_cn }}</span>

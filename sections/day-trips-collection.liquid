@@ -3,7 +3,22 @@
   <header class="coll-hero-compact">
     <div class="hero-bg">
       {% if collection.image %}
-        <img src="{{ collection.image | img_url: '2000x' }}" alt="{{ collection.title | escape }} - Lynxtour" class="hero-img">
+        <img
+          src="{{ collection.image | image_url: width: 1800 }}"
+          srcset="
+            {{ collection.image | image_url: width: 768 }} 768w,
+            {{ collection.image | image_url: width: 1200 }} 1200w,
+            {{ collection.image | image_url: width: 1800 }} 1800w,
+            {{ collection.image | image_url: width: 2000 }} 2000w
+          "
+          sizes="100vw"
+          alt="{{ collection.title | escape }} - Lynxtour"
+          class="hero-img"
+          width="{{ collection.image.width }}"
+          height="{{ collection.image.height }}"
+          loading="eager"
+          fetchpriority="high"
+        >
       {% else %}
         <div class="hero-placeholder"></div>
       {% endif %}
@@ -148,7 +163,14 @@
             <a href="{{ product.url }}" class="card-link">
               <div class="card-visual">
                 {% if product.featured_image %}
-                  <img src="{{ product.featured_image | img_url: '800x1000', crop: 'center' }}" alt="{{ product.title | escape }}" loading="lazy">
+                  <img
+                    src="{{ product.featured_image | image_url: width: 800, height: 1000, crop: 'center' }}"
+                    alt="{{ product.title | escape }}"
+                    loading="lazy"
+                    decoding="async"
+                    width="800"
+                    height="1000"
+                  >
                 {% else %}
                   <div class="card-img-placeholder"></div>
                 {% endif %}

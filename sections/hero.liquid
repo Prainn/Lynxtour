@@ -3,9 +3,19 @@
   <nav class="hero-header">
     <div class="logo-wrapper">
       {% if section.settings.logo_image != blank %}
-        <img src="{{ section.settings.logo_image | img_url: '200x' }}" 
-             alt="{{ shop.name }}" 
-             class="hero-logo-img">
+        {% assign hero_logo_display_width = 200 %}
+        {% if section.settings.logo_image.aspect_ratio != blank %}
+          {% assign hero_logo_display_height = hero_logo_display_width | divided_by: section.settings.logo_image.aspect_ratio | round %}
+        {% else %}
+          {% assign hero_logo_display_height = section.settings.logo_height | default: 40 %}
+        {% endif %}
+        <img src="{{ section.settings.logo_image | image_url: width: 200 }}"
+             alt="{{ shop.name }}"
+             class="hero-logo-img"
+             width="{{ hero_logo_display_width }}"
+             height="{{ hero_logo_display_height }}"
+             loading="eager"
+             decoding="async">
       {% endif %}
       <span class="hero-logo-text">{{ section.settings.logo_text }}</span>
     </div>

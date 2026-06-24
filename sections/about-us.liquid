@@ -59,6 +59,10 @@
                     src="{{ block.settings.image | image_url: width: 1500 }}"
                     alt=""
                     class="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    width="{{ block.settings.image.width }}"
+                    height="{{ block.settings.image.height }}"
                   >
                 </div>
               {% endif %}
@@ -97,6 +101,10 @@
                       src="{{ block.settings.module_img | image_url: width: 800 }}"
                       alt="{{ block.settings.module_name | default: section.settings.system_title | escape }}"
                       class="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                      width="{{ block.settings.module_img.width }}"
+                      height="{{ block.settings.module_img.height }}"
                     >
                     <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/20 to-transparent"></div>
                   </div>

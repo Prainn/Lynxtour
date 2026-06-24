@@ -634,7 +634,10 @@
                       src="{{ img | image_url: width: 1000 }}"
                       class="mag-page-img"
                       loading="lazy"
+                      decoding="async"
                       alt="{{ product.title | escape }} image {{ forloop.index }}"
+                      width="{{ img.width }}"
+                      height="{{ img.height }}"
                     >
                   </div>
                 </div>
@@ -649,7 +652,10 @@
                         src="{{ img | image_url: width: 1000 }}"
                         class="mag-page-img"
                         loading="lazy"
+                        decoding="async"
                         alt="{{ product.title | escape }} image {{ forloop.index }}"
+                        width="{{ img.width }}"
+                        height="{{ img.height }}"
                       >
                     {% else %}
                       <div class="mag-placeholder-box">Travel image coming soon</div>

@@ -618,7 +618,15 @@
 
     {% if article.image %}
       <div class="article-image-wrapper">
-        <img src="{{ article.image | img_url: '1200x' }}" alt="{{ article.image.alt | escape }}" style="width: 100%; display: block;">
+        <img
+          src="{{ article.image | image_url: width: 1200 }}"
+          alt="{{ article.image.alt | escape }}"
+          style="width: 100%; display: block;"
+          width="{{ article.image.width }}"
+          height="{{ article.image.height }}"
+          loading="eager"
+          fetchpriority="high"
+        >
       </div>
     {% endif %}
 
@@ -1131,7 +1139,14 @@
           <div class="premium-tour-img-box">
             <a href="{{ tour_item.url }}">
               {% if tour_image %}
-                <img src="{{ tour_image | img_url: '600x' }}" alt="{{ tour_item.title }}">
+                <img
+                  src="{{ tour_image | image_url: width: 600 }}"
+                  alt="{{ tour_item.title }}"
+                  loading="lazy"
+                  decoding="async"
+                  width="{{ tour_image.width }}"
+                  height="{{ tour_image.height }}"
+                >
               {% else %}
                 {{ 'product-1' | placeholder_svg_tag }}
               {% endif %}
@@ -1243,7 +1258,14 @@
         <div class="premium-tour-img-box">
           <a href="{{ tour_item.url }}">
             {% if tour_image %}
-              <img src="{{ tour_image | img_url: '600x' }}" alt="{{ tour_item.title }}">
+              <img
+                src="{{ tour_image | image_url: width: 600 }}"
+                alt="{{ tour_item.title }}"
+                loading="lazy"
+                decoding="async"
+                width="{{ tour_image.width }}"
+                height="{{ tour_image.height }}"
+              >
             {% else %}
               {{ 'product-1' | placeholder_svg_tag }}
             {% endif %}
