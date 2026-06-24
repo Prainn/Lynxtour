@@ -13,8 +13,8 @@ Scope: Documentation and deployable source copy for Lynxtour AI discovery files.
 - Live `/llms.txt` status on 2026-06-24: `200 OK`, `Content-Type: text/markdown; charset=utf-8`, Shopify `pageType=llms_txt`.
 - Live `/llms.txt` content: mirrors the generic Shopify agent instructions.
 - `/llms.txt` found in repo theme files before this work: no.
-- Direct theme override: not implemented because this repo does not contain a Shopify-supported theme file that controls the generated `/agents.md` or `/llms.txt` root routes.
-- Deployable source files added for an edge/static-route implementation:
+- Direct theme override status after P4-A2: implemented with `templates/agents.md.liquid`.
+- Deployable source files previously added for reference:
   - `docs/geo-ai/agents.md`
   - `docs/geo-ai/llms.txt`
 
@@ -24,34 +24,54 @@ The current live `/agents.md` is generic Shopify shopping-agent guidance. It rec
 
 That is not a good fit for Lynxtour's private/custom Yunnan travel model because multi-day private tours, bespoke itineraries, luxury private tours, and private car charter requests require human confirmation of final availability, route details, hotel level, vehicle arrangement, guide arrangement, inclusions, and final pricing.
 
-## Shopify Route / Override Limitation
+## P4-A2 Hybrid Live Override
 
-Shopify is already serving both root discovery URLs, but the controlling implementation is not present in this theme repo. This repo contains no `templates/agents.md.liquid`, `templates/llms.txt.liquid`, setting file, or route-specific Liquid file that can safely override those generated responses.
+P4-A2 adds `templates/agents.md.liquid`, Shopify's supported theme template mechanism for overriding the canonical `/agents.md` agent discovery response.
 
-Shopify theme architecture supports the standard theme directories: `assets`, `blocks`, `config`, `layout`, `locales`, `sections`, `snippets`, and `templates`. Assets are referenced through Shopify asset URLs, not arbitrary root routes. Shopify documents a special `templates/robots.txt.liquid` route for `/robots.txt`, but this repo does not contain an equivalent supported theme template for `/agents.md` or `/llms.txt`.
+This is a conservative hybrid override. It keeps Shopify Catalog, Agentic Storefronts, sitemap, policy, product, collection, and UCP discovery useful for AI channels while adding Lynxtour-specific business rules at the top of the file.
 
-Safest implementation path:
+Shopify Catalog remains the authoritative product feed for product discovery. The override does not replace Shopify Catalog, does not remove catalog discovery language, and does not claim that catalog data guarantees final availability or final pricing.
 
-1. First check whether Shopify admin has an official setting or app-controlled method to customize AI agent discovery content for `/agents.md` and `/llms.txt`.
-2. If no native customization is available, use Cloudflare Worker or another edge/static-route layer in front of `lynxtour.cn` to override:
-   - `https://lynxtour.cn/agents.md`
-   - `https://lynxtour.cn/llms.txt`
-3. Alternative: use a Shopify app proxy only if it can serve or override the exact root-level discovery paths without redirect or HTML wrapping.
-4. Avoid publishing these as normal Shopify pages if the intended target is the exact root path, because `/pages/llms-txt` or `/pages/agents-md` is not equivalent to `/llms.txt` or `/agents.md`.
-5. After deployment, verify with:
-   - `curl -I https://lynxtour.cn/agents.md`
-   - `curl -I https://lynxtour.cn/llms.txt`
-   - `curl -s https://lynxtour.cn/agents.md`
-   - `curl -s https://lynxtour.cn/llms.txt`
+The override is designed for Lynxtour's service model:
+
+- Multi-day private tours, bespoke custom itineraries, luxury private tours, and private car charter are request/confirmation services.
+- Catalog data can support initial discovery, comparison, and planning.
+- Final availability, route details, hotel level, vehicle arrangement, guide arrangement, inclusions, exclusions, and final price require human Lynxtour specialist confirmation.
+- Agents should direct complex or custom requests to the bespoke custom travel page, contact page, email, or WhatsApp.
+
+`templates/llms.txt.liquid` was not added in P4-A2. The branch only overrides `/agents.md`; `/llms.txt` behavior should be checked after preview/deploy and documented separately if Shopify requires a URL-specific template.
+
+After preview/deploy, verify:
+
+- `https://lynxtour.cn/agents.md` returns the Lynxtour-specific hybrid content from `templates/agents.md.liquid`.
+- `https://lynxtour.cn/llms.txt` behavior is documented. If it mirrors `/agents.md`, confirm the Lynxtour rules appear there too. If it remains Shopify-generated, decide separately whether a supported `templates/llms.txt.liquid` override is needed.
+- `https://lynxtour.cn/.well-known/ucp` still returns Shopify-generated UCP content.
+- Products still appear in Agentic Storefronts and Shopify Catalog admin.
+
+## P4-A Superseded Finding
+
+The earlier P4-A pass found that Shopify was already serving both root discovery URLs, but the repo did not yet contain a theme-level override file. P4-A2 supersedes that limitation for `/agents.md` by adding `templates/agents.md.liquid`.
+
+This branch does not create or recommend a Worker or proxy implementation. It uses the supported Shopify theme template approach for `/agents.md` only.
+
+After deployment, verify with:
+
+- `curl -I https://lynxtour.cn/agents.md`
+- `curl -s https://lynxtour.cn/agents.md`
+- `curl -I https://lynxtour.cn/llms.txt`
+- `curl -I https://lynxtour.cn/.well-known/ucp`
 
 Expected response:
 
 - HTTP 200
 - Plain text or Markdown content
-- No storefront theme HTML wrapper
-- No redirect to a Shopify page
+- `/agents.md` contains the Lynxtour-specific hybrid rules
+- `/llms.txt` behavior is documented separately because no `templates/llms.txt.liquid` file was added
+- `/.well-known/ucp` continues returning Shopify-generated UCP content
 
-## Recommended `/agents.md`
+## Previous P4-A `/agents.md` Draft
+
+Superseded by P4-A2. The active `/agents.md` source is now `templates/agents.md.liquid`, which preserves Shopify Catalog and Agentic Storefront discovery while adding Lynxtour-specific business rules.
 
 ```md
 # Lynxtour AI Agent Guidance
@@ -96,7 +116,9 @@ Lynxtour serves Kunming, Dali, Lijiang, Shangri-La, Xishuangbanna, and nearby Yu
   - WhatsApp: https://wa.me/8613211685553
 ```
 
-## Recommended `/llms.txt`
+## Previous P4-A `/llms.txt` Draft
+
+Not implemented as a theme template in P4-A2. `templates/llms.txt.liquid` was intentionally not added unless Shopify requires a separate URL-specific override after preview/deploy validation.
 
 ```txt
 # Lynxtour
@@ -136,12 +158,13 @@ Booking and AI-agent rules:
 
 - Root `AGENTS.md` exists but is a repo instruction file, not a confirmed storefront route.
 - Live `/agents.md` and `/llms.txt` are currently served by Shopify and contain generic Shopify shopping-agent content.
-- No theme-level override file for `/agents.md` or `/llms.txt` was found in this repo.
+- P4-A2 added `templates/agents.md.liquid` as the theme-level `/agents.md` override.
+- No theme-level override file for `/llms.txt` was found or added.
 - No `llms.txt` file existed in this repo before this P4-A pass.
-- Direct Shopify theme override for `/agents.md` and `/llms.txt` was not implemented because the controlling route is not represented by a supported editable theme file in this repo.
-- No Liquid files were changed, so no new Liquid syntax surface was introduced.
+- Direct Shopify theme override for `/llms.txt` was not implemented because P4-A2 only targets `/agents.md`.
+- `templates/agents.md.liquid` is plain markdown/text output and does not introduce storefront UI, CSS, JavaScript, schema, product, collection, pricing, booking, robots, sitemap, or canonical changes.
 - No visible page design or visible site copy was changed.
 
 ## Rollback Risk
 
-Low. This change is documentation-only. Removing `docs/geo-ai/p4-a-ai-discovery.md` fully reverts the current repo change. Live storefront behavior is unchanged until the recommended edge/static-route deployment is implemented outside the theme.
+Low. P4-A2 adds one Shopify-supported markdown template and updates documentation. Removing `templates/agents.md.liquid` reverts the live `/agents.md` override and allows Shopify's generated agent discovery response to resume. Removing the P4-A2 section from this document reverts the documentation update.
