@@ -208,6 +208,7 @@
                 <div class="border border-amber-500/30 text-amber-500/80 p-6 text-[10px] tracking-[0.3em] text-center uppercase bg-amber-500/5">
                   Request Sent. Our expert will contact you shortly.
                 </div>
+                <div id="dual-contact-form-success" data-ga4-form-success="true" hidden></div>
               {%- else -%}
                 <div class="space-y-6">
                   <div class="input-group">
@@ -1212,6 +1213,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const planner = document.getElementById('itinerary-form');
   const dualForm = document.getElementById('DualContactForm');
+  const dualFormSuccess = document.getElementById('dual-contact-form-success');
   const display = document.getElementById('itinerary-display');
   const resultEl = document.getElementById('itinerary-result');
   const loadingEl = document.getElementById('itinerary-loading');
@@ -1240,6 +1242,43 @@ document.addEventListener('DOMContentLoaded', function () {
 
   let latestAiPlainText = '';
   let aiPreviewStatus = 'Not generated';
+
+  function trackDualContactFormSuccess() {
+    const storageKey = 'lynxtour_dual_contact_form_success_tracked';
+
+    if (!dualFormSuccess) return;
+
+    try {
+      if (sessionStorage.getItem(storageKey)) return;
+    } catch (e) {}
+
+    const payload = {
+      form_id: 'DualContactForm',
+      event_source: 'lynxtour_theme',
+      page_path: window.location.pathname,
+      page_location: window.location.href,
+      page_title: document.title || ''
+    };
+    let tracked = false;
+
+    // Fire only from Shopify's posted-success state; the AI planner must not trigger this lead conversion.
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'custom_trip_form_submit', payload);
+      tracked = true;
+    } else if (window.dataLayer && typeof window.dataLayer.push === 'function') {
+      window.dataLayer.push(Object.assign({ event: 'custom_trip_form_submit' }, payload));
+      tracked = true;
+    }
+
+    if (tracked) {
+      try {
+        sessionStorage.setItem(storageKey, 'true');
+      } catch (e) {}
+    }
+  }
+
+  // DualContactForm is the only real lead submission path.
+  trackDualContactFormSuccess();
 
   if (window.flatpickr && dateInput) {
     flatpickr(dateInput, {
