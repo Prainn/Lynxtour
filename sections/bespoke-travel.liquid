@@ -41,7 +41,8 @@
           </p>
         </div>
 
-        <form id="itinerary-form" class="space-y-8 flex-grow">
+        <!-- AI preview planner only: intentionally not a real form or lead submission path. -->
+        <div id="itinerary-form" class="space-y-8 flex-grow">
           <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div class="input-group">
               <label class="block text-stone-500 text-[9px] uppercase mb-3 tracking-[0.2em]">Duration (Days)</label>
@@ -116,7 +117,7 @@
 
           <div class="space-y-3 mt-4">
             <button
-              type="submit"
+              type="button"
               id="generate-ai-btn"
               class="ai-submit-btn w-full border border-amber-500/50 text-amber-500/90 hover:bg-amber-500 hover:text-stone-950 py-5 transition-all flex justify-center items-center gap-3 tracking-[0.35em] text-[10px] bg-transparent"
             >
@@ -138,7 +139,7 @@
               AI preview usually appears in a few seconds. If it takes too long, you can still continue with a local specialist.
             </p>
           </div>
-        </form>
+        </div>
 
         <div id="itinerary-display" class="hidden mt-10 pt-10 border-t border-white/[0.05] animate-reveal">
           <div id="itinerary-loading" class="flex flex-col items-center py-12">
@@ -201,11 +202,13 @@
               Our local specialist will review your request, refine the route, and send back a tailored recommendation with quotation.
             </p>
 
+            <!-- DualContactForm is the only real Shopify contact form and lead submission path. -->
             {%- form 'contact', id: 'DualContactForm' -%}
               {%- if form.posted_successfully? -%}
                 <div class="border border-amber-500/30 text-amber-500/80 p-6 text-[10px] tracking-[0.3em] text-center uppercase bg-amber-500/5">
                   Request Sent. Our expert will contact you shortly.
                 </div>
+                <div id="dual-contact-form-success" data-ga4-form-success="true" hidden></div>
               {%- else -%}
                 <div class="space-y-6">
                   <div class="input-group">
@@ -245,6 +248,15 @@
                   <input type="hidden" name="contact[Style_Interests]" id="hidden-interests">
                   <input type="hidden" name="contact[AI_Preview_Status]" id="hidden-ai-status">
                   <textarea style="display:none;" name="contact[AI_Preview_Content]" id="hidden-ai-result"></textarea>
+                  <input type="hidden" name="contact[Form_ID]" id="hidden-form-id" value="DualContactForm">
+                  <input type="hidden" name="contact[Landing_Page]" id="hidden-landing-page">
+                  <input type="hidden" name="contact[Referrer]" id="hidden-referrer">
+                  <input type="hidden" name="contact[Submitted_At]" id="hidden-submitted-at">
+                  <input type="hidden" name="contact[UTM_Source]" id="hidden-utm-source">
+                  <input type="hidden" name="contact[UTM_Medium]" id="hidden-utm-medium">
+                  <input type="hidden" name="contact[UTM_Campaign]" id="hidden-utm-campaign">
+                  <input type="hidden" name="contact[UTM_Term]" id="hidden-utm-term">
+                  <input type="hidden" name="contact[GCLID]" id="hidden-gclid">
 
                   <button
                     type="submit"
@@ -1199,8 +1211,9 @@ document.addEventListener('DOMContentLoaded', function () {
     endpoint: 'https://ai-server-n87x.onrender.com/api/generate'
   };
 
-  const form = document.getElementById('itinerary-form');
+  const planner = document.getElementById('itinerary-form');
   const dualForm = document.getElementById('DualContactForm');
+  const dualFormSuccess = document.getElementById('dual-contact-form-success');
   const display = document.getElementById('itinerary-display');
   const resultEl = document.getElementById('itinerary-result');
   const loadingEl = document.getElementById('itinerary-loading');
@@ -1217,9 +1230,55 @@ document.addEventListener('DOMContentLoaded', function () {
   const hiddenInterests = document.getElementById('hidden-interests');
   const hiddenAiStatus = document.getElementById('hidden-ai-status');
   const hiddenAiResult = document.getElementById('hidden-ai-result');
+  const hiddenFormId = document.getElementById('hidden-form-id');
+  const hiddenLandingPage = document.getElementById('hidden-landing-page');
+  const hiddenReferrer = document.getElementById('hidden-referrer');
+  const hiddenSubmittedAt = document.getElementById('hidden-submitted-at');
+  const hiddenUtmSource = document.getElementById('hidden-utm-source');
+  const hiddenUtmMedium = document.getElementById('hidden-utm-medium');
+  const hiddenUtmCampaign = document.getElementById('hidden-utm-campaign');
+  const hiddenUtmTerm = document.getElementById('hidden-utm-term');
+  const hiddenGclid = document.getElementById('hidden-gclid');
 
   let latestAiPlainText = '';
   let aiPreviewStatus = 'Not generated';
+
+  function trackDualContactFormSuccess() {
+    const storageKey = 'lynxtour_dual_contact_form_success_tracked';
+
+    if (!dualFormSuccess) return;
+
+    try {
+      if (sessionStorage.getItem(storageKey)) return;
+    } catch (e) {}
+
+    const payload = {
+      form_id: 'DualContactForm',
+      event_source: 'lynxtour_theme',
+      page_path: window.location.pathname,
+      page_location: window.location.href,
+      page_title: document.title || ''
+    };
+    let tracked = false;
+
+    // Fire only from Shopify's posted-success state; the AI planner must not trigger this lead conversion.
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'custom_trip_form_submit', payload);
+      tracked = true;
+    } else if (window.dataLayer && typeof window.dataLayer.push === 'function') {
+      window.dataLayer.push(Object.assign({ event: 'custom_trip_form_submit' }, payload));
+      tracked = true;
+    }
+
+    if (tracked) {
+      try {
+        sessionStorage.setItem(storageKey, 'true');
+      } catch (e) {}
+    }
+  }
+
+  // DualContactForm is the only real lead submission path.
+  trackDualContactFormSuccess();
 
   if (window.flatpickr && dateInput) {
     flatpickr(dateInput, {
@@ -1257,14 +1316,25 @@ document.addEventListener('DOMContentLoaded', function () {
       .join(', ');
   }
 
+  function getPlannerField(name) {
+    if (!planner) return null;
+
+    return planner.querySelector('[name="' + name + '"]');
+  }
+
+  function getPlannerValue(name) {
+    const field = getPlannerField(name);
+
+    return field ? field.value : '';
+  }
+
   function getFormDataObject() {
-    const fd = new FormData(form);
     return {
-      duration: fd.get('duration') || '',
-      travel_date: fd.get('travel_date') || '',
-      travelers: fd.get('travelers') || '',
-      destinations: fd.get('destinations') || '',
-      budget: fd.get('budget') || '',
+      duration: getPlannerValue('duration'),
+      travel_date: getPlannerValue('travel_date'),
+      travelers: getPlannerValue('travelers'),
+      destinations: getPlannerValue('destinations'),
+      budget: getPlannerValue('budget'),
       tags: Array.from(document.querySelectorAll('.tag-btn.active')).map(function (btn) { return btn.dataset.tag; })
     };
   }
@@ -1281,13 +1351,13 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!raw) return;
 
       const data = JSON.parse(raw);
-      if (!form) return;
+      if (!planner) return;
 
-      if (form.elements.duration && data.duration) form.elements.duration.value = data.duration;
-      if (form.elements.travel_date && data.travel_date) form.elements.travel_date.value = data.travel_date;
-      if (form.elements.travelers && data.travelers) form.elements.travelers.value = data.travelers;
-      if (form.elements.destinations && data.destinations) form.elements.destinations.value = data.destinations;
-      if (form.elements.budget && data.budget) form.elements.budget.value = data.budget;
+      if (getPlannerField('duration') && data.duration) getPlannerField('duration').value = data.duration;
+      if (getPlannerField('travel_date') && data.travel_date) getPlannerField('travel_date').value = data.travel_date;
+      if (getPlannerField('travelers') && data.travelers) getPlannerField('travelers').value = data.travelers;
+      if (getPlannerField('destinations') && data.destinations) getPlannerField('destinations').value = data.destinations;
+      if (getPlannerField('budget') && data.budget) getPlannerField('budget').value = data.budget;
 
       document.querySelectorAll('.tag-btn').forEach(function (btn) {
         btn.classList.toggle('active', Array.isArray(data.tags) && data.tags.includes(btn.dataset.tag));
@@ -1295,17 +1365,36 @@ document.addEventListener('DOMContentLoaded', function () {
     } catch (e) {}
   }
 
-  function syncHiddenFields() {
-    if (!form) return;
+  function getUrlParam(name) {
+    try {
+      return new URLSearchParams(window.location.search).get(name) || '';
+    } catch (e) {
+      return '';
+    }
+  }
 
-    const fd = new FormData(form);
+  function syncAttributionFields() {
+    if (hiddenFormId) hiddenFormId.value = 'DualContactForm';
+    if (hiddenLandingPage) hiddenLandingPage.value = window.location.href;
+    if (hiddenReferrer) hiddenReferrer.value = document.referrer || '';
+    if (hiddenSubmittedAt) hiddenSubmittedAt.value = new Date().toISOString();
+    if (hiddenUtmSource) hiddenUtmSource.value = getUrlParam('utm_source');
+    if (hiddenUtmMedium) hiddenUtmMedium.value = getUrlParam('utm_medium');
+    if (hiddenUtmCampaign) hiddenUtmCampaign.value = getUrlParam('utm_campaign');
+    if (hiddenUtmTerm) hiddenUtmTerm.value = getUrlParam('utm_term');
+    if (hiddenGclid) hiddenGclid.value = getUrlParam('gclid');
+  }
+
+  function syncHiddenFields() {
+    if (!planner) return;
+
     const activeTags = getActiveTags();
 
-    if (hiddenDuration) hiddenDuration.value = (fd.get('duration') || '') + ' Days';
-    if (hiddenDate) hiddenDate.value = fd.get('travel_date') || 'Not Set';
-    if (hiddenTravelers) hiddenTravelers.value = fd.get('travelers') || '';
-    if (hiddenBudget) hiddenBudget.value = fd.get('budget') || '';
-    if (hiddenDestinations) hiddenDestinations.value = fd.get('destinations') || 'Not specified';
+    if (hiddenDuration) hiddenDuration.value = (getPlannerValue('duration') || '') + ' Days';
+    if (hiddenDate) hiddenDate.value = getPlannerValue('travel_date') || 'Not Set';
+    if (hiddenTravelers) hiddenTravelers.value = getPlannerValue('travelers') || '';
+    if (hiddenBudget) hiddenBudget.value = getPlannerValue('budget') || '';
+    if (hiddenDestinations) hiddenDestinations.value = getPlannerValue('destinations') || 'Not specified';
     if (hiddenInterests) hiddenInterests.value = activeTags || 'None';
     if (hiddenAiStatus) hiddenAiStatus.value = aiPreviewStatus;
 
@@ -1314,6 +1403,8 @@ document.addEventListener('DOMContentLoaded', function () {
         ? latestAiPlainText
         : '';
     }
+
+    syncAttributionFields();
   }
 
   function showDisplay() {
@@ -1354,7 +1445,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function buildPrompt() {
-    const fd = new FormData(form);
     const tags = getActiveTags();
 
     return [
@@ -1363,11 +1453,11 @@ document.addEventListener('DOMContentLoaded', function () {
       'Format: Professional Markdown.',
       '',
       'Traveler Details:',
-      '- Duration: ' + (fd.get('duration') || '7') + ' days',
-      '- Arrival Date: ' + (fd.get('travel_date') || 'Anytime'),
-      '- Travelers: ' + (fd.get('travelers') || 'Couple'),
-      '- Budget: ' + (fd.get('budget') || 'Not Sure Yet'),
-      '- Destinations: ' + (fd.get('destinations') || 'Suggest best options in Yunnan'),
+      '- Duration: ' + (getPlannerValue('duration') || '7') + ' days',
+      '- Arrival Date: ' + (getPlannerValue('travel_date') || 'Anytime'),
+      '- Travelers: ' + (getPlannerValue('travelers') || 'Couple'),
+      '- Budget: ' + (getPlannerValue('budget') || 'Not Sure Yet'),
+      '- Destinations: ' + (getPlannerValue('destinations') || 'Suggest best options in Yunnan'),
       '- Style/Interests: ' + (tags || 'Balanced'),
       '',
       'Task:',
@@ -1409,7 +1499,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function renderFallbackSummary() {
-    const fd = new FormData(form);
     const tags = getActiveTags();
 
     const fallbackText = [
@@ -1418,11 +1507,11 @@ document.addEventListener('DOMContentLoaded', function () {
       "We couldn't generate the live AI preview just now, but your request is ready for our local specialist team.",
       '',
       '**Trip Summary**',
-      '- Duration: ' + (fd.get('duration') || '7') + ' days',
-      '- Arrival Date: ' + (fd.get('travel_date') || 'Flexible'),
-      '- Travelers: ' + (fd.get('travelers') || 'Couple'),
-      '- Budget: ' + (fd.get('budget') || 'Not Sure Yet'),
-      '- Destinations: ' + (fd.get('destinations') || 'Yunnan highlights'),
+      '- Duration: ' + (getPlannerValue('duration') || '7') + ' days',
+      '- Arrival Date: ' + (getPlannerValue('travel_date') || 'Flexible'),
+      '- Travelers: ' + (getPlannerValue('travelers') || 'Couple'),
+      '- Budget: ' + (getPlannerValue('budget') || 'Not Sure Yet'),
+      '- Destinations: ' + (getPlannerValue('destinations') || 'Yunnan highlights'),
       '- Interests: ' + (tags || 'Balanced'),
       '',
       '### Recommended Next Step',
@@ -1474,20 +1563,20 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  if (form) {
-    form.addEventListener('input', function () {
+  if (planner) {
+    planner.addEventListener('input', function () {
       persistDraft();
       syncHiddenFields();
     });
 
-    form.addEventListener('change', function () {
+    planner.addEventListener('change', function () {
       persistDraft();
       syncHiddenFields();
     });
+  }
 
-    form.addEventListener('submit', async function (e) {
-      e.preventDefault();
-
+  if (generateBtn) {
+    generateBtn.addEventListener('click', async function () {
       try {
         showLoading();
         setGenerateBtnLoading(true);
