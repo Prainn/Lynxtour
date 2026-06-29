@@ -114,8 +114,7 @@
   <div class="footer-payment-icons">
     <span class="payment-text">SECURE CHECKOUT</span>
     <div class="payment-list">
-      {% assign custom_payment_types = 'visa,master,american_express,paypal,klarna,apple_pay,google_pay' | split: ',' %}
-      {% for type in custom_payment_types %}
+      {% for type in shop.enabled_payment_types %}
         {{ type | payment_type_svg_tag: class: 'payment-icon' }}
       {% endfor %}
     </div>
@@ -231,7 +230,7 @@
     { "type": "header", "content": "Navigation" },
     { "type": "text", "id": "menu_1_title", "label": "Menu 1 Title", "default": "EXPLORE" },
     { "type": "link_list", "id": "menu_1", "label": "Select Menu 1" },
-    { "type": "text", "id": "menu_2_title", "label": "Menu 2 Title", "default": "JOURNEYS" },
+    { "type": "text", "id": "menu_2_title", "label": "Menu 2 Title", "default": "Trip Planning" },
     { "type": "link_list", "id": "menu_2", "label": "Select Menu 2" },
     { "type": "header", "content": "Contact" },
     { "type": "text", "id": "contact_title", "label": "Contact Heading", "default": "CONCIERGE" },
