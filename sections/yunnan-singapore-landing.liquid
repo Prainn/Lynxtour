@@ -1,0 +1,730 @@
+{% liquid
+  assign whatsapp_url = section.settings.whatsapp_url | default: 'https://api.whatsapp.com/send/?phone=8613211685553&text&type=phone_number&app_absent=0'
+  if page and page.url != blank
+    assign landing_url = request.origin | append: page.url
+  else
+    assign landing_url = request.origin | append: '/pages/yunnan-private-tours-from-singapore'
+  endif
+%}
+
+<style>
+  .ysg-page {
+    background: #0c0a09;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .ysg-shell {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .ysg-hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 680px;
+    display: flex;
+    align-items: center;
+    background:
+      radial-gradient(circle at 72% 18%, rgba(251, 191, 36, 0.14), transparent 34%),
+      linear-gradient(135deg, #14110f 0%, #0c0a09 52%, #1c1917 100%);
+  }
+
+  .ysg-hero::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 180px;
+    background: linear-gradient(to bottom, transparent, #0c0a09);
+    pointer-events: none;
+  }
+
+  .ysg-hero-media {
+    position: absolute;
+    inset: 0;
+    opacity: 0.34;
+  }
+
+  .ysg-hero-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.04) brightness(0.74);
+  }
+
+  .ysg-hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 920px;
+    padding: 140px 0 110px;
+  }
+
+  .ysg-eyebrow {
+    display: block;
+    color: #fbbf24;
+    font-size: 10px;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .ysg-title {
+    color: #fff;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 8vw, 6rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.02;
+    margin: 0 0 28px;
+    letter-spacing: 0.01em;
+  }
+
+  .ysg-lede {
+    max-width: 780px;
+    color: #e7e0d7;
+    font-size: 17px;
+    line-height: 1.9;
+    margin: 0 0 34px;
+    font-weight: 300;
+  }
+
+  .ysg-trust-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 0 38px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ysg-trust-row li {
+    border: 1px solid rgba(251, 191, 36, 0.22);
+    background: rgba(255, 255, 255, 0.035);
+    color: #e7d8b1;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 10px 13px;
+  }
+
+  .ysg-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .ysg-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 14px 22px;
+    border: 1px solid rgba(251, 191, 36, 0.5);
+    text-decoration: none;
+    color: #0c0a09;
+    background: #fbbf24;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
+  }
+
+  .ysg-button:hover {
+    background: #f1d995;
+    border-color: #f1d995;
+    color: #0c0a09;
+  }
+
+  .ysg-button--ghost {
+    background: transparent;
+    color: #fbbf24;
+  }
+
+  .ysg-button--ghost:hover {
+    background: rgba(251, 191, 36, 0.12);
+    color: #fff;
+  }
+
+  .ysg-section {
+    padding: 96px 0;
+  }
+
+  .ysg-section--tight {
+    padding-top: 34px;
+  }
+
+  .ysg-section-head {
+    max-width: 820px;
+    margin: 0 0 38px;
+  }
+
+  .ysg-section-title {
+    color: #fff;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.1rem, 4vw, 3.4rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.15;
+    margin: 0 0 18px;
+  }
+
+  .ysg-copy {
+    color: #cfc7be;
+    font-size: 14px;
+    line-height: 1.9;
+    letter-spacing: 0.015em;
+    margin: 0;
+  }
+
+  .ysg-copy + .ysg-copy {
+    margin-top: 16px;
+  }
+
+  .ysg-link {
+    color: #f1d995;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(241, 217, 149, 0.36);
+  }
+
+  .ysg-link:hover {
+    color: #fbbf24;
+    border-bottom-color: rgba(251, 191, 36, 0.72);
+  }
+
+  .ysg-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .ysg-grid--two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ysg-card {
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(251, 191, 36, 0.13);
+    padding: 28px;
+    min-height: 100%;
+  }
+
+  .ysg-card-tag {
+    display: block;
+    color: #fbbf24;
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .ysg-card-title {
+    color: #fff;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.2;
+    margin: 0 0 12px;
+  }
+
+  .ysg-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 14px;
+  }
+
+  .ysg-list li {
+    color: #cfc7be;
+    font-size: 13px;
+    line-height: 1.75;
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .ysg-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #fbbf24;
+  }
+
+  .ysg-route-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .ysg-route-links a {
+    color: #f1d995;
+    border: 1px solid rgba(241, 217, 149, 0.22);
+    text-decoration: none;
+    padding: 10px 12px;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .ysg-route-links a:hover {
+    border-color: rgba(251, 191, 36, 0.65);
+    color: #fff;
+  }
+
+  .ysg-split {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 44px;
+    align-items: start;
+  }
+
+  .ysg-panel {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.09), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(251, 191, 36, 0.18);
+    padding: 34px;
+  }
+
+  .ysg-faq {
+    display: grid;
+    gap: 14px;
+  }
+
+  .ysg-faq-item {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
+    padding: 22px 24px;
+  }
+
+  .ysg-faq-item h3 {
+    color: #fff;
+    font-size: 15px;
+    line-height: 1.45;
+    margin: 0 0 10px;
+    font-weight: 500;
+  }
+
+  .ysg-final {
+    margin-top: 20px;
+    padding: 44px;
+    background:
+      linear-gradient(135deg, rgba(251, 191, 36, 0.12), rgba(255, 255, 255, 0.02)),
+      #12100e;
+    border: 1px solid rgba(251, 191, 36, 0.22);
+    text-align: center;
+  }
+
+  .ysg-final .ysg-section-head {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ysg-final .ysg-actions {
+    justify-content: center;
+  }
+
+  @media (max-width: 900px) {
+    .ysg-shell {
+      padding: 0 22px;
+    }
+
+    .ysg-hero {
+      min-height: auto;
+    }
+
+    .ysg-hero-inner {
+      padding: 118px 0 86px;
+    }
+
+    .ysg-grid,
+    .ysg-grid--two,
+    .ysg-split {
+      grid-template-columns: 1fr;
+    }
+
+    .ysg-section {
+      padding: 72px 0;
+    }
+
+    .ysg-section--tight {
+      padding-top: 28px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .ysg-title {
+      font-size: 3rem;
+    }
+
+    .ysg-lede {
+      font-size: 15px;
+    }
+
+    .ysg-button,
+    .ysg-actions {
+      width: 100%;
+    }
+
+    .ysg-card,
+    .ysg-panel,
+    .ysg-final {
+      padding: 24px 20px;
+    }
+  }
+</style>
+
+<div class="ysg-page">
+  <header class="ysg-hero">
+    {% if section.settings.hero_image != blank %}
+      <div class="ysg-hero-media" aria-hidden="true">
+        {{ section.settings.hero_image
+          | image_url: width: 1800
+          | image_tag:
+            width: section.settings.hero_image.width,
+            height: section.settings.hero_image.height,
+            loading: 'eager',
+            fetchpriority: 'high',
+            decoding: 'sync',
+            alt: section.settings.hero_image_alt
+        }}
+      </div>
+    {% endif %}
+
+    <div class="ysg-shell">
+      <div class="ysg-hero-inner">
+        <span class="ysg-eyebrow">Private Yunnan Travel</span>
+        <h1 class="ysg-title">Yunnan Private Tours from Singapore</h1>
+        <p class="ysg-lede">Plan a flexible Yunnan route through Kunming, Dali, Lijiang, Shangri-La or Xishuangbanna with a Kunming-based local team and human specialist review before final confirmation.</p>
+        <ul class="ysg-trust-row" aria-label="Lynxtour planning support">
+          <li>Kunming-based local team</li>
+          <li>Private route planning</li>
+          <li>WhatsApp / email support</li>
+          <li>Flexible pacing</li>
+          <li>Final quote confirmation</li>
+        </ul>
+        <div class="ysg-actions">
+          <a class="ysg-button" href="/pages/bespoke-custom-travel">Request a Custom Yunnan Itinerary</a>
+          <a class="ysg-button ysg-button--ghost" href="{{ whatsapp_url }}" target="_blank" rel="noopener">Chat on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="ysg-section ysg-section--tight">
+      <div class="ysg-shell ysg-split">
+        <div>
+          <span class="ysg-eyebrow">Why Private Yunnan</span>
+          <h2 class="ysg-section-title">Why Singapore Travelers Choose Private Yunnan Tours</h2>
+          <p class="ysg-copy">Yunnan works well for Singapore-based and Southeast Asia travelers who want a China journey with nature, old towns, minority culture, mountain scenery, and a calmer private pace. A private route makes it easier to balance sightseeing with family comfort, hotel standards, travel distance, and arrival or departure timing.</p>
+          <p class="ysg-copy">Lynxtour is based in Kunming and plans private Yunnan trips for international travelers broadly. This page focuses on Singapore planning intent, while the service remains flexible for travelers coming from many countries.</p>
+          <p class="ysg-copy"><a class="ysg-link" href="{{ routes.collections_url }}/yunnan-private-tours">Browse Yunnan private tours</a> for classic route ideas before requesting a tailored review.</p>
+        </div>
+        <aside class="ysg-panel">
+          <span class="ysg-card-tag">Planning Note</span>
+          <h3 class="ysg-card-title">Inquiry-led, not instant checkout</h3>
+          <p class="ysg-copy">Final route details, hotel level, vehicle arrangement, guide arrangement, inclusions, exclusions, availability, and final price need Lynxtour human specialist confirmation before booking.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="ysg-section">
+      <div class="ysg-shell">
+        <div class="ysg-section-head">
+          <span class="ysg-eyebrow">Trip Length</span>
+          <h2 class="ysg-section-title">Best Yunnan Itinerary Lengths for Singapore Travelers</h2>
+          <p class="ysg-copy">Use these as route-length starting points, not fixed product promises. The right choice depends on flight timing, group pace, hotel preference, altitude comfort, and whether you want a classic route or a slower custom journey.</p>
+        </div>
+        <div class="ysg-grid">
+          <article class="ysg-card">
+            <span class="ysg-card-tag">6 Days</span>
+            <h3 class="ysg-card-title">Kunming, Dali and Lijiang</h3>
+            <p class="ysg-copy">A compact first-time route for travelers who want Yunnan's main gateway, old-town atmosphere, lake scenery, and Lijiang culture without adding a highland extension.</p>
+          </article>
+          <article class="ysg-card">
+            <span class="ysg-card-tag">8 Days</span>
+            <h3 class="ysg-card-title">Add Shangri-La</h3>
+            <p class="ysg-copy">A useful length if you want Kunming, Dali, Lijiang, and Shangri-La in one private route, with specialist review for altitude, road time, and daily pacing.</p>
+          </article>
+          <article class="ysg-card">
+            <span class="ysg-card-tag">10 Days</span>
+            <h3 class="ysg-card-title">Slower Pacing or Extensions</h3>
+            <p class="ysg-copy">Best for a less rushed route, selected extensions, or extra time around family needs, photography, luxury hotel preferences, or Xishuangbanna planning.</p>
+          </article>
+        </div>
+        <p class="ysg-copy" style="margin-top: 26px;"><a class="ysg-link" href="/pages/bespoke-custom-travel">Request a custom itinerary</a> if your dates, arrival city, or pace need review before a quote is confirmed.</p>
+      </div>
+    </section>
+
+    <section class="ysg-section">
+      <div class="ysg-shell">
+        <div class="ysg-section-head">
+          <span class="ysg-eyebrow">Classic Routes</span>
+          <h2 class="ysg-section-title">Classic Routes: Kunming, Dali, Lijiang and Shangri-La</h2>
+          <p class="ysg-copy">These route cards describe safe planning types rather than guaranteed products. Lynxtour can review the final order, overnight stops, hotel level, guide support, and transport plan after you share your dates and group details.</p>
+        </div>
+        <div class="ysg-grid">
+          <article class="ysg-card">
+            <span class="ysg-card-tag">Classic</span>
+            <h3 class="ysg-card-title">6-day Kunming-Dali-Lijiang classic route</h3>
+            <p class="ysg-copy">A practical first Yunnan route for travelers who want the province's main cultural and scenic highlights in a shorter private journey.</p>
+          </article>
+          <article class="ysg-card">
+            <span class="ysg-card-tag">Highland</span>
+            <h3 class="ysg-card-title">8-day Kunming-Dali-Lijiang-Shangri-La private route</h3>
+            <p class="ysg-copy">A fuller route that can add Shangri-La when pace, altitude comfort, season, and travel distance are reviewed carefully.</p>
+          </article>
+          <article class="ysg-card">
+            <span class="ysg-card-tag">Slow Route</span>
+            <h3 class="ysg-card-title">10-day slower Yunnan private route</h3>
+            <p class="ysg-copy">A gentler option for couples, families, seniors, photographers, or travelers who prefer fewer hotel changes and more breathing room.</p>
+          </article>
+        </div>
+        <nav class="ysg-route-links" aria-label="Yunnan destination pages">
+          <a href="/pages/kunming">Kunming</a>
+          <a href="/pages/dali">Dali</a>
+          <a href="/pages/lijiang">Lijiang</a>
+          <a href="/pages/shangri-la">Shangri-La</a>
+        </nav>
+      </div>
+    </section>
+
+    <section class="ysg-section">
+      <div class="ysg-shell ysg-grid ysg-grid--two">
+        <article class="ysg-card">
+          <span class="ysg-card-tag">Custom Planning</span>
+          <h2 class="ysg-card-title">Bespoke Yunnan Planning for Families, Couples and Small Groups</h2>
+          <p class="ysg-copy">Share your preferred pace, hotel level, interests, arrival city, departure city, and group needs. A Lynxtour specialist can review whether your route is realistic before final quote confirmation.</p>
+          <p class="ysg-copy"><a class="ysg-link" href="/pages/bespoke-custom-travel">Start a bespoke Yunnan request</a>.</p>
+        </article>
+        <article class="ysg-card">
+          <span class="ysg-card-tag">Luxury Comfort</span>
+          <h2 class="ysg-card-title">Luxury Private Tour Options</h2>
+          <p class="ysg-copy">If you want higher hotel standards, slower pacing, more comfortable routing, or more attentive planning, request confirmation instead of relying on fixed online assumptions.</p>
+          <p class="ysg-copy"><a class="ysg-link" href="{{ routes.collections_url }}/yunnan-luxury-private-tours">View luxury private tour ideas</a>.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="ysg-section">
+      <div class="ysg-shell ysg-split">
+        <div>
+          <span class="ysg-eyebrow">Already in Yunnan</span>
+          <h2 class="ysg-section-title">Private Day Trips and Car Charter</h2>
+          <p class="ysg-copy">Travelers who already have hotels or fixed city stays in Yunnan may prefer private day trips or a private car charter with driver instead of a full multi-day itinerary. These options can support flexible sightseeing, airport or train station connections, and route adjustments after human confirmation.</p>
+          <div class="ysg-actions" style="margin-top: 24px;">
+            <a class="ysg-button ysg-button--ghost" href="{{ routes.collections_url }}/yunnan-private-day-trips">Private Day Trips</a>
+            <a class="ysg-button ysg-button--ghost" href="/products/yunnan-private-car-charter-tour">Private Car Charter</a>
+          </div>
+        </div>
+        <div class="ysg-panel">
+          <span class="ysg-card-tag">Before Booking</span>
+          <h2 class="ysg-card-title">What Lynxtour Confirms Before Booking</h2>
+          <ul class="ysg-list">
+            <li>Availability for your travel dates.</li>
+            <li>Final price after route and service review.</li>
+            <li>Hotel level and room arrangement where applicable.</li>
+            <li>Vehicle arrangement and guide arrangement.</li>
+            <li>Route details, inclusions, and exclusions.</li>
+          </ul>
+          <p class="ysg-copy" style="margin-top: 22px;"><a class="ysg-link" href="/pages/contact-us">Contact Lynxtour</a> if you want to check details before sending a custom request.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="ysg-section">
+      <div class="ysg-shell">
+        <div class="ysg-section-head">
+          <span class="ysg-eyebrow">FAQ</span>
+          <h2 class="ysg-section-title">Yunnan Private Tour Questions from Singapore Travelers</h2>
+        </div>
+        <div class="ysg-faq">
+          <article class="ysg-faq-item">
+            <h3>How many days should I plan for a private Yunnan tour from Singapore?</h3>
+            <p class="ysg-copy">Most travelers should start by comparing 6, 8, and 10 days. Six days can cover Kunming, Dali, and Lijiang, 8 days may add Shangri-La, and 10 days gives more room for a slower route or selected extensions.</p>
+          </article>
+          <article class="ysg-faq-item">
+            <h3>Is 6 days enough for Kunming, Dali and Lijiang?</h3>
+            <p class="ysg-copy">Six days can work as a compact classic route if flight or train timing is sensible. It is better for travelers who accept a focused pace and do not need long slow stays in every destination.</p>
+          </article>
+          <article class="ysg-faq-item">
+            <h3>Should I choose an 8-day Yunnan route if I want Shangri-La?</h3>
+            <p class="ysg-copy">Usually yes. Shangri-La adds highland scenery and more travel distance, so an 8-day route is a safer starting point than trying to fit it into a very short trip.</p>
+          </article>
+          <article class="ysg-faq-item">
+            <h3>Can Lynxtour customize a Yunnan itinerary for families or seniors?</h3>
+            <p class="ysg-copy">Yes. Lynxtour can review daily pace, hotel changes, walking level, vehicle comfort, altitude considerations, and the balance between scenery and rest time before final confirmation.</p>
+          </article>
+          <article class="ysg-faq-item">
+            <h3>Can I choose hotel level before confirming the trip?</h3>
+            <p class="ysg-copy">You can share your preferred hotel level during planning. Lynxtour will confirm what is available and suitable for your dates, route, room needs, and budget before the final quote.</p>
+          </article>
+          <article class="ysg-faq-item">
+            <h3>Are Lynxtour's online prices final?</h3>
+            <p class="ysg-copy">Online prices and route examples should not be treated as final for custom or multi-day private trips. Final price, availability, inclusions, exclusions, hotel level, vehicle, guide, and route details require human confirmation.</p>
+          </article>
+          <article class="ysg-faq-item">
+            <h3>Can I ask questions by WhatsApp before booking?</h3>
+            <p class="ysg-copy">Yes. You can ask route-fit questions by WhatsApp before booking, especially if you are still comparing trip length, destination order, hotel level, or travel pace.</p>
+          </article>
+          <article class="ysg-faq-item">
+            <h3>Can I book only private day trips or a private car charter?</h3>
+            <p class="ysg-copy">Yes. If you already have your main travel plan or hotel stays, private day trips or a private car charter with driver may be a better fit than a full multi-day private tour.</p>
+          </article>
+        </div>
+
+        <div class="ysg-final">
+          <div class="ysg-section-head">
+            <span class="ysg-eyebrow">Route Review</span>
+            <h2 class="ysg-section-title">Not sure which Yunnan route fits your dates?</h2>
+            <p class="ysg-copy">Request a custom itinerary and confirm route, hotel level, pacing, and quote with a Lynxtour specialist before the trip is finalized.</p>
+          </div>
+          <div class="ysg-actions">
+            <a class="ysg-button" href="/pages/bespoke-custom-travel">Request a Custom Yunnan Itinerary</a>
+            <a class="ysg-button ysg-button--ghost" href="{{ whatsapp_url }}" target="_blank" rel="noopener">Chat on WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+{% render 'seo-service-jsonld',
+  service_name: 'Yunnan Private Tours from Singapore',
+  service_url: landing_url,
+  service_id: 'https://lynxtour.cn/pages/yunnan-private-tours-from-singapore#service',
+  service_type: 'Private Yunnan tour planning',
+  service_description: 'Private Yunnan tour planning for Singapore-based and Southeast Asia travelers, including custom route review through Kunming, Dali, Lijiang, Shangri-La, Xishuangbanna, hotel-level flexibility, private pacing, and human quote confirmation.',
+  service_area_served: 'Yunnan|China',
+  service_audience: 'Singapore-based travelers|Southeast Asia travelers|Families|Couples|Small groups',
+  service_page_name: 'Yunnan Private Tours from Singapore'
+%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": {{ request.origin | append: '/' | json }}
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Yunnan Private Tours from Singapore",
+      "item": {{ landing_url | json }}
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How many days should I plan for a private Yunnan tour from Singapore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most travelers should start by comparing 6, 8, and 10 days. Six days can cover Kunming, Dali, and Lijiang, 8 days may add Shangri-La, and 10 days gives more room for a slower route or selected extensions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is 6 days enough for Kunming, Dali and Lijiang?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Six days can work as a compact classic route if flight or train timing is sensible. It is better for travelers who accept a focused pace and do not need long slow stays in every destination."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I choose an 8-day Yunnan route if I want Shangri-La?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually yes. Shangri-La adds highland scenery and more travel distance, so an 8-day route is a safer starting point than trying to fit it into a very short trip."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Lynxtour customize a Yunnan itinerary for families or seniors?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Lynxtour can review daily pace, hotel changes, walking level, vehicle comfort, altitude considerations, and the balance between scenery and rest time before final confirmation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I choose hotel level before confirming the trip?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can share your preferred hotel level during planning. Lynxtour will confirm what is available and suitable for your dates, route, room needs, and budget before the final quote."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are Lynxtour's online prices final?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Online prices and route examples should not be treated as final for custom or multi-day private trips. Final price, availability, inclusions, exclusions, hotel level, vehicle, guide, and route details require human confirmation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I ask questions by WhatsApp before booking?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. You can ask route-fit questions by WhatsApp before booking, especially if you are still comparing trip length, destination order, hotel level, or travel pace."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I book only private day trips or a private car charter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. If you already have your main travel plan or hotel stays, private day trips or a private car charter with driver may be a better fit than a full multi-day private tour."
+      }
+    }
+  ]
+}
+</script>
+
+{% schema %}
+{
+  "name": "Yunnan Singapore Landing",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Optional hero image"
+    },
+    {
+      "type": "text",
+      "id": "hero_image_alt",
+      "label": "Hero image alt text",
+      "default": "Yunnan private tour route through Kunming Dali Lijiang and Shangri-La"
+    },
+    {
+      "type": "url",
+      "id": "whatsapp_url",
+      "label": "WhatsApp link",
+      "default": "https://api.whatsapp.com/send/?phone=8613211685553&text&type=phone_number&app_absent=0"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Yunnan Singapore Landing"
+    }
+  ]
+}
+{% endschema %}
