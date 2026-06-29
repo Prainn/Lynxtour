@@ -1,5 +1,5 @@
 {% liquid
-  assign whatsapp_url = section.settings.whatsapp_url | default: 'https://api.whatsapp.com/send/?phone=8613211685553&text&type=phone_number&app_absent=0'
+  assign whatsapp_url = section.settings.whatsapp_url | default: 'https://api.whatsapp.com/send/?phone=8613211685553&type=phone_number&app_absent=0'
   if page and page.url != blank
     assign landing_url = request.origin | append: page.url
   else
@@ -715,10 +715,10 @@
       "default": "Yunnan private tour route through Kunming Dali Lijiang and Shangri-La"
     },
     {
-      "type": "url",
+      "type": "text",
       "id": "whatsapp_url",
       "label": "WhatsApp link",
-      "default": "https://api.whatsapp.com/send/?phone=8613211685553&text&type=phone_number&app_absent=0"
+      "default": "https://api.whatsapp.com/send/?phone=8613211685553&type=phone_number&app_absent=0"
     }
   ],
   "presets": [
