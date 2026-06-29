@@ -1,0 +1,753 @@
+{% liquid
+  assign whatsapp_url = section.settings.whatsapp_url | default: 'https://api.whatsapp.com/send/?phone=8613211685553&type=phone_number&app_absent=0'
+  if page and page.url != blank
+    assign landing_url = request.origin | append: page.url
+  else
+    assign landing_url = request.origin | append: '/pages/muslim-friendly-yunnan-private-tours'
+  endif
+%}
+
+<style>
+  .mfy-page {
+    background: #0c0a09;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .mfy-shell {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .mfy-hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 680px;
+    display: flex;
+    align-items: center;
+    background:
+      radial-gradient(circle at 72% 18%, rgba(251, 191, 36, 0.14), transparent 34%),
+      linear-gradient(135deg, #14110f 0%, #0c0a09 52%, #1c1917 100%);
+  }
+
+  .mfy-hero::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 180px;
+    background: linear-gradient(to bottom, transparent, #0c0a09);
+    pointer-events: none;
+  }
+
+  .mfy-hero-media {
+    position: absolute;
+    inset: 0;
+    opacity: 0.34;
+  }
+
+  .mfy-hero-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.04) brightness(0.74);
+  }
+
+  .mfy-hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 940px;
+    padding: 140px 0 110px;
+  }
+
+  .mfy-eyebrow {
+    display: block;
+    color: #fbbf24;
+    font-size: 10px;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .mfy-title {
+    color: #fff;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 8vw, 6rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.02;
+    margin: 0 0 28px;
+    letter-spacing: 0.01em;
+  }
+
+  .mfy-lede {
+    max-width: 800px;
+    color: #e7e0d7;
+    font-size: 17px;
+    line-height: 1.9;
+    margin: 0 0 34px;
+    font-weight: 300;
+  }
+
+  .mfy-trust-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 0 38px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .mfy-trust-row li {
+    border: 1px solid rgba(251, 191, 36, 0.22);
+    background: rgba(255, 255, 255, 0.035);
+    color: #e7d8b1;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 10px 13px;
+  }
+
+  .mfy-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .mfy-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 14px 22px;
+    border: 1px solid rgba(251, 191, 36, 0.5);
+    text-decoration: none;
+    color: #0c0a09;
+    background: #fbbf24;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
+  }
+
+  .mfy-button:hover {
+    background: #f1d995;
+    border-color: #f1d995;
+    color: #0c0a09;
+  }
+
+  .mfy-button--ghost {
+    background: transparent;
+    color: #fbbf24;
+  }
+
+  .mfy-button--ghost:hover {
+    background: rgba(251, 191, 36, 0.12);
+    color: #fff;
+  }
+
+  .mfy-section {
+    padding: 96px 0;
+  }
+
+  .mfy-section--tight {
+    padding-top: 34px;
+  }
+
+  .mfy-section-head {
+    max-width: 840px;
+    margin: 0 0 38px;
+  }
+
+  .mfy-section-title {
+    color: #fff;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.1rem, 4vw, 3.4rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.15;
+    margin: 0 0 18px;
+  }
+
+  .mfy-copy {
+    color: #cfc7be;
+    font-size: 14px;
+    line-height: 1.9;
+    letter-spacing: 0.015em;
+    margin: 0;
+  }
+
+  .mfy-copy + .mfy-copy {
+    margin-top: 16px;
+  }
+
+  .mfy-link {
+    color: #f1d995;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(241, 217, 149, 0.36);
+  }
+
+  .mfy-link:hover {
+    color: #fbbf24;
+    border-bottom-color: rgba(251, 191, 36, 0.72);
+  }
+
+  .mfy-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .mfy-grid--two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mfy-card {
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(251, 191, 36, 0.13);
+    padding: 28px;
+    min-height: 100%;
+  }
+
+  .mfy-card-tag {
+    display: block;
+    color: #fbbf24;
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .mfy-card-title {
+    color: #fff;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.2;
+    margin: 0 0 12px;
+  }
+
+  .mfy-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 14px;
+  }
+
+  .mfy-list li {
+    color: #cfc7be;
+    font-size: 13px;
+    line-height: 1.75;
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .mfy-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #fbbf24;
+  }
+
+  .mfy-route-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .mfy-route-links a {
+    color: #f1d995;
+    border: 1px solid rgba(241, 217, 149, 0.22);
+    text-decoration: none;
+    padding: 10px 12px;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .mfy-route-links a:hover {
+    border-color: rgba(251, 191, 36, 0.65);
+    color: #fff;
+  }
+
+  .mfy-split {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 44px;
+    align-items: start;
+  }
+
+  .mfy-panel {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.09), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(251, 191, 36, 0.18);
+    padding: 34px;
+  }
+
+  .mfy-faq {
+    display: grid;
+    gap: 14px;
+  }
+
+  .mfy-faq-item {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
+    padding: 22px 24px;
+  }
+
+  .mfy-faq-item h3 {
+    color: #fff;
+    font-size: 15px;
+    line-height: 1.45;
+    margin: 0 0 10px;
+    font-weight: 500;
+  }
+
+  .mfy-final {
+    margin-top: 20px;
+    padding: 44px;
+    background:
+      linear-gradient(135deg, rgba(251, 191, 36, 0.12), rgba(255, 255, 255, 0.02)),
+      #12100e;
+    border: 1px solid rgba(251, 191, 36, 0.22);
+    text-align: center;
+  }
+
+  .mfy-final .mfy-section-head {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .mfy-final .mfy-actions {
+    justify-content: center;
+  }
+
+  @media (max-width: 900px) {
+    .mfy-shell {
+      padding: 0 22px;
+    }
+
+    .mfy-hero {
+      min-height: auto;
+    }
+
+    .mfy-hero-inner {
+      padding: 118px 0 86px;
+    }
+
+    .mfy-grid,
+    .mfy-grid--two,
+    .mfy-split {
+      grid-template-columns: 1fr;
+    }
+
+    .mfy-section {
+      padding: 72px 0;
+    }
+
+    .mfy-section--tight {
+      padding-top: 28px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .mfy-title {
+      font-size: 3rem;
+    }
+
+    .mfy-lede {
+      font-size: 15px;
+    }
+
+    .mfy-button,
+    .mfy-actions {
+      width: 100%;
+    }
+
+    .mfy-card,
+    .mfy-panel,
+    .mfy-final {
+      padding: 24px 20px;
+    }
+  }
+</style>
+
+<div class="mfy-page">
+  <header class="mfy-hero">
+    {% if section.settings.hero_image != blank %}
+      <div class="mfy-hero-media" aria-hidden="true">
+        {{ section.settings.hero_image
+          | image_url: width: 1800
+          | image_tag:
+            width: section.settings.hero_image.width,
+            height: section.settings.hero_image.height,
+            loading: 'eager',
+            fetchpriority: 'high',
+            decoding: 'sync',
+            alt: section.settings.hero_image_alt
+        }}
+      </div>
+    {% endif %}
+
+    <div class="mfy-shell">
+      <div class="mfy-hero-inner">
+        <span class="mfy-eyebrow">Private Yunnan Travel</span>
+        <h1 class="mfy-title">Muslim-Friendly Yunnan Private Tours</h1>
+        <p class="mfy-lede">Plan a private Yunnan route with careful meal planning where available, pork-free options where possible, flexible pacing, and human review before final confirmation.</p>
+        <ul class="mfy-trust-row" aria-label="Lynxtour planning support">
+          <li>Private pacing</li>
+          <li>Restaurant choices reviewed before confirmation</li>
+          <li>WhatsApp / email support</li>
+          <li>Kunming-based local team</li>
+          <li>Final quote confirmation</li>
+        </ul>
+        <div class="mfy-actions">
+          <a class="mfy-button" href="/pages/bespoke-custom-travel">Request a Muslim-Friendly Yunnan Itinerary</a>
+          <a class="mfy-button mfy-button--ghost" href="{{ whatsapp_url }}" target="_blank" rel="noopener">Ask Planning Questions on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="mfy-section mfy-section--tight">
+      <div class="mfy-shell mfy-split">
+        <div>
+          <span class="mfy-eyebrow">Planning Fit</span>
+          <h2 class="mfy-section-title">Can Yunnan Be Planned as a Muslim-Friendly Trip?</h2>
+          <p class="mfy-copy">Yunnan can work for many Muslim travelers when the route is private, expectations are reviewed early, and food preferences are discussed before confirmation. The most realistic approach is to plan around halal-friendly meal planning where available, pork-free options where possible, and daily pacing that can be adjusted where practical.</p>
+          <p class="mfy-copy">Halal availability should not be assumed everywhere in Yunnan, especially in smaller towns, remote scenic areas, or highland extensions. Lynxtour can review route feasibility and meal planning expectations before a trip is confirmed.</p>
+          <p class="mfy-copy"><a class="mfy-link" href="/pages/bespoke-custom-travel">Request a custom itinerary</a> so a Lynxtour specialist can check your route, dates, group needs, and planning preferences.</p>
+        </div>
+        <aside class="mfy-panel">
+          <span class="mfy-card-tag">Planning Note</span>
+          <h3 class="mfy-card-title">Final feasibility requires human specialist review</h3>
+          <p class="mfy-copy">Final route details, meal planning, restaurant choices, hotel level, vehicle arrangement, guide arrangement, inclusions, exclusions, availability, and final price require Lynxtour human specialist confirmation before booking.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="mfy-section">
+      <div class="mfy-shell">
+        <div class="mfy-section-head">
+          <span class="mfy-eyebrow">Destination Fit</span>
+          <h2 class="mfy-section-title">Where Planning Is Easier: Kunming, Dali, Lijiang and Shangri-La</h2>
+          <p class="mfy-copy">Classic Yunnan routes usually offer more planning options than remote mountain, lake, or village extensions. Kunming, Dali, Lijiang, and Shangri-La can be reviewed as a practical starting route, with extra care around travel distance, altitude, meal stops, and hotel location.</p>
+        </div>
+        <div class="mfy-grid">
+          <article class="mfy-card">
+            <span class="mfy-card-tag">Gateway</span>
+            <h3 class="mfy-card-title">Kunming</h3>
+            <p class="mfy-copy">A useful starting point for arrival timing, first meal planning, private vehicle arrangement, and route review before continuing deeper into Yunnan.</p>
+          </article>
+          <article class="mfy-card">
+            <span class="mfy-card-tag">Classic Route</span>
+            <h3 class="mfy-card-title">Dali and Lijiang</h3>
+            <p class="mfy-copy">Popular route stops where hotel location, dining expectations, old-town walking, and daily pacing should be reviewed before confirmation.</p>
+          </article>
+          <article class="mfy-card">
+            <span class="mfy-card-tag">Highland Extension</span>
+            <h3 class="mfy-card-title">Shangri-La</h3>
+            <p class="mfy-copy">A beautiful but more sensitive extension where altitude, road time, meal options, and group comfort need practical review.</p>
+          </article>
+        </div>
+        <nav class="mfy-route-links" aria-label="Yunnan destination pages">
+          <a href="/pages/kunming">Kunming</a>
+          <a href="/pages/dali">Dali</a>
+          <a href="/pages/lijiang">Lijiang</a>
+          <a href="/pages/shangri-la">Shangri-La</a>
+        </nav>
+      </div>
+    </section>
+
+    <section class="mfy-section">
+      <div class="mfy-shell mfy-split">
+        <div>
+          <span class="mfy-eyebrow">Meal Planning</span>
+          <h2 class="mfy-section-title">Halal-Friendly Meal Planning Where Available</h2>
+          <p class="mfy-copy">Lynxtour can review restaurant choices before confirmation and help request pork-free options where possible. This is cautious planning support, not a promise of certified halal meals, guaranteed restaurant availability, or a verified halal restaurant network.</p>
+          <p class="mfy-copy">Share your comfort level, food restrictions, group size, preferred route, and hotel expectations early. A specialist can then explain what looks realistic for the dates and destinations you are considering.</p>
+          <div class="mfy-actions" style="margin-top: 24px;">
+            <a class="mfy-button mfy-button--ghost" href="/pages/contact-us">Contact Lynxtour</a>
+            <a class="mfy-button mfy-button--ghost" href="{{ whatsapp_url }}" target="_blank" rel="noopener">Ask on WhatsApp</a>
+          </div>
+        </div>
+        <div class="mfy-panel">
+          <span class="mfy-card-tag">Do Not Assume</span>
+          <ul class="mfy-list">
+            <li>Halal certification is not promised unless specifically verified for your trip.</li>
+            <li>Halal food should not be assumed everywhere in Yunnan.</li>
+            <li>Restaurant choices can be reviewed before confirmation where practical.</li>
+            <li>Pork-free options can be requested where possible.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="mfy-section">
+      <div class="mfy-shell">
+        <div class="mfy-section-head">
+          <span class="mfy-eyebrow">Route Styles</span>
+          <h2 class="mfy-section-title">Recommended Route Styles for Muslim Travelers</h2>
+          <p class="mfy-copy">Use these as route-style starting points, not fixed products or guaranteed availability. The right route depends on your dates, hotel level, food expectations, walking comfort, and how much flexibility you need during the day.</p>
+        </div>
+        <div class="mfy-grid">
+          <article class="mfy-card">
+            <span class="mfy-card-tag">6 Days</span>
+            <h3 class="mfy-card-title">Kunming-Dali-Lijiang classic route</h3>
+            <p class="mfy-copy">A focused first-time route with fewer moving parts than longer extensions, suitable for travelers who want meal and pacing expectations reviewed before confirmation.</p>
+          </article>
+          <article class="mfy-card">
+            <span class="mfy-card-tag">8 Days</span>
+            <h3 class="mfy-card-title">Kunming-Dali-Lijiang-Shangri-La private route</h3>
+            <p class="mfy-copy">A fuller route that can include Shangri-La if altitude, road time, meal planning, and hotel location are reviewed carefully.</p>
+          </article>
+          <article class="mfy-card">
+            <span class="mfy-card-tag">10 Days</span>
+            <h3 class="mfy-card-title">Slower Yunnan private route</h3>
+            <p class="mfy-copy">A gentler option for families, couples, or small groups who want more room for rest time, meal stops, private pacing, and hotel review.</p>
+          </article>
+        </div>
+        <p class="mfy-copy" style="margin-top: 26px;"><a class="mfy-link" href="{{ routes.collections_url }}/yunnan-private-tours">Browse Yunnan private tour ideas</a> before requesting a route-specific review.</p>
+      </div>
+    </section>
+
+    <section class="mfy-section">
+      <div class="mfy-shell mfy-grid mfy-grid--two">
+        <article class="mfy-card">
+          <span class="mfy-card-tag">Daily Timing</span>
+          <h2 class="mfy-card-title">Prayer-Time Flexibility and Daily Pacing</h2>
+          <p class="mfy-copy">A private tour can support timing considerations where practical because the day is not tied to a large group schedule. Lynxtour can review daily pacing, meal timing, sightseeing order, and rest breaks, but this should be understood as planning support rather than a guaranteed religious service.</p>
+          <p class="mfy-copy"><a class="mfy-link" href="/pages/bespoke-custom-travel">Start a bespoke request</a> to explain your timing needs before confirmation.</p>
+        </article>
+        <article class="mfy-card">
+          <span class="mfy-card-tag">Hotels</span>
+          <h2 class="mfy-card-title">Hotels, Breakfast and Location Planning</h2>
+          <p class="mfy-copy">Hotel level, breakfast expectations, nearby dining options, room preferences, and location should be reviewed before final confirmation. Higher-comfort planning may be relevant when meal timing, privacy, and slower pacing matter.</p>
+          <p class="mfy-copy"><a class="mfy-link" href="{{ routes.collections_url }}/yunnan-luxury-private-tours">View luxury private tour ideas</a>.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="mfy-section">
+      <div class="mfy-shell mfy-split">
+        <div>
+          <span class="mfy-eyebrow">Transport Support</span>
+          <h2 class="mfy-section-title">Private Vehicle and Driver Support</h2>
+          <p class="mfy-copy">Private transport can help reduce logistics friction, adjust meal stops where practical, and support custom timing after the route is confirmed. Vehicle arrangement, driver support, route timing, and inclusions still need specialist confirmation before booking.</p>
+          <div class="mfy-actions" style="margin-top: 24px;">
+            <a class="mfy-button mfy-button--ghost" href="/products/yunnan-private-car-charter-tour">Private Car Charter</a>
+            <a class="mfy-button mfy-button--ghost" href="/blogs/travel-guides">Travel Guides</a>
+          </div>
+        </div>
+        <div class="mfy-panel">
+          <span class="mfy-card-tag">Before Booking</span>
+          <h2 class="mfy-card-title">What Lynxtour Confirms Before Booking</h2>
+          <ul class="mfy-list">
+            <li>Route feasibility for your travel dates and group needs.</li>
+            <li>Meal planning expectations and restaurant review where possible.</li>
+            <li>Final price, hotel level, and room arrangement where applicable.</li>
+            <li>Vehicle arrangement and guide arrangement.</li>
+            <li>Inclusions, exclusions, availability, and final confirmation details.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="mfy-section">
+      <div class="mfy-shell">
+        <div class="mfy-section-head">
+          <span class="mfy-eyebrow">FAQ</span>
+          <h2 class="mfy-section-title">Muslim-Friendly Yunnan Private Tour Questions</h2>
+        </div>
+        <div class="mfy-faq">
+          <article class="mfy-faq-item">
+            <h3>Can Yunnan be planned as a Muslim-friendly private tour?</h3>
+            <p class="mfy-copy">Yes, Yunnan can work for many Muslim travelers when the route is private and expectations are reviewed early. Halal availability should not be assumed everywhere, so final feasibility requires human specialist review.</p>
+          </article>
+          <article class="mfy-faq-item">
+            <h3>Can Lynxtour arrange halal-friendly meal planning where available?</h3>
+            <p class="mfy-copy">Lynxtour can help with halal-friendly meal planning where available and review restaurant choices before confirmation. This does not mean certified halal meals are guaranteed unless specifically verified.</p>
+          </article>
+          <article class="mfy-faq-item">
+            <h3>Can pork-free options be requested during the trip?</h3>
+            <p class="mfy-copy">Pork-free options can be requested where possible. Availability depends on the destination, restaurant options, travel dates, route timing, and final local confirmation.</p>
+          </article>
+          <article class="mfy-faq-item">
+            <h3>Can restaurant choices be reviewed before confirmation?</h3>
+            <p class="mfy-copy">Yes. Restaurant choices can be reviewed before confirmation where practical, especially on classic routes. Remote areas may have fewer suitable options and should be discussed early.</p>
+          </article>
+          <article class="mfy-faq-item">
+            <h3>Which Yunnan route is easiest for Muslim travelers?</h3>
+            <p class="mfy-copy">A classic Kunming, Dali, and Lijiang route is often the easiest starting point because it usually gives more planning options than remote extensions. The exact route still needs review for your dates and needs.</p>
+          </article>
+          <article class="mfy-faq-item">
+            <h3>Is Shangri-La suitable for a Muslim-friendly Yunnan itinerary?</h3>
+            <p class="mfy-copy">Shangri-La may be suitable for some travelers, but it needs careful review because altitude, road time, hotel location, and meal options can affect the trip experience.</p>
+          </article>
+          <article class="mfy-faq-item">
+            <h3>Can the daily pace allow flexibility around prayer times?</h3>
+            <p class="mfy-copy">Private pacing can support timing considerations where practical. This should be discussed as daily planning support, not as a guaranteed religious service or mosque-access arrangement.</p>
+          </article>
+          <article class="mfy-faq-item">
+            <h3>What should Muslim travelers be cautious about in remote Yunnan areas?</h3>
+            <p class="mfy-copy">Remote areas may have fewer restaurant choices, fewer pork-free options, longer driving times, limited hotel choices, and less flexibility for timing changes. Share your requirements early so Lynxtour can review realistic options.</p>
+          </article>
+        </div>
+
+        <div class="mfy-final">
+          <div class="mfy-section-head">
+            <span class="mfy-eyebrow">Route Review</span>
+            <h2 class="mfy-section-title">Need help checking if a Yunnan route fits your meal and pacing needs?</h2>
+            <p class="mfy-copy">Request a custom itinerary and confirm route feasibility, meal planning, hotel level, pacing, and quote with a Lynxtour specialist before the trip is finalized.</p>
+          </div>
+          <div class="mfy-actions">
+            <a class="mfy-button" href="/pages/bespoke-custom-travel">Request a Muslim-Friendly Yunnan Itinerary</a>
+            <a class="mfy-button mfy-button--ghost" href="{{ whatsapp_url }}" target="_blank" rel="noopener">Ask Planning Questions on WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+{% render 'seo-service-jsonld',
+  service_name: 'Muslim-Friendly Yunnan Private Tours',
+  service_url: landing_url,
+  service_id: 'https://lynxtour.cn/pages/muslim-friendly-yunnan-private-tours#service',
+  service_type: 'Private Yunnan tour planning',
+  service_description: 'Private Yunnan tour planning for Muslim travelers, including cautious halal-friendly meal planning where available, pork-free options where possible, restaurant review before confirmation, private pacing, and human specialist confirmation of route feasibility.',
+  service_area_served: 'Yunnan|China',
+  service_audience: 'Muslim travelers|Families|Couples|Small groups|International travelers',
+  service_page_name: 'Muslim-Friendly Yunnan Private Tours'
+%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": {{ request.origin | append: '/' | json }}
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Muslim-Friendly Yunnan Private Tours",
+      "item": {{ landing_url | json }}
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can Yunnan be planned as a Muslim-friendly private tour?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Yunnan can work for many Muslim travelers when the route is private and expectations are reviewed early. Halal availability should not be assumed everywhere, so final feasibility requires human specialist review."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Lynxtour arrange halal-friendly meal planning where available?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lynxtour can help with halal-friendly meal planning where available and review restaurant choices before confirmation. This does not mean certified halal meals are guaranteed unless specifically verified."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can pork-free options be requested during the trip?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pork-free options can be requested where possible. Availability depends on the destination, restaurant options, travel dates, route timing, and final local confirmation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can restaurant choices be reviewed before confirmation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Restaurant choices can be reviewed before confirmation where practical, especially on classic routes. Remote areas may have fewer suitable options and should be discussed early."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which Yunnan route is easiest for Muslim travelers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A classic Kunming, Dali, and Lijiang route is often the easiest starting point because it usually gives more planning options than remote extensions. The exact route still needs review for your dates and needs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Shangri-La suitable for a Muslim-friendly Yunnan itinerary?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Shangri-La may be suitable for some travelers, but it needs careful review because altitude, road time, hotel location, and meal options can affect the trip experience."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can the daily pace allow flexibility around prayer times?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Private pacing can support timing considerations where practical. This should be discussed as daily planning support, not as a guaranteed religious service or mosque-access arrangement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should Muslim travelers be cautious about in remote Yunnan areas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Remote areas may have fewer restaurant choices, fewer pork-free options, longer driving times, limited hotel choices, and less flexibility for timing changes. Share your requirements early so Lynxtour can review realistic options."
+      }
+    }
+  ]
+}
+</script>
+
+{% schema %}
+{
+  "name": "Muslim Friendly Landing",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Optional hero image"
+    },
+    {
+      "type": "text",
+      "id": "hero_image_alt",
+      "label": "Hero image alt text",
+      "default": "Yunnan private tour route planning through Kunming Dali Lijiang and Shangri-La"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_url",
+      "label": "WhatsApp link",
+      "default": "https://api.whatsapp.com/send/?phone=8613211685553&type=phone_number&app_absent=0"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Muslim Friendly Landing"
+    }
+  ]
+}
+{% endschema %}
