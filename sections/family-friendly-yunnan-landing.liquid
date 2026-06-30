@@ -1,0 +1,771 @@
+{% liquid
+  assign whatsapp_url = section.settings.whatsapp_url | default: 'https://api.whatsapp.com/send/?phone=8613211685553&type=phone_number&app_absent=0'
+  if page and page.url != blank
+    assign landing_url = request.origin | append: page.url
+  else
+    assign landing_url = request.origin | append: '/pages/family-friendly-yunnan-private-tours'
+  endif
+%}
+
+<style>
+  .ffy-page {
+    background: #0c0a09;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .ffy-shell {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .ffy-hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 680px;
+    display: flex;
+    align-items: center;
+    background:
+      radial-gradient(circle at 72% 18%, rgba(251, 191, 36, 0.14), transparent 34%),
+      linear-gradient(135deg, #14110f 0%, #0c0a09 52%, #1c1917 100%);
+  }
+
+  .ffy-hero::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 180px;
+    background: linear-gradient(to bottom, transparent, #0c0a09);
+    pointer-events: none;
+  }
+
+  .ffy-hero-media {
+    position: absolute;
+    inset: 0;
+    opacity: 0.34;
+  }
+
+  .ffy-hero-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.04) brightness(0.74);
+  }
+
+  .ffy-hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 940px;
+    padding: 140px 0 110px;
+  }
+
+  .ffy-eyebrow {
+    display: block;
+    color: #fbbf24;
+    font-size: 10px;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .ffy-title {
+    color: #fff;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 8vw, 6rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.02;
+    margin: 0 0 28px;
+    letter-spacing: 0.01em;
+  }
+
+  .ffy-lede {
+    max-width: 820px;
+    color: #e7e0d7;
+    font-size: 17px;
+    line-height: 1.9;
+    margin: 0 0 34px;
+    font-weight: 300;
+  }
+
+  .ffy-trust-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 0 38px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ffy-trust-row li {
+    border: 1px solid rgba(251, 191, 36, 0.22);
+    background: rgba(255, 255, 255, 0.035);
+    color: #e7d8b1;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 10px 13px;
+  }
+
+  .ffy-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .ffy-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 14px 22px;
+    border: 1px solid rgba(251, 191, 36, 0.5);
+    text-decoration: none;
+    color: #0c0a09;
+    background: #fbbf24;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
+  }
+
+  .ffy-button:hover {
+    background: #f1d995;
+    border-color: #f1d995;
+    color: #0c0a09;
+  }
+
+  .ffy-button--ghost {
+    background: transparent;
+    color: #fbbf24;
+  }
+
+  .ffy-button--ghost:hover {
+    background: rgba(251, 191, 36, 0.12);
+    color: #fff;
+  }
+
+  .ffy-section {
+    padding: 96px 0;
+  }
+
+  .ffy-section--tight {
+    padding-top: 34px;
+  }
+
+  .ffy-section-head {
+    max-width: 840px;
+    margin: 0 0 38px;
+  }
+
+  .ffy-section-title {
+    color: #fff;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.1rem, 4vw, 3.4rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.15;
+    margin: 0 0 18px;
+  }
+
+  .ffy-copy {
+    color: #cfc7be;
+    font-size: 14px;
+    line-height: 1.9;
+    letter-spacing: 0.015em;
+    margin: 0;
+  }
+
+  .ffy-copy + .ffy-copy {
+    margin-top: 16px;
+  }
+
+  .ffy-link {
+    color: #f1d995;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(241, 217, 149, 0.36);
+  }
+
+  .ffy-link:hover {
+    color: #fbbf24;
+    border-bottom-color: rgba(251, 191, 36, 0.72);
+  }
+
+  .ffy-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .ffy-grid--two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ffy-card {
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(251, 191, 36, 0.13);
+    padding: 28px;
+    min-height: 100%;
+  }
+
+  .ffy-card-tag {
+    display: block;
+    color: #fbbf24;
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .ffy-card-title {
+    color: #fff;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.2;
+    margin: 0 0 12px;
+  }
+
+  .ffy-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 14px;
+  }
+
+  .ffy-list li {
+    color: #cfc7be;
+    font-size: 13px;
+    line-height: 1.75;
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .ffy-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #fbbf24;
+  }
+
+  .ffy-route-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .ffy-route-links a {
+    color: #f1d995;
+    border: 1px solid rgba(241, 217, 149, 0.22);
+    text-decoration: none;
+    padding: 10px 12px;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .ffy-route-links a:hover {
+    border-color: rgba(251, 191, 36, 0.65);
+    color: #fff;
+  }
+
+  .ffy-split {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 44px;
+    align-items: start;
+  }
+
+  .ffy-panel {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.09), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(251, 191, 36, 0.18);
+    padding: 34px;
+  }
+
+  .ffy-faq {
+    display: grid;
+    gap: 14px;
+  }
+
+  .ffy-faq-item {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
+    padding: 22px 24px;
+  }
+
+  .ffy-faq-item h3 {
+    color: #fff;
+    font-size: 15px;
+    line-height: 1.45;
+    margin: 0 0 10px;
+    font-weight: 500;
+  }
+
+  .ffy-final {
+    margin-top: 20px;
+    padding: 44px;
+    background:
+      linear-gradient(135deg, rgba(251, 191, 36, 0.12), rgba(255, 255, 255, 0.02)),
+      #12100e;
+    border: 1px solid rgba(251, 191, 36, 0.22);
+    text-align: center;
+  }
+
+  .ffy-final .ffy-section-head {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ffy-final .ffy-actions {
+    justify-content: center;
+  }
+
+  @media (max-width: 900px) {
+    .ffy-shell {
+      padding: 0 22px;
+    }
+
+    .ffy-hero {
+      min-height: auto;
+    }
+
+    .ffy-hero-inner {
+      padding: 118px 0 86px;
+    }
+
+    .ffy-grid,
+    .ffy-grid--two,
+    .ffy-split {
+      grid-template-columns: 1fr;
+    }
+
+    .ffy-section {
+      padding: 72px 0;
+    }
+
+    .ffy-section--tight {
+      padding-top: 28px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .ffy-title {
+      font-size: 3rem;
+    }
+
+    .ffy-lede {
+      font-size: 15px;
+    }
+
+    .ffy-button,
+    .ffy-actions {
+      width: 100%;
+    }
+
+    .ffy-card,
+    .ffy-panel,
+    .ffy-final {
+      padding: 24px 20px;
+    }
+  }
+</style>
+
+<div class="ffy-page">
+  <header class="ffy-hero">
+    {% if section.settings.hero_image != blank %}
+      <div class="ffy-hero-media" aria-hidden="true">
+        {{ section.settings.hero_image
+          | image_url: width: 1800
+          | image_tag:
+            width: section.settings.hero_image.width,
+            height: section.settings.hero_image.height,
+            loading: 'eager',
+            fetchpriority: 'high',
+            decoding: 'sync',
+            alt: section.settings.hero_image_alt
+        }}
+      </div>
+    {% endif %}
+
+    <div class="ffy-shell">
+      <div class="ffy-hero-inner">
+        <span class="ffy-eyebrow">Private Yunnan Travel</span>
+        <h1 class="ffy-title">Family-Friendly Yunnan Private Tours</h1>
+        <p class="ffy-lede">Plan a private Yunnan route with family pacing reviewed, walking level and rest time adjusted where practical, hotel room arrangement discussed early, and human review before final quote confirmation.</p>
+        <ul class="ffy-trust-row" aria-label="Lynxtour family planning support">
+          <li>Family pacing can be reviewed</li>
+          <li>Walking level and rest time planned where practical</li>
+          <li>WhatsApp / email support</li>
+          <li>Kunming-based local team</li>
+          <li>Final quote confirmation</li>
+        </ul>
+        <div class="ffy-actions">
+          <a class="ffy-button" href="/pages/bespoke-custom-travel">Request a Family-Friendly Yunnan Itinerary</a>
+          <a class="ffy-button ffy-button--ghost" href="{{ whatsapp_url }}" target="_blank" rel="noopener">Ask Family Planning Questions on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="ffy-section ffy-section--tight">
+      <div class="ffy-shell ffy-split">
+        <div>
+          <span class="ffy-eyebrow">Planning Fit</span>
+          <h2 class="ffy-section-title">Can Yunnan Be Planned as a Family-Friendly Private Trip?</h2>
+          <p class="ffy-copy">Yunnan can work well for many families and multi-generation groups when pacing, walking level, rest time, road time, altitude comfort, and hotel choices are reviewed before confirmation.</p>
+          <p class="ffy-copy">This is route planning support, not a guarantee that every route suits every family. Final route feasibility depends on age, walking ability, altitude comfort, season, road time, and hotel availability.</p>
+          <p class="ffy-copy"><a class="ffy-link" href="/pages/bespoke-custom-travel">Request a custom itinerary</a> so a Lynxtour specialist can review your route, dates, group needs, and quote before booking.</p>
+        </div>
+        <aside class="ffy-panel">
+          <span class="ffy-card-tag">Planning Note</span>
+          <h3 class="ffy-card-title">Inquiry-led, not instant checkout</h3>
+          <p class="ffy-copy">Final route details, hotel level, room arrangement, vehicle arrangement, guide arrangement, walking level, rest time, altitude-sensitive route feasibility, inclusions, exclusions, availability, and final price require Lynxtour human specialist confirmation.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="ffy-section">
+      <div class="ffy-shell">
+        <div class="ffy-section-head">
+          <span class="ffy-eyebrow">Trip Length</span>
+          <h2 class="ffy-section-title">Best Yunnan Itinerary Lengths for Families</h2>
+          <p class="ffy-copy">Use these as route-length starting points, not fixed guarantees. The right route depends on ages, walking ability, altitude comfort, travel season, hotel needs, and how much daily rest time your group prefers.</p>
+        </div>
+        <div class="ffy-grid">
+          <article class="ffy-card">
+            <span class="ffy-card-tag">6 Days</span>
+            <h3 class="ffy-card-title">Focused Kunming-Dali-Lijiang route</h3>
+            <p class="ffy-copy">A classic first-time route with fewer moving parts than highland or remote extensions, useful for families who want Yunnan highlights in a focused private journey.</p>
+          </article>
+          <article class="ffy-card">
+            <span class="ffy-card-tag">8 Days</span>
+            <h3 class="ffy-card-title">Add Shangri-La with careful review</h3>
+            <p class="ffy-copy">A fuller route can add Shangri-La when altitude comfort, road time, season, walking level, and group pace are reviewed before confirmation.</p>
+          </article>
+          <article class="ffy-card">
+            <span class="ffy-card-tag">10 Days</span>
+            <h3 class="ffy-card-title">More rest time or selected extensions</h3>
+            <p class="ffy-copy">A slower option for multi-generation groups, families with children, or travelers who prefer fewer rushed days, selected extensions, and more room for rest.</p>
+          </article>
+        </div>
+        <p class="ffy-copy" style="margin-top: 26px;"><a class="ffy-link" href="{{ routes.collections_url }}/yunnan-private-tours">Browse Yunnan private tour ideas</a> before requesting route-specific confirmation.</p>
+      </div>
+    </section>
+
+    <section class="ffy-section">
+      <div class="ffy-shell">
+        <div class="ffy-section-head">
+          <span class="ffy-eyebrow">Easier Routes</span>
+          <h2 class="ffy-section-title">Easier Family Routes: Kunming, Dali and Lijiang</h2>
+          <p class="ffy-copy">Classic routes through Kunming, Dali, and Lijiang usually offer more planning options and less complexity than remote extensions. They can be a practical starting point when families want old towns, lake scenery, cultural stops, and private pacing without adding too many hotel changes.</p>
+        </div>
+        <div class="ffy-grid">
+          <article class="ffy-card">
+            <span class="ffy-card-tag">Gateway</span>
+            <h3 class="ffy-card-title">Kunming</h3>
+            <p class="ffy-copy">A useful arrival point for easing into the route, reviewing first-day timing, and checking the pace before deeper Yunnan travel.</p>
+          </article>
+          <article class="ffy-card">
+            <span class="ffy-card-tag">Lake and Old Town</span>
+            <h3 class="ffy-card-title">Dali</h3>
+            <p class="ffy-copy">Often a comfortable planning stop for families who want scenery, old-town time, hotel location review, and a less hurried daily flow.</p>
+          </article>
+          <article class="ffy-card">
+            <span class="ffy-card-tag">Classic Culture</span>
+            <h3 class="ffy-card-title">Lijiang</h3>
+            <p class="ffy-copy">A popular family route stop where walking level, old-town pacing, hotel access, and sightseeing order should be reviewed early.</p>
+          </article>
+        </div>
+        <nav class="ffy-route-links" aria-label="Yunnan destination pages">
+          <a href="/pages/kunming">Kunming</a>
+          <a href="/pages/dali">Dali</a>
+          <a href="/pages/lijiang">Lijiang</a>
+        </nav>
+      </div>
+    </section>
+
+    <section class="ffy-section">
+      <div class="ffy-shell ffy-split">
+        <div>
+          <span class="ffy-eyebrow">Highland Caution</span>
+          <h2 class="ffy-section-title">Shangri-La and Altitude-Sensitive Planning</h2>
+          <p class="ffy-copy">Shangri-La can be beautiful, but altitude-sensitive routes should be reviewed before confirmation. Children, seniors, and travelers with health concerns should review route feasibility carefully before adding highland sections.</p>
+          <p class="ffy-copy">Lynxtour can discuss pacing, road time, overnight stops, and practical route scope, but this is not medical advice. Travelers with medical concerns should consult a qualified medical professional before choosing high-altitude routes.</p>
+          <div class="ffy-actions" style="margin-top: 24px;">
+            <a class="ffy-button ffy-button--ghost" href="/pages/shangri-la">Review Shangri-La</a>
+            <a class="ffy-button ffy-button--ghost" href="{{ whatsapp_url }}" target="_blank" rel="noopener">Ask on WhatsApp</a>
+          </div>
+        </div>
+        <div class="ffy-panel">
+          <span class="ffy-card-tag">Review Before Confirmation</span>
+          <ul class="ffy-list">
+            <li>Altitude comfort and health concerns should be discussed early.</li>
+            <li>Road time, season, walking level, and hotel availability affect route fit.</li>
+            <li>No Yunnan highland route should be treated as suitable for every child, senior, or traveler.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="ffy-section">
+      <div class="ffy-shell ffy-grid ffy-grid--two">
+        <article class="ffy-card">
+          <span class="ffy-card-tag">Daily Flow</span>
+          <h2 class="ffy-card-title">Walking Level, Rest Time and Daily Flow</h2>
+          <p class="ffy-copy">Family pacing can be reviewed, and walking level and rest time can be adjusted where practical. Final feasibility depends on route, season, road time, attractions, group needs, and local conditions.</p>
+          <p class="ffy-copy"><a class="ffy-link" href="/pages/bespoke-custom-travel">Start a bespoke request</a> to share ages, walking comfort, rest needs, and route expectations.</p>
+        </article>
+        <article class="ffy-card">
+          <span class="ffy-card-tag">Hotels</span>
+          <h2 class="ffy-card-title">Hotels, Breakfast and Room Arrangement</h2>
+          <p class="ffy-copy">Hotel level, room type, breakfast expectations, nearby dining, room arrangement, and location can be discussed before final quote, subject to availability. Connecting rooms, baby beds, room upgrades, and specific hotel names are not guaranteed unless confirmed.</p>
+          <p class="ffy-copy"><a class="ffy-link" href="{{ routes.collections_url }}/yunnan-luxury-private-tours">View luxury private tour ideas</a>.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="ffy-section">
+      <div class="ffy-shell ffy-grid ffy-grid--two">
+        <article class="ffy-card">
+          <span class="ffy-card-tag">Transport Support</span>
+          <h2 class="ffy-card-title">Private Vehicle and Driver Support</h2>
+          <p class="ffy-copy">Private transport can reduce logistics friction, support custom timing, and make meal or rest stops easier after confirmation. Vehicle model, driver arrangement, route timing, and inclusions still require specialist confirmation.</p>
+          <p class="ffy-copy"><a class="ffy-link" href="/products/yunnan-private-car-charter-tour">Review private car charter</a>.</p>
+        </article>
+        <article class="ffy-card">
+          <span class="ffy-card-tag">Already in Yunnan</span>
+          <h2 class="ffy-card-title">Private Day Trips for Families Already in Yunnan</h2>
+          <p class="ffy-copy">Families already based in one city may prefer private day trips or car charter instead of a full multi-day route. This can keep planning lighter while still allowing route timing and rest stops to be reviewed.</p>
+          <p class="ffy-copy"><a class="ffy-link" href="{{ routes.collections_url }}/yunnan-private-day-trips">Browse private day trips</a>.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="ffy-section">
+      <div class="ffy-shell ffy-split">
+        <div>
+          <span class="ffy-eyebrow">Planning Resources</span>
+          <h2 class="ffy-section-title">Travel Guides for Route Planning</h2>
+          <p class="ffy-copy">Travel guides can help families compare season, destination order, travel distance, and realistic route scope before sending an inquiry. They are useful when you are deciding whether to keep the route classic or add a highland or warmer-weather extension.</p>
+          <p class="ffy-copy"><a class="ffy-link" href="/blogs/travel-guides">Read Yunnan travel guides</a> before requesting a specialist route review.</p>
+        </div>
+        <div class="ffy-panel">
+          <span class="ffy-card-tag">Before Booking</span>
+          <h2 class="ffy-card-title">What Lynxtour Confirms Before Booking</h2>
+          <ul class="ffy-list">
+            <li>Route feasibility.</li>
+            <li>Travel dates and seasonal fit.</li>
+            <li>Walking level expectations.</li>
+            <li>Rest time and pacing.</li>
+            <li>Altitude-sensitive route review.</li>
+            <li>Hotel level and room arrangement where applicable.</li>
+            <li>Vehicle arrangement.</li>
+            <li>Guide arrangement.</li>
+            <li>Inclusions and exclusions.</li>
+            <li>Availability.</li>
+            <li>Final price.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="ffy-section">
+      <div class="ffy-shell">
+        <div class="ffy-section-head">
+          <span class="ffy-eyebrow">FAQ</span>
+          <h2 class="ffy-section-title">Family-Friendly Yunnan Private Tour Questions</h2>
+        </div>
+        <div class="ffy-faq">
+          <article class="ffy-faq-item">
+            <h3>Can Yunnan be planned as a family-friendly private tour?</h3>
+            <p class="ffy-copy">Yes, Yunnan can work well for many families and multi-generation groups when pacing, walking level, rest time, road time, altitude comfort, and hotel choices are reviewed before confirmation.</p>
+          </article>
+          <article class="ffy-faq-item">
+            <h3>Which Yunnan route is easiest for families with children?</h3>
+            <p class="ffy-copy">A classic Kunming, Dali, and Lijiang route is often the easiest starting point because it usually offers more planning options and less complexity than remote extensions.</p>
+          </article>
+          <article class="ffy-faq-item">
+            <h3>Is Shangri-La suitable for children or senior travelers?</h3>
+            <p class="ffy-copy">Shangri-La may be suitable for some families, but it is altitude-sensitive and should be reviewed carefully before confirmation, especially for children, seniors, or travelers with health concerns.</p>
+          </article>
+          <article class="ffy-faq-item">
+            <h3>Can walking level and rest time be adjusted during the trip?</h3>
+            <p class="ffy-copy">Walking level and rest time can be adjusted where practical. Final feasibility depends on the route, season, road time, attractions, group needs, and local conditions.</p>
+          </article>
+          <article class="ffy-faq-item">
+            <h3>Can hotel room arrangement and vehicle comfort be discussed before the quote?</h3>
+            <p class="ffy-copy">Yes. Hotel room arrangement and vehicle comfort can be discussed before final quote confirmation, subject to availability, route needs, group size, and local arrangements.</p>
+          </article>
+          <article class="ffy-faq-item">
+            <h3>Does Lynxtour provide child-care, medical support, or child-specialist guides?</h3>
+            <p class="ffy-copy">No. Lynxtour provides private route planning and travel arrangement support, but does not provide child-care service, medical support, or child-specialist guide guarantees.</p>
+          </article>
+          <article class="ffy-faq-item">
+            <h3>What should families consider before choosing a highland route?</h3>
+            <p class="ffy-copy">Families should consider age, walking ability, altitude comfort, season, road time, hotel availability, and health concerns. Travelers with medical concerns should consult a qualified medical professional before choosing high-altitude routes.</p>
+          </article>
+          <article class="ffy-faq-item">
+            <h3>Is a private car charter useful for families already staying in Yunnan?</h3>
+            <p class="ffy-copy">Yes. A private car charter can be useful for families already staying in Yunnan because it can reduce logistics friction and support custom timing after the route and arrangement are confirmed.</p>
+          </article>
+        </div>
+
+        <div class="ffy-final">
+          <div class="ffy-section-head">
+            <span class="ffy-eyebrow">Route Review</span>
+            <h2 class="ffy-section-title">Need help checking if a Yunnan route fits your family's pace?</h2>
+            <p class="ffy-copy">Request a custom itinerary and confirm route feasibility, walking level, rest time, hotel room arrangement, vehicle comfort, altitude-sensitive sections, and quote with a Lynxtour specialist.</p>
+          </div>
+          <div class="ffy-actions">
+            <a class="ffy-button" href="/pages/bespoke-custom-travel">Request a Family-Friendly Yunnan Itinerary</a>
+            <a class="ffy-button ffy-button--ghost" href="{{ whatsapp_url }}" target="_blank" rel="noopener">Ask Family Planning Questions on WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+{% render 'seo-service-jsonld',
+  service_name: 'Family-Friendly Yunnan Private Tours',
+  service_url: landing_url,
+  service_id: 'https://lynxtour.cn/pages/family-friendly-yunnan-private-tours#service',
+  service_type: 'Private Yunnan family tour planning',
+  service_description: 'Private Yunnan tour planning for families and multi-generation groups, including family pacing review, walking level and rest time adjustments where practical, hotel room arrangement discussion, vehicle comfort review, altitude-sensitive route review, and human quote confirmation.',
+  service_area_served: 'Yunnan|China',
+  service_audience: 'Families|Multi-generation groups|Couples traveling with children|Senior travelers with relatives|Small private groups|International travelers',
+  service_page_name: 'Family-Friendly Yunnan Private Tours'
+%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": {{ request.origin | append: '/' | json }}
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Family-Friendly Yunnan Private Tours",
+      "item": {{ landing_url | json }}
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can Yunnan be planned as a family-friendly private tour?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Yunnan can work well for many families and multi-generation groups when pacing, walking level, rest time, road time, altitude comfort, and hotel choices are reviewed before confirmation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which Yunnan route is easiest for families with children?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A classic Kunming, Dali, and Lijiang route is often the easiest starting point because it usually offers more planning options and less complexity than remote extensions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Shangri-La suitable for children or senior travelers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Shangri-La may be suitable for some families, but it is altitude-sensitive and should be reviewed carefully before confirmation, especially for children, seniors, or travelers with health concerns."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can walking level and rest time be adjusted during the trip?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Walking level and rest time can be adjusted where practical. Final feasibility depends on the route, season, road time, attractions, group needs, and local conditions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can hotel room arrangement and vehicle comfort be discussed before the quote?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Hotel room arrangement and vehicle comfort can be discussed before final quote confirmation, subject to availability, route needs, group size, and local arrangements."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Lynxtour provide child-care, medical support, or child-specialist guides?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Lynxtour provides private route planning and travel arrangement support, but does not provide child-care service, medical support, or child-specialist guide guarantees."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should families consider before choosing a highland route?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Families should consider age, walking ability, altitude comfort, season, road time, hotel availability, and health concerns. Travelers with medical concerns should consult a qualified medical professional before choosing high-altitude routes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a private car charter useful for families already staying in Yunnan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. A private car charter can be useful for families already staying in Yunnan because it can reduce logistics friction and support custom timing after the route and arrangement are confirmed."
+      }
+    }
+  ]
+}
+</script>
+
+{% schema %}
+{
+  "name": "Family Friendly Landing",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Optional hero image"
+    },
+    {
+      "type": "text",
+      "id": "hero_image_alt",
+      "label": "Hero image alt text",
+      "default": "Yunnan private tour planning for families through Kunming Dali Lijiang and Shangri-La"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_url",
+      "label": "WhatsApp link",
+      "default": "https://api.whatsapp.com/send/?phone=8613211685553&type=phone_number&app_absent=0"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Family Friendly Landing"
+    }
+  ]
+}
+{% endschema %}
