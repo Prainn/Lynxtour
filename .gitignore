@@ -1,0 +1,15 @@
+.env
+.env.*
+!.env.example
+secrets/
+credentials/
+*.client_secret.json
+*client_secret*.json
+*service-account*.json
+google-ads.yaml
+google_ads.yaml
+data/google_ads/raw/
+data/google_ads/*/raw/
+__pycache__/
+*.pyc
+.DS_Store
